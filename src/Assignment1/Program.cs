@@ -1,4 +1,6 @@
-﻿namespace Assignment1
+﻿using System;
+
+namespace Assignment1
 {
     /// <summary>
     /// This is a Main Class Program
@@ -12,35 +14,28 @@
         public static void Main(string[] args)
         {
             MathUtils cal = new MathUtils();
-            while (true)
+            Console.WriteLine("Enter the two numbers");
+            Console.Write("First Number : ");
+            int input1 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Second Number: ");
+            int input2 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter the options (1.Add, 2.Subtract, 3.Multiply, 4.Division, 5.Exit: ");
+            int option = Convert.ToInt32(Console.ReadLine());
+            if (option == 1)
             {
-                Console.WriteLine("Enter the two numbers");
-                Console.Write("First Number : ");
-                int input1 = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Second Number: ");
-                int input2 = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Enter the options (1.Add, 2.Subtract, 3.Multiply, 4.Division, 5.Exit: ");
-                int option = Convert.ToInt32(Console.ReadLine());
-                if (option == 1)
-                {
-                    Console.WriteLine(cal.Add(input1, input2));
-                }
-                else if (option == 2)
-                {
-                    Console.WriteLine(cal.Subtract(input1, input2));
-                }
-                else if (option == 3)
-                {
-                    Console.WriteLine(cal.Multiply(input1, input2));
-                }
-                else if (option == 4)
-                {
-                    Console.WriteLine(cal.Divide(input1, input2));
-                }
-                else
-                {
-                    break;
-                }
+                Console.WriteLine(cal.Add(input1, input2));
+            }
+            else if (option == 2)
+            {
+                Console.WriteLine(cal.Subtract(input1, input2));
+            }
+            else if (option == 3)
+            {
+                Console.WriteLine(cal.Multiply(input1, input2));
+            }
+            else if (option == 4)
+            {
+                Console.WriteLine(cal.Divide(input1, input2));
             }
         }
     }
