@@ -7,116 +7,107 @@
     /// </summary>
     public class Program
     {
-        private static bool flag1 = true;
-
         /// <summary>
-        /// This is a Main Method
+        /// The main method starts by the asking the two inputs from the user and checks for the input mismatch.
+        /// The main method asks for the operations that are to be performed. The loop runs as long as user terminate by the keyword.
         /// </summary>
-        /// <param name="args"> It is String array in the parameters of the main method</param>
+        /// <param name="args"> It is string array in the parameters of the main method</param>
         public static void Main(string[] args)
         {
             int input1, input2, option;
             bool flag = true;
+            string? match1, match2;
             while (flag)
             {
                 MathUtils calculator = new MathUtils();
-            label2:
                 Console.WriteLine("Enter the two numbers");
                 Console.Write("First Number : ");
-                input1 = IntegerInput(NullException(Console.ReadLine()));
-                if (!flag1)
-                {
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    flag1 = true;
-                    goto label2;
-                }
-
+                match1 = NullException(Console.ReadLine());
+                input1 = IntegerInput(match1);
                 Console.Write("Second Number: ");
-                input2 = IntegerInput(NullException(Console.ReadLine()));
-                if (!flag1)
+                match2 = NullException(Console.ReadLine());
+                if (!PatternMatch(match1) || !PatternMatch(match2))
                 {
-                    Thread.Sleep(1000);
+                    Console.WriteLine("Invalid Number");
+                    Console.WriteLine("Press Enter to continue: ");
+                    Console.ReadLine();
                     Console.Clear();
-                    flag1 = true;
-                    goto label2;
-                }
-
-            label:
-                Console.Write("Enter the options (1.Add, 2.Subtract, 3.Multiply, 4.Division, 5.Exit): ");
-                option = IntegerInput(NullException(Console.ReadLine()));
-                if (option <= 0 || option >= 6)
-                {
-                    goto label;
-                }
-
-                switch (option)
-                {
-                    case 1:
-                        Console.WriteLine(calculator.Add(input1, input2));
-                        break;
-                    case 2:
-                        Console.WriteLine(calculator.Subtract(input1, input2));
-                        break;
-                    case 3:
-                        Console.WriteLine(calculator.Multiplinput2(input1, input2));
-                        break;
-                    case 4:
-                        Console.WriteLine(calculator.Divide(input1, input2));
-                        break;
-                    default:
-                        flag = false;
-                        break;
-                }
-
-                if (flag)
-                {
-                    Thread.Sleep(3000);
                 }
                 else
                 {
-                    Console.WriteLine("Exiting....");
-                    Thread.Sleep(1000);
-                }
+                    input2 = IntegerInput(match2);
+                    Console.Write("Enter the options (1.Add, 2.Subtract, 3.Multiply, 4.Division, 5.Exit): ");
+                    option = IntegerInput(NullException(Console.ReadLine()));
+                    switch (option)
+                    {
+                        case 1:
+                            Console.WriteLine(calculator.Add(input1, input2));
+                            break;
+                        case 2:
+                            Console.WriteLine(calculator.Subtract(input1, input2));
+                            break;
+                        case 3:
+                            Console.WriteLine(calculator.Multiplinput2(input1, input2));
+                            break;
+                        case 4:
+                            Console.WriteLine(calculator.Divide(input1, input2));
+                            break;
+                        default:
+                            flag = false;
+                            break;
+                    }
 
-                Console.Clear();
+                    if (flag != false)
+                    {
+                        Console.WriteLine("Press Enter to Continue: ");
+                        Console.ReadLine();
+                    }
+
+                    Console.Clear();
+                }
             }
         }
 
         /// <summary>
-        /// This Method checks for the Input Mismatch for string
+        /// It matches string with the regex pattern.
         /// </summary>
-        /// <param name="s">It Takes string as input</param>
+        /// <param name="input">It takes string as an input to be matched with the pattern</param>
+        /// <returns>It returns boolean</returns>
+        public static bool PatternMatch(string input)
+        {
+            Regex regex = new Regex("[0-9]{1}");
+            if (regex.IsMatch(input))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// This method checks for the integer conversion of the string
+        /// </summary>
+        /// <param name="s">It takes string as input</param>
         /// <returns>It returns the integer</returns>
         public static int IntegerInput(string s)
         {
             try
             {
-                Regex regex = new Regex("[0-9]{1}");
-                if (regex.IsMatch(s))
-                {
-                    return Convert.ToInt32(s);
-                }
-                else
-                {
-                    flag1 = false;
-                    Console.WriteLine("Invalid number");
-                    return 0;
-                }
+                return Convert.ToInt32(s);
             }
             catch (Exception)
             {
-                flag1 = false;
-                Console.WriteLine("Invalid number");
                 return 0;
             }
         }
 
         /// <summary>
-        /// This is check it null
+        /// This function checks it is null
         /// </summary>
-        /// <param name="s">It takes the string</param>
-        /// <returns>it returns string</returns>
+        /// <param name="s">It takes the string as input</param>
+        /// <returns>It returns string</returns>
         public static string NullException(string? s)
         {
             if (string.IsNullOrEmpty(s))
