@@ -43,10 +43,16 @@
         /// </summary>
         /// <param name="input1">Operand 1</param>
         /// <param name="input2">Operand 2</param>
-        /// <returns>It return the division of two operands</returns>
-        public float Divide(int input1, int input2)
+        /// <returns>It return the quotient of two operands</returns>
+        public int? Divide(int input1, int input2)
         {
-            return (float)input1 / (float)input2;
+            if (input2 == 0)
+            {
+                Console.WriteLine("∞");
+                return null;
+            }
+
+            return input1 / input2;
         }
     }
 }

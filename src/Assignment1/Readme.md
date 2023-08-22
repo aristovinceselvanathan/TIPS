@@ -23,7 +23,7 @@ This program prompts the user to enter the two input for operands to perform ari
 Addition Method: This method takes the two inputs as integer and returns the integer of addition of two operands.<br>
 Subtraction Method: This method takes the two inputs as integer and returns the integer of subtraction of two operands.<br>
 Multiplication Method: This method takes the two inputs as integer and returns the integer of multiplication of two operands.<br>
-Division Method: This method takes the two inputs as integer and returns the integer of division of two operands.<br>
+Division Method: This method takes the two inputs as integer and returns the quotient of two operands.<br>
 
 ## Approach
 To create this program, I followed these steps:
@@ -37,5 +37,5 @@ The following programming concepts were used in this program:
 ## Challenges encountered
 I encountered some challenges while working on this program:
 - Converting the string to integer: I had used the Convert class method ToInt32 to covert the string to integer.
-- Handle the Zero Division Error : I had to make implicitly cast the integer to float. So that it will show infinity.
+- Handle the Zero Division Error : I had to make use of if condition to check the divisor is zero or not.If Yes, it will show infinity.
 - Standardization errors: I take care about the proper indentation and white spaces in the program.
