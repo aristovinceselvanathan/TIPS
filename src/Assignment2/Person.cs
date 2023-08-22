@@ -7,30 +7,13 @@
     /// </summary>
     public class Person
     {
-        private string? Name { get; set; }
+        private string Name { get; set; }
 
-        private string? Phone { get; set; }
+        private string Phone { get; set; }
 
-        private string? Email { get; set; }
+        private string Email { get; set; }
 
-        private string? AdditionalNotes { get; set; }
-
-        /// <summary>
-        /// Method checks for null Exception of the string
-        /// </summary>
-        /// <param name="s">It gets the input of string type</param>
-        /// <returns>It returns string</returns>
-        public static string NullException(string? s)
-        {
-            if (string.IsNullOrEmpty(s))
-            {
-                return " ";
-            }
-            else
-            {
-                return s;
-            }
-        }
+        private string AdditionalNotes { get; set; }
 
         /// <summary>
         /// Method will get the details of the person
@@ -56,7 +39,7 @@
         /// <returns>It returns string</returns>
         public string GetName()
         {
-            return NullException(this.Name);
+            return this.Name;
         }
 
         /// <summary>
@@ -65,7 +48,7 @@
         /// <returns>It returns string</returns>
         public string GetPhone()
         {
-            return NullException(this.Phone);
+            return this.Phone;
         }
 
         /// <summary>
@@ -74,7 +57,7 @@
         /// <returns>It returns string</returns>
         public string GetEmail()
         {
-            return NullException(this.Email);
+            return this.Email;
         }
 
         /// <summary>
