@@ -1,12 +1,12 @@
 ﻿namespace ProjectEHelperApp
 {
     /// <summary>
-    /// This is InterfaceE Class
+    /// InterfaceE Class
     /// </summary>
     public interface InterfaceE
     {
         /// <summary>
-        /// This is main method that prints the Hello World
+        /// Main method that prints the Hello World
         /// </summary>
         /// <param name="args">It is string array that returns from the command line interface</param>
         public static void Main(string[] args)
@@ -15,7 +15,7 @@
         }
 
         /// <summary>
-        /// This is addition method declaration
+        /// Addition method declaration
         /// </summary>
         /// <param name="input1">It takes the input1</param>
         /// <param name="input2">It takes the input2</param>
@@ -23,7 +23,7 @@
         public int Add(int input1, int input2);
 
         /// <summary>
-        /// This is subtraction method declaration
+        /// Subtraction method declaration
         /// </summary>
         /// <param name="input1">It takes the input1</param>
         /// <param name="input2">It takes the input2</param>
@@ -31,7 +31,7 @@
         public int Subtract(int input1, int input2);
 
         /// <summary>
-        /// This is multiplication method declaration
+        /// Multiplication method declaration
         /// </summary>
         /// <param name="input1">It takes the input1</param>
         /// <param name="input2">It takes the input2</param>
@@ -39,11 +39,11 @@
         public int Multiply(int input1, int input2);
 
         /// <summary>
-        /// This is division method declaration
+        /// Division method declaration
         /// </summary>
         /// <param name="input1">It takes the input1</param>
         /// <param name="input2">It takes the input2</param>
         /// <returns>It returns int</returns>
-        public float Divide(int input1, int input2);
+        public int? Divide(int input1, int input2);
     }
 }
