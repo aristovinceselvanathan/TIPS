@@ -4,7 +4,7 @@
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// This is the Program Class
+    /// Program Class
     /// </summary>
     public class Program
     {
@@ -42,13 +42,21 @@
                         email = NullException(Console.ReadLine());
                         Console.Write("Notes: ");
                         notes = NullException(Console.ReadLine());
-                        Add(name, phone, email, notes);
+                        if (IsValidString(name))
+                        {
+                            Add(name, phone, email, notes);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Name");
+                        }
+
                         Console.WriteLine("Press Enter to Continue: ");
                         Console.ReadLine();
                         Console.Clear();
                         break;
                     case 2:
-                        person = SearchandRemove();
+                        person = PersonSearch();
                         if (person != null && Remove(person))
                         {
                             Console.WriteLine("Person is removed successfully");
@@ -59,7 +67,7 @@
 
                         break;
                     case 3:
-                        person = SearchandRemove();
+                        person = PersonSearch();
                         if (person != null)
                         {
                             Console.Write("Are you want to edit? 1 - Yes or 0 - No: ");
@@ -93,7 +101,7 @@
         }
 
         /// <summary>
-        /// This method is to add contact to the directory (List of Person). It sets the values to the person
+        /// Method is to add contact to the directory (List of Person). It sets the values to the person
         /// </summary>
         /// <param name="name">It takes the string as parameter for name</param>
         /// <param name="phone">It takes the string as parameter for phone</param>
@@ -123,7 +131,7 @@
         }
 
         /// <summary>
-        /// This method is to remove the contact from the directory (List of Person).
+        /// Method is to remove the contact from the directory (List of Person).
         /// </summary>
         /// <param name="person">It takes the person as a parameter</param>
         /// <returns>It returns the Boolean of person can be removed</returns>
@@ -139,7 +147,7 @@
         }
 
         /// <summary>
-        /// This method is to edit the contacts in the directory (List of Person).
+        /// Method is to edit the contacts in the directory (List of Person).
         /// </summary>
         /// <param name="person">It takes the person as a parameter</param>
         public static void Edit(Person person)
@@ -172,12 +180,12 @@
         }
 
         /// <summary>
-        /// This method to search for name, phone number, email in directory (List of Person)
+        /// Method to search for name, phone number, email in directory (List of Person)
         /// </summary>
         /// <returns>It returns the selected person</returns>
         public static List<Person> Search()
         {
-            int t;
+            int option;
             string? temp1;
             List<Person> temp = new List<Person>();
             if (list.Count == 0)
@@ -186,20 +194,18 @@
             }
             else
             {
-            Label:
                 Console.Write("Search By 1.Name 2.Phone Number 3.Email: ");
-                t = IntegerInput(NullException(Console.ReadLine()));
-                if (t == -1)
+                option = IntegerInput(NullException(Console.ReadLine()));
+                if (option == -1)
                 {
                     Console.WriteLine("Invalid Choice");
-                    goto Label;
                 }
 
                 Console.Write("Enter Search: ");
                 temp1 = NullException(Console.ReadLine());
                 foreach (Person p1 in list)
                 {
-                    switch (t)
+                    switch (option)
                     {
                         case 1:
                             if (p1.GetName().ToLower().Contains(temp1.ToLower()))
@@ -230,10 +236,10 @@
         }
 
         /// <summary>
-        /// This will allow to select the contact in search or remove operations
+        /// Method will allow to select the contact in search or remove operations
         /// </summary>
         /// <returns>It returns the person object</returns>
-        public static Person? SearchandRemove()
+        public static Person? PersonSearch()
         {
             List<Person> people = Search();
             int id, i;
@@ -253,7 +259,6 @@
             }
             else if (people.Count() != 0)
             {
-            label1:
                 Console.WriteLine("Which Contact should you want to pick by number? ");
                 id = IntegerInput(NullException(Console.ReadLine()));
                 try
@@ -263,7 +268,6 @@
                 catch (Exception)
                 {
                     Console.WriteLine("Invalid Selection");
-                    goto label1;
                 }
             }
 
@@ -271,7 +275,7 @@
         }
 
         /// <summary>
-        /// This method display all the contacts in the directory (List of Person)
+        /// Method display all the contacts in the directory (List of Person)
         /// </summary>
         public static void Displayall()
         {
@@ -297,7 +301,7 @@
         }
 
         /// <summary>
-        /// This error handling of input mismatch
+        /// Method is error handling of input mismatch
         /// </summary>
         /// <param name="input">It takes the string as the input</param>
         /// <returns>It returns integer</returns>
@@ -314,7 +318,23 @@
         }
 
         /// <summary>
-        /// This method checks for string is null
+        /// Method checks for the string is valid
+        /// </summary>
+        /// <param name="input">It takes the string as the input</param>
+        /// <returns>It returns integer</returns>
+        public static bool IsValidString(string input)
+        {
+            Regex pattern = new Regex("^[a-zA-Z\\s]*$");
+            if (pattern.IsMatch(input))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Method checks for string is null or not
         /// </summary>
         /// <param name="input">It takes the string</param>
         /// <returns>it returns string</returns>

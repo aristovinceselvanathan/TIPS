@@ -3,7 +3,7 @@
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// This class describes the person characteristics in contact manager
+    /// Class describes the person characteristics in contact manager
     /// </summary>
     public class Person
     {
@@ -16,9 +16,9 @@
         private string? AdditionalNotes { get; set; }
 
         /// <summary>
-        /// This is checks for null Exception of the string
+        /// Method checks for null Exception of the string
         /// </summary>
-        /// <param name="s">This gets the input of string type</param>
+        /// <param name="s">It gets the input of string type</param>
         /// <returns>It returns string</returns>
         public static string NullException(string? s)
         {
@@ -33,7 +33,7 @@
         }
 
         /// <summary>
-        /// This method will get the details of the person
+        /// Method will get the details of the person
         /// </summary>
         /// <returns>It return the string of the details of the person</returns>
         public string GetDetails()
@@ -42,16 +42,16 @@
         }
 
         /// <summary>
-        /// This method is to set the name
+        /// Method is to set the name
         /// </summary>
-        /// <param name="name">This method will take the name as a string to set the name</param>
+        /// <param name="name">Method will take the name as a string to set the name</param>
         public void SetName(string name)
         {
             this.Name = name;
         }
 
         /// <summary>
-        /// This method get the name of person class
+        /// Method get the name of person class
         /// </summary>
         /// <returns>It returns string</returns>
         public string GetName()
@@ -60,7 +60,7 @@
         }
 
         /// <summary>
-        /// This method returns the Email
+        /// Method returns the Email
         /// </summary>
         /// <returns>It returns string</returns>
         public string GetPhone()
@@ -69,7 +69,7 @@
         }
 
         /// <summary>
-        /// This method returns the phone number
+        /// Method returns the phone number
         /// </summary>
         /// <returns>It returns string</returns>
         public string GetEmail()
@@ -78,13 +78,13 @@
         }
 
         /// <summary>
-        /// This method is to set the phone number
+        /// Method is to set the phone number
         /// </summary>
-        /// <param name="phone">This method will take the name as a string to set the phone</param>
+        /// <param name="phone">Method will take the name as a string to set the phone</param>
         /// <returns>It returns the boolean</returns>
         public bool SetPhone(string phone)
         {
-            Regex regex = new Regex("[0-9]{10}");
+            Regex regex = new Regex("^[0-9]{10}$");
             if (regex.IsMatch(phone))
             {
                 this.Phone = phone;
@@ -99,9 +99,9 @@
         }
 
         /// <summary>
-        /// This method is to set the email
+        /// Method is to set the email
         /// </summary>
-        /// <param name="email">This method will take the name as a string to set the email</param>
+        /// <param name="email">Method will take the name as a string to set the email</param>
         /// <returns>It returns the Boolean type</returns>
         public bool SetEmail(string email)
         {
@@ -120,16 +120,16 @@
         }
 
         /// <summary>
-        /// This method is to set the notes
+        /// Method is to set the notes
         /// </summary>
-        /// <param name="notes">This method will take the name as a string to set the Additional Notes</param>
+        /// <param name="notes">Method will take the name as a string to set the Additional Notes</param>
         public void SetNotes(string notes)
         {
             this.AdditionalNotes = notes;
         }
 
         /// <summary>
-        /// This method overrides the equals method in object class
+        /// Method overrides the equals method in object class
         /// </summary>
         /// <param name="obj"> It uses the instance of the object class</param>
         /// <returns>It returns bool</returns>
