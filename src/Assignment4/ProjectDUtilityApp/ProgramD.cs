@@ -3,12 +3,12 @@
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// This is a ProgramD Class
+    /// ProgramD Class
     /// </summary>
     public class ProgramD
     {
         /// <summary>
-        /// This is main method that prints the Hello World
+        /// Main method that prints the Hello World
         /// </summary>
         /// <param name="args">It is string array that returns from the command line interface</param>
         public static void Main(string[] args)
@@ -17,11 +17,11 @@
         }
 
         /// <summary>
-        /// This is null exception that checks in the string
+        /// Method checks for the string is null or not.
         /// </summary>
         /// <param name="s">It takes the input as string</param>
         /// <returns>It returns string</returns>
-        public string NullException(string? s)
+        public string CheckStringIsNull(string? s)
         {
             if (string.IsNullOrEmpty(s))
             {
