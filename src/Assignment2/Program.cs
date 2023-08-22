@@ -22,26 +22,29 @@
         {
             int choose, option;
             bool flag = true;
-            string? name, phone, email, notes;
+            string name, phone, email, notes;
             Person? person;
             List<Person> people = new List<Person>();
+
             Console.WriteLine("Welcome to Contacts Manager");
             while (flag)
             {
                 Console.Write("Actions 1.Add 2.Remove 3.Search 4.Displyall 5.Exit: ");
-                choose = IntegerInput(NullException(Console.ReadLine()));
+                int.TryParse(Console.ReadLine(), out choose);
+
                 Console.Clear();
                 switch (choose)
                 {
                     case 1:
                         Console.Write("Name: ");
-                        name = NullException(Console.ReadLine());
+                        name = CheckStringIsNull(Console.ReadLine());
                         Console.Write("Phone number: ");
-                        phone = NullException(Console.ReadLine());
+                        phone = CheckStringIsNull(Console.ReadLine());
                         Console.Write("Email: ");
-                        email = NullException(Console.ReadLine());
+                        email = CheckStringIsNull(Console.ReadLine());
                         Console.Write("Notes: ");
-                        notes = NullException(Console.ReadLine());
+                        notes = CheckStringIsNull(Console.ReadLine());
+
                         if (IsValidString(name))
                         {
                             Add(name, phone, email, notes);
@@ -51,8 +54,8 @@
                             Console.WriteLine("Invalid Name");
                         }
 
-                        Console.WriteLine("Press Enter to Continue: ");
-                        Console.ReadLine();
+                        Console.WriteLine("Press any key to Continue: ");
+                        Console.ReadKey();
                         Console.Clear();
                         break;
                     case 2:
@@ -60,8 +63,8 @@
                         if (person != null && Remove(person))
                         {
                             Console.WriteLine("Person is removed successfully");
-                            Console.WriteLine("Press Enter to Continue: ");
-                            Console.ReadLine();
+                            Console.WriteLine("Press any key to Continue: ");
+                            Console.ReadKey();
                             Console.Clear();
                         }
 
@@ -71,7 +74,7 @@
                         if (person != null)
                         {
                             Console.Write("Are you want to edit? 1 - Yes or 0 - No: ");
-                            option = IntegerInput(NullException(Console.ReadLine()));
+                            int.TryParse(Console.ReadLine(), out option);
                             if (option == 1)
                             {
                                 Edit(person);
@@ -79,8 +82,8 @@
                             else
                             {
                                 Console.WriteLine("Exiting...");
-                                Console.WriteLine("Press Enter to Continue: ");
-                                Console.ReadLine();
+                                Console.WriteLine("Press any key to Continue: ");
+                                Console.ReadKey();
                                 Console.Clear();
                             }
                         }
@@ -110,9 +113,10 @@
         public static void Add(string name, string phone, string email, string notes)
         {
             Person person = new Person();
-            bool phonec = person.SetPhone(phone);
-            bool emailc = person.SetEmail(email);
-            if (phonec && emailc)
+            bool isPhone = person.SetPhone(phone);
+            bool isEmail = person.SetEmail(email);
+
+            if (isPhone && isEmail)
             {
                 person.SetName(name);
                 person.SetNotes(notes);
@@ -152,30 +156,30 @@
         /// <param name="person">It takes the person as a parameter</param>
         public static void Edit(Person person)
         {
-            int i;
-            string? temp;
+            int option;
+            string temp;
+
             Console.Write("What do you want to edit: 1.Name 2.Phone Number 3.Email 4.Additional Notes: ");
-            i = IntegerInput(NullException(Console.ReadLine()));
-            temp = NullException(Console.ReadLine());
-            if (i == 1)
+            int.TryParse(Console.ReadLine(), out option);
+            temp = CheckStringIsNull(Console.ReadLine());
+
+            switch (option)
             {
-                person.SetName(temp);
-            }
-            else if (i == 2)
-            {
-                person.SetPhone(temp);
-            }
-            else if (i == 3)
-            {
-                person.SetEmail(temp);
-            }
-            else if (i == 4)
-            {
-                person.SetNotes(temp);
-            }
-            else
-            {
-                Console.WriteLine("Invalid Choice");
+                case 1:
+                    person.SetName(temp);
+                    break;
+                case 2:
+                    person.SetPhone(temp);
+                    break;
+                case 3:
+                    person.SetEmail(temp);
+                    break;
+                case 4:
+                    person.SetNotes(temp);
+                    break;
+                default:
+                    Console.WriteLine("Invalid Choice");
+                    break;
             }
         }
 
@@ -186,8 +190,9 @@
         public static List<Person> Search()
         {
             int option;
-            string? temp1;
+            string temp1;
             List<Person> temp = new List<Person>();
+
             if (list.Count == 0)
             {
                 Console.WriteLine("Directory is Empty !!!");
@@ -195,14 +200,13 @@
             else
             {
                 Console.Write("Search By 1.Name 2.Phone Number 3.Email: ");
-                option = IntegerInput(NullException(Console.ReadLine()));
-                if (option == -1)
+                if (!int.TryParse(Console.ReadLine(), out option))
                 {
                     Console.WriteLine("Invalid Choice");
                 }
 
                 Console.Write("Enter Search: ");
-                temp1 = NullException(Console.ReadLine());
+                temp1 = CheckStringIsNull(Console.ReadLine());
                 foreach (Person p1 in list)
                 {
                     switch (option)
@@ -228,6 +232,9 @@
                             }
 
                             break;
+                        default:
+                            Console.WriteLine("Invalid Selection");
+                            break;
                     }
                 }
             }
@@ -242,9 +249,8 @@
         public static Person? PersonSearch()
         {
             List<Person> people = Search();
-            int id, i;
             Person? person = null;
-            for (i = 0; i < people.Count(); i++)
+            for (int i = 0; i < people.Count(); i++)
             {
                 Console.WriteLine($"{i + 1}. " + people.ElementAt(i).GetDetails());
             }
@@ -252,15 +258,15 @@
             if (list.Count() != 0 && people.Count() == 0)
             {
                 Console.WriteLine("Person Doesn't Exists");
-                Console.WriteLine("Press Enter to Continue: ");
-                Console.ReadLine();
+                Console.WriteLine("Press any key to Continue: ");
+                Console.ReadKey();
                 Console.Clear();
                 return null;
             }
             else if (people.Count() != 0)
             {
                 Console.WriteLine("Which Contact should you want to pick by number? ");
-                id = IntegerInput(NullException(Console.ReadLine()));
+                int.TryParse(Console.ReadLine(), out int id);
                 try
                 {
                     person = people.ElementAt(id - 1);
@@ -279,42 +285,21 @@
         /// </summary>
         public static void Displayall()
         {
-            int i;
             if (list.Count == 0)
             {
                 Console.WriteLine("Directory is Empty !!!");
             }
             else
             {
-                i = 1;
-                foreach (Person p1 in list)
+                for (int i = 0; i < list.Count(); i++)
                 {
-                    Console.Write($"{i}. ");
-                    Console.WriteLine(p1.GetDetails());
-                    i++;
+                    Console.WriteLine($"{i + 1}. " + list.ElementAt(i).GetDetails());
                 }
             }
 
-            Console.WriteLine("Press Enter to Continue: ");
-            Console.ReadLine();
+            Console.WriteLine("Press any Key to Continue: ");
+            Console.ReadKey();
             Console.Clear();
-        }
-
-        /// <summary>
-        /// Method is error handling of input mismatch
-        /// </summary>
-        /// <param name="input">It takes the string as the input</param>
-        /// <returns>It returns integer</returns>
-        public static int IntegerInput(string input)
-        {
-            try
-            {
-                return Convert.ToInt32(input);
-            }
-            catch
-            {
-                return -1;
-            }
         }
 
         /// <summary>
@@ -336,18 +321,16 @@
         /// <summary>
         /// Method checks for string is null or not
         /// </summary>
-        /// <param name="input">It takes the string</param>
-        /// <returns>it returns string</returns>
-        public static string NullException(string? input)
+        /// <param name="input">It takes the string as inut</param>
+        /// <returns>It returns the string</returns>
+        public static string CheckStringIsNull(string? input)
         {
             if (string.IsNullOrEmpty(input))
             {
                 return " ";
             }
-            else
-            {
-                return input;
-            }
+
+            return input;
         }
     }
 }
