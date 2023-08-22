@@ -18,37 +18,59 @@
             decimal salary;
             Developer d1;
             Manager m1;
+
             Console.WriteLine("Name of the Employee : ");
-            match1 = NullException(Console.ReadLine());
+            match1 = ChecksStringIsNull(Console.ReadLine());
             Console.WriteLine("Salary of the Employee : ");
-            match2 = NullException(Console.ReadLine());
-            if (IsName(match1) && IsDecimal(match2))
+            match2 = ChecksStringIsNull(Console.ReadLine());
+
+            if (IsName(match1) && decimal.TryParse(match2, out salary))
             {
                 name = match1;
-                salary = Convert.ToDecimal(match2);
                 Console.WriteLine("Did You want to create the 1. Developer or 2. Manager : ");
-                int option = Convert.ToInt32(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out int option);
                 switch (option)
                 {
                     case 1:
                         d1 = new Developer(name, salary);
                         Console.WriteLine("Did you want print the details : Y or N");
-                        x = NullException(Console.ReadLine());
+                        x = ChecksStringIsNull(Console.ReadLine());
+
                         if (x.Equals("Y") || x.Equals("y"))
                         {
                             d1.PrintDetails();
+                        }
+                        else if (x.Equals("N") || x.Equals("n"))
+                        {
+                            Console.WriteLine("Exiting...");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Input");
                         }
 
                         break;
                     case 2:
                         m1 = new Manager(name, salary);
                         Console.WriteLine("Did you want print the details : Y or N");
-                        x = NullException(Console.ReadLine());
+                        x = ChecksStringIsNull(Console.ReadLine());
+
                         if (x.Equals("Y") || x.Equals("y"))
                         {
                             m1.PrintDetails();
                         }
+                        else if (x.Equals("N") || x.Equals("n"))
+                        {
+                            Console.WriteLine("Exiting...");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Input");
+                        }
 
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input");
                         break;
                 }
             }
@@ -63,7 +85,7 @@
         /// </summary>
         /// <param name="s">It takes the string as input</param>
         /// <returns>It returns string</returns>
-        public static string NullException(string? s)
+        public static string ChecksStringIsNull(string? s)
         {
             if (string.IsNullOrEmpty(s))
             {
@@ -73,22 +95,6 @@
             {
                 return s;
             }
-        }
-
-        /// <summary>
-        /// Method checks for the input is valid decimal
-        /// </summary>
-        /// <param name="s">It takes the string as input</param>
-        /// <returns>It returns boolean</returns>
-        public static bool IsDecimal(string s)
-        {
-            Regex r = new Regex("^\\d+\\.?\\d*$");
-            if (r.IsMatch(s))
-            {
-                return true;
-            }
-
-            return false;
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿namespace Banking_System
 {
     using System.Text.RegularExpressions;
+
     /// <summary>
     /// Program Class
     /// </summary>
@@ -13,40 +14,63 @@
         public static void Main(string[] args)
         {
             string x, m1, m2, number;
-            decimal salary;
+            decimal balance, amt;
             SavingsAccount s1;
             CheckingAccount c1;
+
             Console.WriteLine("Account Number : ");
             m1 = NullException(Console.ReadLine());
             Console.WriteLine("Account Balance : ");
             m2 = NullException(Console.ReadLine());
-            if (IsNumber(m1) && IsDecimal(m2))
+
+            if (IsNumber(m1) && decimal.TryParse(m2, out balance))
             {
                 number = m1;
-                salary = Convert.ToDecimal(number);
                 Console.WriteLine("Did You want to create the 1. Savings Account or 2. Checking Account : ");
-                int option = Convert.ToInt32(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out int option))
+                {
+                    Console.WriteLine("Invalid Input");
+                }
+
                 switch (option)
                 {
                     case 1:
-                        s1 = new SavingsAccount(number, salary);
+                        s1 = new SavingsAccount(number, balance);
                         Console.WriteLine("Did you want to withdraw : Y or N");
                         x = NullException(Console.ReadLine());
                         if (x.Equals("Y") || x.Equals("y"))
                         {
-                            decimal amt = Convert.ToDecimal(Console.ReadLine());
+                            Console.WriteLine("How much amount want to withdraw?");
+                            decimal.TryParse(Console.ReadLine(), out amt);
                             s1.Withdraw(amt);
+                        }
+                        else if (x.Equals("N") || x.Equals("n"))
+                        {
+                            Console.WriteLine("Exiting...");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Input");
                         }
 
                         break;
                     case 2:
-                        c1 = new CheckingAccount(number, salary);
+                        c1 = new CheckingAccount(number, balance);
                         Console.WriteLine("Did you want to withdraw : Y or N");
                         x = NullException(Console.ReadLine());
                         if (x.Equals("Y") || x.Equals("y"))
                         {
-                            decimal amt = Convert.ToDecimal(Console.ReadLine());
+                            Console.WriteLine("How much amount want to withdraw?");
+                            decimal.TryParse(Console.ReadLine(), out amt);
                             c1.Withdraw(amt);
+                        }
+                        else if (x.Equals("N") || x.Equals("n"))
+                        {
+                            Console.WriteLine("Exiting...");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Input");
                         }
 
                         break;
@@ -76,29 +100,13 @@
         }
 
         /// <summary>
-        /// Method checks for the input is valid decimal
-        /// </summary>
-        /// <param name="s">It takes the string as input</param>
-        /// <returns>It returns boolean</returns>
-        public static bool IsDecimal(string s)
-        {
-            Regex r = new Regex("^\\d+\\.?\\d*$");
-            if (r.IsMatch(s))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
         /// Method checks for the string is number or not because account number consists of numbers
         /// </summary>
         /// <param name="s">It takes the string as input</param>
         /// <returns>It returns bool</returns>
         public static bool IsNumber(string s)
         {
-            Regex r = new Regex("^[0-9]{10}$");
+            Regex r = new Regex("\\d+");
             if (r.IsMatch(s))
             {
                 return true;

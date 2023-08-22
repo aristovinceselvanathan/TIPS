@@ -24,7 +24,7 @@
         /// <param name="amount">It takes amount as decimal</param>
         public override void Withdraw(decimal amount)
         {
-            if (this.Balance - amount < 5000)
+            if (this.Balance - amount > 5000)
             {
                 this.Balance -= amount;
             }
