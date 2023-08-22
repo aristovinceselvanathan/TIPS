@@ -1,12 +1,12 @@
 ﻿namespace Assignment1
 {
     /// <summary>
-    /// This is a Mathematical Calculator Class
+    /// Mathematical Calculator Class
     /// </summary>
     public class MathUtils
     {
         /// <summary>
-        /// This is addition function
+        /// Addition function
         /// </summary>
         /// <param name="input1">Operand 1</param>
         /// <param name="input2">Operand 2</param>
@@ -17,7 +17,7 @@
         }
 
         /// <summary>
-        /// This is Subtraction function
+        /// Subtraction function
         /// </summary>
         /// <param name="input1">Operand 1</param>
         /// <param name="input2">Operand 2</param>
@@ -28,7 +28,7 @@
         }
 
         /// <summary>
-        /// This is Multiplication function
+        /// Multiplication function
         /// </summary>
         /// <param name="input1">Operand 1</param>
         /// <param name="input2">Operand 2</param>
@@ -39,7 +39,7 @@
         }
 
         /// <summary>
-        /// This is Division Function
+        /// Division Function
         /// </summary>
         /// <param name="input1">Operand 1</param>
         /// <param name="input2">Operand 2</param>
