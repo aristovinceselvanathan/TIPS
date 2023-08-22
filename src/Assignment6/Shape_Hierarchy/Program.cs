@@ -14,21 +14,16 @@
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
-            string? colorc, colorr, m1, m2, m3;
+            string colorc, colorr, m1, m2, m3;
             double radius, length, breath;
+
             Console.WriteLine("Colour of the Circle : ");
-            colorc = NullException(Console.ReadLine());
+            colorc = ChecksStringIsNull(Console.ReadLine());
             Console.WriteLine("Enter the radius of the circle (cm): ");
-            m1 = NullException(Console.ReadLine());
-            Console.WriteLine("Colour of the Rectangle : ");
-            colorr = NullException(Console.ReadLine());
-            Console.WriteLine("Enter the length of the rectangle (cm): ");
-            m2 = NullException(Console.ReadLine());
-            Console.WriteLine("Enter the breath of the rectangle (cm): ");
-            m3 = NullException(Console.ReadLine());
-            if (IsDecimal(m1) && IsColor(colorc))
+            m1 = ChecksStringIsNull(Console.ReadLine());
+
+            if (double.TryParse(m1, out radius) && IsColor(colorc))
             {
-                radius = Convert.ToDouble(m1);
                 Circle c1 = new Circle(colorc, radius);
                 c1.PrintDetails();
             }
@@ -37,16 +32,21 @@
                 Console.WriteLine("Invalid Input");
             }
 
-            if (IsDecimal(m2) && IsColor(colorr))
+            Console.WriteLine("Colour of the Rectangle : ");
+            colorr = ChecksStringIsNull(Console.ReadLine());
+            Console.WriteLine("Enter the length of the rectangle (cm): ");
+            m2 = ChecksStringIsNull(Console.ReadLine());
+            Console.WriteLine("Enter the breath of the rectangle (cm): ");
+            m3 = ChecksStringIsNull(Console.ReadLine());
+
+            if (double.TryParse(m2, out length) && double.TryParse(m3, out breath) && IsColor(colorr))
             {
-                length = Convert.ToDouble(m2);
-                breath = Convert.ToDouble(m3);
                 Rectangle r1 = new Rectangle(colorr, length, breath);
                 r1.PrintDetails();
             }
             else
             {
-                Console.WriteLine("Invalid Details");
+                Console.WriteLine("Invalid Input");
             }
         }
 
@@ -55,7 +55,7 @@
         /// </summary>
         /// <param name="s">It takes the string as the input</param>
         /// <returns>It returns string</returns>
-        public static string NullException(string? s)
+        public static string ChecksStringIsNull(string? s)
         {
             if (string.IsNullOrEmpty(s))
             {
@@ -65,22 +65,6 @@
             {
                 return s;
             }
-        }
-
-        /// <summary>
-        /// Method checks for the input is valid decimal
-        /// </summary>
-        /// <param name="s">It takes the string as input</param>
-        /// <returns>It returns boolean</returns>
-        public static bool IsDecimal(string s)
-        {
-            Regex r = new Regex("^\\d+\\.?\\d*$");
-            if (r.IsMatch(s))
-            {
-                return true;
-            }
-
-            return false;
         }
 
         /// <summary>

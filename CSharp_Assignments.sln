@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employee_Hierarchy", "src\A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shape_Hierarchy", "src\Assignment6\Shape_Hierarchy\Shape_Hierarchy.csproj", "{A8AF4E6E-3FC3-4C4F-ABD6-1EE6DECF49BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git", "src\Assignment7\GIT\Git.csproj", "{B2274658-7A2E-4C3A-816F-A5C2A3C8A1B0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,10 +35,6 @@ Global
 		{A8AF4E6E-3FC3-4C4F-ABD6-1EE6DECF49BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8AF4E6E-3FC3-4C4F-ABD6-1EE6DECF49BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8AF4E6E-3FC3-4C4F-ABD6-1EE6DECF49BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2274658-7A2E-4C3A-816F-A5C2A3C8A1B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2274658-7A2E-4C3A-816F-A5C2A3C8A1B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2274658-7A2E-4C3A-816F-A5C2A3C8A1B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2274658-7A2E-4C3A-816F-A5C2A3C8A1B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,7 +45,6 @@ Global
 		{DAE38996-851B-452B-9959-61FD66396B29} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{FF04CB19-51E7-4CA9-8E87-30D3CFEF04D8} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{A8AF4E6E-3FC3-4C4F-ABD6-1EE6DECF49BB} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
-		{B2274658-7A2E-4C3A-816F-A5C2A3C8A1B0} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4CECB66-8E11-49D9-AA1E-464EE0231450}
