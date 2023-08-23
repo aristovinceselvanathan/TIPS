@@ -13,6 +13,7 @@
         {
             Console.WriteLine("Hello, World..");
             Console.WriteLine("Practice Git in Visual Studio");
+            Console.WriteLine("Hello Everyone");
         }
     }
 }
