@@ -35,7 +35,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeHierarchy", "src\As
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShapeHierarchy", "src\Assignment6\ShapeHierarchy\ShapeHierarchy.csproj", "{D31A3EF7-BC42-43D3-8FEB-A42803CC3818}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git", "Git\Git.csproj", "{61AF827B-2AC0-4201-A63E-C43DB0F8C690}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61AF827B-2AC0-4201-A63E-C43DB0F8C690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61AF827B-2AC0-4201-A63E-C43DB0F8C690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61AF827B-2AC0-4201-A63E-C43DB0F8C690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61AF827B-2AC0-4201-A63E-C43DB0F8C690}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -90,6 +102,7 @@ Global
 		{982B3BBA-0BD4-4538-A155-C0ECE4DD0180} = {EBC6E90A-E08F-4D60-BBCE-1D947A78E216}
 		{FF5E1AC5-969F-4D48-B9CC-757EE1E17B7F} = {EBC6E90A-E08F-4D60-BBCE-1D947A78E216}
 		{D31A3EF7-BC42-43D3-8FEB-A42803CC3818} = {EBC6E90A-E08F-4D60-BBCE-1D947A78E216}
+		{61AF827B-2AC0-4201-A63E-C43DB0F8C690} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4CECB66-8E11-49D9-AA1E-464EE0231450}
