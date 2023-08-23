@@ -16,6 +16,7 @@
             Console.WriteLine("Hello Everyone");
             Hello welcome = new Hello();
             welcome.Print("Welcome");
+            welcome.Print("How are You?");
         }
     }
 }
