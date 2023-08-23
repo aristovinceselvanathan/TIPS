@@ -14,6 +14,8 @@
             Console.WriteLine("Hello, World..");
             Console.WriteLine("Practice Git in Visual Studio");
             Console.WriteLine("Hello Everyone");
+            Hello welcome = new Hello();
+            welcome.Print("Welcome");
         }
     }
 }
