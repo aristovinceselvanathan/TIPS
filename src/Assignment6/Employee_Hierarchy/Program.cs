@@ -14,7 +14,7 @@
         /// <param name="args">It takes the argument from command line</param>
         public static void Main(string[] args)
         {
-            string x, name, match1, match2;
+            string option1, name, match1, match2;
             decimal salary;
             Developer d1;
             Manager m1;
@@ -29,20 +29,21 @@
                 name = match1;
                 Console.WriteLine("Did You want to create the 1. Developer or 2. Manager : ");
                 int.TryParse(Console.ReadLine(), out int option);
+
                 switch (option)
                 {
                     case 1:
                         d1 = new Developer(name, salary);
                         Console.WriteLine("Did you want print the details : Y or N");
-                        x = ChecksStringIsNull(Console.ReadLine());
+                        option1 = ChecksStringIsNull(Console.ReadLine());
 
-                        if (x.Equals("Y") || x.Equals("y"))
+                        if (option1.Equals("Y") || option1.Equals("y"))
                         {
                             d1.PrintDetails();
                         }
-                        else if (x.Equals("N") || x.Equals("n"))
+                        else if (option1.Equals("N") || option1.Equals("n"))
                         {
-                            Console.WriteLine("Exiting...");
+                            Console.WriteLine("Eoption1iting...");
                         }
                         else
                         {
@@ -53,15 +54,15 @@
                     case 2:
                         m1 = new Manager(name, salary);
                         Console.WriteLine("Did you want print the details : Y or N");
-                        x = ChecksStringIsNull(Console.ReadLine());
+                        option1 = ChecksStringIsNull(Console.ReadLine());
 
-                        if (x.Equals("Y") || x.Equals("y"))
+                        if (option1.Equals("Y") || option1.Equals("y"))
                         {
                             m1.PrintDetails();
                         }
-                        else if (x.Equals("N") || x.Equals("n"))
+                        else if (option1.Equals("N") || option1.Equals("n"))
                         {
-                            Console.WriteLine("Exiting...");
+                            Console.WriteLine("Eoption1iting...");
                         }
                         else
                         {
@@ -104,7 +105,7 @@
         /// <returns>It returns bool</returns>
         public static bool IsName(string s)
         {
-            Regex r = new Regex("^[a-zA-Z'-]+$");
+            Regex r = new Regex("^[a-zA-Z\\s]+$");
             if (r.IsMatch(s))
             {
                 return true;
