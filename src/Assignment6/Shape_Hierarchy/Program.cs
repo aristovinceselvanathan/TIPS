@@ -14,17 +14,17 @@
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
-            string colorc, colorr, m1, m2, m3;
+            string colorcircle, colorrectangle, match1, match2, match3;
             double radius, length, breath;
 
             Console.WriteLine("Colour of the Circle : ");
-            colorc = ChecksStringIsNull(Console.ReadLine());
+            colorcircle = ChecksStringIsNull(Console.ReadLine());
             Console.WriteLine("Enter the radius of the circle (cm): ");
-            m1 = ChecksStringIsNull(Console.ReadLine());
+            match1 = ChecksStringIsNull(Console.ReadLine());
 
-            if (double.TryParse(m1, out radius) && IsColor(colorc))
+            if (double.TryParse(match1, out radius) && IsColor(colorcircle))
             {
-                Circle c1 = new Circle(colorc, radius);
+                Circle c1 = new Circle(colorcircle, radius);
                 c1.PrintDetails();
             }
             else
@@ -33,15 +33,15 @@
             }
 
             Console.WriteLine("Colour of the Rectangle : ");
-            colorr = ChecksStringIsNull(Console.ReadLine());
+            colorrectangle = ChecksStringIsNull(Console.ReadLine());
             Console.WriteLine("Enter the length of the rectangle (cm): ");
-            m2 = ChecksStringIsNull(Console.ReadLine());
+            match2 = ChecksStringIsNull(Console.ReadLine());
             Console.WriteLine("Enter the breath of the rectangle (cm): ");
-            m3 = ChecksStringIsNull(Console.ReadLine());
+            match3 = ChecksStringIsNull(Console.ReadLine());
 
-            if (double.TryParse(m2, out length) && double.TryParse(m3, out breath) && IsColor(colorr))
+            if (double.TryParse(match2, out length) && double.TryParse(match3, out breath) && IsColor(colorrectangle))
             {
-                Rectangle r1 = new Rectangle(colorr, length, breath);
+                Rectangle r1 = new Rectangle(colorrectangle, length, breath);
                 r1.PrintDetails();
             }
             else
@@ -74,7 +74,7 @@
         /// <returns>It returns bool</returns>
         public static bool IsColor(string s)
         {
-            Regex r = new Regex("^[a-zA-Z'-]+$");
+            Regex r = new Regex("^[a-zA-Z\\s]+$");
             if (r.IsMatch(s))
             {
                 return true;

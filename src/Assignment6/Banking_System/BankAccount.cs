@@ -36,6 +36,7 @@
         public void Deposit(decimal amount)
         {
             this.Balance += amount;
+            Console.WriteLine("Amount is Deposited Successfully");
         }
 
         /// <summary>

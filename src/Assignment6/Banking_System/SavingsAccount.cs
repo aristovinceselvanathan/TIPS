@@ -24,13 +24,14 @@
         /// <param name="amount">It takes amount as decimal</param>
         public override void Withdraw(decimal amount)
         {
-            if (this.Balance - amount > 5000)
+            if (this.Balance - amount >= 1000)
             {
                 this.Balance -= amount;
+                Console.WriteLine("Withdrawal is Successfull");
             }
             else
             {
-                Console.WriteLine("Withdraw Limit Exceeded");
+                Console.WriteLine("Reached the Minimum Balance");
             }
         }
     }
