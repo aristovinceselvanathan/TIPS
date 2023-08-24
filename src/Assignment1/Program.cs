@@ -13,23 +13,23 @@
         public static void Main(string[] args)
         {
             int input1, input2, option;
-            bool match1, match2, match3, flag = true;
+            bool isInteger1, isInteger2, isInteger3, flag = true;
             MathUtils calculator = new MathUtils();
 
             while (flag)
             {
                 Console.WriteLine("Enter the two numbers");
                 Console.Write("First Number : ");
-                match1 = int.TryParse(Console.ReadLine(), out input1);
+                isInteger1 = int.TryParse(Console.ReadLine(), out input1);
                 Console.Write("Second Number: ");
-                match2 = int.TryParse(Console.ReadLine(), out input2);
+                isInteger2 = int.TryParse(Console.ReadLine(), out input2);
 
-                if (match1 && match2)
+                if (isInteger1 && isInteger2)
                 {
                     Console.Write("Enter the options (1.Add, 2.Subtract, 3.Multiply, 4.Division, 5.Exit): ");
-                    match3 = int.TryParse(Console.ReadLine(), out option);
+                    isInteger3 = int.TryParse(Console.ReadLine(), out option);
 
-                    if (match3)
+                    if (isInteger3)
                     {
                         switch (option)
                         {
@@ -48,6 +48,9 @@
                             case 5:
                                 Console.WriteLine("Exiting...");
                                 flag = false;
+                                break;
+                            default:
+                                Console.WriteLine("Invalid Option");
                                 break;
                         }
 
