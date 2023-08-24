@@ -45,7 +45,14 @@
         /// <param name="amount">It takes the amount as a decimal</param>
         public virtual void Withdraw(decimal amount)
         {
-            this.Balance -= amount;
+            if (this.Balance - amount < 0)
+            {
+                Console.WriteLine("Transaction is Failed! Insufficiant Funds");
+            }
+            else
+            {
+                this.Balance -= amount;
+            }
         }
     }
 }

@@ -14,10 +14,9 @@
         public static void Main(string[] args)
         {
             string m1, m2, number;
-            bool flag = true;
-            decimal balance, amount;
-            SavingsAccount s1;
-            CheckingAccount c1;
+            decimal balance;
+            SavingsAccount savingsacc;
+            CheckingAccount checkingacc;
 
             Console.WriteLine("Account Number : ");
             m1 = ChecksStringIsNull(Console.ReadLine());
@@ -36,81 +35,12 @@
                 switch (option)
                 {
                     case 1:
-                        s1 = new SavingsAccount(number, balance);
-                        while (flag)
-                        {
-                            Console.WriteLine($"Balance : {s1.Balance}");
-                            Console.WriteLine("Did you want to 1.Withdraw or 2.Deposit 3.Exit: ");
-                            int.TryParse(Console.ReadLine(), out option);
-                            switch (option)
-                            {
-                                case 1:
-                                    Console.WriteLine("How much amount want to withdraw:");
-                                    if (!decimal.TryParse(Console.ReadLine(), out amount))
-                                    {
-                                        Console.WriteLine("Invalid Input");
-                                    }
-                                    else
-                                    {
-                                        s1.Withdraw(amount);
-                                    }
-
-                                    break;
-
-                                case 2:
-                                    Console.WriteLine("How mush amount want to deposit: ");
-                                    if (!decimal.TryParse(Console.ReadLine(), out amount))
-                                    {
-                                        Console.WriteLine("Invalid Input");
-                                    }
-                                    else
-                                    {
-                                        s1.Withdraw(amount);
-                                    }
-
-                                    s1.Deposit(amount);
-                                    break;
-                                case 3:
-                                    flag = false;
-                                    Console.WriteLine("Exiting.....");
-                                    break;
-                                default:
-                                    Console.WriteLine("Invalid Option");
-                                    break;
-                            }
-                        }
-
+                        savingsacc = new SavingsAccount(number, balance);
+                        Services(savingsacc);
                         break;
                     case 2:
-                        c1 = new CheckingAccount(number, balance);
-                        while (flag)
-                        {
-                            Console.WriteLine($"Balance : {c1.Balance}");
-                            Console.WriteLine("Did you want to 1.Withdraw or 2.Deposit 3.Exit: ");
-                            int.TryParse(Console.ReadLine(), out option);
-                            switch (option)
-                            {
-                                case 1:
-                                    Console.WriteLine("How much amount want to withdraw:");
-                                    decimal.TryParse(Console.ReadLine(), out amount);
-                                    c1.Withdraw(amount);
-                                    break;
-
-                                case 2:
-                                    Console.WriteLine("How mush amount want to deposit: ");
-                                    decimal.TryParse(Console.ReadLine(), out amount);
-                                    c1.Deposit(amount);
-                                    break;
-                                case 3:
-                                    flag = false;
-                                    Console.WriteLine("Exiting....");
-                                    break;
-                                default:
-                                    Console.WriteLine("Invalid Option");
-                                    break;
-                            }
-                        }
-
+                        checkingacc = new CheckingAccount(number, balance);
+                        Services(checkingacc);
                         break;
                     default:
                         Console.WriteLine("Invalid Input");
@@ -120,6 +50,67 @@
             else
             {
                 Console.WriteLine("Invalid Input");
+            }
+        }
+
+        /// <summary>
+        /// This function performs the deposit and withdraw function
+        /// </summary>
+        /// <param name="user">Object of the child class</param>
+        public static void Services(BankAccount user)
+        {
+            bool flag = true;
+
+            while (flag)
+            {
+                Console.WriteLine($"Account Number : {user.AccountNumber}");
+                Console.WriteLine($"Balance : {user.Balance}");
+                Console.WriteLine("Did you want to 1.Withdraw or 2.Deposit 3.Exit: ");
+                int.TryParse(Console.ReadLine(), out int option);
+
+                switch (option)
+                {
+                    case 1:
+                        Console.WriteLine("How much amount want to withdraw:");
+                        decimal.TryParse(Console.ReadLine(), out decimal amount);
+
+                        if (amount > 0)
+                        {
+                           user.Withdraw(amount);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter a Valid Amount");
+                        }
+
+                        break;
+
+                    case 2:
+                        Console.WriteLine("How mush amount want to deposit: ");
+                        decimal.TryParse(Console.ReadLine(), out amount);
+
+                        if (amount > 0)
+                        {
+                            user.Deposit(amount);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter a Valid Amount");
+                        }
+
+                        break;
+                    case 3:
+                        flag = false;
+                        Console.WriteLine("Exiting....");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Option");
+                        break;
+                }
+
+                Console.WriteLine("Press any key to continue : ");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
 
@@ -147,7 +138,8 @@
         /// <returns>It returns bool</returns>
         public static bool IsNumber(string s)
         {
-            Regex r = new Regex("\\d+");
+            Regex r = new Regex("^\\d+$");
+
             if (r.IsMatch(s))
             {
                 return true;
