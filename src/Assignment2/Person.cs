@@ -28,9 +28,20 @@
         /// Method is to set the name
         /// </summary>
         /// <param name="name">Method will take the name as a string to set the name</param>
-        public void SetName(string name)
+        /// <returns>It returns boolean datatype</returns>
+        public bool SetName(string name)
         {
-            this.Name = name;
+            Regex pattern = new Regex("^[a-zA-Z\\s]*$");
+            if (pattern.IsMatch(name))
+            {
+                this.Name = name;
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Name");
+            }
+            return false;
         }
 
         /// <summary>
