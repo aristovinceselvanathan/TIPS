@@ -7,13 +7,13 @@
     /// </summary>
     public class Person
     {
-        private string Name { get; set; }
+        private string _name;
 
-        private string Phone { get; set; }
+        private string _phone;
 
-        private string Email { get; set; }
+        private string _email;
 
-        private string AdditionalNotes { get; set; }
+        private string _additionalnotes;
 
         /// <summary>
         /// Method will get the details of the person
@@ -21,7 +21,7 @@
         /// <returns>It return the string of the details of the person</returns>
         public string GetDetails()
         {
-            return $"Name: {this.Name}\nPhone no: {this.Phone}\nEmail: {this.Email}\nAdditional Notes: {this.AdditionalNotes}";
+            return $"Name: {this._name}\nPhone no: {this._phone}\nEmail: {this._email}\nAdditional Notes: {this._additionalnotes}";
         }
 
         /// <summary>
@@ -34,7 +34,7 @@
             Regex pattern = new Regex("^[a-zA-Z\\s]*$");
             if (pattern.IsMatch(name))
             {
-                this.Name = name;
+                this._name = name;
                 return true;
             }
             else
@@ -50,7 +50,7 @@
         /// <returns>It returns string</returns>
         public string GetName()
         {
-            return this.Name;
+            return this._name;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@
         /// <returns>It returns string</returns>
         public string GetPhone()
         {
-            return this.Phone;
+            return this._phone;
         }
 
         /// <summary>
@@ -68,7 +68,7 @@
         /// <returns>It returns string</returns>
         public string GetEmail()
         {
-            return this.Email;
+            return this._email;
         }
 
         /// <summary>
@@ -81,7 +81,7 @@
             Regex regex = new Regex("^[0-9]{10}$");
             if (regex.IsMatch(phone))
             {
-                this.Phone = phone;
+                this._phone = phone;
             }
             else
             {
@@ -102,7 +102,7 @@
             Regex regex = new Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$");
             if (regex.IsMatch(email))
             {
-                this.Email = email;
+                this._email = email;
             }
             else
             {
@@ -119,7 +119,7 @@
         /// <param name="notes">Method will take the name as a string to set the Additional Notes</param>
         public void SetNotes(string notes)
         {
-            this.AdditionalNotes = notes;
+            this._additionalnotes = notes;
         }
 
         /// <summary>
@@ -140,7 +140,7 @@
                 return false;
             }
 
-            return this.Phone == other.Phone;
+            return this._phone == other._phone;
         }
 
         /// <summary>
