@@ -1,7 +1,6 @@
 ﻿namespace Assignment2
 {
     using System;
-    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Program Class
@@ -23,7 +22,8 @@
             int option1, option2;
             bool flag = true;
             string name, phone, email, notes;
-            Person? person;
+            Program userInterface = new Program();
+            Person person;
 
             Console.WriteLine("Welcome to Contacts Manager");
             while (flag)
@@ -44,16 +44,15 @@
                             email = Console.ReadLine();
                             Console.Write("Notes: ");
                             notes = Console.ReadLine();
-                            Add(name, phone, email, notes);
-                            Console.WriteLine("Invalid Name");
+                            userInterface.Add(name, phone, email, notes);
 
                             Console.WriteLine("Press any key to Continue: ");
                             Console.ReadKey();
                             Console.Clear();
                             break;
                         case 2:
-                            person = FindPerson();
-                            if (person != null && Remove(person))
+                            person = userInterface.FindPerson();
+                            if (person != null && userInterface.Remove(person))
                             {
                                 Console.WriteLine("Person is removed successfully");
                                 Console.WriteLine("Press any key to Continue: ");
@@ -63,27 +62,39 @@
 
                             break;
                         case 3:
-                            person = FindPerson();
+                            person = userInterface.FindPerson();
                             if (person != null)
                             {
                                 Console.Write("Are you want to edit? 1 - Yes or 0 - No: ");
-                                int.TryParse(Console.ReadLine(), out option2);
-                                if (option2 == 1)
+                                if (!int.TryParse(Console.ReadLine(), out option2))
                                 {
-                                    Edit(person);
+                                    Console.WriteLine("Invalid Option");
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Exiting...");
+                                    switch (option2)
+                                    {
+                                        case 0:
+                                            Console.WriteLine("Exiting....");
+                                            break;
+                                        case 1:
+                                            userInterface.Edit(person);
+                                            break;
+                                        default:
+                                            Console.WriteLine("Edit Process is Terminated");
+                                            break;
+                                    }
+
                                     Console.WriteLine("Press any key to Continue: ");
                                     Console.ReadKey();
                                     Console.Clear();
+                                    break;
                                 }
                             }
 
                             break;
                         case 4:
-                            DisplayAll();
+                            userInterface.DisplayAll();
                             break;
                         case 5:
                             flag = false;
@@ -108,7 +119,7 @@
         /// <param name="phone">It takes the string as parameter for phone</param>
         /// <param name="email">It takes the string as parameter for email</param>
         /// <param name="notes">It takes the string as parameter for notes</param>
-        public static void Add(string name, string phone, string email, string notes)
+        public void Add(string name, string phone, string email, string notes)
         {
             Person person = new Person();
             bool isName = person.SetName(name);
@@ -117,7 +128,6 @@
 
             if (isName && isPhone && isEmail)
             {
-                person.SetName(name);
                 person.SetNotes(notes);
                 if (!phoneDirectory.Contains(person))
                 {
@@ -138,7 +148,7 @@
         /// </summary>
         /// <param name="person">It takes the person as a parameter</param>
         /// <returns>It returns the Boolean of person can be removed</returns>
-        public static bool Remove(Person person)
+        public bool Remove(Person person)
         {
             if (phoneDirectory.Remove(person) == false)
             {
@@ -153,7 +163,7 @@
         /// Method is to edit the contacts in the directory (List of Person).
         /// </summary>
         /// <param name="person">It takes the person as a parameter</param>
-        public static void Edit(Person person)
+        public void Edit(Person person)
         {
             int option;
             string temp;
@@ -186,7 +196,7 @@
         /// Method to search for name, phone number, email in directory (List of Person)
         /// </summary>
         /// <returns>It returns the selected person</returns>
-        public static List<Person> Search()
+        public List<Person> Search()
         {
             int option;
             string temp1;
@@ -247,10 +257,11 @@
         /// Method will allow to select the contact in search or remove operations
         /// </summary>
         /// <returns>It returns the person object</returns>
-        public static Person? FindPerson()
+        public Person FindPerson()
         {
-            List<Person> people = Search();
-            Person? person = null;
+            Program userInterface = new Program();
+            List<Person> people = userInterface.Search();
+            Person person = null;
             for (int i = 0; i < people.Count(); i++)
             {
                 Console.WriteLine($"{i + 1}. " + people.ElementAt(i).GetDetails());
@@ -284,7 +295,7 @@
         /// <summary>
         /// Method display all the contacts in the directory (List of Person)
         /// </summary>
-        public static void DisplayAll()
+        public void DisplayAll()
         {
             if (phoneDirectory.Count() == 0)
             {
@@ -302,22 +313,6 @@
             Console.WriteLine("Press any Key to Continue: ");
             Console.ReadKey();
             Console.Clear();
-        }
-
-        /// <summary>
-        /// Method checks for the string is valid
-        /// </summary>
-        /// <param name="input">It takes the string as the input</param>
-        /// <returns>It returns integer</returns>
-        public static bool IsValidName(string input)
-        {
-            Regex pattern = new Regex("^[a-zA-Z\\s]*$");
-            if (pattern.IsMatch(input))
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }

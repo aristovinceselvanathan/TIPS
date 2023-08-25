@@ -40,8 +40,8 @@
             else
             {
                 Console.WriteLine("Invalid Name");
+                return false;
             }
-            return false;
         }
 
         /// <summary>
@@ -134,7 +134,7 @@
                 return false;
             }
 
-            Person? other = obj as Person;
+            Person other = obj as Person;
             if (other == null)
             {
                 return false;
