@@ -18,7 +18,7 @@
         public static void Main(string[] args)
         {
             List<Person> phoneDirectory = new List<Person>();
-            int option1, option2;
+            int optionOfServices, optionToEdit;
             bool flag = true;
             string name, phone, email, notes;
             Program userInterface = new Program();
@@ -28,10 +28,10 @@
             while (flag)
             {
                 Console.Write("Actions 1.Add 2.Remove 3.Search 4.Displyall 5.Exit: ");
-                if (int.TryParse(Console.ReadLine(), out option1))
+                if (int.TryParse(Console.ReadLine(), out optionOfServices))
                 {
                     Console.Clear();
-                    switch (option1)
+                    switch (optionOfServices)
                     {
                         case 1:
                             Console.WriteLine("Please enter the person details : ");
@@ -65,13 +65,13 @@
                             if (person != null)
                             {
                                 Console.Write("Are you want to edit? 1 - Yes or 0 - No: ");
-                                if (!int.TryParse(Console.ReadLine(), out option2))
+                                if (!int.TryParse(Console.ReadLine(), out optionToEdit))
                                 {
                                     Console.WriteLine("Invalid Option");
                                 }
                                 else
                                 {
-                                    switch (option2)
+                                    switch (optionToEdit)
                                     {
                                         case 0:
                                             Console.WriteLine("Exiting....");
