@@ -33,7 +33,7 @@
         /// <param name="input1">Operand 1</param>
         /// <param name="input2">Operand 2</param>
         /// <returns>It returns the multiplication of two operands</returns>
-        public int Multiplinput2(int input1, int input2)
+        public int Multiply(int input1, int input2)
         {
             return input1 * input2;
         }
