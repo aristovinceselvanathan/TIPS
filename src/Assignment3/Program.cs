@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// TProgram Class
+    /// Program Class
     /// </summary>
     internal class Program
     {
