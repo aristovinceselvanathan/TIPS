@@ -14,56 +14,60 @@
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
-            string colorcircle, colorrectangle, match1, match2, match3;
+            string colorcircle, colorrectangle, isDouble1, isDouble2, isDouble3;
             double radius, length, breath;
 
             Console.WriteLine("Colour of the Circle : ");
-            colorcircle = ChecksStringIsNull(Console.ReadLine());
-            Console.WriteLine("Enter the radius of the circle (cm): ");
-            match1 = ChecksStringIsNull(Console.ReadLine());
-
-            if (double.TryParse(match1, out radius) && IsColor(colorcircle))
+            colorcircle = Console.ReadLine();
+            if (IsColor(colorcircle))
             {
-                Circle c1 = new Circle(colorcircle, radius);
-                c1.PrintDetails();
+                Console.WriteLine("Enter the radius of the circle (cm): ");
+                isDouble1 = Console.ReadLine();
+
+                if (double.TryParse(isDouble1, out radius))
+                {
+                    Circle c1 = new Circle(colorcircle, radius);
+                    c1.PrintDetails();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Input");
+                }
             }
             else
             {
-                Console.WriteLine("Invalid Input");
+                Console.WriteLine("Invalid Name");
             }
 
             Console.WriteLine("Colour of the Rectangle : ");
-            colorrectangle = ChecksStringIsNull(Console.ReadLine());
-            Console.WriteLine("Enter the length of the rectangle (cm): ");
-            match2 = ChecksStringIsNull(Console.ReadLine());
-            Console.WriteLine("Enter the breath of the rectangle (cm): ");
-            match3 = ChecksStringIsNull(Console.ReadLine());
-
-            if (double.TryParse(match2, out length) && double.TryParse(match3, out breath) && IsColor(colorrectangle))
+            colorrectangle = Console.ReadLine();
+            if (IsColor(colorrectangle))
             {
-                Rectangle r1 = new Rectangle(colorrectangle, length, breath);
-                r1.PrintDetails();
+                Console.WriteLine("Enter the length of the rectangle (cm): ");
+                isDouble2 = Console.ReadLine();
+                Console.WriteLine("Enter the breath of the rectangle (cm): ");
+                isDouble3 = Console.ReadLine();
+
+                if (double.TryParse(isDouble2, out length))
+                {
+                    if (double.TryParse(isDouble3, out breath))
+                    {
+                        Rectangle r1 = new Rectangle(colorrectangle, length, breath);
+                        r1.PrintDetails();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Input");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Input");
+                }
             }
             else
             {
-                Console.WriteLine("Invalid Input");
-            }
-        }
-
-        /// <summary>
-        /// Method checks for string is null or not
-        /// </summary>
-        /// <param name="s">It takes the string as the input</param>
-        /// <returns>It returns string</returns>
-        public static string ChecksStringIsNull(string? s)
-        {
-            if (string.IsNullOrEmpty(s))
-            {
-                return " ";
-            }
-            else
-            {
-                return s;
+                Console.WriteLine("Invalid Name");
             }
         }
 

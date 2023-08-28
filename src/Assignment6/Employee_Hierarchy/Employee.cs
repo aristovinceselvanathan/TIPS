@@ -39,7 +39,7 @@
         }
 
         /// <summary>
-        /// Abstract method for calculate Bonus
+        /// Abstract method to calculate Bonus
         /// </summary>
         /// <returns>It returns decimal</returns>
         protected abstract decimal CalculateBonus();
