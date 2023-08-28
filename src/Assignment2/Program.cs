@@ -58,6 +58,10 @@
                                 Console.ReadKey();
                                 Console.Clear();
                             }
+                            else
+                            {
+                                Console.WriteLine("Invalid Person");
+                            }
 
                             break;
                         case 3:
@@ -90,6 +94,10 @@
                                     break;
                                 }
                             }
+                            else
+                            {
+                                Console.WriteLine("Invalid Selection");
+                            }
 
                             break;
                         case 4:
@@ -114,10 +122,10 @@
         /// <summary>
         /// Method is to add contact to the directory (List of Person). It sets the values to the person
         /// </summary>
-        /// <param name="name">It takes the string as parameter for name</param>
-        /// <param name="phone">It takes the string as parameter for phone</param>
-        /// <param name="email">It takes the string as parameter for email</param>
-        /// <param name="notes">It takes the string as parameter for notes</param>
+        /// <param name="name">It takes the string as parameter for name of the person</param>
+        /// <param name="phone">It takes the string as parameter for phone of the person</param>
+        /// <param name="email">It takes the string as parameter for email of the person</param>
+        /// <param name="notes">It takes the string as parameter for notes of the person</param>
         /// <param name="phoneDirectory">It takes the directory of the persons from the main method</param>
         public void Add(string name, string phone, string email, string notes, List<Person> phoneDirectory)
         {
@@ -213,37 +221,44 @@
                 Console.Write("Search By 1.Name 2.Phone Number 3.Email: ");
                 if (int.TryParse(Console.ReadLine(), out option))
                 {
-                    Console.Write("Enter Search: ");
-                    temp1 = Console.ReadLine();
-                    foreach (Person p1 in phoneDirectory)
+                    if (option < 4 && option > 0)
                     {
-                        switch (option)
+                        Console.Write("Enter Search: ");
+                        temp1 = Console.ReadLine();
+                        foreach (Person p1 in phoneDirectory)
                         {
-                            case 1:
-                                if (p1.GetName().Contains(temp1, StringComparison.CurrentCultureIgnoreCase))
-                                {
-                                    temp.Add(p1);
-                                }
+                            switch (option)
+                            {
+                                case 1:
+                                    if (p1.GetName().Contains(temp1, StringComparison.CurrentCultureIgnoreCase))
+                                    {
+                                        temp.Add(p1);
+                                    }
 
-                                break;
-                            case 2:
-                                if (p1.GetPhone().Contains(temp1, StringComparison.CurrentCultureIgnoreCase))
-                                {
-                                    temp.Add(p1);
-                                }
+                                    break;
+                                case 2:
+                                    if (p1.GetPhone().Contains(temp1, StringComparison.CurrentCultureIgnoreCase))
+                                    {
+                                        temp.Add(p1);
+                                    }
 
-                                break;
-                            case 3:
-                                if (p1.GetEmail().Contains(temp1, StringComparison.CurrentCultureIgnoreCase))
-                                {
-                                    temp.Add(p1);
-                                }
+                                    break;
+                                case 3:
+                                    if (p1.GetEmail().Contains(temp1, StringComparison.CurrentCultureIgnoreCase))
+                                    {
+                                        temp.Add(p1);
+                                    }
 
-                                break;
-                            default:
-                                Console.WriteLine("Invalid Selection");
-                                break;
+                                    break;
+                                default:
+                                    Console.WriteLine("Invalid Selection");
+                                    break;
+                            }
                         }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Selection");
                     }
                 }
                 else
@@ -280,15 +295,22 @@
             }
             else if (people.Count() != 0)
             {
-                Console.WriteLine("Which Contact should you want to pick by number? ");
-                int.TryParse(Console.ReadLine(), out int id);
-                try
+                if (people.Count() == 1)
                 {
-                    person = people.ElementAt(id - 1);
+                    person = people.ElementAt(0);
                 }
-                catch (Exception)
+                else
                 {
-                    Console.WriteLine("Invalid Selection");
+                    Console.WriteLine("Which Contact should you want to pick by number? ");
+                    int.TryParse(Console.ReadLine(), out int id);
+                    try
+                    {
+                        person = people.ElementAt(id - 1);
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Invalid Selection");
+                    }
                 }
             }
 

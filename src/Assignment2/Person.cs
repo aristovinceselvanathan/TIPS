@@ -13,7 +13,7 @@
 
         private string _email;
 
-        private string _additionalnotes;
+        private string _additionalNotes;
 
         /// <summary>
         /// Method will get the details of the person
@@ -21,7 +21,7 @@
         /// <returns>It return the string of the details of the person</returns>
         public string GetDetails()
         {
-            return $"Name: {this._name}\nPhone no: {this._phone}\nEmail: {this._email}\nAdditional Notes: {this._additionalnotes}";
+            return $"Name: {this._name}\nPhone no: {this._phone}\nEmail: {this._email}\nAdditional Notes: {this._additionalNotes}";
         }
 
         /// <summary>
@@ -119,7 +119,7 @@
         /// <param name="notes">Method will take the name as a string to set the Additional Notes</param>
         public void SetNotes(string notes)
         {
-            this._additionalnotes = notes;
+            this._additionalNotes = notes;
         }
 
         /// <summary>
