@@ -14,92 +14,83 @@
         /// <param name="args">It takes the argument from command line</param>
         public static void Main(string[] args)
         {
-            string option1, name, match1, match2;
+            int option1;
+            string option2, name, isName, isDecimal;
             decimal salary;
-            Developer d1;
-            Manager m1;
+            Developer developer;
+            Manager manager;
 
             Console.WriteLine("Name of the Employee : ");
-            match1 = ChecksStringIsNull(Console.ReadLine());
-            Console.WriteLine("Salary of the Employee : ");
-            match2 = ChecksStringIsNull(Console.ReadLine());
-
-            if (IsName(match1) && decimal.TryParse(match2, out salary))
+            isName = Console.ReadLine();
+            if (IsName(isName))
             {
-                name = match1;
-                Console.WriteLine("Did You want to create the 1. Developer or 2. Manager : ");
-                int.TryParse(Console.ReadLine(), out int option);
+                Console.WriteLine("Salary of the Employee : ");
+                isDecimal = Console.ReadLine();
 
-                switch (option)
+                if (decimal.TryParse(isDecimal, out salary))
                 {
-                    case 1:
-                        d1 = new Developer(name, salary);
-                        Console.WriteLine("Did you want print the details : Y or N");
-                        option1 = ChecksStringIsNull(Console.ReadLine());
+                    name = isName;
+                    Console.WriteLine("Did You want to create the 1. Developer or 2. Manager : ");
+                    int.TryParse(Console.ReadLine(), out option1);
 
-                        if (option1.Equals("Y") || option1.Equals("y"))
-                        {
-                            d1.PrintDetails();
-                        }
-                        else if (option1.Equals("N") || option1.Equals("n"))
-                        {
-                            Console.WriteLine("Eoption1iting...");
-                        }
-                        else
-                        {
+                    switch (option1)
+                    {
+                        case 1:
+                            developer = new Developer(name, salary);
+                            Console.WriteLine("Did you want print the details : Y or N");
+                            option2 = Console.ReadLine();
+
+                            if (option2.Equals("Y") || option2.Equals("y"))
+                            {
+                                developer.PrintDetails();
+                            }
+                            else if (option2.Equals("N") || option2.Equals("n"))
+                            {
+                                Console.WriteLine("Eoption1iting...");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Input");
+                            }
+
+                            break;
+                        case 2:
+                            manager = new Manager(name, salary);
+                            Console.WriteLine("Did you want print the details : Y or N");
+                            option2 = Console.ReadLine();
+
+                            if (option2.Equals("Y") || option2.Equals("y"))
+                            {
+                                manager.PrintDetails();
+                            }
+                            else if (option2.Equals("N") || option2.Equals("n"))
+                            {
+                                Console.WriteLine("Eoption1iting...");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Input");
+                            }
+
+                            break;
+                        default:
                             Console.WriteLine("Invalid Input");
-                        }
-
-                        break;
-                    case 2:
-                        m1 = new Manager(name, salary);
-                        Console.WriteLine("Did you want print the details : Y or N");
-                        option1 = ChecksStringIsNull(Console.ReadLine());
-
-                        if (option1.Equals("Y") || option1.Equals("y"))
-                        {
-                            m1.PrintDetails();
-                        }
-                        else if (option1.Equals("N") || option1.Equals("n"))
-                        {
-                            Console.WriteLine("Eoption1iting...");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid Input");
-                        }
-
-                        break;
-                    default:
-                        Console.WriteLine("Invalid Input");
-                        break;
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Input");
                 }
             }
             else
             {
-                Console.WriteLine("Invalid Input");
+                Console.WriteLine("Invalid Name");
             }
         }
 
         /// <summary>
-        /// Method checks string is null or not.
-        /// </summary>
-        /// <param name="s">It takes the string as input</param>
-        /// <returns>It returns string</returns>
-        public static string ChecksStringIsNull(string? s)
-        {
-            if (string.IsNullOrEmpty(s))
-            {
-                return " ";
-            }
-            else
-            {
-                return s;
-            }
-        }
-
-        /// <summary>
-        /// Method checks for the string is valid alphabet name.
+        /// Method checks for the string is valid alphabetic name.
         /// </summary>
         /// <param name="s">It takes the string as input</param>
         /// <returns>It returns bool</returns>
