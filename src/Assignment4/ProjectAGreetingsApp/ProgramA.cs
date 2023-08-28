@@ -5,7 +5,7 @@
     using ProjectDUtilityApp;
 
     /// <summary>
-    /// Main ProgramA Class
+    /// ProgramA Class
     /// </summary>
     internal class ProgramA
     {
@@ -18,7 +18,7 @@
         public static void Main(string[] args)
         {
             int input1, input2, option;
-            string match1, match2;
+            string isNumber1, isNumber2;
             bool flag = true;
 
             Console.WriteLine("Hello, World!");
@@ -27,14 +27,15 @@
             ProgramB math = new ProgramB();
             ProgramC programC = new ProgramC();
             ProgramC.Get(math);
+
             while (flag)
             {
                 Console.WriteLine("Enter the Input1:");
-                match1 = programD.CheckStringIsNull(Console.ReadLine());
+                isNumber1 = Console.ReadLine();
                 Console.WriteLine("Enter the Input2:");
-                match2 = programD.CheckStringIsNull(Console.ReadLine());
+                isNumber2 = Console.ReadLine();
 
-                if (int.TryParse(match1, out input1) && int.TryParse(match2, out input2))
+                if (int.TryParse(isNumber1, out input1) && int.TryParse(isNumber2, out input2))
                 {
                     Console.WriteLine("Enter the Option : 1.Addition 2.Subtraction 3.Multiplication 4.Division :");
                     if (!int.TryParse(Console.ReadLine(), out option))
