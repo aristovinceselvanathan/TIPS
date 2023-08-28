@@ -20,24 +20,9 @@
 
 ## Task 4: Debugging and Breakpoints
 
-1. Familiarize yourself with the debugging features in Visual Studio:
-- Set breakpoints in your code by clicking on the left gutter of a line or using the F9 key.
-- Explore the various debugging options and windows available in Visual Studio.
-2. Debug your application:
-- Set breakpoints at specific locations in your code.
-- Run your application in debug mode (F5).
-- Observe how the program pauses at the breakpoints and allows you to inspect variables and step through the code.
-3. Use the debugging tools to diagnose and fix issues:
-- Utilize features like watch windows, immediate windows, and call stack to investigate program behavior and troubleshoot problems.
+1. By clicking the left gutter or F9 to Set breakpoints in your code and various debugging options and windows available in Visual Studio.
+2. Use the debugging tools to diagnose and fix issues using the features like watch windows, immediate windows, and call stack to investigate program behavior and troubleshoot problems.
 
 ## Task 5: Exploring Additional Visual Studio Features
-1. Spend time exploring various features of Visual Studio:
-- Investigate code navigation tools, such as "GoTo Definition" and "Find All Reference".
-- Discover code refactoring options, including renaming variables or extracting methods.
-- Experiment with IntelliSense and code snippets to enhance your productivity.
-2. Customize Visual Studio to suit your preferences:
-- Modify the editor settings, keyboard shortcuts, or color themes to make your coding experience more comfortable.
-3. Reflect on your experience:<br>
-- Take note of any interesting features or tools you discovered during your exploration.<br>
-- Consider how these features can improve your efficiency and
-productivity as a developer.
+1. Investigated code navigation tools, such as "GoTo Definition" and "Find All Reference", Discover code refactoring options, including renaming variables or extracting methods.
+2. I have used the IntelliSense and code snippets to enhance your productivity.
