@@ -21,7 +21,6 @@
             int optionOfServices, optionToEdit;
             bool flag = true;
             string name, phone, email, notes;
-            Program userInterface = new Program();
             Person person;
 
             Console.WriteLine("Welcome to Contacts Manager");
@@ -43,15 +42,15 @@
                             email = Console.ReadLine();
                             Console.Write("Notes: ");
                             notes = Console.ReadLine();
-                            userInterface.Add(name, phone, email, notes, phoneDirectory);
+                            Add(name, phone, email, notes, phoneDirectory);
 
                             Console.WriteLine("Press any key to Continue: ");
                             Console.ReadKey();
                             Console.Clear();
                             break;
                         case 2:
-                            person = userInterface.FindPerson(phoneDirectory);
-                            if (person != null && userInterface.Remove(person, phoneDirectory))
+                            person = FindPerson(phoneDirectory);
+                            if (person != null && Remove(person, phoneDirectory))
                             {
                                 Console.WriteLine("Person is removed successfully");
                                 Console.WriteLine("Press any key to Continue: ");
@@ -65,7 +64,7 @@
 
                             break;
                         case 3:
-                            person = userInterface.FindPerson(phoneDirectory);
+                            person = FindPerson(phoneDirectory);
                             if (person != null)
                             {
                                 Console.Write("Are you want to edit? 1 - Yes or 0 - No: ");
@@ -81,7 +80,7 @@
                                             Console.WriteLine("Exiting....");
                                             break;
                                         case 1:
-                                            userInterface.Edit(person);
+                                            Edit(person);
                                             break;
                                         default:
                                             Console.WriteLine("Edit Process is Terminated");
@@ -101,7 +100,7 @@
 
                             break;
                         case 4:
-                            userInterface.DisplayAll(phoneDirectory);
+                            DisplayAll(phoneDirectory);
                             break;
                         case 5:
                             flag = false;
@@ -127,7 +126,7 @@
         /// <param name="email">It takes the string as parameter for email of the person</param>
         /// <param name="notes">It takes the string as parameter for notes of the person</param>
         /// <param name="phoneDirectory">It takes the directory of the persons from the main method</param>
-        public void Add(string name, string phone, string email, string notes, List<Person> phoneDirectory)
+        public static void Add(string name, string phone, string email, string notes, List<Person> phoneDirectory)
         {
             Person person = new Person();
             bool isName = person.SetName(name);
@@ -157,7 +156,7 @@
         /// <param name="person">It takes the person as a parameter</param>
         /// <param name="phoneDirectory">It takes the diectory of the persons from the main method</param>
         /// <returns>It returns the Boolean of person can be removed</returns>
-        public bool Remove(Person person, List<Person> phoneDirectory)
+        public static bool Remove(Person person, List<Person> phoneDirectory)
         {
             if (phoneDirectory.Remove(person) == false)
             {
@@ -172,7 +171,7 @@
         /// Method is to edit the contacts in the directory (List of Person).
         /// </summary>
         /// <param name="person">It takes the person as a parameter</param>
-        public void Edit(Person person)
+        public static void Edit(Person person)
         {
             int option;
             string temp;
@@ -206,7 +205,7 @@
         /// </summary>
         /// <param name="phoneDirectory">It takes the persons directory from the main method</param>
         /// <returns>It returns the selected person</returns>
-        public List<Person> Search(List<Person> phoneDirectory)
+        public static List<Person> Search(List<Person> phoneDirectory)
         {
             int option;
             string temp1;
@@ -275,10 +274,10 @@
         /// </summary>
         /// <param name="phoneDirectory">It takes the directory of the persons from the main method</param>
         /// <returns>It returns the person object</returns>
-        public Person FindPerson(List<Person> phoneDirectory)
+        public static Person FindPerson(List<Person> phoneDirectory)
         {
             Program userInterface = new Program();
-            List<Person> people = userInterface.Search(phoneDirectory);
+            List<Person> people = Search(phoneDirectory);
             Person person = null;
             for (int i = 0; i < people.Count(); i++)
             {
@@ -321,7 +320,7 @@
         /// Method display all the contacts in the directory (List of Person)
         /// </summary>
         /// <param name="phoneDirectory">It takes the directory of person from the main method</param>
-        public void DisplayAll(List<Person> phoneDirectory)
+        public static void DisplayAll(List<Person> phoneDirectory)
         {
             if (phoneDirectory.Count() == 0)
             {
