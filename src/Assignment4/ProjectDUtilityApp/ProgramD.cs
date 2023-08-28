@@ -17,21 +17,6 @@
         }
 
         /// <summary>
-        /// Method checks for the string is null or not.
-        /// </summary>
-        /// <param name="s">It takes the input as string</param>
-        /// <returns>It returns string</returns>
-        public string CheckStringIsNull(string? s)
-        {
-            if (string.IsNullOrEmpty(s))
-            {
-                return " ";
-            }
-
-            return s;
-        }
-
-        /// <summary>
         /// It matches string with the regex pattern.
         /// </summary>
         /// <param name="input">It takes string as an input to be matched with the pattern</param>
