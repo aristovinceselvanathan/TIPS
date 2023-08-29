@@ -123,7 +123,7 @@
 
                             break;
                         case (int)Option.DisplayAll:
-                            h  DisplayAll(phoneDirectory);
+                            DisplayAll(phoneDirectory);
                             break;
                         case (int)Option.Exit:
                             flag = false;
