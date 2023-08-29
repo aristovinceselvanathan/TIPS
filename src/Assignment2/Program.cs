@@ -7,6 +7,29 @@
     /// </summary>
     public class Program
     {
+        private enum Option
+        {
+            Add = 1,
+            Remove = 2,
+            Search = 3,
+            DisplayAll = 4,
+            Exit = 5,
+        }
+
+        private enum Opinion
+        {
+            Yes = 1,
+            No = 0,
+        }
+
+        private enum EditValue
+        {
+            Name = 1,
+            Phone = 2,
+            Email = 3,
+            Notes = 4,
+        }
+
         /// <summary>
         /// Main method prompts the user to choose the operations of the contact manager
         /// Add operation takes the required information from the user
@@ -26,13 +49,13 @@
             Console.WriteLine("Welcome to Contacts Manager");
             while (flag)
             {
-                Console.Write("Actions 1.Add 2.Remove 3.Search 4.Displyall 5.Exit: ");
+                Console.Write("Actions 1.Add 2.Remove 3.Search 4.Display all 5.Exit: ");
                 if (int.TryParse(Console.ReadLine(), out optionOfServices))
                 {
                     Console.Clear();
                     switch (optionOfServices)
                     {
-                        case 1:
+                        case (int)Option.Add:
                             Console.WriteLine("Please enter the person details : ");
                             Console.Write("Name: ");
                             name = Console.ReadLine();
@@ -48,7 +71,7 @@
                             Console.ReadKey();
                             Console.Clear();
                             break;
-                        case 2:
+                        case (int)Option.Remove:
                             person = FindPerson(phoneDirectory);
                             if (person != null && Remove(person, phoneDirectory))
                             {
@@ -63,7 +86,7 @@
                             }
 
                             break;
-                        case 3:
+                        case (int)Option.Search:
                             person = FindPerson(phoneDirectory);
                             if (person != null)
                             {
@@ -76,10 +99,10 @@
                                 {
                                     switch (optionToEdit)
                                     {
-                                        case 0:
+                                        case (int)Opinion.No:
                                             Console.WriteLine("Exiting....");
                                             break;
-                                        case 1:
+                                        case (int)Opinion.Yes:
                                             Edit(person);
                                             break;
                                         default:
@@ -99,20 +122,22 @@
                             }
 
                             break;
-                        case 4:
+                        case (int)Option.DisplayAll:
                             DisplayAll(phoneDirectory);
                             break;
-                        case 5:
+                        case (int)Option.Exit:
                             flag = false;
                             Console.WriteLine("Thank you for using Contacts Manager");
                             break;
                         default:
+                            Console.Clear();
                             Console.WriteLine("Invalid Option");
                             break;
                     }
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Invalid Option");
                 }
             }
@@ -154,7 +179,7 @@
         /// Method is to remove the contact from the directory (List of Person).
         /// </summary>
         /// <param name="person">It takes the person as a parameter</param>
-        /// <param name="phoneDirectory">It takes the diectory of the persons from the main method</param>
+        /// <param name="phoneDirectory">It takes the directory of the persons from the main method</param>
         /// <returns>It returns the Boolean of person can be removed</returns>
         public static bool Remove(Person person, List<Person> phoneDirectory)
         {
@@ -182,16 +207,16 @@
 
             switch (option)
             {
-                case 1:
+                case (int)EditValue.Name:
                     person.SetName(temp);
                     break;
-                case 2:
+                case (int)EditValue.Phone:
                     person.SetPhone(temp);
                     break;
-                case 3:
+                case (int)EditValue.Email:
                     person.SetEmail(temp);
                     break;
-                case 4:
+                case (int)EditValue.Notes:
                     person.SetNotes(temp);
                     break;
                 default:
