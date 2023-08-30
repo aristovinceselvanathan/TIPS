@@ -14,7 +14,14 @@
         {
             while (true)
             {
-                _memA110c.Add(new int[1000]);
+                try
+                {
+                    _memA110c.Add(new int[1000]);
+                }
+                catch (OutOfMemoryException)
+                {
+                    _memA110c.Clear();
+                }
 
                 // Assume memA110c variable is used only within this loop.
                 Thread.Sleep(10);
