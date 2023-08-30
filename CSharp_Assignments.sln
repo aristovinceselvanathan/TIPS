@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit", "unit", "{C778E127-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "acceptance", "acceptance", "{93EBAE55-A8BA-40FF-93AA-7D9E4359B6B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueAndReferenceTypes", "src\Assignment8\ValueAndReferenceTypes\ValueAndReferenceTypes.csproj", "{2A86E02B-6D74-47BA-BB2A-C575FF3B2B97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarbageCollection", "src\Assignment8\GarbageCollection\GarbageCollection.csproj", "{80C6640C-7F48-4607-B777-A5C693B16580}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment7", "src\Assignment7\Git\Assignment7.csproj", "{C78CDB63-0D89-4421-A39C-CE5BEC0B55D9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectAGreetingsApp", "src\Assignment4\ProjectAGreetingsApp\ProjectAGreetingsApp.csproj", "{E56BB197-D9E4-41A5-92D9-4A8DE73D64C0}"
@@ -40,6 +44,20 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShapeHierarchy", "src\Assignment6\ShapeHierarchy\ShapeHierarchy.csproj", "{D31A3EF7-BC42-43D3-8FEB-A42803CC3818}"
 EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A86E02B-6D74-47BA-BB2A-C575FF3B2B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A86E02B-6D74-47BA-BB2A-C575FF3B2B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A86E02B-6D74-47BA-BB2A-C575FF3B2B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A86E02B-6D74-47BA-BB2A-C575FF3B2B97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80C6640C-7F48-4607-B777-A5C693B16580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80C6640C-7F48-4607-B777-A5C693B16580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80C6640C-7F48-4607-B777-A5C693B16580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80C6640C-7F48-4607-B777-A5C693B16580}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -81,6 +99,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C778E127-C02C-4A37-8E85-3D86DCC063DC} = {06861454-9561-492A-9F93-A33B6F7AE3AB}
 		{93EBAE55-A8BA-40FF-93AA-7D9E4359B6B9} = {06861454-9561-492A-9F93-A33B6F7AE3AB}
+		{2A86E02B-6D74-47BA-BB2A-C575FF3B2B97} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
+		{80C6640C-7F48-4607-B777-A5C693B16580} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{C78CDB63-0D89-4421-A39C-CE5BEC0B55D9} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{E56BB197-D9E4-41A5-92D9-4A8DE73D64C0} = {20366A22-F260-4BC3-B9CF-FA3647AFEE76}
 		{0F9A7B36-541A-4EB2-AC1F-0D9C2AABC213} = {20366A22-F260-4BC3-B9CF-FA3647AFEE76}
