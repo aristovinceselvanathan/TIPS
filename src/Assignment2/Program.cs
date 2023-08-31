@@ -80,10 +80,6 @@
                                 Console.ReadKey();
                                 Console.Clear();
                             }
-                            else
-                            {
-                                Console.WriteLine("Invalid Person");
-                            }
 
                             break;
                         case (int)Option.Search:
@@ -115,10 +111,6 @@
                                     Console.Clear();
                                     break;
                                 }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Invalid Selection");
                             }
 
                             break;
