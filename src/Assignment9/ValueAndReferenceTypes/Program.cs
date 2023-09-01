@@ -8,59 +8,31 @@
     internal class Program
     {
         /// <summary>
-        /// Main method
+        /// Main method that creates the Value and Reference Type objects
         /// </summary>
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
             Employee employee1 = new Employee();
-            string isId, isName, isDesignation;
             int value = 100;
 
+            employee1.Id = "1001";
+            employee1.Name = "Tom Cruise";
+            employee1.Designation = "IT";
+
             Console.WriteLine("Reference Type : Employee System");
-            Console.WriteLine("Enter the Employee ID : ");
-            isId = Console.ReadLine();
-
-            if (IsID(isId))
-            {
-                employee1.Id = isId;
-                Console.WriteLine("Enter the Name : ");
-                isName = Console.ReadLine();
-                if (IsName(isName))
-                {
-                    employee1.Name = isName;
-                    Console.WriteLine("Enter the Designation : ");
-                    isDesignation = Console.ReadLine();
-                    if (IsDesignation(isDesignation))
-                    {
-                        employee1.Designation = isDesignation;
-                        Console.WriteLine(employee1);
-                        ChangeEmployee(employee1);
-                        Console.WriteLine(employee1);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Designation");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid Name");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Invalid Id");
-            }
-
-            Console.WriteLine("Value Type: Update Value ");
-            UpdateValue(value);
+            Console.WriteLine(employee1);
+            ChangeEmployee(employee1);
+            Console.WriteLine(employee1);
+            Console.WriteLine("Value Type : Update Value ");
             Console.WriteLine($"Value is {value}");
-
-            Console.WriteLine("TO create the Large Number of Local Variable");
+            UpdateValue(value);
+            Console.WriteLine($"Value is after calling the function to change value is {value}");
+            Console.WriteLine("To create the Large Number of Local Variable");
             LargeNumberLocalVariable();
             Console.WriteLine("Press Any Key to Continue:");
             Console.ReadKey();
+            Console.WriteLine("To create the Large Array of Integer");
             LargeArray();
             Console.WriteLine("Press Any Key to Continue:");
             Console.ReadKey();
@@ -72,40 +44,13 @@
         /// <param name="employee">It takes the class as the input</param>
         public static void ChangeEmployee(Employee employee)
         {
-            string isId, isName, isDesignation;
 
             Console.WriteLine("Employee Update Details");
-            Console.WriteLine("Enter the Employee ID : ");
-            isId = Console.ReadLine();
 
-            if (IsID(isId))
-            {
-                employee.Id = isId;
-                Console.WriteLine("Enter the Name : ");
-                isName = Console.ReadLine();
-                if (IsName(isName))
-                {
-                    employee.Name = isName;
-                    Console.WriteLine("Enter the Designation : ");
-                    isDesignation = Console.ReadLine();
-                    if (IsDesignation(isDesignation))
-                    {
-                        employee.Designation = isDesignation;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Designation");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid Name");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Invalid Id");
-            }
+            employee.Id = "1002";
+            employee.Name = "Jim Cook";
+            employee.Designation = "Admin";
+            Console.WriteLine(employee);
         }
 
         /// <summary>
@@ -115,7 +60,7 @@
         public static void UpdateValue(int value)
         {
             value = 200;
-            Console.WriteLine($"Value is {value}");
+            Console.WriteLine($"Value in the function: {value}");
         }
 
         /// <summary>
@@ -128,9 +73,6 @@
             {
                 arr[i] = i;
             }
-
-            Console.ReadKey();
-            arr = null;
         }
 
         /// <summary>
@@ -141,60 +83,6 @@
             for (int i = 0; i < 1000000000; i++)
             {
                 int a = i;
-            }
-        }
-
-        /// <summary>
-        /// Method checks for the name is valid
-        /// </summary>
-        /// <param name="name">It takes the name of the employee as a string</param>
-        /// <returns>It returns the boolean</returns>
-        public static bool IsName(string name)
-        {
-            Regex pattern = new Regex("^[a-zA-Z\\s]*$");
-            if (pattern.IsMatch(name))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Method checks for the id is valid
-        /// </summary>
-        /// <param name="id">It takes the id of the employee as a string</param>
-        /// <returns>It returns the boolean</returns>
-        public static bool IsID(string id)
-        {
-            Regex pattern = new Regex("^\\d+$");
-            if (pattern.IsMatch(id))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Method checks for the name is valid
-        /// </summary>
-        /// <param name="designation">It takes the name of the employee as a string</param>
-        /// <returns>It returns the boolean</returns>
-        public static bool IsDesignation(string designation)
-        {
-            Regex pattern = new Regex("^[a-zA-Z\\s]*$");
-            if (pattern.IsMatch(designation))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
     }
