@@ -12,6 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "acceptance", "acceptance", "{93EBAE55-A8BA-40FF-93AA-7D9E4359B6B9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2", "src\Assignment2\Assignment2.csproj", "{67DA386F-77F0-4ED7-AF01-7912D63B0D58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment1", "src\Assignment1\Assignment1.csproj", "{D53A88BD-0639-4A11-BE86-87D75337180F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2", "src\Assignment2\Assignment2.csproj", "{67DA386F-77F0-4ED7-AF01-7912D63B0D58}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment1", "src\Assignment1\Assignment1.csproj", "{D53A88BD-0639-4A11-BE86-87D75337180F}"
 EndProject
