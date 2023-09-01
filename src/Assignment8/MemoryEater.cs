@@ -5,7 +5,7 @@
     /// </summary>
     public class MemoryEater
     {
-        private List<int[]> _memA110c = new List<int[]>();
+        private List<int[]> _memAlloc = new List<int[]>();
 
         /// <summary>
         /// It will allocate the memory to the list
@@ -16,11 +16,12 @@
             {
                 try
                 {
-                    _memA110c.Add(new int[1000]);
+                    _memAlloc.Add(new int[10000000]);
                 }
-                catch (OutOfMemoryException)
+                catch (OutOfMemoryException e)
                 {
-                    _memA110c.Clear();
+                    Console.WriteLine(e.Message);
+                    _memAlloc.Clear();
                 }
 
                 // Assume memA110c variable is used only within this loop.
