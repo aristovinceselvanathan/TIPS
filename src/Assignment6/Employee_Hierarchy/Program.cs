@@ -22,7 +22,8 @@
 
             Console.WriteLine("Name of the Employee : ");
             isName = Console.ReadLine();
-            if (IsName(isName))
+
+            if (IsNameValid(isName))
             {
                 Console.WriteLine("Salary of the Employee : ");
                 isDecimal = Console.ReadLine();
@@ -30,79 +31,104 @@
                 if (decimal.TryParse(isDecimal, out salary))
                 {
                     name = isName;
-                    Console.WriteLine("Did You want to create the 1. Developer or 2. Manager : ");
-                    int.TryParse(Console.ReadLine(), out option1);
-
-                    switch (option1)
+                    Console.WriteLine("Did You want to create the 1.Developer 2.Manager 3.Exit : ");
+                    if (int.TryParse(Console.ReadLine(), out option1))
                     {
-                        case 1:
-                            developer = new Developer(name, salary);
-                            Console.WriteLine("Did you want print the details : Y or N");
-                            option2 = Console.ReadLine();
+                        switch (option1)
+                        {
+                            case 1:
+                                developer = new Developer(name, salary);
+                                Console.WriteLine("Did you want print the details : Y or N");
+                                option2 = Console.ReadLine();
 
-                            if (option2.Equals("Y") || option2.Equals("y"))
-                            {
-                                developer.PrintDetails();
-                            }
-                            else if (option2.Equals("N") || option2.Equals("n"))
-                            {
-                                Console.WriteLine("Eoption1iting...");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Invalid Input");
-                            }
+                                if (option2.Equals("Y") || option2.Equals("y"))
+                                {
+                                    developer.PrintDetails();
+                                }
+                                else if (option2.Equals("N") || option2.Equals("n"))
+                                {
+                                    Console.WriteLine("Exiting...");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid Input");
+                                }
 
-                            break;
-                        case 2:
-                            manager = new Manager(name, salary);
-                            Console.WriteLine("Did you want print the details : Y or N");
-                            option2 = Console.ReadLine();
+                                break;
+                            case 2:
+                                manager = new Manager(name, salary);
+                                Console.WriteLine("Did you want print the details : Y or N");
+                                option2 = Console.ReadLine();
 
-                            if (option2.Equals("Y") || option2.Equals("y"))
-                            {
-                                manager.PrintDetails();
-                            }
-                            else if (option2.Equals("N") || option2.Equals("n"))
-                            {
-                                Console.WriteLine("Eoption1iting...");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Invalid Input");
-                            }
+                                if (option2.Equals("Y") || option2.Equals("y"))
+                                {
+                                    manager.PrintDetails();
+                                }
+                                else if (option2.Equals("N") || option2.Equals("n"))
+                                {
+                                    Console.WriteLine("Exiting...");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid Input");
+                                }
 
-                            break;
-                        default:
-                            Console.WriteLine("Invalid Input");
-                            break;
+                                break;
+                            case 3:
+                                Console.WriteLine("Exiting...");
+                                break;
+                            default:
+                                InvalidWarning("Option");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        InvalidWarning("Option");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Invalid Input");
+                    InvalidWarning("Salary");
                 }
             }
             else
             {
-                Console.WriteLine("Invalid Name");
+                InvalidWarning("Name");
             }
         }
 
         /// <summary>
         /// Method checks for the string is valid alphabetic name.
         /// </summary>
-        /// <param name="s">It takes the string as input</param>
+        /// <param name="name">It takes the string as input</param>
         /// <returns>It returns bool</returns>
-        public static bool IsName(string s)
+        public static bool IsNameValid(string name)
         {
             Regex r = new Regex("^[a-zA-Z\\s]+$");
-            if (r.IsMatch(s))
+            if (r.IsMatch(name))
             {
                 return true;
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// It shows the warning message of the invalid input
+        /// </summary>
+        /// <param name="nameOfInput">It takes the name of the input</param>
+        public static void InvalidWarning(string nameOfInput)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine($"Invalid {nameOfInput}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("Exiting.....");
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }

@@ -30,13 +30,39 @@
         public decimal Balance { get; set; }
 
         /// <summary>
+        /// It shows the successful message for transactions
+        /// </summary>
+        /// <param name="nameOfInput">It takes the name of the input</param>
+        public static void SuccessfulColor(string nameOfInput)
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{nameOfInput}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+
+        /// <summary>
+        /// It shows the warning message of the failed transactions
+        /// </summary>
+        /// <param name="nameOfInput">It takes the name of the input</param>
+        public static void FailedWarning(string nameOfInput)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine($"Invalid {nameOfInput}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+
+        /// <summary>
         /// Method that used to deposit money in account number
         /// </summary>
         /// <param name="amount">It takes the amount in decimal</param>
         public void Deposit(decimal amount)
         {
             this.Balance += amount;
-            Console.WriteLine("Amount is Deposited Successfully");
+            SuccessfulColor("Amount is Deposited Successfully");
         }
 
         /// <summary>
@@ -47,7 +73,7 @@
         {
             if (this.Balance - amount < 0)
             {
-                Console.WriteLine("Transaction is Failed! Insufficiant Funds");
+                FailedWarning("Transaction is Failed! Insufficient Funds");
             }
             else
             {

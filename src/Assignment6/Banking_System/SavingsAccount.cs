@@ -27,15 +27,15 @@
             if (this.Balance - amount >= 1000)
             {
                 this.Balance -= amount;
-                Console.WriteLine("Withdrawal is Successfull");
+                SuccessfulColor("Withdrawal is Successful");
             }
             else if (this.Balance - amount < 0)
             {
-                Console.WriteLine("Transaction Failed!!, Insufficient Funds");
+                FailedWarning("Transaction Failed!!, Insufficient Funds");
             }
             else
             {
-                Console.WriteLine("Transaction Failed, Reached the Minimum Balance");
+                FailedWarning("Transaction Failed, Reached the Minimum Balance");
             }
         }
     }
