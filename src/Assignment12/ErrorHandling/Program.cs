@@ -5,62 +5,131 @@
     /// </summary>
     internal class Program
     {
+        private enum Options
+        {
+            DivideByZero = 1,
+            IndexOutOfRange = 2,
+            UnHandledException = 3,
+        }
+
         /// <summary>
-        /// Main method that divides the number by zero.
+        /// Main method asks for the type of the exception wanted to create.
         /// </summary>
-        /// <param name="args">it takes the string array from the command line interface</param>
+        /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
             int[] array = new int[10];
-            try
+            int result, input;
+            Options option;
+            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler;
+            Console.WriteLine("Welcome to Error Handling");
+            Console.Write("Choose which error wanted to raise 1.Divide By Zero, 2. Index Out of Range, 3.UnHandled Exception : ");
+            if (int.TryParse(Console.ReadLine(), out input))
             {
-                for (int i = 0; i < array.Length + 1; i++)
+                option = (Options)input;
+                switch (option)
                 {
-                    array[i] = i;
+                    case Options.DivideByZero:
+                        try
+                        {
+                            result = 10 / array[0];
+                        }
+                        catch (DivideByZeroException)
+                        {
+                            WarningMessage("Number is Divided by Zero");
+                        }
+                        finally
+                        {
+                            Console.WriteLine("Finally Block Executed");
+                        }
+
+                        break;
+                    case Options.IndexOutOfRange:
+                        try
+                        {
+                            try
+                            {
+                                for (int i = 0; i < array.Length + 1; i++)
+                                {
+                                    array[i] = i;
+                                }
+
+                                array[0] = array[1] / array[0];
+                            }
+                            catch (DivideByZeroException)
+                            {
+                                WarningMessage("Number is divided by zero");
+                            }
+                            catch (IndexOutOfRangeException)
+                            {
+                                throw new Exception("Array index is out of bounds");
+                            }
+                            finally
+                            {
+                                Console.WriteLine("Finally Block Executed");
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+                            WarningMessage(exception.Message);
+                        }
+                        finally
+                        {
+                            Console.WriteLine("Finally Block Executed");
+                        }
+
+                        break;
+                    case Options.UnHandledException:
+                        throw new Exception("This is Unhandled Exception");
+                    default:
+                        WarningMessage("Invalid Option");
+                        break;
+                }
+
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
+            }
+            else
+            {
+                try
+                {
+                    throw new InvalidUserInputException("Invalid User Input - Required Number");
+                }
+                catch (InvalidUserInputException exception)
+                {
+                    WarningMessage(exception.Message);
                 }
             }
-            catch (DivideByZeroException)
-            {
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine("Error!!!, Number is Divided by Zero");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.BackgroundColor = ConsoleColor.Black;
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine("Error!!!, Array index is out of bounds");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.BackgroundColor = ConsoleColor.Black;
-            }
-            finally
-            {
-                Console.WriteLine("Finally Block Executed");
-            }
-
-            Console.WriteLine("Press any key to continue");
-            Console.ReadKey();
         }
-    }
 
-    /// <summary>
-    /// It is exception class to handle the invalid user
-    /// </summary>
-    internal class InvalidUserInputException : Exception
-    {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidUserInputException"/> class.
+        /// It shows the warning message color to red when exception is throw
         /// </summary>
-        public InvalidUserInputException()
-        { 
-
+        /// <param name="message">It takes the type of the exception message</param>
+        public static void WarningMessage(string message)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine($"Error!!!, {message}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
         }
 
-        public InvalidUserInputException(string userName) : base($"Invalid User Input {userName}");
+        /// <summary>
+        /// Event handler for handling unhandled exceptions in the application.
+        /// </summary>
+        /// <param name="sender">The object that raised the event (usually the current AppDomain).</param>
+        /// <param name="unHandledException">An UnhandledExceptionEventArgs object containing information about the unhandled exception.</param>
+        public static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs unHandledException)
         {
-
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Exception exception = (Exception)unHandledException.ExceptionObject;
+            Console.Write("Unhandled Exception caught by the AppDomain, Message is ");
+            Console.WriteLine(exception.Message);
+            Console.WriteLine("IsTerminating: " + unHandledException.IsTerminating);
+            Console.WriteLine("Stack Trace");
+            Console.WriteLine(exception.StackTrace);
         }
     }
 }
