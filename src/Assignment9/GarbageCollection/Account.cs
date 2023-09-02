@@ -10,7 +10,7 @@
         /// <value>
         /// Email from main method
         /// </value>
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether active
@@ -34,6 +34,6 @@
         /// <value>
         /// Roles
         /// </value>
-        public IList<string> Roles { get; set; }
+        public IList<string>? Roles { get; set; }
     }
 }

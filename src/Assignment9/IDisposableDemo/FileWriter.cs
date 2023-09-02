@@ -1,6 +1,5 @@
 ﻿namespace IDisposableDemo
 {
-
     /// <summary>
     /// It writes to the file
     /// </summary>

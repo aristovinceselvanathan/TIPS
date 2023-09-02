@@ -12,11 +12,10 @@
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Text Editor");
-            Console.WriteLine("Enter the File Path : ");
-            string path = Console.ReadLine();
+            string path = "D:\\Workouts\\TIPS\\src\\Assignment9\\IDisposableDemo\\Hello.txt";
             using (FileWriter fileWriter = new FileWriter(path))
             {
-                fileWriter.WriteToTheFile("Hello World");   // It writes the Hello World to the file
+                fileWriter.WriteToTheFile("Hello, How are you?");   // It writes the Hello World to the file
             }
 
             try
@@ -29,7 +28,11 @@
             }
             catch (FileNotFoundException)
             {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("File not found");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
     }

@@ -25,6 +25,7 @@
             for (int i = 0; i < 10000000; i++)
             {
                 var account = new Account();
+
                 if (i % 1000000 == 0)
                 {
                     Console.WriteLine($"Memory used : {GC.GetTotalMemory(false)} bytes");  // Retrieves the heap size excluding fragmentation.

@@ -1,7 +1,5 @@
 ﻿namespace ValueAndReferenceTypes
 {
-    using System.Text.RegularExpressions;
-
     /// <summary>
     /// Program Class
     /// </summary>
@@ -44,7 +42,6 @@
         /// <param name="employee">It takes the class as the input</param>
         public static void ChangeEmployee(Employee employee)
         {
-
             Console.WriteLine("Employee Update Details");
 
             employee.Id = "1002";
