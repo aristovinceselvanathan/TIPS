@@ -14,34 +14,34 @@
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
-            string colorcircle, colorrectangle, isDouble1, isDouble2, isDouble3;
+            string colorCircle, colorRectangle, isDouble1, isDouble2, isDouble3;
             double radius, length, breath;
 
             Console.WriteLine("Colour of the Circle : ");
-            colorcircle = Console.ReadLine();
-            if (IsColor(colorcircle))
+            colorCircle = Console.ReadLine();
+            if (IsColorName(colorCircle))
             {
                 Console.WriteLine("Enter the radius of the circle (cm): ");
                 isDouble1 = Console.ReadLine();
 
                 if (double.TryParse(isDouble1, out radius))
                 {
-                    Circle c1 = new Circle(colorcircle, radius);
+                    Circle c1 = new Circle(colorCircle, radius);
                     c1.PrintDetails();
                 }
                 else
                 {
-                    Console.WriteLine("Invalid Input");
+                    InvalidWarning("Radius");
                 }
             }
             else
             {
-                Console.WriteLine("Invalid Name");
+                InvalidWarning("Name of the Circle");
             }
 
             Console.WriteLine("Colour of the Rectangle : ");
-            colorrectangle = Console.ReadLine();
-            if (IsColor(colorrectangle))
+            colorRectangle = Console.ReadLine();
+            if (IsColorName(colorRectangle))
             {
                 Console.WriteLine("Enter the length of the rectangle (cm): ");
                 isDouble2 = Console.ReadLine();
@@ -52,22 +52,22 @@
                 {
                     if (double.TryParse(isDouble3, out breath))
                     {
-                        Rectangle r1 = new Rectangle(colorrectangle, length, breath);
+                        Rectangle r1 = new Rectangle(colorRectangle, length, breath);
                         r1.PrintDetails();
                     }
                     else
                     {
-                        Console.WriteLine("Invalid Input");
+                        InvalidWarning("Breath");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Invalid Input");
+                    InvalidWarning("Length");
                 }
             }
             else
             {
-                Console.WriteLine("Invalid Name");
+                InvalidWarning("Name of the Rectangle");
             }
         }
 
@@ -76,7 +76,7 @@
         /// </summary>
         /// <param name="s">It takes the string as input</param>
         /// <returns>It returns bool</returns>
-        public static bool IsColor(string s)
+        public static bool IsColorName(string s)
         {
             Regex r = new Regex("^[a-zA-Z\\s]+$");
             if (r.IsMatch(s))
@@ -85,6 +85,22 @@
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// It shows the warning message of the invalid input
+        /// </summary>
+        /// <param name="nameOfInput">It takes the name of the input</param>
+        public static void InvalidWarning(string nameOfInput)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine($"Invalid {nameOfInput}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }

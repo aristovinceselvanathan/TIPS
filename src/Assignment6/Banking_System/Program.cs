@@ -15,12 +15,12 @@
         {
             string isNumber, isDecimal, number;
             decimal balance;
-            SavingsAccount savingsaccount;
-            CheckingAccount checkingaccout;
+            SavingsAccount savingsAccount;
+            CheckingAccount checkingAccount;
 
             Console.WriteLine("Account Number : ");
             isNumber = Console.ReadLine();
-            if (IsNumber(isNumber))
+            if (IsNumberValid(isNumber))
             {
                 Console.WriteLine("Account Balance : ");
                 isDecimal = Console.ReadLine();
@@ -34,31 +34,31 @@
                         switch (option)
                         {
                             case 1:
-                                savingsaccount = new SavingsAccount(number, balance);
-                                Services(savingsaccount);
+                                savingsAccount = new SavingsAccount(number, balance);
+                                Services(savingsAccount);
                                 break;
                             case 2:
-                                checkingaccout = new CheckingAccount(number, balance);
-                                Services(checkingaccout);
+                                checkingAccount = new CheckingAccount(number, balance);
+                                Services(checkingAccount);
                                 break;
                             default:
-                                Console.WriteLine("Invalid Option");
+                                InvalidWarning("Option");
                                 break;
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Invalid Input");
+                        InvalidWarning("Input");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Invalid Decimal Value");
+                    InvalidWarning("Balance");
                 }
             }
             else
             {
-                Console.WriteLine("Invalid Account Number");
+                InvalidWarning("Account Number");
             }
         }
 
@@ -74,7 +74,7 @@
             {
                 Console.WriteLine($"Account Number : {user.AccountNumber}");
                 Console.WriteLine($"Balance : {user.Balance}");
-                Console.WriteLine("Did you want to 1.Withdraw or 2.Deposit 3.Exit: ");
+                Console.WriteLine("Did you want to 1.Withdraw 2.Deposit 3.Exit: ");
                 if (int.TryParse(Console.ReadLine(), out int option))
                 {
                     switch (option)
@@ -94,7 +94,7 @@
                             }
                             else
                             {
-                                Console.WriteLine("Invalid Decimal Value");
+                                InvalidWarning("Balance");
                             }
 
                             break;
@@ -114,7 +114,7 @@
                             }
                             else
                             {
-                                Console.WriteLine("Invalid Decimal Value");
+                                InvalidWarning("Balance");
                             }
 
                             break;
@@ -123,16 +123,16 @@
                             Console.WriteLine("Exiting....");
                             break;
                         default:
-                            Console.WriteLine("Invalid Option");
+                            InvalidWarning("Option");
                             break;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Invalid Input");
+                    InvalidWarning("Input");
                 }
 
-                Console.WriteLine("Press any key to continue : ");
+                Console.WriteLine("Press any to Continue");
                 Console.ReadKey();
                 Console.Clear();
             }
@@ -143,7 +143,7 @@
         /// </summary>
         /// <param name="s">It takes the string as input</param>
         /// <returns>It returns bool</returns>
-        public static bool IsNumber(string s)
+        public static bool IsNumberValid(string s)
         {
             Regex r = new Regex("^\\d*$");
 
@@ -153,6 +153,19 @@
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// It shows the warning message of the invalid input
+        /// </summary>
+        /// <param name="nameOfInput">It takes the name of the input</param>
+        public static void InvalidWarning(string nameOfInput)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine($"Invalid {nameOfInput}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
         }
     }
 }
