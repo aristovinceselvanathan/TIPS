@@ -11,6 +11,15 @@
     {
         private static InterfaceE temp;
 
+        private enum Options
+        {
+            Add = 1,
+            Subtract = 2,
+            Multiply = 3,
+            Division = 4,
+            Exit = 5,
+        }
+
         /// <summary>
         /// Main method that prints the Hello World.
         /// </summary>
@@ -38,27 +47,27 @@
         /// <returns>It returns the boolean</returns>
         public bool Display(int input1, int input2, int option)
         {
+            Options optionEnum = (Options)option;
             ProgramD userInterface = new ProgramD();
-            switch (option)
+            switch (optionEnum)
             {
-                case 1:
+                case Options.Add:
                     userInterface.CorrectAnswerColor($"{temp.Add(input1, input2)}");
-
                     break;
-                case 2:
+                case Options.Subtract:
                     userInterface.CorrectAnswerColor($"{temp.Subtract(input1, input2)}");
                     break;
-                case 3:
+                case Options.Multiply:
                     userInterface.CorrectAnswerColor($"{temp.Multiply(input1, input2)}");
                     break;
-                case 4:
+                case Options.Division:
                     userInterface.CorrectAnswerColor($"{temp.Divide(input1, input2)}");
                     break;
-                case 5:
+                case Options.Exit:
                     Console.WriteLine("Exiting....");
                     return false;
                 default:
-                    userInterface.InvalidNumberWarning("Invalid Option");
+                    userInterface.InvalidNumberWarning("Option");
                     break;
             }
 
