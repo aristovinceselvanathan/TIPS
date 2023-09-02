@@ -13,7 +13,7 @@
         /// <param name="args">It is string array that returns from the command line interface</param>
         public static void Main(string[] args)
         {
-            Console.WriteLine("Mathematical Calculator Application");
+            Console.WriteLine("Hello, This is Mathematical Calculator Application");
         }
 
         /// <summary>

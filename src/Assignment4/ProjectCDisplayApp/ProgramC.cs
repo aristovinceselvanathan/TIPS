@@ -9,7 +9,7 @@
     /// </summary>
     public class ProgramC
     {
-        private static InterfaceE? temp;
+        private static InterfaceE temp;
 
         /// <summary>
         /// Main method that prints the Hello World.
@@ -17,14 +17,14 @@
         /// <param name="args">>It is string array that returns from the command line interface</param>
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Hello, This is Display App Class");
         }
 
         /// <summary>
         /// Method is help in get object of the ProgramB from ProgramA. To be used in the ProgramC.
         /// </summary>
         /// <param name="t1">It takes the reference of the InterfaceE</param>
-        public static void Get(InterfaceE t1)
+        public void Get(InterfaceE t1)
         {
             temp = t1;
         }
@@ -36,28 +36,29 @@
         /// <param name="input2">It takes the input2</param>
         /// <param name="option">It takes the option</param>
         /// <returns>It returns the boolean</returns>
-        public static bool Display(int input1, int input2, int option)
+        public bool Display(int input1, int input2, int option)
         {
-            ProgramD programD = new ProgramD();
+            ProgramD userInterface = new ProgramD();
             switch (option)
             {
                 case 1:
-                    Console.WriteLine(temp?.Add(input1, input2));
+                    userInterface.CorrectAnswerColor($"{temp.Add(input1, input2)}");
+
                     break;
                 case 2:
-                    Console.WriteLine(temp?.Subtract(input1, input2));
+                    userInterface.CorrectAnswerColor($"{temp.Subtract(input1, input2)}");
                     break;
                 case 3:
-                    Console.WriteLine(temp?.Multiply(input1, input2));
+                    userInterface.CorrectAnswerColor($"{temp.Multiply(input1, input2)}");
                     break;
                 case 4:
-                    Console.WriteLine(temp?.Divide(input1, input2));
+                    userInterface.CorrectAnswerColor($"{temp.Divide(input1, input2)}");
                     break;
                 case 5:
                     Console.WriteLine("Exiting....");
                     return false;
                 default:
-                    Console.WriteLine("Invalid Option");
+                    userInterface.InvalidNumberWarning("Invalid Option");
                     break;
             }
 
