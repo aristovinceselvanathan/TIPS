@@ -20,36 +20,40 @@
             int input1, input2, option;
             string isNumber1, isNumber2;
             bool flag = true;
+            ProgramB mathOperation = new ProgramB();
+            ProgramC displayResults = new ProgramC();
+            ProgramD userInterface = new ProgramD();
 
-            Console.WriteLine("Hello, World!");
-
-            ProgramD programD = new ProgramD();
-            ProgramB math = new ProgramB();
-            ProgramC programC = new ProgramC();
-            ProgramC.Get(math);
-
+            displayResults.Get(mathOperation);
             while (flag)
             {
-                Console.WriteLine("Enter the Input1:");
+                Console.Write("Welcome to Calculator Application\nEnter the Input1 : ");
                 isNumber1 = Console.ReadLine();
-                Console.WriteLine("Enter the Input2:");
-                isNumber2 = Console.ReadLine();
-
-                if (int.TryParse(isNumber1, out input1) && int.TryParse(isNumber2, out input2))
+                if (!int.TryParse(isNumber1, out input1))
                 {
-                    Console.WriteLine("Enter the Option : 1.Addition 2.Subtraction 3.Multiplication 4.Division :");
-                    if (!int.TryParse(Console.ReadLine(), out option))
-                    {
-                        Console.WriteLine("Invalid Input");
-                    }
-                    else
-                    {
-                        flag = ProgramC.Display(input1, input2, option);
-                    }
+                    userInterface.InvalidNumberWarning("Input 1");
+                    continue;
+                }
+
+                Console.Write("Enter the Input2 : ");
+                isNumber2 = Console.ReadLine();
+                if (!int.TryParse(isNumber2, out input2))
+                {
+                    userInterface.InvalidNumberWarning("Input 2");
+                    continue;
                 }
                 else
                 {
-                    Console.WriteLine("Invalid Input");
+                    Console.Write("Enter the Option : 1.Addition 2.Subtraction 3.Multiplication 4.Division 5.Exit : ");
+                    if (!int.TryParse(Console.ReadLine(), out option) || (option > 5 || option < 1))
+                    {
+                        userInterface.InvalidNumberWarning("Option");
+                        continue;
+                    }
+                    else
+                    {
+                        flag = displayResults.Display(input1, input2, option);
+                    }
                 }
 
                 Console.WriteLine("Press Enter to Continue :");
