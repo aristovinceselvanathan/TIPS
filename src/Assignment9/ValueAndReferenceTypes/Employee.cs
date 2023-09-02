@@ -27,7 +27,7 @@
         /// <value>
         /// String
         /// </value>
-        public string Designation{ get; set; }
+        public string Designation { get; set; }
 
         /// <summary>
         /// It overrides the ToString method
