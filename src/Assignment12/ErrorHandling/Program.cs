@@ -21,7 +21,7 @@
             int[] array = new int[10];
             int result, input;
             Options option;
-            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler;
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionHandler);
             Console.WriteLine("Welcome to Error Handling");
             Console.Write("Choose which error wanted to raise 1.Divide By Zero, 2. Index Out of Range, 3.UnHandled Exception : ");
             if (int.TryParse(Console.ReadLine(), out input))
