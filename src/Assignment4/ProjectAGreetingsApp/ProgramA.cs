@@ -44,7 +44,6 @@
                     }
                     else
                     {
-                        Console.Write("Answer is ");
                         flag = ProgramC.Display(input1, input2, option);
                     }
                 }
