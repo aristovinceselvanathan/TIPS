@@ -45,15 +45,20 @@
                 else
                 {
                     Console.Write("Enter the Option : 1.Addition 2.Subtraction 3.Multiplication 4.Division 5.Exit : ");
-                    if (!int.TryParse(Console.ReadLine(), out option) || (option > 6 || option < 1))
+                    if (int.TryParse(Console.ReadLine(), out option) || (option > 6 || option < 1))
+                    {
+                        flag = displayResults.Display(inputOfOperand1, inputOfOperand2, option);
+                    }
+                    else
                     {
                         userInterface.InvalidNumberWarning("Option");
                         continue;
                     }
-                    else
-                    {
-                        flag = displayResults.Display(input1, input2, option);
-                    }
+                }
+                else
+                {
+                    userInterface.InvalidNumberWarning("Input 2");
+                    continue;
                 }
 
                 Console.WriteLine("Press Enter to Continue :");
