@@ -9,7 +9,16 @@
     /// </summary>
     public class ProgramC
     {
-        private static InterfaceE? temp;
+        private static InterfaceE temporaryReference;
+
+        private enum Options
+        {
+            Add = 1,
+            Subtract = 2,
+            Multiply = 3,
+            Division = 4,
+            Exit = 5,
+        }
 
         /// <summary>
         /// Main method that prints the Hello World.
@@ -17,47 +26,48 @@
         /// <param name="args">>It is string array that returns from the command line interface</param>
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Hello, This is Display App Class");
         }
 
         /// <summary>
         /// Method is help in get object of the ProgramB from ProgramA. To be used in the ProgramC.
         /// </summary>
-        /// <param name="t1">It takes the reference of the InterfaceE</param>
-        public static void Get(InterfaceE t1)
+        /// <param name="temp">It takes the reference of the InterfaceE</param>
+        public void GetObjectOfProgramB(InterfaceE temp)
         {
-            temp = t1;
+            temporaryReference = temp;
         }
 
         /// <summary>
-        /// Method display that display the result based on the operations that user choose.
+        /// Method that display the result based on the user choice of operation.
         /// </summary>
-        /// <param name="input1">It takes the input1</param>
-        /// <param name="input2">It takes the input2</param>
-        /// <param name="option">It takes the option</param>
+        /// <param name="input1">It takes the input of the Operand1</param>
+        /// <param name="input2">It takes the input of the Operand2</param>
+        /// <param name="option">It takes the option of the operations to be performed</param>
         /// <returns>It returns the boolean</returns>
-        public static bool Display(int input1, int input2, int option)
+        public bool Display(int input1, int input2, int option)
         {
-            ProgramD programD = new ProgramD();
-            switch (option)
+            Options optionEnum = (Options)option;
+            ProgramD userInterface = new ProgramD();
+            switch (optionEnum)
             {
-                case 1:
-                    Console.WriteLine(temp?.Add(input1, input2));
+                case Options.Add:
+                    userInterface.CorrectAnswerColor($"{temporaryReference.Add(input1, input2)}");
                     break;
-                case 2:
-                    Console.WriteLine(temp?.Subtract(input1, input2));
+                case Options.Subtract:
+                    userInterface.CorrectAnswerColor($"{temporaryReference.Subtract(input1, input2)}");
                     break;
-                case 3:
-                    Console.WriteLine(temp?.Multiply(input1, input2));
+                case Options.Multiply:
+                    userInterface.CorrectAnswerColor($"{temporaryReference.Multiply(input1, input2)}");
                     break;
-                case 4:
-                    Console.WriteLine(temp?.Divide(input1, input2));
+                case Options.Division:
+                    userInterface.CorrectAnswerColor($"{temporaryReference.Divide(input1, input2)}");
                     break;
-                case 5:
+                case Options.Exit:
                     Console.WriteLine("Exiting....");
                     return false;
                 default:
-                    Console.WriteLine("Invalid Option");
+                    userInterface.InvalidNumberWarning("Option");
                     break;
             }
 

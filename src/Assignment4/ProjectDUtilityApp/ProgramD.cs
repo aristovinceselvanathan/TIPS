@@ -1,7 +1,5 @@
 ﻿namespace ProjectDUtilityApp
 {
-    using System.Text.RegularExpressions;
-
     /// <summary>
     /// ProgramD Class
     /// </summary>
@@ -13,25 +11,39 @@
         /// <param name="args">It is string array that returns from the command line interface</param>
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Hello, This is Utility Class");
         }
 
         /// <summary>
-        /// It matches string with the regex pattern.
+        /// It shows the warning message of the invalid input
         /// </summary>
-        /// <param name="input">It takes string as an input to be matched with the pattern</param>
-        /// <returns>It returns boolean</returns>
-        public bool PatternMatch(string input)
+        /// <param name="nameOfInput">It takes the name of the input</param>
+        public void InvalidNumberWarning(string nameOfInput)
         {
-            Regex regex = new Regex("[0-9]+");
-            if (regex.IsMatch(input))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine($"Invalid {nameOfInput}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        /// <summary>
+        /// It shows the message of the answer in the calculator
+        /// </summary>
+        /// <param name="answer">It takes the answer as a input</param>
+        public void CorrectAnswerColor(string answer)
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Answer is {answer}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }

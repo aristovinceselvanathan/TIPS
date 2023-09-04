@@ -6,6 +6,15 @@
     public interface InterfaceE
     {
         /// <summary>
+        /// Main method that prints the Mathematical Calculator Application
+        /// </summary>
+        /// <param name="args">It is string array that returns from the command line interface</param>
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, This is Mathematical Calculator Application");
+        }
+
+        /// <summary>
         /// Addition method declaration
         /// </summary>
         /// <param name="input1">It takes the input1</param>
