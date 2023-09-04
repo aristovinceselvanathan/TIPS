@@ -6,15 +6,6 @@
     public interface InterfaceE
     {
         /// <summary>
-        /// Main method that prints the Hello World
-        /// </summary>
-        /// <param name="args">It is string array that returns from the command line interface</param>
-        public static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
-
-        /// <summary>
         /// Addition method declaration
         /// </summary>
         /// <param name="input1">It takes the input1</param>
