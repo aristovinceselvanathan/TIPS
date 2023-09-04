@@ -5,44 +5,35 @@
     /// </summary>
     public class MemoryEater
     {
-        private List<int[]> _memAlloc = new List<int[]>();
-
         /// <summary>
         /// It will allocate the memory to the list
         /// </summary>
         public void Allocate()
         {
+            int maxArrays = 100000;
+
             while (true)
             {
+                List<int[]> memAlloc = new List<int[]>();
                 try
                 {
-                    _memAlloc.Add(new int[10000000]);
+                    for (int i = 0; i < maxArrays; i++)
+                    {
+                        memAlloc.Add(new int[10000]);
+                    }
+
+                    // Before clear the data store it in database and clears the unreferenced data
+                    memAlloc.Clear();
                 }
                 catch (OutOfMemoryException e)
                 {
                     Console.WriteLine(e.Message);
-                    _memAlloc.Clear();
+                    GC.Collect();
                 }
 
-                // Assume memA110c variable is used only within this loop.
+                // Assume memAlloc variable is used only within this loop.
                 Thread.Sleep(10);
             }
-        }
-    }
-
-    /// <summary>
-    /// Program Class
-    /// </summary>
-    public class Program
-    {
-        /// <summary>
-        /// Main Method
-        /// </summary>
-        /// <param name="strings">It takes the string array from the command line interface</param>
-        public static void Main(string[] strings)
-        {
-            MemoryEater me = new MemoryEater();
-            me.Allocate();
         }
     }
 }
