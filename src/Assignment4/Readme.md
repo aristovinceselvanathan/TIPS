@@ -1,9 +1,14 @@
 # Practice Exercise
+
 ## Project, Solutions and Build Orders
+
 ## Objective
+
 In this hands-on exercise, you will demonstrate your understanding of projects, solutions, and build order in C# development by creating a sample solution with multiple console applications and managing their dependencies and build order.
+
 ## Instructions:
-1. Create a new solution named "CSharpConsoleSolutionI' in Visual Studio.
+
+1. Use the existing solution named "CSharp_Assignmnets' in Visual Studio.
 2. Add the following console applications to the solution:<br>
 • Project A: "GreetingsApp"<br>
 • Project B: "MathApp"<br>
@@ -28,10 +33,13 @@ In this hands-on exercise, you will demonstrate your understanding of projects, 
 
 
 ## Project Documentation Report
+
 ### Overview
+
 This project is a C# development project that involves creating a solution with multiple console applications. The solution is designed to demonstrate the importance of proper project dependencies, solution management, and build order in C# development.
 
 ### Description of Methods
+
 Addition Method: This method takes the two inputs as integer and returns the integer of addition of two operands.<br>
 Subtraction Method: This method takes the two inputs as integer and returns the integer of subtraction of two operands.<br>
 Multiplication Method: This method takes the two inputs as integer and returns the integer of multiplication of two operands.<br>
@@ -42,6 +50,7 @@ Null Exception: It checks for the null exception for the string input.<br>
 PatternMatch Method: It takes the string input and checks for the pattern match for the string input.<br>
 
 ### Project Structure
+
 The solution consists of five console applications: GreetingsApp (Project A), MathApp (Project B), DisplayApp (Project C), UtilityApp (Project D), and Project E (a helper application). 
 The project dependencies are defined as follows:
 
@@ -52,6 +61,7 @@ Project D is the utility project that contains helper classes and functions that
 Project E contains an interface class that is used by Project B.
 
 ### Functionalities
+
 Each console application has a specific functionality as follows:
 
 • GreetingsApp (Project A): Displays a greeting message to the user.<br>
@@ -61,6 +71,7 @@ Each console application has a specific functionality as follows:
 • Project E: It consists of interface class that is used by Project B. It is used to create the dependency injection for Project B.<br>
 
 ### Build Order
+
 The build order is defined as follows:
 
 Project D (UtilityApp)<br>
@@ -70,6 +81,7 @@ Project B (MathApp)<br>
 Project A (GreetingsApp)<br>
 
 ### Testing
+
 To test the functionalities of the console applications, run them in the following order:
 
 GreetingsApp (Project A)
