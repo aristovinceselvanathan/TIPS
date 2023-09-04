@@ -6,15 +6,6 @@
     public class ProgramD
     {
         /// <summary>
-        /// Main method that prints the Hello World
-        /// </summary>
-        /// <param name="args">It is string array that returns from the command line interface</param>
-        public static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, This is Utility Class");
-        }
-
-        /// <summary>
         /// It shows the warning message of the invalid input
         /// </summary>
         /// <param name="nameOfInput">It takes the name of the input</param>

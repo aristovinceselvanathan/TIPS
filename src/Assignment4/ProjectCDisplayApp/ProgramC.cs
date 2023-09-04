@@ -21,15 +21,6 @@
         }
 
         /// <summary>
-        /// Main method that prints the Hello World.
-        /// </summary>
-        /// <param name="args">>It is string array that returns from the command line interface</param>
-        public static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, This is Display App Class");
-        }
-
-        /// <summary>
         /// Method is help in get object of the ProgramB from ProgramA. To be used in the ProgramC.
         /// </summary>
         /// <param name="temp">It takes the reference of the InterfaceE</param>
