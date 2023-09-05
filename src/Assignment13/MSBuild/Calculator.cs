@@ -1,4 +1,5 @@
-﻿namespace MSBuild
+﻿using System;
+namespace MSBuild
 {
     /// <summary>
     /// Class Program

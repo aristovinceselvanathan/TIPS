@@ -1,11 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <OutputDir>bin\</OutputDir>
-    <SourceFiles>Calculator.cs</SourceFiles>
-  </PropertyGroup>
-
-  <ItemGroup>
-	<AdditionalFiles Include="AdditionalFiles.xml" />
-    <!-- Add any other additional files here -->
-  </ItemGroup>
+<Project>
+	<PropertyGroup>
+		<AssemblyName>SimpleCalculator</AssemblyName>
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="Calculator.cs"/>
+	</ItemGroup>
+    
 </Project>
