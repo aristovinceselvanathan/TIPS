@@ -1,6 +1,6 @@
 <Project>
 	<PropertyGroup>
-		<AssemblyName>SimpleCalculator</AssemblyName>
+		<AssemblyName>Calculator</AssemblyName>
 		<OutputPath>bin\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>
