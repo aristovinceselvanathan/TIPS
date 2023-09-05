@@ -17,32 +17,27 @@
         /// <param name="args">It is string array that returns from the command line interface</param>
         public static void Main(string[] args)
         {
-            int input1, input2, option;
-            string isNumber1, isNumber2;
+            int inputOfOperand1, inputOfOperand2, option;
+            string isNumberOfOperand1, isNumberOfOperand2;
             bool flag = true;
             ProgramB mathOperation = new ProgramB();
             ProgramC displayResults = new ProgramC();
             ProgramD userInterface = new ProgramD();
 
-            displayResults.Get(mathOperation);
+            displayResults.GetObjectOfProgramB(mathOperation);
             while (flag)
             {
                 Console.Write("Welcome to Calculator Application\nEnter the Input1 : ");
-                isNumber1 = Console.ReadLine();
-                if (!int.TryParse(isNumber1, out input1))
+                isNumberOfOperand1 = Console.ReadLine();
+                if (!int.TryParse(isNumberOfOperand1, out inputOfOperand1))
                 {
                     userInterface.InvalidNumberWarning("Input 1");
                     continue;
                 }
 
                 Console.Write("Enter the Input2 : ");
-                isNumber2 = Console.ReadLine();
-                if (!int.TryParse(isNumber2, out input2))
-                {
-                    userInterface.InvalidNumberWarning("Input 2");
-                    continue;
-                }
-                else
+                isNumberOfOperand2 = Console.ReadLine();
+                if (int.TryParse(isNumberOfOperand2, out inputOfOperand2))
                 {
                     Console.Write("Enter the Option : 1.Addition 2.Subtraction 3.Multiplication 4.Division 5.Exit : ");
                     if (int.TryParse(Console.ReadLine(), out option) || (option > 6 || option < 1))

@@ -9,7 +9,7 @@
     /// </summary>
     public class ProgramC
     {
-        private static InterfaceE temp;
+        private static InterfaceE temporaryReference;
 
         private enum Options
         {
@@ -23,18 +23,18 @@
         /// <summary>
         /// Method is help in get object of the ProgramB from ProgramA. To be used in the ProgramC.
         /// </summary>
-        /// <param name="t1">It takes the reference of the InterfaceE</param>
-        public void Get(InterfaceE t1)
+        /// <param name="temp">It takes the reference of the InterfaceE</param>
+        public void GetObjectOfProgramB(InterfaceE temp)
         {
-            temp = t1;
+            temporaryReference = temp;
         }
 
         /// <summary>
-        /// Method display that display the result based on the operations that user choose.
+        /// Method that display the result based on the user choice of operation.
         /// </summary>
-        /// <param name="input1">It takes the input1</param>
-        /// <param name="input2">It takes the input2</param>
-        /// <param name="option">It takes the option</param>
+        /// <param name="input1">It takes the input of the Operand1</param>
+        /// <param name="input2">It takes the input of the Operand2</param>
+        /// <param name="option">It takes the option of the operations to be performed</param>
         /// <returns>It returns the boolean</returns>
         public bool Display(int input1, int input2, int option)
         {
@@ -43,16 +43,16 @@
             switch (optionEnum)
             {
                 case Options.Add:
-                    userInterface.CorrectAnswerColor($"{temp.Add(input1, input2)}");
+                    userInterface.CorrectAnswerColor($"{temporaryReference.Add(input1, input2)}");
                     break;
                 case Options.Subtract:
-                    userInterface.CorrectAnswerColor($"{temp.Subtract(input1, input2)}");
+                    userInterface.CorrectAnswerColor($"{temporaryReference.Subtract(input1, input2)}");
                     break;
                 case Options.Multiply:
-                    userInterface.CorrectAnswerColor($"{temp.Multiply(input1, input2)}");
+                    userInterface.CorrectAnswerColor($"{temporaryReference.Multiply(input1, input2)}");
                     break;
                 case Options.Division:
-                    userInterface.CorrectAnswerColor($"{temp.Divide(input1, input2)}");
+                    userInterface.CorrectAnswerColor($"{temporaryReference.Divide(input1, input2)}");
                     break;
                 case Options.Exit:
                     Console.WriteLine("Exiting....");
