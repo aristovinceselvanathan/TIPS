@@ -1,0 +1,13 @@
+<Project DefaultTargets="BeforeBuild" ToolsVersion="Current">
+  <ItemGroup>
+    <Compile Include="Calculator.cs" />
+  </ItemGroup>
+	<Import Project="Calculator.targets" />
+	
+	<Target Name="BeforeBuild">
+		
+		<CallTarget Targets="Build"/>
+		<CallTarget Targets="Run"/>
+	</Target>
+	
+</Project>
