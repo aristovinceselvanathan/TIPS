@@ -7,11 +7,11 @@
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Circle"/> class.
-        /// It calls the base class constructor and pass the parameter
+        /// It calls the base class constructor and pass dimensions of the shape
         /// It just prints the It is a Circle Class
         /// </summary>
-        /// <param name="colour">It takes the colour as the string</param>
-        /// <param name="radius">It takes the radius as the double</param>
+        /// <param name="colour">It takes the colour of the circle as the string</param>
+        /// <param name="radius">It takes the radius of the circle as the double</param>
         public Circle(string colour, double radius)
             : base(colour, radius)
         {
@@ -21,7 +21,7 @@
         /// <summary>
         /// It returns the area of circle by the formula of 𝞹*(r^2)
         /// </summary>
-        /// <returns>It returns the double</returns>
+        /// <returns>It returns the double type of the answer from the above formula</returns>
         public override double CalculateArea()
         {
             return Math.PI * Math.Pow(this.Input1, 2);

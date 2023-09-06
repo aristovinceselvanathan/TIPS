@@ -13,32 +13,30 @@
         /// <param name="args">It takes the argument from command line Interface<</param>
         public static void Main(string[] args)
         {
-            string isNumber, isDecimal, number;
+            string isValidAccountNumber, isValidBalance, accountNumber;
             decimal balance;
-            SavingsAccount savingsAccount;
-            CheckingAccount checkingAccount;
 
             Console.WriteLine("Account Number : ");
-            isNumber = Console.ReadLine();
-            if (IsNumberValid(isNumber))
+            isValidAccountNumber = Console.ReadLine();
+            if (IsNumberValid(isValidAccountNumber))
             {
                 Console.WriteLine("Account Balance : ");
-                isDecimal = Console.ReadLine();
+                isValidBalance = Console.ReadLine();
 
-                if (decimal.TryParse(isDecimal, out balance))
+                if (decimal.TryParse(isValidBalance, out balance))
                 {
-                    number = isNumber;
+                    accountNumber = isValidAccountNumber;
                     Console.WriteLine("Did You want to create the 1. Savings Account or 2. Checking Account : ");
                     if (int.TryParse(Console.ReadLine(), out int option))
                     {
                         switch (option)
                         {
                             case 1:
-                                savingsAccount = new SavingsAccount(number, balance);
+                                SavingsAccount savingsAccount = new SavingsAccount(accountNumber, balance);
                                 Services(savingsAccount);
                                 break;
                             case 2:
-                                checkingAccount = new CheckingAccount(number, balance);
+                                CheckingAccount checkingAccount = new CheckingAccount(accountNumber, balance);
                                 Services(checkingAccount);
                                 break;
                             default:
@@ -156,7 +154,7 @@
         }
 
         /// <summary>
-        /// It shows the warning message of the invalid input
+        /// It shows the clourful warning message of the invalid input
         /// </summary>
         /// <param name="nameOfInput">It takes the name of the input</param>
         public static void InvalidWarning(string nameOfInput)

@@ -7,7 +7,7 @@
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckingAccount"/> class.
-        /// It prints This is Checking Account Method
+        /// It prints This is Checking Account Method an pass the accountNumber, balance to base class
         /// </summary>
         /// <param name="number">It takes account number as string</param>
         /// <param name="balance">It takes balance as decimal</param>

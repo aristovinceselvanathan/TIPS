@@ -8,44 +8,42 @@
     internal class Program
     {
         /// <summary>
-        /// Main method it askes for the Name, Salary and type of the role.
-        /// It will print the details of the role.
+        /// Main method it ask for the Name, Salary and type of the role.
+        /// It will print the details about the role.
         /// </summary>
         /// <param name="args">It takes the argument from command line</param>
         public static void Main(string[] args)
         {
-            int option1;
-            string option2, name, isName, isDecimal;
+            int optionOfTypeOfRole;
+            string optionOfChoice, nameOfUser, isValidName, isValidDecimal;
             decimal salary;
-            Developer developer;
-            Manager manager;
 
             Console.WriteLine("Name of the Employee : ");
-            isName = Console.ReadLine();
+            isValidName = Console.ReadLine();
 
-            if (IsNameValid(isName))
+            if (IsNameValid(isValidName))
             {
+                nameOfUser = isValidName;
                 Console.WriteLine("Salary of the Employee : ");
-                isDecimal = Console.ReadLine();
+                isValidDecimal = Console.ReadLine();
 
-                if (decimal.TryParse(isDecimal, out salary))
+                if (decimal.TryParse(isValidDecimal, out salary))
                 {
-                    name = isName;
                     Console.WriteLine("Did You want to create the 1.Developer 2.Manager 3.Exit : ");
-                    if (int.TryParse(Console.ReadLine(), out option1))
+                    if (int.TryParse(Console.ReadLine(), out optionOfTypeOfRole))
                     {
-                        switch (option1)
+                        switch (optionOfTypeOfRole)
                         {
                             case 1:
-                                developer = new Developer(name, salary);
+                                Developer developer = new Developer(nameOfUser, salary);
                                 Console.WriteLine("Did you want print the details : Y or N");
-                                option2 = Console.ReadLine();
+                                optionOfChoice = Console.ReadLine();
 
-                                if (option2.Equals("Y") || option2.Equals("y"))
+                                if (optionOfChoice.Equals("Y") || optionOfChoice.Equals("y"))
                                 {
                                     developer.PrintDetails();
                                 }
-                                else if (option2.Equals("N") || option2.Equals("n"))
+                                else if (optionOfChoice.Equals("N") || optionOfChoice.Equals("n"))
                                 {
                                     Console.WriteLine("Exiting...");
                                 }
@@ -56,15 +54,15 @@
 
                                 break;
                             case 2:
-                                manager = new Manager(name, salary);
+                                Manager manager = new Manager(nameOfUser, salary);
                                 Console.WriteLine("Did you want print the details : Y or N");
-                                option2 = Console.ReadLine();
+                                optionOfChoice = Console.ReadLine();
 
-                                if (option2.Equals("Y") || option2.Equals("y"))
+                                if (optionOfChoice.Equals("Y") || optionOfChoice.Equals("y"))
                                 {
                                     manager.PrintDetails();
                                 }
-                                else if (option2.Equals("N") || option2.Equals("n"))
+                                else if (optionOfChoice.Equals("N") || optionOfChoice.Equals("n"))
                                 {
                                     Console.WriteLine("Exiting...");
                                 }
@@ -101,8 +99,8 @@
         /// <summary>
         /// Method checks for the string is valid alphabetic name.
         /// </summary>
-        /// <param name="name">It takes the string as input</param>
-        /// <returns>It returns bool</returns>
+        /// <param name="name">It takes the name of the user as input</param>
+        /// <returns>It returns valid name</returns>
         public static bool IsNameValid(string name)
         {
             Regex r = new Regex("^[a-zA-Z\\s]+$");
@@ -115,7 +113,7 @@
         }
 
         /// <summary>
-        /// It shows the warning message of the invalid input
+        /// It shows the colourful warning message of the invalid input
         /// </summary>
         /// <param name="nameOfInput">It takes the name of the input</param>
         public static void InvalidWarning(string nameOfInput)
