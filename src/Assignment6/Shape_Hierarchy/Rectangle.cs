@@ -7,12 +7,12 @@
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Rectangle"/> class.
-        /// It calls the base calls and pass the parameter.
+        /// It calls the base calls and pass the color, length, breath to the base class.
         /// It prints It is a Rectangle Class
         /// </summary>
-        /// <param name="colour">It takes the colour as a string</param>
-        /// <param name="length"> It takes the length as a double</param>
-        /// <param name="breath">It takes the breath as a double</param>
+        /// <param name="colour">It takes the colour of the rectangle as a string</param>
+        /// <param name="length"> It takes the length of the rectangle as a double</param>
+        /// <param name="breath">It takes the breath of the rectangle as a double</param>
         public Rectangle(string colour, double length, double breath)
             : base(colour, length, breath)
         {
@@ -22,7 +22,7 @@
         /// <summary>
         /// It returns the area of rectangle by formula length * breath
         /// </summary>
-        /// <returns>It returns the double</returns>
+        /// <returns>It returns the double type of the answer from the formula</returns>
         public override double CalculateArea()
         {
             return this.Input1 * this.Input2;

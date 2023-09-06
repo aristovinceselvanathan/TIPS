@@ -7,11 +7,11 @@
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Shape"/> class.
-        /// It sets the colour, Input1 and Input2
+        /// It sets the colour, Input1 and Input2 of the dimensions of the shapes
         /// </summary>
         /// <param name="colour">It takes the colour as a string</param>
-        /// <param name="input1">It takes the input1 as a integer</param>
-        /// <param name="input2">It takes the input2 as a integer</param>
+        /// <param name="input1">It takes the input1 (dimensions) as a integer</param>
+        /// <param name="input2">It takes the input2 (dimensions) as a integer</param>
         public Shape(string colour, double input1, double input2 = 0)
         {
             this.Colour = colour;

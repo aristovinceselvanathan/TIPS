@@ -30,7 +30,7 @@
         public decimal Balance { get; set; }
 
         /// <summary>
-        /// It shows the successful message for transactions
+        /// It shows the colourful successful message for transactions
         /// </summary>
         /// <param name="nameOfInput">It takes the name of the input</param>
         public static void SuccessfulColor(string nameOfInput)
@@ -43,7 +43,7 @@
         }
 
         /// <summary>
-        /// It shows the warning message of the failed transactions
+        /// It shows the colourful warning message of the failed transactions
         /// </summary>
         /// <param name="nameOfInput">It takes the name of the input</param>
         public static void FailedWarning(string nameOfInput)

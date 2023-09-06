@@ -8,73 +8,73 @@
     internal class Program
     {
         /// <summary>
-        /// Main Method takes the colour, radius for circle and colour, length, breath for Rectangle
+        /// Main Method takes the colour, radius for the circle and colour, length, breath for the rectangle shapes
         /// It prints the details of each shape
         /// </summary>
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
-            string colorCircle, colorRectangle, isDouble1, isDouble2, isDouble3;
-            double radius, length, breath;
+            string colorOfCircle, colorOfRectangle, isDoubleOfRadius, isDoubleOfRectangle, isDoubleOfBreath;
+            double radiusOfCircle, lengthOfRectangle, breathOfRectangle;
 
             Console.WriteLine("Colour of the Circle : ");
-            colorCircle = Console.ReadLine();
-            if (IsColorName(colorCircle))
+            colorOfCircle = Console.ReadLine();
+            if (IsColorName(colorOfCircle))
             {
                 Console.WriteLine("Enter the radius of the circle (cm): ");
-                isDouble1 = Console.ReadLine();
+                isDoubleOfRadius = Console.ReadLine();
 
-                if (double.TryParse(isDouble1, out radius))
+                if (double.TryParse(isDoubleOfRadius, out radiusOfCircle))
                 {
-                    Circle c1 = new Circle(colorCircle, radius);
+                    Circle c1 = new Circle(colorOfCircle, radiusOfCircle);
                     c1.PrintDetails();
                 }
                 else
                 {
-                    InvalidWarning("Radius");
+                    InvalidWarning("Radius of the Circle");
                 }
             }
             else
             {
-                InvalidWarning("Name of the Circle");
+                InvalidWarning("Color of the Circle");
             }
 
             Console.WriteLine("Colour of the Rectangle : ");
-            colorRectangle = Console.ReadLine();
-            if (IsColorName(colorRectangle))
+            colorOfRectangle = Console.ReadLine();
+            if (IsColorName(colorOfRectangle))
             {
                 Console.WriteLine("Enter the length of the rectangle (cm): ");
-                isDouble2 = Console.ReadLine();
+                isDoubleOfRectangle = Console.ReadLine();
                 Console.WriteLine("Enter the breath of the rectangle (cm): ");
-                isDouble3 = Console.ReadLine();
+                isDoubleOfBreath = Console.ReadLine();
 
-                if (double.TryParse(isDouble2, out length))
+                if (double.TryParse(isDoubleOfRectangle, out lengthOfRectangle))
                 {
-                    if (double.TryParse(isDouble3, out breath))
+                    if (double.TryParse(isDoubleOfBreath, out breathOfRectangle))
                     {
-                        Rectangle r1 = new Rectangle(colorRectangle, length, breath);
+                        Rectangle r1 = new Rectangle(colorOfRectangle, lengthOfRectangle, breathOfRectangle);
                         r1.PrintDetails();
                     }
                     else
                     {
-                        InvalidWarning("Breath");
+                        InvalidWarning("Breath of the Rectangle");
                     }
                 }
                 else
                 {
-                    InvalidWarning("Length");
+                    InvalidWarning("Length of the Rectangle");
                 }
             }
             else
             {
-                InvalidWarning("Name of the Rectangle");
+                InvalidWarning("Color of the Rectangle");
             }
         }
 
         /// <summary>
         /// Method checks for the string is number or not because colour doesn't contains any number
         /// </summary>
-        /// <param name="s">It takes the string as input</param>
+        /// <param name="s">It takes the name of colour of the shape as input</param>
         /// <returns>It returns bool</returns>
         public static bool IsColorName(string s)
         {
@@ -88,7 +88,7 @@
         }
 
         /// <summary>
-        /// It shows the warning message of the invalid input
+        /// It shows the colourful warning message of the invalid input
         /// </summary>
         /// <param name="nameOfInput">It takes the name of the input</param>
         public static void InvalidWarning(string nameOfInput)

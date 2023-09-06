@@ -9,8 +9,8 @@
         /// Initializes a new instance of the <see cref="Developer"/> class.
         /// It inherits the Employee class and call the constructor of base class by passing the values
         /// </summary>
-        /// <param name="name">It takes the name as string</param>
-        /// <param name="salary">It takes the salary as decimal</param>
+        /// <param name="name">It takes the name of the user as string</param>
+        /// <param name="salary">It takes the salary of the user as decimal</param>
         public Developer(string name, decimal salary)
             : base(name, salary)
         {
@@ -31,7 +31,7 @@
 
         /// <summary>
         /// Method overrides the abstract class method
-        /// Method to calculate the bonus
+        /// Method to calculate the bonus of the Developer
         /// </summary>
         /// <returns>It returns decimal</returns>
         protected override decimal CalculateBonus()
