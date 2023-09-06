@@ -19,65 +19,21 @@
         public static void Main(string[] args)
         {
             int[] array = new int[10];
-            int result, input;
+            int input;
             Options option;
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionHandler);
             Console.WriteLine("Welcome to Error Handling");
-            Console.Write("Choose which error wanted to raise 1.Divide By Zero, 2. Index Out of Range, 3.UnHandled Exception : ");
+            Console.Write("Choose which error wanted to raise 1.Divide By Zero, 2.Index Out of Range, 3.UnHandled Exception : ");
             if (int.TryParse(Console.ReadLine(), out input))
             {
                 option = (Options)input;
                 switch (option)
                 {
                     case Options.DivideByZero:
-                        try
-                        {
-                            result = 10 / array[0];
-                        }
-                        catch (DivideByZeroException)
-                        {
-                            WarningMessage("Number is Divided by Zero");
-                        }
-                        finally
-                        {
-                            Console.WriteLine("Finally Block Executed");
-                        }
-
+                        DivideByZero(array);
                         break;
                     case Options.IndexOutOfRange:
-                        try
-                        {
-                            try
-                            {
-                                for (int i = 0; i < array.Length + 1; i++)
-                                {
-                                    array[i] = i;
-                                }
-
-                                array[0] = array[1] / array[0];
-                            }
-                            catch (DivideByZeroException)
-                            {
-                                WarningMessage("Number is divided by zero");
-                            }
-                            catch (IndexOutOfRangeException)
-                            {
-                                throw new Exception("Array index is out of bounds");
-                            }
-                            finally
-                            {
-                                Console.WriteLine("Finally Block Executed");
-                            }
-                        }
-                        catch (Exception exception)
-                        {
-                            WarningMessage(exception.Message);
-                        }
-                        finally
-                        {
-                            Console.WriteLine("Finally Block Executed");
-                        }
-
+                        IndexOutOfBound(array);
                         break;
                     case Options.UnHandledException:
                         throw new Exception("This is Unhandled Exception");
@@ -103,7 +59,7 @@
         }
 
         /// <summary>
-        /// It shows the warning message color to red when exception is throw
+        /// It shows the warning message color to red when exception is thrown
         /// </summary>
         /// <param name="message">It takes the type of the exception message</param>
         public static void WarningMessage(string message)
@@ -130,6 +86,67 @@
             Console.WriteLine("IsTerminating: " + unHandledException.IsTerminating);
             Console.WriteLine("Stack Trace");
             Console.WriteLine(exception.StackTrace);
+        }
+
+        /// <summary>
+        /// It creates the DivideByZeroException
+        /// </summary>
+        /// <param name="array">It takes the array to perform calculation</param>
+        public static void DivideByZero(int[] array)
+        {
+            int result;
+            try
+            {
+                result = 10 / array[0];
+            }
+            catch (DivideByZeroException)
+            {
+                WarningMessage("Number is Divided by Zero");
+            }
+            finally
+            {
+                Console.WriteLine("Finally Block Executed");
+            }
+        }
+
+        /// <summary>
+        /// It creates the IndexOutOfBoundException
+        /// </summary>
+        /// <param name="array">It takes the array to perform array calculation</param>
+        public static void IndexOutOfBound(int[] array)
+        {
+            try
+            {
+                try
+                {
+                    for (int i = 0; i < array.Length + 1; i++)
+                    {
+                        array[i] = i;
+                    }
+
+                    array[0] = array[1] / array[0];
+                }
+                catch (DivideByZeroException)
+                {
+                    WarningMessage("Number is divided by zero");
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    throw new Exception("Array index is out of bounds");
+                }
+                finally
+                {
+                    Console.WriteLine("Finally Block Executed");
+                }
+            }
+            catch (Exception exception)
+            {
+                WarningMessage(exception.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Finally Block Executed");
+            }
         }
     }
 }
