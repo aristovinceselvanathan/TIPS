@@ -23,7 +23,8 @@ their use in a C#application.<br>
 3. Use a profiling tool, such as Visual Studio's Diagnostic Tools, to observe how memory is used
 when these methods are called.<br>
 **Expected Outcome**: You should observe that the method with the large array uses more heap memory,
-whereas the method with the many local variables uses more stack memory.
+whereas the method with the many local variables uses more stack memory.<br><br>
+![Alt text](MicrosoftTeams-image.png)
 
 ## Task 3: Using Garbage Collection and Understanding Its Impact on Performance
 
@@ -37,7 +38,8 @@ count.
 3. Observe the memory usage of your application using a profiling tool.
 4. Use GC.CoIIect to manually trigger garbage collection and observe the impact on memory usage.<br>
 **Expected Outcome**: You should see a drop in memory usage after garbage collection occurs. Also, you
-should notice the performance impact when garbage collection is triggered.
+should notice the performance impact when garbage collection is triggered.<br><br>
+![Alt text](image-1.png)
 
 ## Task 4: Implementing and Understanding the IDisposable Interface and the 'using' Statement
 
