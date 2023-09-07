@@ -11,17 +11,17 @@
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
-            Employee employee1 = new Employee();
+            Employee employee = new Employee();
             int value = 100;
 
-            employee1.Id = "1001";
-            employee1.Name = "Tom Cruise";
-            employee1.Designation = "IT";
+            employee.Id = "1001";
+            employee.Name = "Tom Cruise";
+            employee.Designation = "IT";
 
             Console.WriteLine("Reference Type : Employee System");
-            Console.WriteLine(employee1);
-            ChangeEmployee(employee1);
-            Console.WriteLine(employee1);
+            Console.WriteLine(employee);
+            ChangeEmployee(employee);
+            Console.WriteLine(employee);
             Console.WriteLine("Value Type : Update Value ");
             Console.WriteLine($"Value is {value}");
             UpdateValue(value);
@@ -39,7 +39,7 @@
         /// <summary>
         /// It will change the value by reference
         /// </summary>
-        /// <param name="employee">It takes the class as the input</param>
+        /// <param name="employee">It takes the employee class as the input to change it</param>
         public static void ChangeEmployee(Employee employee)
         {
             Console.WriteLine("Employee Update Details");
@@ -53,7 +53,7 @@
         /// <summary>
         /// It updates the variable by value type
         /// </summary>
-        /// <param name="value">It takes the value as integer</param>
+        /// <param name="value">It takes the value as integer to change itr</param>
         public static void UpdateValue(int value)
         {
             value = 200;

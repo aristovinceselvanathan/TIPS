@@ -11,7 +11,7 @@
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
-            Console.WriteLine("Create multiple objects");
+            Console.WriteLine("Create multiple number of objects");
             CreateNumberOfObjects();
             Console.WriteLine("Press any key to End : ");
             Console.ReadKey();
@@ -32,12 +32,12 @@
                 }
             }
 
-            Console.WriteLine("Press any key to clear using Garbage Collection");
+            Console.WriteLine("Press any key to use Garbage Collector : ");
             Console.ReadKey();
 
             GC.Collect();                  // It will call garbage collector forcefully
 
-            Console.WriteLine("Wait After the Garbage Collection is triggered, Press any key to continue");
+            Console.WriteLine("Wait After the Garbage Collection is triggered, Press any key to continue : ");
             Console.WriteLine($"Memory used : {GC.GetTotalMemory(false)} bytes");
             Console.ReadKey();
         }

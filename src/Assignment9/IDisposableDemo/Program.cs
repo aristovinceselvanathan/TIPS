@@ -12,10 +12,10 @@
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Text Editor");
-            string path = "D:\\Workouts\\TIPS\\src\\Assignment9\\IDisposableDemo\\Hello.txt";
+            string path = "Hello.txt";
             using (FileWriter fileWriter = new FileWriter(path))
             {
-                fileWriter.WriteToTheFile("Hello, How are you?");   // It writes the Hello World to the file
+                fileWriter.WriteToTheFile("Hello, How are you?");   // It writes the Hello, How are you? to the file
             }
 
             try

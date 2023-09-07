@@ -5,7 +5,7 @@
     public class Account
     {
         /// <summary>
-        /// Gets or Sets the string
+        /// Gets or Sets the email of the account
         /// </summary>
         /// <value>
         /// Email from main method
@@ -13,7 +13,7 @@
         public string? Email { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether active
+        /// Gets or sets a value indicating whether status of account
         /// </summary>
         /// <value>
         /// Active status
