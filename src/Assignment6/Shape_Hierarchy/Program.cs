@@ -72,10 +72,10 @@
         }
 
         /// <summary>
-        /// Method checks for the string is number or not because colour doesn't contains any number
+        /// Method checks for the string is contains only alphabets
         /// </summary>
         /// <param name="s">It takes the name of colour of the shape as input</param>
-        /// <returns>It returns bool</returns>
+        /// <returns>It returns bool about the match the pattern</returns>
         public static bool IsColorName(string s)
         {
             Regex r = new Regex("^[a-zA-Z\\s]+$");

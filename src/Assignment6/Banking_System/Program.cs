@@ -46,7 +46,7 @@
                     }
                     else
                     {
-                        InvalidWarning("Input");
+                        InvalidWarning("Option");
                     }
                 }
                 else
@@ -154,7 +154,7 @@
         }
 
         /// <summary>
-        /// It shows the clourful warning message of the invalid input
+        /// It shows the colourful warning message of the invalid input
         /// </summary>
         /// <param name="nameOfInput">It takes the name of the input</param>
         public static void InvalidWarning(string nameOfInput)

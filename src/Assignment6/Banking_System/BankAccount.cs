@@ -18,13 +18,13 @@
         }
 
         /// <summary>
-        /// Gets or Sets the AccountNumber
+        /// Gets or Sets the AccountNumber of the customer
         /// </summary>
         /// <value>string</value>
         public string AccountNumber { get; set; }
 
         /// <summary>
-        /// Gets or Sets the Balance
+        /// Gets or Sets the Balance of the account
         /// </summary>
         /// <value>string</value>
         public decimal Balance { get; set; }
@@ -66,7 +66,7 @@
         }
 
         /// <summary>
-        /// Method withdraws the money from the account
+        /// Method that used to withdraw the money from the account
         /// </summary>
         /// <param name="amount">It takes the amount as a decimal</param>
         public virtual void Withdraw(decimal amount)

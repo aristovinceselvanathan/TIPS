@@ -20,19 +20,19 @@
         }
 
         /// <summary>
-        /// Gets or sets the Colour
+        /// Gets or sets the Colour of the shape
         /// </summary>
         /// <value>string</value>
         protected string Colour { get; set; }
 
         /// <summary>
-        /// Gets or sets the Input1
+        /// Gets or sets the Input1 (dimensions of the shape)
         /// </summary>
         /// <value>double</value>
         protected double Input1 { get; set; }
 
         /// <summary>
-        /// Gets or sets the Input2
+        /// Gets or sets the Input2 (dimensions of the shape)
         /// </summary>
         /// <value>double</value>
         protected double Input2 { get; set; }
