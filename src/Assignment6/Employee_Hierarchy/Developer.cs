@@ -9,8 +9,8 @@
         /// Initializes a new instance of the <see cref="Developer"/> class.
         /// It inherits the Employee class and call the constructor of base class by passing the values
         /// </summary>
-        /// <param name="name">It takes the name of the user as string</param>
-        /// <param name="salary">It takes the salary of the user as decimal</param>
+        /// <param name="name">It takes the name of the employee as string</param>
+        /// <param name="salary">It takes the salary of the employee as decimal</param>
         public Developer(string name, decimal salary)
             : base(name, salary)
         {
@@ -23,7 +23,7 @@
         public override void PrintDetails()
         {
             Console.WriteLine($"Name : {this.Name}");
-            Console.WriteLine($"Position : Developer");
+            Console.WriteLine($"Position : {this.GetType().Name}");
             Console.WriteLine($"Salary : {this.Salary}");
             decimal bonus = this.CalculateBonus();
             Console.WriteLine($"Bonus : {bonus}");

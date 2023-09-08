@@ -15,7 +15,7 @@
         public static void Main(string[] args)
         {
             int optionOfTypeOfRole;
-            string optionOfChoice, nameOfUser, isValidName, isValidDecimal;
+            string isValidName, isValidDecimal;
             decimal salary;
 
             Console.WriteLine("Name of the Employee : ");
@@ -23,7 +23,6 @@
 
             if (IsNameValid(isValidName))
             {
-                nameOfUser = isValidName;
                 Console.WriteLine("Salary of the Employee : ");
                 isValidDecimal = Console.ReadLine();
 
@@ -35,42 +34,12 @@
                         switch (optionOfTypeOfRole)
                         {
                             case 1:
-                                Developer developer = new Developer(nameOfUser, salary);
-                                Console.WriteLine("Did you want print the details : Y or N");
-                                optionOfChoice = Console.ReadLine();
-
-                                if (optionOfChoice.Equals("Y") || optionOfChoice.Equals("y"))
-                                {
-                                    developer.PrintDetails();
-                                }
-                                else if (optionOfChoice.Equals("N") || optionOfChoice.Equals("n"))
-                                {
-                                    Console.WriteLine("Exiting...");
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Invalid Input");
-                                }
-
+                                Developer developer = new Developer(isValidName, salary);
+                                CreateRoleOfEmployee(developer);
                                 break;
                             case 2:
-                                Manager manager = new Manager(nameOfUser, salary);
-                                Console.WriteLine("Did you want print the details : Y or N");
-                                optionOfChoice = Console.ReadLine();
-
-                                if (optionOfChoice.Equals("Y") || optionOfChoice.Equals("y"))
-                                {
-                                    manager.PrintDetails();
-                                }
-                                else if (optionOfChoice.Equals("N") || optionOfChoice.Equals("n"))
-                                {
-                                    Console.WriteLine("Exiting...");
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Invalid Input");
-                                }
-
+                                Manager manager = new Manager(isValidName, salary);
+                                CreateRoleOfEmployee(manager);
                                 break;
                             case 3:
                                 Console.WriteLine("Exiting...");
@@ -93,6 +62,31 @@
             else
             {
                 InvalidWarning("Name");
+            }
+        }
+
+        /// <summary>
+        /// It creates the role of the employee and the print the details of the employee
+        /// </summary>
+        /// <param name="employee">It takes the employee as the input</param>
+        public static void CreateRoleOfEmployee(Employee employee)
+        {
+            string optionOfChoice;
+
+            Console.WriteLine("Did you want print the details : Y or N");
+            optionOfChoice = Console.ReadLine();
+
+            if (string.Equals(optionOfChoice, "y", StringComparison.InvariantCultureIgnoreCase))
+            {
+                employee.PrintDetails();
+            }
+            else if (string.Equals(optionOfChoice, "n", StringComparison.InvariantCultureIgnoreCase))
+            {
+                Console.WriteLine("Exiting...");
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input");
             }
         }
 

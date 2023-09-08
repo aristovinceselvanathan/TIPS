@@ -23,7 +23,7 @@
         public override void PrintDetails()
         {
             Console.WriteLine($"Name : {this.Name}");
-            Console.WriteLine($"Position : Manager");
+            Console.WriteLine($"Position : {this.GetType().Name}");
             Console.WriteLine($"Salary : {this.Salary}");
             decimal bonus = this.CalculateBonus();
             Console.WriteLine($"Bonus : {bonus}");
