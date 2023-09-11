@@ -4,6 +4,7 @@
 
 **Objective**: Understand the differences between value types and reference types in C#, and demonstrate
 their use in a C#application.<br>
+
 ### Task Steps:
 
 1. Create a new C# Console Application named "ValueAndReferenceTypes".
@@ -24,7 +25,7 @@ their use in a C#application.<br>
 when these methods are called.<br>
 **Expected Outcome**: You should observe that the method with the large array uses more heap memory,
 whereas the method with the many local variables uses more stack memory.<br><br>
-![Alt text](MicrosoftTeams-image.png)
+![Alt text](MemoryManagement\01-ValueTypeAnDReferenceType.png)
 
 ## Task 3: Using Garbage Collection and Understanding Its Impact on Performance
 
@@ -36,10 +37,10 @@ whereas the method with the many local variables uses more stack memory.<br><br>
 2. Create a method that creates and destroys a large number of objects in a for loop with large
 count.
 3. Observe the memory usage of your application using a profiling tool.
-4. Use GC.CoIIect to manually trigger garbage collection and observe the impact on memory usage.<br>
+4. Use GC.Collect to manually trigger garbage collection and observe the impact on memory usage.<br>
 **Expected Outcome**: You should see a drop in memory usage after garbage collection occurs. Also, you
 should notice the performance impact when garbage collection is triggered.<br><br>
-![Alt text](image-1.png)
+![Alt text](MemoryManagement\02-GarbageCollection.png)
 
 ## Task 4: Implementing and Understanding the IDisposable Interface and the 'using' Statement
 
@@ -48,7 +49,7 @@ to automatically dispose of objects, and how to release file resources properly.
 
 ### Task Steps:
 
-1. Create a new C# Console Application named "IDisposabIeDemo".
+1. Create a new C# Console Application named "IDisposableDemo".
 2. Create a class that opens a file for writing and implements the IDisposable interface. In the Dispose method, ensure that the file is properly closed and released.
 3. In the Main method, create an instance of this class in a 'using' block. Write some text to the file.
 4. After the 'using' block, attempt to open the same file for reading. If the file was properly released, this should be possible without any errors.<br>
@@ -81,9 +82,9 @@ To allow for proper handling of multiple items with varying lifetimes during gar
 
 3. Generation 2: If certain generation 1 objects take up space that isn't freed up in the following trash collection cycle, those things are transferred to generation 2. The generation 2 objects have a lengthy lifespan since they stay in the heap memory throughout the entire process, like static objects.
 
-## IDdisposable Interface
+## IDisposable Interface
 
-IDdisposable is an interface defined in the System namespace. It is used to release managed and unmanaged resources. Implementing the IDdisposable interface forces us to implement 2 methods and one boolean variable: 
+IDisposable is an interface defined in the System namespace. It is used to release managed and unmanaged resources. Implementing the IDisposable interface forces us to implement 2 methods and one Boolean variable: 
  
 - Public Dispose() : A consumer of an object calls this method when resources need to be freed. This method uses the Dispose (bool disposing) method. We also inform the Garbage Collector (GC) about the resource cleanup of the current object so that the GC does not do it again at the end. 
 - Protected virtual Dispose(bool disposing): This method is  where all  variables are set to zero. A derived class can also override this method and release its own resources. This method is used to write the actual resource cleanup code. 
