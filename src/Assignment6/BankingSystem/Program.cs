@@ -1,4 +1,4 @@
-﻿namespace Banking_System
+﻿namespace BankingSystem
 {
     using System.Text.RegularExpressions;
 
@@ -23,6 +23,8 @@
             string isValidAccountNumber, accountNumber;
             decimal balance;
             bool flag = true;
+
+            Console.WriteLine("Welcome to XYZ Bank");
 
             while (flag)
             {

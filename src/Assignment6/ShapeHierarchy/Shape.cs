@@ -1,4 +1,4 @@
-﻿namespace Shape_Hierarchy
+﻿namespace ShapeHierarchy
 {
     /// <summary>
     /// Shape abstract class

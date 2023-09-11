@@ -1,4 +1,4 @@
-﻿namespace Banking_System
+﻿namespace BankingSystem
 {
     /// <summary>
     /// BankAccount Class

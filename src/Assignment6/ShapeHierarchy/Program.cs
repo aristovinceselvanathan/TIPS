@@ -1,6 +1,5 @@
-﻿namespace Shape_Hierarchy
+﻿namespace ShapeHierarchy
 {
-    using System.Diagnostics;
     using System.Text.RegularExpressions;
 
     /// <summary>
