@@ -14,4 +14,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Assignment6\Shape_Hierarchy\Shape Hierarchy.csproj" />
+  </ItemGroup>
+
 </Project>

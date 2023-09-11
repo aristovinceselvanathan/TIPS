@@ -7,72 +7,87 @@
     /// </summary>
     internal class Program
     {
+        private enum Options
+        {
+            SavingsAccount = 1,
+            CheckingAccount = 2,
+            Exit = 3,
+        }
+
         /// <summary>
         /// Main method it takes the account number, balance, type and ask to withdraw the amount.
         /// </summary>
         /// <param name="args">It takes the argument from command line Interface<</param>
         public static void Main(string[] args)
         {
-            string isValidAccountNumber, isValidBalance, accountNumber;
+            string isValidAccountNumber, accountNumber;
             decimal balance;
+            bool flag = true;
 
-            Console.WriteLine("Account Number : ");
-            isValidAccountNumber = Console.ReadLine();
-            if (IsNumberValid(isValidAccountNumber))
+            while (flag)
             {
-                Console.WriteLine("Account Balance : ");
-                isValidBalance = Console.ReadLine();
-
-                if (decimal.TryParse(isValidBalance, out balance))
+                Console.WriteLine("Did You want to create the 1. Savings Account, 2. Checking Account 3.Exit: ");
+                if (int.TryParse(Console.ReadLine(), out int option) && option >= 1 && option <= 3)
                 {
-                    accountNumber = isValidAccountNumber;
-                    Console.WriteLine("Did You want to create the 1. Savings Account or 2. Checking Account : ");
-                    if (int.TryParse(Console.ReadLine(), out int option))
+                    Console.WriteLine("Account Number : ");
+                    isValidAccountNumber = Console.ReadLine();
+
+                    if (IsAccountNumberValid(isValidAccountNumber))
                     {
-                        switch (option)
+                        Console.WriteLine("Account Balance : ");
+                        if (decimal.TryParse(Console.ReadLine(), out balance))
                         {
-                            case 1:
-                                SavingsAccount savingsAccount = new SavingsAccount(accountNumber, balance);
-                                Services(savingsAccount);
-                                break;
-                            case 2:
-                                CheckingAccount checkingAccount = new CheckingAccount(accountNumber, balance);
-                                Services(checkingAccount);
-                                break;
-                            default:
-                                InvalidWarning("Option");
-                                break;
+                            accountNumber = isValidAccountNumber;
+                            Options options = (Options)option;
+                            switch (options)
+                            {
+                                case Options.SavingsAccount:
+                                    SavingsAccount savingsAccount = new SavingsAccount(accountNumber, balance);
+                                    Services(savingsAccount);
+                                    break;
+                                case Options.CheckingAccount:
+                                    CheckingAccount checkingAccount = new CheckingAccount(accountNumber, balance);
+                                    Services(checkingAccount);
+                                    break;
+                                case Options.Exit:
+                                    Console.WriteLine("Exiting...");
+                                    flag = false;
+                                    break;
+                                default:
+                                    WarningMessageFromConsole("Enter only the above options!!");
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            WarningMessageFromConsole("Balance");
                         }
                     }
                     else
                     {
-                        InvalidWarning("Option");
+                        WarningMessageFromConsole("Account Number");
                     }
                 }
                 else
                 {
-                    InvalidWarning("Balance");
+                    WarningMessageFromConsole("Option");
                 }
-            }
-            else
-            {
-                InvalidWarning("Account Number");
             }
         }
 
         /// <summary>
         /// This function performs the deposit and withdraw function
         /// </summary>
-        /// <param name="user">Object of the child class</param>
+        /// <param name="user">user is reference of the bank account class can have both the child class</param>
         public static void Services(BankAccount user)
         {
             bool flag = true;
 
             while (flag)
             {
-                Console.WriteLine($"Account Number : {user.AccountNumber}");
-                Console.WriteLine($"Balance : {user.Balance}");
+                user.PrintDetailsOfAccount();
                 Console.WriteLine("Did you want to 1.Withdraw 2.Deposit 3.Exit: ");
+
                 if (int.TryParse(Console.ReadLine(), out int option))
                 {
                     switch (option)
@@ -92,7 +107,7 @@
                             }
                             else
                             {
-                                InvalidWarning("Balance");
+                                WarningMessageFromConsole("Balance");
                             }
 
                             break;
@@ -112,7 +127,7 @@
                             }
                             else
                             {
-                                InvalidWarning("Balance");
+                                WarningMessageFromConsole("Balance");
                             }
 
                             break;
@@ -121,13 +136,13 @@
                             Console.WriteLine("Exiting....");
                             break;
                         default:
-                            InvalidWarning("Option");
+                            WarningMessageFromConsole("Option");
                             break;
                     }
                 }
                 else
                 {
-                    InvalidWarning("Input");
+                    WarningMessageFromConsole("Input");
                 }
 
                 Console.WriteLine("Press any to Continue");
@@ -139,13 +154,13 @@
         /// <summary>
         /// Method checks for the string is number or not because account number consists of numbers
         /// </summary>
-        /// <param name="s">It takes the string as input</param>
+        /// <param name="accountNumber">It takes the account number and evaluates contains only numbers</param>
         /// <returns>It returns bool</returns>
-        public static bool IsNumberValid(string s)
+        public static bool IsAccountNumberValid(string accountNumber)
         {
             Regex r = new Regex("^\\d*$");
 
-            if (r.IsMatch(s))
+            if (r.IsMatch(accountNumber))
             {
                 return true;
             }
@@ -157,7 +172,7 @@
         /// It shows the colourful warning message of the invalid input
         /// </summary>
         /// <param name="nameOfInput">It takes the name of the input</param>
-        public static void InvalidWarning(string nameOfInput)
+        public static void WarningMessageFromConsole(string nameOfInput)
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Black;

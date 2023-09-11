@@ -1,5 +1,6 @@
 ﻿namespace Shape_Hierarchy
 {
+    using System.Diagnostics;
     using System.Text.RegularExpressions;
 
     /// <summary>
@@ -7,79 +8,68 @@
     /// </summary>
     internal class Program
     {
+        private enum Options
+        {
+            Circle = 1,
+            Rectangle = 2,
+            Exit = 3,
+        }
+
         /// <summary>
-        /// Main Method takes the colour, radius for the circle and colour, length, breath for the rectangle shapes
+        /// Main Method takes the color, radius for the circle and color, length, breadth for the rectangle shapes
         /// It prints the details of each shape
         /// </summary>
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
-            string colorOfCircle, colorOfRectangle, isDoubleOfRadius, isDoubleOfRectangle, isDoubleOfBreath;
-            double radiusOfCircle, lengthOfRectangle, breathOfRectangle;
-
-            Console.WriteLine("Colour of the Circle : ");
-            colorOfCircle = Console.ReadLine();
-            if (IsColorName(colorOfCircle))
+            Shape item;
+            bool flag = true;
+            Console.WriteLine("Welcome to Shape Area Calculator");
+            while (flag)
             {
-                Console.WriteLine("Enter the radius of the circle (cm): ");
-                isDoubleOfRadius = Console.ReadLine();
-
-                if (double.TryParse(isDoubleOfRadius, out radiusOfCircle))
+                Console.WriteLine("Choose the Shape 1.Circle, 2.Rectangle, 3.Exit : ");
+                if (int.TryParse(Console.ReadLine(), out int option))
                 {
-                    Circle c1 = new Circle(colorOfCircle, radiusOfCircle);
-                    c1.PrintDetails();
-                }
-                else
-                {
-                    InvalidWarning("Radius of the Circle");
-                }
-            }
-            else
-            {
-                InvalidWarning("Color of the Circle");
-            }
-
-            Console.WriteLine("Colour of the Rectangle : ");
-            colorOfRectangle = Console.ReadLine();
-            if (IsColorName(colorOfRectangle))
-            {
-                Console.WriteLine("Enter the length of the rectangle (cm): ");
-                isDoubleOfRectangle = Console.ReadLine();
-                Console.WriteLine("Enter the breath of the rectangle (cm): ");
-                isDoubleOfBreath = Console.ReadLine();
-
-                if (double.TryParse(isDoubleOfRectangle, out lengthOfRectangle))
-                {
-                    if (double.TryParse(isDoubleOfBreath, out breathOfRectangle))
+                    Options selectedOption = (Options)option;
+                    switch (selectedOption)
                     {
-                        Rectangle r1 = new Rectangle(colorOfRectangle, lengthOfRectangle, breathOfRectangle);
-                        r1.PrintDetails();
-                    }
-                    else
-                    {
-                        InvalidWarning("Breath of the Rectangle");
+                        case Options.Circle:
+                            item = new Circle();
+                            GetDetailsOfShape(item);
+                            break;
+                        case Options.Rectangle:
+                            item = new Rectangle();
+                            GetDetailsOfShape(item);
+                            break;
+                        case Options.Exit:
+                            flag = false;
+                            break;
+                        default:
+                            Console.WriteLine("Invalid Option");
+                            break;
                     }
                 }
                 else
                 {
-                    InvalidWarning("Length of the Rectangle");
+                    WarningMessageFromConsole("Option - Required number only");
                 }
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
+                Console.Clear();
             }
-            else
-            {
-                InvalidWarning("Color of the Rectangle");
-            }
+
+            Console.WriteLine("Exiting....");
         }
 
         /// <summary>
         /// Method checks for the string is contains only alphabets
         /// </summary>
-        /// <param name="s">It takes the name of colour of the shape as input</param>
+        /// <param name="color">It takes the name of color of the shape</param>
         /// <returns>It returns bool about the match the pattern</returns>
-        public static bool IsColorName(string s)
+        public static bool IsValidNameOfColor(string color)
         {
             Regex r = new Regex("^[a-zA-Z\\s]+$");
-            if (r.IsMatch(s))
+            if (r.IsMatch(color))
             {
                 return true;
             }
@@ -88,19 +78,80 @@
         }
 
         /// <summary>
-        /// It shows the colourful warning message of the invalid input
+        /// It shows the colorful warning message of the invalid input
         /// </summary>
-        /// <param name="nameOfInput">It takes the name of the input</param>
-        public static void InvalidWarning(string nameOfInput)
+        /// <param name="nameOfEvent">It takes the name of the input</param>
+        public static void WarningMessageFromConsole(string nameOfEvent)
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine($"Invalid {nameOfInput}");
+            Console.WriteLine($"Invalid {nameOfEvent}");
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine("Press any key to continue");
-            Console.ReadKey();
-            Console.Clear();
+        }
+
+        /// <summary>
+        /// It takes the details about the shape
+        /// </summary>
+        /// <param name="typeOfShape">It determines the type of the shape</param>
+        public static void GetDetailsOfShape(Shape typeOfShape)
+        {
+            string colorOfShape, userInputOfDimensions1, userInputOfDimensions2;
+            double dimensions1OfShape, dimensions2OfShape;
+
+            Console.WriteLine($"Color of the {typeOfShape.GetType().Name}: ");
+            colorOfShape = Console.ReadLine();
+            if (IsValidNameOfColor(colorOfShape))
+            {
+                if (typeOfShape.GetType().Name.Equals("Rectangle"))
+                {
+                    Console.WriteLine("Enter the length of the rectangle (cm): ");
+                    userInputOfDimensions1 = Console.ReadLine();
+                    if (double.TryParse(userInputOfDimensions1, out dimensions1OfShape) && dimensions1OfShape >= 0)
+                    {
+                        Console.WriteLine("Enter the breadth of the rectangle (cm): ");
+                        userInputOfDimensions2 = Console.ReadLine();
+                        if (double.TryParse(userInputOfDimensions2, out dimensions2OfShape) && dimensions2OfShape >= 0)
+                        {
+                            typeOfShape.Color = colorOfShape;
+                            typeOfShape.Input1 = dimensions1OfShape;
+                            typeOfShape.Input2 = dimensions2OfShape;
+                            typeOfShape.PrintDetails();
+                        }
+                        else
+                        {
+                            WarningMessageFromConsole("Breadth of the Rectangle");
+                        }
+                    }
+                    else
+                    {
+                        WarningMessageFromConsole("Length of the rectangle");
+                    }
+                }
+                else if (typeOfShape.GetType().Name.Equals("Circle"))
+                {
+                    Console.WriteLine("Enter the radius of the circle (cm): ");
+                    userInputOfDimensions1 = Console.ReadLine();
+                    if (double.TryParse(userInputOfDimensions1, out dimensions1OfShape) && dimensions1OfShape >= 0)
+                    {
+                        typeOfShape.Color = colorOfShape;
+                        typeOfShape.Input1 = dimensions1OfShape;
+                        typeOfShape.PrintDetails();
+                    }
+                    else
+                    {
+                        WarningMessageFromConsole("Radius of the circle");
+                    }
+                }
+                else
+                {
+                    WarningMessageFromConsole("Invalid Shape");
+                }
+            }
+            else
+            {
+                WarningMessageFromConsole($"Color of the {typeOfShape.GetType().Name}");
+            }
         }
     }
 }

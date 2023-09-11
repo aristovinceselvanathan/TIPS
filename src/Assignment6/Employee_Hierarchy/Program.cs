@@ -7,6 +7,13 @@
     /// </summary>
     internal class Program
     {
+        private enum Options
+        {
+            Developer = 1,
+            Manager = 2,
+            Exit = 3,
+        }
+
         /// <summary>
         /// Main method it ask for the Name, Salary and type of the role.
         /// It will print the details about the role.
@@ -14,88 +21,100 @@
         /// <param name="args">It takes the argument from command line</param>
         public static void Main(string[] args)
         {
-            int optionOfTypeOfRole;
-            string isValidName, isValidDecimal;
-            decimal salary;
+            bool flag = true;
 
-            Console.WriteLine("Name of the Employee : ");
-            isValidName = Console.ReadLine();
-
-            if (IsNameValid(isValidName))
+            Console.WriteLine("Welcome to Employee Management System");
+            while (flag)
             {
-                Console.WriteLine("Salary of the Employee : ");
-                isValidDecimal = Console.ReadLine();
-
-                if (decimal.TryParse(isValidDecimal, out salary))
+                Console.WriteLine("Do You want to create the 1.Developer 2.Manager 3.Exit : ");
+                if (int.TryParse(Console.ReadLine(), out int optionOfTypeOfRole))
                 {
-                    Console.WriteLine("Did You want to create the 1.Developer 2.Manager 3.Exit : ");
-                    if (int.TryParse(Console.ReadLine(), out optionOfTypeOfRole))
+                    Options option = (Options)optionOfTypeOfRole;
+                    switch (option)
                     {
-                        switch (optionOfTypeOfRole)
-                        {
-                            case 1:
-                                Developer developer = new Developer(isValidName, salary);
-                                CreateRoleOfEmployee(developer);
-                                break;
-                            case 2:
-                                Manager manager = new Manager(isValidName, salary);
-                                CreateRoleOfEmployee(manager);
-                                break;
-                            case 3:
-                                Console.WriteLine("Exiting...");
-                                break;
-                            default:
-                                InvalidWarning("Option");
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        InvalidWarning("Option");
+                        case Options.Developer:
+                            Developer developer = new Developer();
+                            CreateRoleOfEmployee(developer);
+                            break;
+                        case Options.Manager:
+                            Manager manager = new Manager();
+                            CreateRoleOfEmployee(manager);
+                            break;
+                        case Options.Exit:
+                            flag = false;
+                            break;
+                        default:
+                            WarningMessageFromConsole("Option");
+                            break;
                     }
                 }
                 else
                 {
-                    InvalidWarning("Salary");
+                    WarningMessageFromConsole("Option");
                 }
+
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
+                Console.Clear();
             }
-            else
-            {
-                InvalidWarning("Name");
-            }
+
+            Console.WriteLine("Exiting...");
         }
 
         /// <summary>
         /// It creates the role of the employee and the print the details of the employee
         /// </summary>
-        /// <param name="employee">It takes the employee as the input</param>
+        /// <param name="employee">It takes the employee reference can have child objects</param>
         public static void CreateRoleOfEmployee(Employee employee)
         {
-            string optionOfChoice;
+            string userInputName, userInputBalance, optionOfChoice;
+            decimal salary;
 
-            Console.WriteLine("Did you want print the details : Y or N");
-            optionOfChoice = Console.ReadLine();
+            Console.WriteLine("Name of the Employee : ");
+            userInputName = Console.ReadLine();
 
-            if (string.Equals(optionOfChoice, "y", StringComparison.InvariantCultureIgnoreCase))
+            if (IsValidNameOfEmployee(userInputName))
             {
-                employee.PrintDetails();
-            }
-            else if (string.Equals(optionOfChoice, "n", StringComparison.InvariantCultureIgnoreCase))
-            {
-                Console.WriteLine("Exiting...");
+                Console.WriteLine("Salary of the Employee : ");
+                userInputBalance = Console.ReadLine();
+
+                if (decimal.TryParse(userInputBalance, out salary))
+                {
+                    employee.Name = userInputName;
+                    employee.Salary = salary;
+
+                    Console.WriteLine("Do you want to print the details : Y or N");
+                    optionOfChoice = Console.ReadLine();
+                    if (string.Equals(optionOfChoice, "y", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        employee.PrintDetails();
+                    }
+                    else if (string.Equals(optionOfChoice, "n", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        Console.WriteLine("Exiting...");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Input");
+                    }
+                }
+                else
+                {
+                    WarningMessageFromConsole("Salary");
+                }
             }
             else
             {
-                Console.WriteLine("Invalid Input");
+                WarningMessageFromConsole("Name");
             }
         }
 
         /// <summary>
         /// Method checks for the string is valid alphabetic name.
         /// </summary>
-        /// <param name="name">It takes the name of the user as input</param>
+        /// <param name="name">It takes the name of the user</param>
         /// <returns>It returns valid name</returns>
-        public static bool IsNameValid(string name)
+        public static bool IsValidNameOfEmployee(string name)
         {
             Regex r = new Regex("^[a-zA-Z\\s]+$");
             if (r.IsMatch(name))
@@ -107,10 +126,10 @@
         }
 
         /// <summary>
-        /// It shows the colourful warning message of the invalid input
+        /// It shows the colorful warning message of the invalid input
         /// </summary>
-        /// <param name="nameOfInput">It takes the name of the input</param>
-        public static void InvalidWarning(string nameOfInput)
+        /// <param name="nameOfInput">It takes the name of the event occurred</param>
+        public static void WarningMessageFromConsole(string nameOfInput)
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Black;

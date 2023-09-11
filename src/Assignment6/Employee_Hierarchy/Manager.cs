@@ -1,22 +1,10 @@
 ﻿namespace Employee_Hierarchy
 {
     /// <summary>
-    /// Manager Class and it inherits the Employee class
+    /// Manager Class
     /// </summary>
     internal class Manager : Employee
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Manager"/> class.
-        /// It inherits the Employee class and call the constructor of base class by passing the values
-        /// </summary>
-        /// <param name="name">It takes the name of the user as string</param>
-        /// <param name="salary">It takes the salary of the user as decimal</param>
-        public Manager(string name, decimal salary)
-            : base(name, salary)
-        {
-            Console.WriteLine("This is a Manager Class");
-        }
-
         /// <summary>
         /// Method prints the details (such as Name, Position, Salary, Bonus) of the Manager object
         /// </summary>
