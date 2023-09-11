@@ -19,14 +19,15 @@
         public static void Main(string[] args)
         {
             int[] array = new int[10];
-            int input;
+            int userSelectedOption;
             Options option;
+
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionHandler);
             Console.WriteLine("Welcome to Error Handling");
             Console.Write("Choose which error wanted to raise 1.Divide By Zero, 2.Index Out of Range, 3.UnHandled Exception : ");
-            if (int.TryParse(Console.ReadLine(), out input))
+            if (int.TryParse(Console.ReadLine(), out userSelectedOption))
             {
-                option = (Options)input;
+                option = (Options)userSelectedOption;
                 switch (option)
                 {
                     case Options.DivideByZero:
@@ -95,6 +96,7 @@
         public static void DivideByZero(int[] array)
         {
             int result;
+
             try
             {
                 result = 10 / array[0];
