@@ -16,8 +16,7 @@
             Console.WriteLine("Hello Everyone");
             Hello welcome = new Hello();
             welcome.Print("Welcome");
-            welcome.Print("How are You?");
-            welcome.Print("Welcome to Visual Studio");
+            welcome.Print("Welcome to CSharp Language");
         }
     }
 }
