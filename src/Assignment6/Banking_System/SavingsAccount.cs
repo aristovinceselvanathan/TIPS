@@ -1,7 +1,7 @@
 ﻿namespace Banking_System
 {
     /// <summary>
-    /// Saving Account Class that inherit the BankAccount class
+    /// Saving Account Class
     /// </summary>
     internal class SavingsAccount : BankAccount
     {
@@ -27,15 +27,15 @@
             if (this.Balance - amount >= 1000)
             {
                 this.Balance -= amount;
-                SuccessfulColor("Withdrawal is Successful");
+                Console.WriteLine("Withdrawal is Successful");
             }
             else if (this.Balance - amount < 0)
             {
-                FailedWarning("Transaction Failed!!, Insufficient Funds");
+                Console.WriteLine("Transaction Failed!!, Insufficient Funds");
             }
             else
             {
-                FailedWarning("Transaction Failed, Reached the Minimum Balance");
+                Console.WriteLine("Transaction Failed, Reached the Minimum Balance");
             }
         }
     }

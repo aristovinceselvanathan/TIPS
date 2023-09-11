@@ -1,7 +1,7 @@
 ﻿namespace Banking_System
 {
     /// <summary>
-    /// Checking Account Class that inherit the BankAccount Class
+    /// Checking Account Class
     /// </summary>
     internal class CheckingAccount : BankAccount
     {
