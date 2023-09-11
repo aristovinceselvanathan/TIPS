@@ -6,7 +6,7 @@ In this assignment, we'll explore memory management in C#, a critical aspect of 
 performance application- We'll learn how to detect, diagnose, and resolve memory issues in a C#
 codebase. We'll also discuss best practices for memory management and use tools for memory
 profiling.Upon completing this assignment, you'll have a deeper understanding of how to optimize
-the pertbrmance of your C# applications by managing memory more effectively<br>
+the performance of your C# applications by managing memory more effectively<br>
 
 ## Task 1: Detecting and Diagnosing Memory Issues
 
@@ -42,7 +42,7 @@ class Program
 1. Analyze the above code snippet. Can you identify the memory issue here?
 2. Use a memory profiler tool to diagnose the problem in the code. You can use tools like
 Visual Studio's built-in Diagnostic Tools <br>
-**Expected Outcome**: Identitication and diagnosis of the memory issue in the provided code snippet.
+**Expected Outcome**: Identification and diagnosis of the memory issue in the provided code snippet.
 
 ## Task 2: Implementing Memory Management Best
 
@@ -51,7 +51,7 @@ Visual Studio's built-in Diagnostic Tools <br>
 ### Steps
 
 1. Based on your diagnosis, fix the memory issue in the provided code snippet.
-2. Implement other best practices for memory management in C#. enmis might include practices such as (All the below point may not necessary apply to the given problem):
+2. Implement other best practices for memory management in C#. This might include practices such as (All the below point may not necessary apply to the given problem):
 
 - Minimizing allocations in performance-critical code paths
 - Using using statements or finally blocks to ensure resources are cleaned up properly
@@ -65,7 +65,7 @@ Objective: To understand and demonstrate the use of the memory profiling tool in
 
 ### Steps
 
-1. Use the same memory profiler tool as in Task 2 (or choose another if you prefG-) to profile the memory usage of the optimized code from Task 3.
+1. Use the same memory profiler tool as in Task 2 (or choose another if you prefer) to profile the memory usage of the optimized code from Task 3.
 2. Document the changes in memory usage before and alter your optimizations. Can you explain why these changes occurred based on your understanding of memory management in C#?<br>
 **Expected Outcome**: A comparison of memory usage bef6re and after optimization. A clear understanding of how memory profiling tools in VS can help optimize code.
 
@@ -77,7 +77,7 @@ Objective: To understand and demonstrate the use of the memory profiling tool in
 2. So that the memory will be freed up. Also, memory is freed up by using the clear method. The memory profiling is done using Visual Studio's built-in diagnostic tools. The memory usage is compared before and after the optimisation.
 3. The memory usage is reduced after the optimization. The memory profiling tools in VS can help optimise code by showing the memory usage of the code. So that we can optimise the code by reducing the memory usage.
 
-### Chanllenges Faced:
+### Challenges Faced:
 
 1. The main challenge faced is to find the memory issue in the code by using the memory profiling tools.
 2. The memory profiling tools in VS can help optimise code by showing the memory usage of the code. So that we can optimise the code by reducing the memory usage.
