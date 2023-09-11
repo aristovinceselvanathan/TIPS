@@ -1,4 +1,4 @@
-﻿namespace Employee_Hierarchy
+﻿namespace EmployeeHierarchy
 {
     /// <summary>
     /// Manager Class

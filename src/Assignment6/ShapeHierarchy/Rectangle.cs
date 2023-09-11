@@ -1,17 +1,17 @@
-﻿namespace Shape_Hierarchy
+﻿namespace ShapeHierarchy
 {
     /// <summary>
-    /// Circle Class
+    /// Rectangle class
     /// </summary>
-    internal class Circle : Shape
+    internal class Rectangle : Shape
     {
         /// <summary>
-        /// It returns the area of circle by the formula of 𝞹*(r^2)
+        /// It returns the area of rectangle by formula length * breath
         /// </summary>
-        /// <returns>It returns the double type of the answer from the above formula</returns>
+        /// <returns>It returns the double type of the answer from the formula</returns>
         public override double CalculateArea()
         {
-            return Math.PI * Math.Pow(this.Input1, 2);
+            return this.Input1 * this.Input2;
         }
 
         /// <summary>

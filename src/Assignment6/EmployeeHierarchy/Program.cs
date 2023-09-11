@@ -1,4 +1,4 @@
-﻿namespace Employee_Hierarchy
+﻿namespace EmployeeHierarchy
 {
     using System.Text.RegularExpressions;
 
