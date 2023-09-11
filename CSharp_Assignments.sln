@@ -35,11 +35,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2", "src\Assignme
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ObjectOriented", "ObjectOriented", "{EBC6E90A-E08F-4D60-BBCE-1D947A78E216}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Banking System", "src\Assignment6\BankingSystem\Banking System.csproj", "{982B3BBA-0BD4-4538-A155-C0ECE4DD0180}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingSystem", "src\Assignment6\BankingSystem\BankingSystem.csproj", "{982B3BBA-0BD4-4538-A155-C0ECE4DD0180}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employee Hierarchy", "src\Assignment6\EmployeeHierarchy\Employee Hierarchy.csproj", "{FF5E1AC5-969F-4D48-B9CC-757EE1E17B7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeHierarchy", "src\Assignment6\EmployeeHierarchy\EmployeeHierarchy.csproj", "{FF5E1AC5-969F-4D48-B9CC-757EE1E17B7F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shape Hierarchy", "src\Assignment6\ShapeHierarchy\Shape Hierarchy.csproj", "{D31A3EF7-BC42-43D3-8FEB-A42803CC3818}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShapeHierarchy", "src\Assignment6\ShapeHierarchy\ShapeHierarchy.csproj", "{D31A3EF7-BC42-43D3-8FEB-A42803CC3818}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Banking_System", "src\Assignment6\Banking_System\Banking_System.csproj", "{DAE38996-851B-452B-9959-61FD66396B29}"
 EndProject
