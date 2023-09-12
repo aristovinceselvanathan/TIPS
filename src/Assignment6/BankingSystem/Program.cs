@@ -14,6 +14,13 @@
             Exit = 3,
         }
 
+        private enum Service
+        {
+            Withdraw = 1,
+            Deposit = 2,
+            Exit = 3,
+        }
+
         /// <summary>
         /// Main method it takes the account number, balance, type and ask to withdraw the amount.
         /// </summary>
@@ -92,9 +99,10 @@
 
                 if (int.TryParse(Console.ReadLine(), out int option))
                 {
-                    switch (option)
+                    Service service = (Service)option;
+                    switch (service)
                     {
-                        case 1:
+                        case Service.Withdraw:
                             Console.WriteLine("How much amount want to withdraw:");
                             if (decimal.TryParse(Console.ReadLine(), out decimal amount))
                             {
@@ -114,7 +122,7 @@
 
                             break;
 
-                        case 2:
+                        case Service.Deposit:
                             Console.WriteLine("How mush amount want to deposit: ");
                             if (decimal.TryParse(Console.ReadLine(), out amount))
                             {
@@ -133,7 +141,7 @@
                             }
 
                             break;
-                        case 3:
+                        case Service.Exit:
                             flag = false;
                             Console.WriteLine("Exiting....");
                             break;
