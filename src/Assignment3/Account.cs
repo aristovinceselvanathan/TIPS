@@ -1,7 +1,8 @@
 ﻿namespace Assignment3
-{/// <summary>
- /// Account Class
- /// </summary>
+{
+    /// <summary>
+    /// Account Class
+    /// </summary>
     public class Account
     {
         /// <summary>
