@@ -87,14 +87,14 @@
         /// <summary>
         /// This function performs the deposit and withdraw function
         /// </summary>
-        /// <param name="user">user is reference of the bank account class can have both the child class</param>
-        public static void Services(BankAccount user)
+        /// <param name="userAccount">user is reference of the bank account class can have both the child class</param>
+        public static void Services(BankAccount userAccount)
         {
             bool flag = true;
 
             while (flag)
             {
-                user.PrintDetailsOfAccount();
+                userAccount.PrintDetailsOfAccount();
                 Console.WriteLine("Did you want to 1.Withdraw 2.Deposit 3.Exit: ");
 
                 if (int.TryParse(Console.ReadLine(), out int option))
@@ -108,7 +108,7 @@
                             {
                                 if (amount > 0)
                                 {
-                                    user.Withdraw(amount);
+                                    userAccount.Withdraw(amount);
                                 }
                                 else
                                 {
@@ -128,7 +128,7 @@
                             {
                                 if (amount > 0)
                                 {
-                                    user.Deposit(amount);
+                                    userAccount.Deposit(amount);
                                 }
                                 else
                                 {
