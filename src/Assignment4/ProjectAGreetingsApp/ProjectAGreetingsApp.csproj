@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Assignment6\Shape_Hierarchy\Shape Hierarchy.csproj" />
     <ProjectReference Include="..\ProjectBMathApp\ProjectBMathApp.csproj" />
     <ProjectReference Include="..\ProjectDUtilityApp\ProjectDUtilityApp.csproj" />
   </ItemGroup>
