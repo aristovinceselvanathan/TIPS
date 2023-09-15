@@ -17,12 +17,7 @@
                 List<int[]> memAlloc = new List<int[]>();
                 try
                 {
-                    for (int i = 0; i < maxArrays; i++)
-                    {
-                        memAlloc.Add(new int[10000]);
-                    }
-
-                    // Before clear the data store it in database and clears the unreferenced data
+                    memAlloc.Add(new int[10000]); // Before clear the data store it in database and clears the unreferenced data
                     memAlloc.Clear();
                 }
                 catch (OutOfMemoryException e)
