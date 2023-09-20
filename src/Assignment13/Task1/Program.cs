@@ -23,7 +23,7 @@
         public static void Main(string[] args)
         {
             bool flag = true;
-            List<BookClass> directoryOfBooks = new ();
+            List<string> directoryOfBooks = new ();
 
             while (flag)
             {
@@ -70,9 +70,9 @@
         /// Method to add the book to the directory
         /// </summary>
         /// <param name="directory">Reference to the directory contains title of the books</param>
-        public static void AddBook(List<BookClass> directory)
+        public static void AddBook(List<string> directory)
         {
-            BookClass book = new BookClass();
+            string book;
             int size = directory.Count();
             bool flag = true;
 
@@ -81,8 +81,8 @@
                 while (flag)
                 {
                     Console.WriteLine("Enter the title of a book to add: ");
-                    book.TitleOfTheBook = Console.ReadLine();
-                    if (!ValidTitleNameOfBook(book.TitleOfTheBook))
+                    book = Console.ReadLine().Trim();
+                    if (!ValidTitleNameOfBook(book))
                     {
                         WarningMessageFromConsole("Invalid title of a book");
                         Console.WriteLine("Press Escape key to exit, Press the any other key to continue.....");
@@ -118,9 +118,9 @@
         /// Method to remove the book from the Directory
         /// </summary>
         /// <param name="directory">Reference to the directory contains names of the books</param>
-        public static void RemoveBook(List<BookClass> directory)
+        public static void RemoveBook(List<string> directory)
         {
-            BookClass book = new BookClass();
+            string book;
             int size = directory.Count();
             bool flag = true;
 
@@ -129,8 +129,8 @@
                 while (flag)
                 {
                     Console.WriteLine("Enter the title of a book to remove: ");
-                    book.TitleOfTheBook = Console.ReadLine();
-                    if (!ValidTitleNameOfBook(book.TitleOfTheBook))
+                    book = Console.ReadLine().Trim();
+                    if (!ValidTitleNameOfBook(book))
                     {
                         WarningMessageFromConsole("Invalid title of a book");
                         Console.WriteLine("Press Escape key to exit, Press the any other key to continue.....");
@@ -165,10 +165,10 @@
         /// Method to searches for the title of the books present in the directory
         /// </summary>
         /// <param name="directory">Reference to the directory contains names of the books</param>
-        public static void SearchTheDirectory(List<BookClass> directory)
+        public static void SearchTheDirectory(List<string> directory)
         {
             int size = directory.Count();
-            BookClass book = new BookClass();
+            string book;
             bool flag = true;
 
             if (size > 0)
@@ -176,7 +176,7 @@
                 while (flag)
                 {
                     Console.WriteLine("Enter the title of the book : ");
-                    book.TitleOfTheBook = Console.ReadLine();
+                    book = Console.ReadLine().Trim();
                     if (directory.Contains(book))
                     {
                         SuccessfulMessageFromConsole($"Book Found!!, Position of the book in the directory : {directory.IndexOf(book) + 1}");
@@ -199,7 +199,6 @@
             }
             else
             {
-                WarningMessageFromConsole("Directory is Empty!!! - Nothing to Search..");
             }
         }
 
@@ -207,7 +206,7 @@
         /// Method displays all the title of the books present in the directory
         /// </summary>
         /// <param name="directory">Reference to the directory contains names of the books</param>
-        public static void DisplayAll(List<BookClass> directory)
+        public static void DisplayAll(List<string> directory)
         {
             int size = directory.Count();
 

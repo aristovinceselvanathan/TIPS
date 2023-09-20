@@ -77,7 +77,7 @@
                 while (flag)
                 {
                     Console.WriteLine("Enter the name of a Person to add: ");
-                    nameOfPerson = Console.ReadLine();
+                    nameOfPerson = Console.ReadLine().Trim();
                     if (!ValidNameOfPerson(nameOfPerson))
                     {
                         WarningMessageFromConsole("Invalid name of a Person");

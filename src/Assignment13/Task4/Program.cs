@@ -77,7 +77,7 @@
                 while (flag)
                 {
                     Console.Write("Enter the name of a Student to add: ");
-                    nameOfStudent = Console.ReadLine();
+                    nameOfStudent = Console.ReadLine().Trim();
                     if (!ValidNameOfStudent(nameOfStudent))
                     {
                         WarningMessageFromConsole("Invalid Name of the Student");
@@ -146,7 +146,7 @@
                 while (flag)
                 {
                     Console.WriteLine("Enter the Name of the Student to remove: ");
-                    nameOfStudent = Console.ReadLine();
+                    nameOfStudent = Console.ReadLine().Trim();
                     if (ValidNameOfStudent(nameOfStudent))
                     {
                         if (studentDirectory.Remove(nameOfStudent))
