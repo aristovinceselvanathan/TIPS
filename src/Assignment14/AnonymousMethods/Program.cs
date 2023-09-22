@@ -20,7 +20,7 @@
                 {
                     int[] arrayOfNumber = new int[size];
                     AddElementToArray(arrayOfNumber);
-                    Console.WriteLine("Sorted Array : ");
+                    Console.WriteLine("\nSorted Array : ");
                     Array.Sort(arrayOfNumber, delegate(int x, int y) { return x.CompareTo(y); });
                     DisplayTheArray(arrayOfNumber);
                 }
@@ -55,10 +55,12 @@
         {
             for (int i = 0; i < arrayOfNumber.Length;)
             {
-                Console.Write($"Enter the number into the array at position {i + 1} : ");
+                Console.Write($"Enter the number add it into array at position {i + 1} : ");
                 if (int.TryParse(Console.ReadLine(), out arrayOfNumber[i]))
                 {
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Value added successfully");
+                    Console.ForegroundColor = ConsoleColor.White;
                     i++;
                 }
                 else
@@ -76,10 +78,9 @@
         /// <param name="arrayOfNumber">It is reference of the list from the main method</param>
         public static void DisplayTheArray(int[] arrayOfNumber)
         {
-            Console.WriteLine("List is : ");
             for (int i = 0; i < arrayOfNumber.Length; i++)
             {
-                Console.Write($"{arrayOfNumber[i]}, ");
+                Console.Write($"{arrayOfNumber[i]}");
             }
 
             Console.WriteLine();

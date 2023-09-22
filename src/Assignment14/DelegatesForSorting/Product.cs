@@ -35,7 +35,7 @@
         /// <returns>string</returns>
         public override string ToString()
         {
-            return $"Product :\nName : {this.Name}\nCategory : {this.Category}\nPrice : {this.Price}";
+            return $"Product Name : {this.Name} Category : {this.Category} Price : {this.Price},";
         }
     }
 }

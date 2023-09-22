@@ -27,21 +27,21 @@
             while (flag)
             {
                 Console.WriteLine("Welcome to Products Manager");
-                Console.WriteLine("Enter the size of the list : ");
+                Console.Write("Enter the size of the list : ");
                 if (int.TryParse(Console.ReadLine(), out int size) && size > 0)
                 {
                     flag = AddElementToArray(productsList, size);
 
-                    SortDelegate sort1 = SortByName;
-                    SortDelegate sort2 = SortByCategory;
-                    SortDelegate sort3 = SortByPrice;
+                    SortDelegate sortByName = SortByName;
+                    SortDelegate sortByCategory = SortByCategory;
+                    SortDelegate sortByPrice = SortByPrice;
 
                     Console.WriteLine("Sort By Name : ");
-                    SortAndDisplay(sort1, productsList);
+                    SortAndDisplay(sortByName, productsList);
                     Console.WriteLine("Sort By Category : ");
-                    SortAndDisplay(sort2, productsList);
+                    SortAndDisplay(sortByCategory, productsList);
                     Console.WriteLine("Sort By Price : ");
-                    SortAndDisplay(sort3, productsList);
+                    SortAndDisplay(sortByPrice, productsList);
                 }
                 else if (size <= 0)
                 {
@@ -76,90 +76,90 @@
         {
             for (int i = 0; i < size; i++)
             {
-                Product temp = new Product();
-                temp.Name = IsValidName(i);
-                if (temp.Name == null)
+                Product productToBeCreated = new Product();
+                productToBeCreated.Name = IsValidName(i);
+                if (productToBeCreated.Name == null)
                 {
                     return false;
                 }
 
-                temp.Category = IsValidCategory(i);
-                if (temp.Category == null)
+                productToBeCreated.Category = IsValidCategory(i);
+                if (productToBeCreated.Category == null)
                 {
                     return false;
                 }
 
-                temp.Price = IsValidPrice(i);
-                if (temp.Price == null)
+                productToBeCreated.Price = IsValidPrice(i);
+                if (productToBeCreated.Price == null)
                 {
                     return false;
                 }
 
-                productsList.Add(temp);
+                productsList.Add(productToBeCreated);
             }
 
             return true;
         }
 
         /// <summary>
-        /// Sort By Name
+        /// Sort By Name of the Product
         /// </summary>
-        /// <param name="product1">Product a</param>
-        /// <param name="product2">Product b</param>
-        /// <returns>int</returns>
+        /// <param name="product1">Reference of the product1</param>
+        /// <param name="product2">Reference of the product2</param>
+        /// <returns>It will return integer to sort the list</returns>
         public static int SortByName(Product product1, Product product2)
         {
-              return string.Compare(product1.Name, product2.Name, StringComparison.OrdinalIgnoreCase);
+              return string.Compare(product1.Name, product2.Name, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <summary>
-        /// Sort By Category
+        /// Sort By Category of the Product
         /// </summary>
-        /// <param name="product1">Product a</param>
-        /// <param name="product2">Product b</param>
-        /// <returns>int</returns>
+        /// <param name="product1">Reference of the product1</param>
+        /// <param name="product2">Reference of the product2</param>
+        /// <returns>It will return integer to sort the list</returns>
         public static int SortByCategory(Product product1, Product product2)
         {
-            return string.Compare(product1.Category, product2.Category, StringComparison.OrdinalIgnoreCase);
+            return string.Compare(product1.Category, product2.Category, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <summary>
-        /// Sort By Price
+        /// Sort By Price of the Product
         /// </summary>
-        /// <param name="product1">Product a</param>
-        /// <param name="product2">Product b</param>
-        /// <returns>int</returns>
+        /// <param name="product1">Reference of the product1</param>
+        /// <param name="product2">Reference of the product2</param>
+        /// <returns>It will return integer to sort the list</returns>
         public static int SortByPrice(Product product1, Product product2)
         {
                 return decimal.Compare((decimal)product1.Price, (decimal)product2.Price);
         }
 
         /// <summary>
-        /// sort and display
+        /// It will use the sort delegate to invoke the method to sort the list and display it using the iterator
         /// </summary>
-        /// <param name="sortMethod">delegate</param>
-        /// <param name="products">list</param>
-        public static void SortAndDisplay(SortDelegate sortMethod, List<Product> products)
+        /// <param name="sortMethod">It will invoke the sort method that are subscribed to the delegate</param>
+        /// <param name="productsList">reference of the list of the products from the main method</param>
+        public static void SortAndDisplay(SortDelegate sortMethod, List<Product> productsList)
         {
-            products.Sort((product1, product2) => sortMethod(product1, product2));
-            foreach (Product product in products)
+            productsList.Sort((product1, product2) => sortMethod(product1, product2));
+            foreach (Product product in productsList)
             {
-                Console.Write($"{product}, ");
+                Console.WriteLine($"{product}");
             }
 
             Console.WriteLine();
         }
 
         /// <summary>
-        /// Method is to validate name
+        /// Method is to validate name of the product
         /// </summary>
-        /// <param name="index">It gets the current index of the list</param>
+        /// <param name="indexOfArray">It gets the current index of the list</param>
         /// <returns>It returns valid name of the product</returns>
-        public static string IsValidName(int index)
+        public static string IsValidName(int indexOfArray)
         {
-            Console.WriteLine($"Enter the Name of Element at {index + 1}: ");
+            Console.Write($"Enter the Name of the Product at {indexOfArray + 1}: ");
             string name = Console.ReadLine();
-            Regex pattern = new Regex("^[a-zA-Z\\s]*$");
+            Regex pattern = new Regex("^[a-zA-Z\\s]+$");
             if (pattern.IsMatch(name))
             {
                 return name;
@@ -174,18 +174,18 @@
                 }
 
                 Console.Clear();
-                return IsValidName(index);
+                return IsValidName(indexOfArray);
             }
         }
 
         /// <summary>
-        /// Method is to validate category
+        /// Method is to validate category of the product
         /// </summary>
-        /// <param name="index">It gets the current index of the list</param>
+        /// <param name="indexOfArray">It gets the current index of the list</param>
         /// <returns>It returns valid category of the product</returns>
-        public static string IsValidCategory(int index)
+        public static string IsValidCategory(int indexOfArray)
         {
-            Console.WriteLine($"Enter the Category of Element at {index + 1}: ");
+            Console.Write($"Enter the Category of the Product at {indexOfArray + 1}: ");
             string category = Console.ReadLine();
             List<string> categories = new List<string> { "home", "fashion", "medicines", "food", "electronics", "grocery", "furniture", "toys" };
             if (categories.Contains(category.ToLower()))
@@ -194,7 +194,7 @@
             }
             else
             {
-                Console.WriteLine("Invalid Category");
+                Console.WriteLine("Invalid Category - Select from this category home, fashion, medicines, food, electronics, grocery, furniture, toys");
                 Console.WriteLine("Press Escape key to Exit and Other key to continue....");
                 if (Console.ReadKey().Key == ConsoleKey.Escape)
                 {
@@ -202,18 +202,18 @@
                 }
 
                 Console.Clear();
-                return IsValidCategory(index);
+                return IsValidCategory(indexOfArray);
             }
         }
 
         /// <summary>
-        /// Method is to validate price
+        /// Method is to validate price of the product
         /// </summary>
-        /// <param name="index">It gets the current index of the list</param>
+        /// <param name="indexOfArray">It gets the current index of the list</param>
         /// <returns>It returns valid price of the product</returns>
-        public static decimal? IsValidPrice(int index)
+        public static decimal? IsValidPrice(int indexOfArray)
         {
-            Console.WriteLine($"Enter the Price of Element at {index + 1}: ");
+            Console.Write($"Enter the Price of the Product at {indexOfArray + 1}: ");
             string priceOfProduct = Console.ReadLine();
             if (decimal.TryParse(priceOfProduct, out decimal valueOfProduct) && valueOfProduct > 0)
             {
@@ -229,7 +229,7 @@
                 }
 
                 Console.Clear();
-                return IsValidPrice(index);
+                return IsValidPrice(indexOfArray);
             }
         }
     }

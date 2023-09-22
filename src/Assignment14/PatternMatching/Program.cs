@@ -28,7 +28,7 @@
             Console.WriteLine("Welcome to Shape Area Calculator");
             while (flag)
             {
-                Console.WriteLine("Choose the Shape 1.Circle, 2.Rectangle, 3.Triangle, 4.Detect the Shape, 5.Exit : ");
+                Console.Write("Choose the Shape 1.Circle, 2.Rectangle, 3.Triangle, 4.Detect the Shape, 5.Exit : ");
                 if (int.TryParse(Console.ReadLine(), out int option))
                 {
                     Options selectedOption = (Options)option;
@@ -108,17 +108,17 @@
             string colorOfShape, userInputOfDimensions1, userInputOfDimensions2;
             double dimensions1OfShape, dimensions2OfShape;
 
-            Console.WriteLine($"Color of the {typeOfShape.GetType().Name}: ");
+            Console.Write($"Color of the {typeOfShape.GetType().Name}: ");
             colorOfShape = Console.ReadLine();
             if (IsValidNameOfColor(colorOfShape))
             {
                 if (typeOfShape.GetType().Name.Equals("Rectangle"))
                 {
-                    Console.WriteLine("Enter the length of the rectangle (cm): ");
+                    Console.Write("Enter the length of the rectangle (cm): ");
                     userInputOfDimensions1 = Console.ReadLine();
                     if (double.TryParse(userInputOfDimensions1, out dimensions1OfShape) && dimensions1OfShape >= 0)
                     {
-                        Console.WriteLine("Enter the breadth of the rectangle (cm): ");
+                        Console.Write("Enter the breadth of the rectangle (cm): ");
                         userInputOfDimensions2 = Console.ReadLine();
                         if (double.TryParse(userInputOfDimensions2, out dimensions2OfShape) && dimensions2OfShape >= 0)
                         {
@@ -139,7 +139,7 @@
                 }
                 else if (typeOfShape.GetType().Name.Equals("Circle"))
                 {
-                    Console.WriteLine("Enter the radius of the circle (cm): ");
+                    Console.Write("Enter the radius of the circle (cm): ");
                     userInputOfDimensions1 = Console.ReadLine();
                     if (double.TryParse(userInputOfDimensions1, out dimensions1OfShape) && dimensions1OfShape >= 0)
                     {
@@ -164,9 +164,9 @@
         }
 
         /// <summary>
-        /// Display the shape details
+        /// Display the shape details by the pattern matching
         /// </summary>
-        /// <param name="shape">shape object</param>
+        /// <param name="shape">It takes the reference of the shape from the main method</param>
         public static void DisplayShapeDetails(Shape shape)
         {
             switch (shape)
