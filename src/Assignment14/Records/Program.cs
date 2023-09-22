@@ -194,7 +194,7 @@
                     return false;
                 }
 
-                // temp.name = nameOfBook; Record type can't able to change the data type
+                // temporaryElement1.name = Console.ReadLine() Record type can't able to change the data type
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Error!! Cannot able to change the value in record");
                 Console.ForegroundColor = ConsoleColor.White;
