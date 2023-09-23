@@ -13,10 +13,13 @@
         /// <param name="args">It takes the string array from the command interface</param>
         public static void Main(string[] args)
         {
+            string userInput;
             StringReverserStack<char> stringReverserStack = new ();
             Stack<char> stack = new Stack<char>();
-
-            stringReverserStack.StringReverser(stack);
+            Console.WriteLine("Welcome to String Reverser");
+            Console.WriteLine("Enter the string to reverse it : ");
+            userInput = Console.ReadLine().Trim();
+            Console.WriteLine($"Reversed String : {stringReverserStack.StringReverser(stack, userInput)}");
         }
     }
 }

@@ -3,152 +3,107 @@
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// BookList Class contains the entry point of the program
+    /// BookList Class
     /// </summary>
     /// <typeparam name="T">It takes the type of the Data for Parameter</typeparam>
-    internal class BookList<T>
+    public class BookList<T>
     {
         /// <summary>
         /// Method to add the book to the directory
         /// </summary>
         /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
-        public void AddBook(List<T> directoryOfBooks)
+        /// <param name="bookName">It takes the Book Name</param>
+        /// <returns>It returns status of the addition of book into the List</returns>
+        public static bool AddBook(List<T> directoryOfBooks, T bookName)
         {
-            T book;
-            int sizeOfDirectory = directoryOfBooks.Count();
-            bool flag = true;
-
+            int sizeOfDirectory = directoryOfBooks.Count;
             if (sizeOfDirectory >= 0 && sizeOfDirectory < 5)
             {
-                while (flag)
+                if (!directoryOfBooks.Contains(bookName))
                 {
-                    Console.WriteLine("Enter the title of a book to add: ");
-                    book = TryConvert(Console.ReadLine().Trim());
-                    if (!this.ValidTitleNameOfBook(book))
-                    {
-                        Program.WarningMessageFromConsole("Invalid title of a book");
-                        Console.WriteLine("Press Escape key to exit, Press the any other key to continue.....");
-                        if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                    else if (!directoryOfBooks.Contains(book))
-                    {
-                        directoryOfBooks.Add(book);
-                        Program.SuccessfulMessageFromConsole("Book added successfully");
-                        Console.WriteLine($"Size of the directory : {sizeOfDirectory + 1}");
-                        flag = false;
-                    }
-                    else
-                    {
-                        Program.WarningMessageFromConsole("Book Title is already present in the directory");
-                    }
+                    directoryOfBooks.Add(bookName);
+                    Program.SuccessfulMessageFromConsole("Book added successfully");
+                    Console.WriteLine($"Size of the directory : {sizeOfDirectory + 1}");
+                    return true;
+                }
+                else
+                {
+                    Program.WarningMessageFromConsole("Book Title is already present in the directory");
                 }
             }
             else
             {
-                Program.WarningMessageFromConsole("Directory is Full!!! \n- Please remove a book to perform the action");
+                Program.WarningMessageFromConsole("Out of Space in the directory");
             }
+
+            return false;
         }
 
         /// <summary>
         /// Method to remove the book from the Directory
         /// </summary>
-        /// <param name="directoryOfBooks">Reference to the directory contains detials of the books</param>
-        public void RemoveBook(List<T> directoryOfBooks)
+        /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
+        /// <param name="bookName">It takes the book name to remove</param>
+        /// <returns>It returns status of the removal of book from the dictionary</returns>
+        public static bool RemoveBook(List<T> directoryOfBooks, T bookName)
         {
-            T book;
             int sizeOfDirectory = directoryOfBooks.Count();
-            bool flag = true;
 
             if (sizeOfDirectory > 0 && sizeOfDirectory <= 5)
             {
-                while (flag)
+                if (directoryOfBooks.Remove(bookName))
                 {
-                    Console.WriteLine("Enter the title of a book to remove: ");
-                    book = TryConvert(Console.ReadLine());
-                    if (!this.ValidTitleNameOfBook(book))
-                    {
-                        Program.WarningMessageFromConsole("Invalid title of a book");
-                        Console.WriteLine("Press Escape key to exit, Press the any other key to continue.....");
-                        if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                    else if (directoryOfBooks.Remove(book))
-                    {
-                        Program.SuccessfulMessageFromConsole("Book is removed Successfully");
-                        Console.WriteLine($"Size of the directory : {sizeOfDirectory - 1}");
-                        flag = false;
-                    }
-                    else
-                    {
-                        Program.WarningMessageFromConsole("Book doesn't exists in the directory");
-                    }
+                    Program.SuccessfulMessageFromConsole("Book is removed Successfully");
+                    Console.WriteLine($"Size of the directory : {sizeOfDirectory - 1}");
+                    return true;
+                }
+                else
+                {
+                    Program.WarningMessageFromConsole("Book doesn't exists in the directory");
                 }
             }
             else
             {
                 Program.WarningMessageFromConsole("Directory is Empty!!! - Please add a book to perform the action");
             }
+
+            return false;
         }
 
         /// <summary>
         /// Method to searches for the title of the books present in the directory
         /// </summary>
         /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
-        public void SearchTheDirectory(List<T> directoryOfBooks)
+        /// <param name="book"> It takes the name of the book</param>
+        /// <returns>It returns the index of the book present in the Directory</returns>
+        public static int? SearchTheDirectory(List<T> directoryOfBooks, T book)
         {
             int sizeOfDirectory = directoryOfBooks.Count();
-            T book;
-            bool flag = true;
 
             if (sizeOfDirectory > 0)
             {
-                while (flag)
+                if (directoryOfBooks.Contains(book))
                 {
-                    Console.WriteLine("Enter the title of the book : ");
-                    book = TryConvert(Console.ReadLine().Trim());
-                    if (directoryOfBooks.Contains(book))
-                    {
-                        Program.SuccessfulMessageFromConsole($"Book Found!!, Position of the book in the directory : {directoryOfBooks.IndexOf(book) + 1}");
-                        flag = false;
-                    }
-                    else
-                    {
-                        Program.WarningMessageFromConsole("Title of the book is not present in the directory");
-                        Console.WriteLine("Press Escape key to exit, Press the any other key to continue.....");
-                        if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
+                    return directoryOfBooks.IndexOf(book);
+                }
+                else
+                {
+                    return null;
                 }
             }
             else
             {
+                Program.WarningMessageFromConsole("Directory is Empty!!! - Please add a book to perform the action");
             }
+
+            return null;
         }
 
         /// <summary>
         /// Method displays all the title of the books present in the directory
         /// </summary>
         /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
-        public void DisplayAll(List<T> directoryOfBooks)
+        public static void DisplayAll(List<T> directoryOfBooks)
         {
             int size = directoryOfBooks.Count();
 
@@ -161,22 +116,6 @@
             {
                 Program.WarningMessageFromConsole("Directory is Empty!!! - Nothing to Display");
             }
-        }
-
-        /// <summary>
-        /// It checks for the title matches the alphabetic pattern
-        /// </summary>
-        /// <param name="title">Title of the book</param>
-        /// <returns>Return true if it matches the condition, else false</returns>
-        public bool ValidTitleNameOfBook(T title)
-        {
-            Regex pattern = new Regex("^[A-Za-z\\s!@#$&()-`.+,/\"]+$");
-            if (pattern.IsMatch(TryConvertReverse(title)))
-            {
-                return true;
-            }
-
-            return false;
         }
 
         // Helper method to try to convert a string to type T

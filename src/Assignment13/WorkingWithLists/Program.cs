@@ -1,9 +1,11 @@
-﻿namespace WorkingWithList
+﻿using System.Text.RegularExpressions;
+
+namespace WorkingWithList
 {
     /// <summary>
     /// Program Class
     /// </summary>
-    internal class Program
+    public class Program
     {
         private enum Services
         {
@@ -21,8 +23,7 @@
         public static void Main(string[] args)
         {
             bool flag = true;
-            BookList<string> bookList = new ();
-            List<string> directoryOfBooks = new ();
+            List<string> directoryOfBooks = new();
 
             while (flag)
             {
@@ -34,16 +35,16 @@
                     switch (service)
                     {
                         case Services.Add:
-                            bookList.AddBook(directoryOfBooks);
+                            AddBook(directoryOfBooks);
                             break;
                         case Services.Remove:
-                            bookList.RemoveBook(directoryOfBooks);
+                            RemoveBook(directoryOfBooks);
                             break;
                         case Services.Search:
-                            bookList.SearchTheDirectory(directoryOfBooks);
+                            SearchBook(directoryOfBooks);
                             break;
                         case Services.DisplayAll:
-                            bookList.DisplayAll(directoryOfBooks);
+                            BookList<string>.DisplayAll(directoryOfBooks);
                             break;
                         case Services.Exit:
                             flag = false;
@@ -56,13 +57,126 @@
                 }
                 else
                 {
-                   WarningMessageFromConsole("Invalid Input!!! - Required Number");
+                    WarningMessageFromConsole("Invalid Input!!! - Required Number");
                 }
 
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey(true);
                 Console.Clear();
             }
+        }
+
+        /// <summary>
+        /// Add the book Functionality
+        /// </summary>
+        /// <param name="directoryOfBooks">It takes the Directory of Books</param>
+        /// <returns>It terminate</returns>
+        public static bool AddBook(List<string> directoryOfBooks)
+        {
+            string book;
+            int sizeOfDirectory = directoryOfBooks.Count();
+            bool flag = true;
+            while (flag)
+            {
+                Console.WriteLine("Enter the title of a book to add: ");
+                book = Console.ReadLine().Trim();
+                if (ValidTitleNameOfBook(book))
+                {
+                    BookList<string>.AddBook(directoryOfBooks, book);
+                }
+                else
+                {
+                    Program.WarningMessageFromConsole("Invalid title of a book");
+                    Console.WriteLine("Press Escape key to exit, Press the any other key to continue.....");
+                    if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Method to remove the book from the Directory
+        /// </summary>
+        /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
+        /// <returns>It returns terminate</returns>
+        public static bool RemoveBook(List<string> directoryOfBooks)
+        {
+            string book;
+            int sizeOfDirectory = directoryOfBooks.Count();
+            bool flag = true;
+            while (flag)
+            {
+                Console.WriteLine("Enter the title of a book to remove: ");
+                book = Console.ReadLine().Trim();
+                if (ValidTitleNameOfBook(book))
+                {
+                    BookList<string>.RemoveBook(directoryOfBooks, book);
+                }
+                else
+                {
+                    Program.WarningMessageFromConsole("Invalid title of a book");
+                    Console.WriteLine("Press Escape key to exit, Press the any other key to continue.....");
+                    if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Method to searches for the title of the books present in the directory
+        /// </summary>
+        /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
+        /// <returns>Value Found</returns>
+        public static bool SearchBook(List<string> directoryOfBooks)
+        {
+            int sizeOfDirectory = directoryOfBooks.Count();
+            string book;
+            bool flag = true;
+            while (flag)
+            {
+                Console.WriteLine("Enter the title of the book : ");
+                book = Console.ReadLine().Trim();
+                if (ValidTitleNameOfBook(book))
+                {
+                    if (BookList<string>.SearchTheDirectory(directoryOfBooks, book) != null)
+                    {
+                        Program.SuccessfulMessageFromConsole($"Book Found!!, Position of the book in the directory : {directoryOfBooks.IndexOf(book) + 1}");
+                        flag = false;
+                    }
+                    else
+                    {
+                        Program.WarningMessageFromConsole("Title of the book is not present in the directory");
+                        Console.WriteLine("Press Escape key to exit, Press the any other key to continue.....");
+                        if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
+                        {
+                            flag = false;
+                            return true;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -89,6 +203,22 @@
             Console.WriteLine(nameOfOperation);
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
+        }
+
+        /// <summary>
+        /// It checks for the title matches the alphabetic pattern
+        /// </summary>
+        /// <param name="title">Title of the book</param>
+        /// <returns>Return true if it matches the condition, else false</returns>
+        public static bool ValidTitleNameOfBook(string title)
+        {
+            Regex pattern = new Regex("^[A-Za-z\\s!@#$&()-`.+,/\"]+$");
+            if (pattern.IsMatch(title))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

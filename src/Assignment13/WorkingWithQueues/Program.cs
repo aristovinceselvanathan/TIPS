@@ -5,7 +5,7 @@
     /// <summary>
     /// Program Class that contains the entry point of the program
     /// </summary>
-    internal class Program
+    public class Program
     {
         private enum Services
         {
@@ -35,10 +35,10 @@
                     switch (service)
                     {
                         case Services.Enqueue:
-                            ticketQueue.Enqueue(ticketQueueLine);
+                            Enqueue(ticketQueueLine);
                             break;
                         case Services.Dequeue:
-                            ticketQueue.Dequeue(ticketQueueLine);
+                            Console.WriteLine($"Person is removed Successfully Person name : {TicketQueue<string>.Dequeue(ticketQueueLine)}");
                             break;
                         case Services.DisplayAll:
                             ticketQueue.DisplayAll(ticketQueueLine);
@@ -60,6 +60,24 @@
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey(true);
                 Console.Clear();
+            }
+        }
+
+        /// <summary>
+        /// Method add the person name into the queue of the people
+        /// </summary>
+        /// <param name="ticketLine">Reference to the queue contains name of the Persons</param>
+        public static void Enqueue(Queue<string> ticketLine)
+        {
+            string nameOfPerson;
+            int sizeOfTheQueue = ticketLine.Count();
+            bool flag = true;
+
+            while (flag)
+            {
+                Console.WriteLine("Enter the name of a Person to add: ");
+                nameOfPerson = Console.ReadLine().Trim();
+                flag = TicketQueue<string>.Enqueue(ticketLine, nameOfPerson);
             }
         }
 

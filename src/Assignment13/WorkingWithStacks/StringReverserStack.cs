@@ -6,7 +6,7 @@
     /// StringReverser Class
     /// </summary>
     /// <typeparam name="T">It takes the type</typeparam>
-    internal class StringReverserStack<T>
+    public class StringReverserStack<T>
     {
         /// <summary>
         /// It checks for the user input matches the alphabetic pattern
@@ -27,14 +27,12 @@
         /// <summary>
         /// It takes the string input from the user and reverse it using stack
         /// </summary>
-        /// <param name="stack">It takes the stack</param>
-        public void StringReverser(Stack<T> stack)
+        /// <param name="stack">It takes the stack to reverse the string</param>
+        /// <param name="userInput">It takes the user Input to reverse it</param>
+        /// <returns>string of reversed</returns>
+        public string StringReverser(Stack<T> stack, string userInput)
         {
-            string userInput, output = " ";
-
-            Console.WriteLine("Welcome to String Reverser");
-            Console.WriteLine("Enter the string to reverse it : ");
-            userInput = Console.ReadLine().Trim();
+            string output = " ";
             if (ValidUserInput(userInput))
             {
                 foreach (var item in userInput)
@@ -47,12 +45,11 @@
                     output += stack.Pop();
                 }
 
-                Console.WriteLine($"Given String : {userInput}");
-                Console.WriteLine($"Reversed String : {output.Trim()}");
+                return output.TrimStart();
             }
             else
             {
-                Console.WriteLine("Invalid Input");
+                return "Invalid Input";
             }
         }
 

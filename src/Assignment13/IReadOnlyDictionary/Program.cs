@@ -16,7 +16,7 @@
             IReadOnlyDictionary<string, int> studentDirectory = GenerateDictionary();
             studentDirectory.TryGetValue("Tom Cruise", out int studentMark);
 
-            // studentDirectory.Add("Tom Cruise", studentMark); Add Method is not present in the IReadOnlyDictionary so the key, values are not able to changed.
+            // studentDirectory.Add("Tom Cruise", studentMark);Add Method is not present in the IReadOnlyDictionary so the key, values are not able to changed.
             Console.WriteLine("Cannot able to add the Key Value To the Dictionary");
             PrintDictionary(studentDirectory);
         }

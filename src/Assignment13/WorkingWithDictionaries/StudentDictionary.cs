@@ -3,138 +3,65 @@
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// Student Dictionary Class that contains the entry point of the program
+    /// Student Dictionary Class
     /// </summary>
     /// <typeparam name="T1">It takes the type of the Data for Parameter1</typeparam>
     /// <typeparam name="T2">It takes the type of the Data for Parameter2</typeparam>
-    internal class StudentDictionary<T1, T2>
+    public class StudentDictionary<T1, T2>
     {
         /// <summary>
         /// Method add the Student name and grade to the Directory
         /// </summary>
         /// <param name="studentDirectory">Reference to the Dictionary contains names and grades of the Students</param>
-        public void Add(Dictionary<T1, T2> studentDirectory)
+        /// <param name="studentName"> It takes the name of the Student</param>
+        /// <param name="gradeOfStudent">It takes the grade of the Student</param>
+        /// <returns>It returns status of the addition of student to Directory</returns>
+        public static bool Add(Dictionary<T1, T2> studentDirectory, T1 studentName, T2 gradeOfStudent)
         {
-            T1 nameOfStudent;
             int sizeOfDirectory = studentDirectory.Count();
-            bool flag = true;
 
             if (sizeOfDirectory >= 0 && sizeOfDirectory < 5)
             {
-                while (flag)
-                {
-                    Console.Write("Enter the name of a Student to add: ");
-                    nameOfStudent = TryConvert1(Console.ReadLine().Trim());
-                    if (!this.ValidNameOfStudent(nameOfStudent))
-                    {
-                        Program.WarningMessageFromConsole("Invalid Name of the Student");
-                        Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
-                        if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                    else if (!studentDirectory.ContainsKey(nameOfStudent))
-                    {
-                        while (flag)
-                        {
-                            Console.Write("Enter the Grade of the student (CGPA) : ");
-                            if (int.TryParse(Console.ReadLine(), out int userGradeOfStudent) && (userGradeOfStudent >= 0 && userGradeOfStudent <= 10))
-                            {
-                                studentDirectory.Add(nameOfStudent, TryConvert2(userGradeOfStudent));
-                                Program.WarningMessageFromConsole("Student added successfully");
-                                Console.WriteLine($"Size of the Directory : {sizeOfDirectory + 1}");
-                                flag = false;
-                            }
-                            else
-                            {
-                                Program.WarningMessageFromConsole("Invalid Grade");
-                                Console.WriteLine("Press the escape key to exit.....");
-                                Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
-                                if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
-                                {
-                                    return;
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Program.WarningMessageFromConsole("Student name is already present in the Directory");
-                    }
-                }
+                studentDirectory.Add(studentName, gradeOfStudent);
+                return true;
             }
             else
             {
                 Program.WarningMessageFromConsole("Directory is Full!!! \n- Please remove a Student to perform the action");
             }
+
+            return false;
         }
 
         /// <summary>
         /// Method to remove the student details from the Directory
         /// </summary>
         /// <param name="studentDirectory">Reference to the Dictionary contains names and grades of the Students</param>
-        public void Remove(Dictionary<T1, T2> studentDirectory)
+        /// <param name="nameOfStudent"> It takes the name of the name</param>
+        /// <returns>It returns status of the removal of student</returns>
+        public static bool Remove(Dictionary<T1, T2> studentDirectory, T1 nameOfStudent)
         {
             int sizeOfDirectory = studentDirectory.Count();
-            string nameOfStudent;
-            bool flag = true;
 
             if (sizeOfDirectory > 0 && sizeOfDirectory <= 5)
             {
-                while (flag)
+                if (studentDirectory.Remove(nameOfStudent))
                 {
-                    Console.WriteLine("Enter the Name of the Student to remove: ");
-                    nameOfStudent = Console.ReadLine().Trim();
-                    if (this.ValidNameOfStudent(TryConvert1(nameOfStudent)))
-                    {
-                        if (studentDirectory.Remove(TryConvert1(nameOfStudent)))
-                        {
-                            Program.WarningMessageFromConsole("Student is removed Successfully}");
-                            Console.WriteLine($"Size of the Directory : {sizeOfDirectory - 1}");
-                            flag = false;
-                        }
-                        else
-                        {
-                            Program.WarningMessageFromConsole("Operation is unsuccessful");
-                            Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
-                            if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
-                            {
-                                return;
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Name");
-                        Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
-                        if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
+                    Program.SuccessfulMessageFromConsole("Student is removed Successfully");
+                    Console.WriteLine($"Size of the Directory : {sizeOfDirectory - 1}");
+                    return true;
+                }
+                else
+                {
+                    Program.WarningMessageFromConsole("Operation is unsuccessful");
                 }
             }
             else
             {
-                Program.WarningMessageFromConsole("Directory is Empty!!! - Please add the student to perform the action");
+                Program.WarningMessageFromConsole("Dictionary is Full");
             }
+
+            return false;
         }
 
         /// <summary>
@@ -160,7 +87,7 @@
         /// <summary>
         /// It checks for the name matches the alphabetic pattern
         /// </summary>
-        /// <param name="name">name of the Student</param>
+        /// <param name="name">Name of the Student</param>
         /// <returns>Return true if it matches the condition, Else false</returns>
         public bool ValidNameOfStudent(T1 name)
         {

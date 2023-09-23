@@ -3,7 +3,7 @@
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// Program Class
+    /// Program Class that contains entry point of the program
     /// </summary>
     internal class Program
     {
@@ -35,10 +35,10 @@
                     switch (service)
                     {
                         case Services.Add:
-                            studentRecord.Add(studentDirectory);
+                            Add(studentDirectory);
                             break;
                         case Services.Remove:
-                            studentRecord.Remove(studentDirectory);
+                            Remove(studentDirectory);
                             break;
                         case Services.DisplayAll:
                             studentRecord.DisplayAll(studentDirectory);
@@ -61,6 +61,130 @@
                 Console.ReadKey(true);
                 Console.Clear();
             }
+        }
+
+        /// <summary>
+        /// Method add the Student name and grade to the Directory
+        /// </summary>
+        /// <param name="studentDirectory">Reference to the Dictionary contains names and grades of the Students</param>
+        public static void Add(Dictionary<string, int> studentDirectory)
+        {
+            string nameOfStudent;
+            int sizeOfDirectory = studentDirectory.Count();
+            bool flag = true;
+            while (flag)
+            {
+                Console.Write("Enter the name of a Student to add: ");
+                nameOfStudent = Console.ReadLine().Trim();
+                if (!ValidNameOfStudent(nameOfStudent))
+                {
+                    Program.WarningMessageFromConsole("Invalid Name of the Student");
+                    Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
+                    if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else if (!studentDirectory.ContainsKey(nameOfStudent))
+                {
+                    Console.Write("Enter the Grade of the student (CGPA) : ");
+                    if (int.TryParse(Console.ReadLine(), out int userGradeOfStudent) && (userGradeOfStudent >= 0 && userGradeOfStudent <= 10))
+                    {
+                        StudentDictionary<string, int>.Add(studentDirectory, nameOfStudent, userGradeOfStudent);
+                        Program.SuccessfulMessageFromConsole("Student added successfully");
+                        Console.WriteLine($"Size of the Directory : {sizeOfDirectory + 1}");
+                        flag = false;
+                    }
+                    else
+                    {
+                        Program.WarningMessageFromConsole("Invalid Grade");
+                        Console.WriteLine("Press the escape key to exit.....");
+                        Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
+                        if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+                else
+                {
+                    Program.WarningMessageFromConsole("Student name is already present in the Directory");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method to remove the student details from the Directory
+        /// </summary>
+        /// <param name="studentDirectory">Reference to the Dictionary contains names and grades of the Students</param>
+        public static void Remove(Dictionary<string, int> studentDirectory)
+        {
+            int sizeOfDirectory = studentDirectory.Count();
+            string nameOfStudent;
+            bool flag = true;
+
+            while (flag)
+            {
+                Console.WriteLine("Enter the Name of the Student to remove: ");
+                nameOfStudent = Console.ReadLine().Trim();
+                if (ValidNameOfStudent(nameOfStudent))
+                {
+                    if (StudentDictionary<string, int>.Remove(studentDirectory, nameOfStudent))
+                    {
+                        flag = false;
+                    }
+                    else
+                    {
+                        Program.WarningMessageFromConsole("Operation is unsuccessful");
+                        Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
+                        if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Name");
+                    Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
+                    if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// It checks for the name matches the alphabetic pattern
+        /// </summary>
+        /// <param name="name">Name of the Student</param>
+        /// <returns>Return true if it matches the condition, Else false</returns>
+        public static bool ValidNameOfStudent(string name)
+        {
+            Regex pattern = new Regex("^[A-Za-z\\s]+$");
+            if (pattern.IsMatch(name))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
