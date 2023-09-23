@@ -248,4 +248,4 @@ The Program Name was tested using unit tests to ensure correct implementation of
 6. Task 6: Understanding IEnumerable, Concrete Types, and IReadOnlyDictionary
 - Test computing the sum of elements in a collection
 ## Conclusion
-The Program Name is a comprehensive tool for learning about collections and generics in C#. It provides a range of tasks that demonstrate the use of different types of collections and how generics can be applied to improve code reusability and maintainability. The program also includes unit tests to ensure correct implementation of each task. For more information or support.
+The Project Name is useful for learning about collections and generics in C#. It provides a range of tasks that demonstrate the use of different types of collections and how generics can be applied to improve code reusability and maintainability. The program also includes unit tests to ensure correct implementation of each task.
