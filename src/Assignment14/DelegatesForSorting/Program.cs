@@ -1,4 +1,4 @@
-﻿namespace Task5
+﻿namespace DelegatesForSorting
 {
     using System.Text.RegularExpressions;
 
@@ -11,9 +11,9 @@
     public delegate int SortDelegate(Product product1, Product product2);
 
     /// <summary>
-    /// Program Class
+    /// Program Class that contains the entry point for the program
     /// </summary>
-    internal class Program
+    public class Program
     {
         /// <summary>
         /// Method that will sort the list of person by name, category, price.
@@ -71,7 +71,7 @@
         /// </summary>
         /// <param name="productsList">It is reference of the list from the main method</param>
         /// <param name="size">It takes the size of the list from the user</param>
-        /// <returns>It returns bool to break the loop</returns>
+        /// <returns>It returns status of the element added into the list</returns>
         public static bool AddElementToArray(List<Product> productsList, int size)
         {
             for (int i = 0; i < size; i++)

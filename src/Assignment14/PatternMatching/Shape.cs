@@ -1,4 +1,4 @@
-﻿namespace ShapeHierarchy
+﻿namespace PatternMatching
 {
     /// <summary>
     /// Shape class

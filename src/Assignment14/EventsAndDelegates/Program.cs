@@ -1,7 +1,7 @@
-﻿namespace Task1
+﻿namespace EventsAndDelegates
 {
     /// <summary>
-    /// Program Class
+    /// Program Class it contains the entry point for the program
     /// </summary>
     internal class Program
     {

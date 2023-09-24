@@ -1,9 +1,9 @@
-﻿namespace Task3
+﻿namespace AnonymousMethod
 {
     /// <summary>
-    /// Program Class
+    /// Program Class it contains the entry point of the Program
     /// </summary>
-    internal class Program
+    public class Program
     {
         /// <summary>
         /// Method to sort the array by the anonymous function by using the delegate
@@ -12,19 +12,20 @@
         public static void Main(string[] args)
         {
             bool flag = true;
+
             while (flag)
             {
                 Console.WriteLine("Sort the integer in the ascending order");
                 Console.Write("Enter the length of the array : ");
-                if (int.TryParse(Console.ReadLine(), out int size))
+                if (int.TryParse(Console.ReadLine(), out int sizeOfArray))
                 {
-                    int[] arrayOfNumber = new int[size];
+                    int[] arrayOfNumber = new int[sizeOfArray];
                     AddElementToArray(arrayOfNumber);
                     Console.WriteLine("\nSorted Array : ");
-                    Array.Sort(arrayOfNumber, delegate(int x, int y) { return x.CompareTo(y); });
+                    SortByUsingDelegate(arrayOfNumber);
                     DisplayTheArray(arrayOfNumber);
                 }
-                else if (size <= 0)
+                else if (sizeOfArray <= 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid size");
@@ -45,6 +46,15 @@
 
                 Console.Clear();
             }
+        }
+
+        /// <summary>
+        /// It sorts the integer array by the delegate that invoke the method
+        /// </summary>
+        /// <param name="arrayOfNumber">It takes the integer array that contains number</param>
+        public static void SortByUsingDelegate(int[] arrayOfNumber)
+        {
+            Array.Sort(arrayOfNumber, delegate (int x, int y) { return x.CompareTo(y); });
         }
 
         /// <summary>

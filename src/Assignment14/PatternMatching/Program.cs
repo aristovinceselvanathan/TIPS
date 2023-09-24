@@ -1,4 +1,4 @@
-﻿namespace ShapeHierarchy
+﻿namespace PatternMatching
 {
     using System.Text.RegularExpressions;
 
@@ -150,6 +150,31 @@
                     else
                     {
                         WarningMessageFromConsole("Radius of the circle");
+                    }
+                }
+                else if (typeOfShape.GetType().Name.Equals("Triangle"))
+                {
+                    Console.Write("Enter the height of the triangle (cm): ");
+                    userInputOfDimensions1 = Console.ReadLine();
+                    if (double.TryParse(userInputOfDimensions1, out dimensions1OfShape) && dimensions1OfShape >= 0)
+                    {
+                        Console.Write("Enter the breadth of the triangle (cm): ");
+                        userInputOfDimensions2 = Console.ReadLine();
+                        if (double.TryParse(userInputOfDimensions2, out dimensions2OfShape) && dimensions2OfShape >= 0)
+                        {
+                            typeOfShape.Color = colorOfShape;
+                            typeOfShape.Input1 = dimensions1OfShape;
+                            typeOfShape.Input2 = dimensions2OfShape;
+                            typeOfShape.PrintDetails();
+                        }
+                        else
+                        {
+                            WarningMessageFromConsole("Breadth of the Triangle");
+                        }
+                    }
+                    else
+                    {
+                        WarningMessageFromConsole("Length of the rectangle");
                     }
                 }
                 else

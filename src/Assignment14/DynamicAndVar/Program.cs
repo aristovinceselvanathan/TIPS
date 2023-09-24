@@ -1,7 +1,7 @@
-﻿namespace Task2
+﻿namespace DynamicAndVar
 {
     /// <summary>
-    /// Program Class
+    /// Program Class it contains the entry point of the program
     /// </summary>
     internal class Program
     {
@@ -19,6 +19,7 @@
         public static void Main(string[] args)
         {
             bool flag = true;
+
             while (flag)
             {
                 Console.WriteLine("Create the variable of type 1.Var 2.Dynamic 3.Exit: ");

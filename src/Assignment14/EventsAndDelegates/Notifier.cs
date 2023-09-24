@@ -1,4 +1,4 @@
-﻿namespace Task1
+﻿namespace EventsAndDelegates
 {
     /// <summary>
     /// Notify delegate is used to create the event notify of same data type

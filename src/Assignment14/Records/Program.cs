@@ -1,18 +1,18 @@
-﻿namespace Task6
+﻿namespace Records
 {
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// Program Class
+    /// Program Class it contains the entry point of the program
     /// </summary>
-    internal class Program
+    public class Program
     {
         public record book(string name, string author, string isbn)
         {
             /// <summary>
             /// Override the ToString Method of the object
             /// </summary>
-            /// <returns>string to print the details</returns>
+            /// <returns>String to print the details of the book</returns>
             public override string ToString()
             {
                 return $"Name : {this.name}\nAuthor Name : {this.author}\nISBN Number : {this.isbn}";
@@ -30,13 +30,14 @@
         }
 
         /// <summary>
-        /// Method that takes the details about the book
+        /// Method asks the user to perform actions in the record list
         /// </summary>
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
             List<book> directoryOfBooks = new List<book>();
             bool flag = true;
+            string nameOfBook, authorOfBook, isbnOfBook;
 
             while (flag)
             {
@@ -50,8 +51,19 @@
                     switch (option)
                     {
                         case Options.Add:
-                            flag = AddBook(directoryOfBooks);
-                            if (!flag)
+                            Console.Write($"Enter the Name : ");
+                            nameOfBook = Console.ReadLine();
+                            Console.Write($"Enter the Author Name : ");
+                            authorOfBook = Console.ReadLine();
+                            Console.Write($"Enter the ISBN: ");
+                            isbnOfBook = Console.ReadLine();
+                            if (AddBook(directoryOfBooks, nameOfBook, authorOfBook, isbnOfBook))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("Added Successfully");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                            else
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Book is not Properly Added");
@@ -69,7 +81,19 @@
 
                             break;
                         case Options.Edit:
-                            flag = EditNameOfProduct(directoryOfBooks);
+                            Console.WriteLine("Edit the Book Name Alone");
+                            Console.Write("Enter the position of the book : ");
+                            if (int.TryParse(Console.ReadLine(), out int index))
+                            {
+                                Console.Write("Enter the name of the book : ");
+                                nameOfBook = Console.ReadLine();
+                                EditNameOfProduct(directoryOfBooks, index, nameOfBook);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Number");
+                            }
+
                             break;
                         case Options.Equality:
                             Console.Write("Get the Details of the Book at index : ");
@@ -142,34 +166,34 @@
         }
 
         /// <summary>
-        /// It add the book into the list
+        /// It add the book into the list of the books
         /// </summary>
         /// <param name="directoryOfBooks"> It take the reference of the list from the main</param>
-        /// <returns>It returns bool to whether to terminate the process</returns>
-        public static bool AddBook(List<book> directoryOfBooks)
+        /// <param name="userInputName">It takes the  name of the book</param>
+        /// <param name="userInputAuthor">It takes author name of the book</param>
+        /// <param name="userInputISBN">It takes the ISBN of the book</param>
+        /// <returns>It returns bool status of the addition of book into the list</returns>
+        public static bool AddBook(List<book> directoryOfBooks, string userInputName, string userInputAuthor, string userInputISBN)
         {
-            string name = IsValidName("Book");
-            if (name == null)
+            string nameOfBook = IsValidName(userInputName);
+            if (nameOfBook == null)
             {
                 return false;
             }
 
-            string author = IsValidName("Author");
-            if (author == null)
+            string authorOfBook = IsValidName(userInputAuthor);
+            if (authorOfBook == null)
             {
                 return false;
             }
 
-            string isbn = IsValidISBN();
-            if (isbn == null)
+            string isbnOfBook = IsValidISBN(userInputISBN);
+            if (isbnOfBook == null)
             {
                 return false;
             }
 
-            directoryOfBooks.Add(new book(name, author, isbn));
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Added Successfully");
-            Console.ForegroundColor = ConsoleColor.White;
+            directoryOfBooks.Add(new book(nameOfBook, authorOfBook, isbnOfBook));
             return true;
         }
 
@@ -177,18 +201,17 @@
         /// It will edit the name of the book alone in the product
         /// </summary>
         /// <param name="directoryOfBooks">It take the reference of the list of book from the main method</param>
-        /// <returns>It returns bool to whether to terminate the process</returns>
-        public static bool EditNameOfProduct(List<book> directoryOfBooks)
+        /// <param name="position">It takes the Position of the element</param>
+        /// <param name="nameOfBook">It takes the name of the book</param>
+        /// <returns>It returns bool status of the removal of book from the list/returns>
+        public static bool EditNameOfProduct(List<book> directoryOfBooks, int position, string nameOfBook)
         {
-            Console.WriteLine("Edit the Book Name Alone");
-            Console.Write("Enter the position of the book : ");
-            if (int.TryParse(Console.ReadLine(), out int position) && position > 0 && position <= directoryOfBooks.Count)
+            if (position > 0 && position <= directoryOfBooks.Count)
             {
-                book temporaryElement1 = directoryOfBooks.ElementAt(position - 1);
+                book currentBookInList = directoryOfBooks.ElementAt(position - 1);
                 Console.WriteLine("Details of about the book : ");
-                DisplayBook(temporaryElement1, position);
-                Console.Write("Enter the name : ");
-                string nameOfBook = IsValidName("Book");
+                DisplayBook(currentBookInList, position);
+                nameOfBook = IsValidName(nameOfBook);
                 if (nameOfBook == null)
                 {
                     return false;
@@ -206,31 +229,29 @@
                 Console.ForegroundColor = ConsoleColor.White;
             }
 
-            return true;
+            return false;
         }
 
         /// <summary>
-        /// Display Books
+        /// Display all the book present in the list
         /// </summary>
-        /// <param name="b">Book</param>
-        /// <param name="index">It tells the position</param>
-        public static void DisplayBook(book b, int index)
+        /// <param name="bookDetails">It takes the book details as the book format</param>
+        /// <param name="positionOfBook">It takes the position book in the list to be printed</param>
+        public static void DisplayBook(book bookDetails, int positionOfBook)
         {
-            var (name, author, isbn) = b;
-            Console.WriteLine($"\n{index}. Name : {name}");
+            var (name, author, isbn) = bookDetails;
+            Console.WriteLine($"\n{positionOfBook}. Name : {name}");
             Console.WriteLine($"   Author : {author}");
             Console.WriteLine($"   ISBN : {isbn}");
         }
 
         /// <summary>
-        /// Method is to validate name
+        /// Method is to validate name of the book and author of the book
         /// </summary>
+        /// <param name="name">It takes the name of the book to be validated</param>
         /// <returns>It returns valid name of the product</returns>
-        /// <param name="type">Type of the input</param>
-        public static string IsValidName(string type)
+        public static string IsValidName(string name)
         {
-            Console.Write($"Enter the {type} Name : ");
-            string name = Console.ReadLine();
             Regex pattern = new Regex("^[a-zA-Z\\s]+$");
             if (pattern.IsMatch(name))
             {
@@ -241,29 +262,22 @@
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Invalid Name");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("Press Escape key to Exit and Other key to continue....");
-                if (Console.ReadKey().Key == ConsoleKey.Escape)
-                {
-                    return null;
-                }
-
-                Console.Clear();
-                return IsValidName(type);
             }
+
+            return null;
         }
 
         /// <summary>
-        /// Method is to validate name
+        /// Method is to validate ISBN number of the book
         /// </summary>
-        /// <returns>It returns valid name of the product</returns>
-        public static string IsValidISBN()
+        /// <param name="isbn">It takes the ISBN number of the book</param>
+        /// <returns>It returns valid ISBN number of the product</returns>
+        public static string IsValidISBN(string isbn)
         {
-            Console.Write("Enter the book ISBN Number: ");
-            string name = Console.ReadLine();
-            Regex pattern = new Regex("^\\d{9}[\\d|X]$|^(\\d{3}-){2}\\d{3}-[\\d|X]$");
-            if (pattern.IsMatch(name))
+            Regex pattern = new Regex("^(?=(?:[^0-9]*[0-9]){10}(?:(?:[^0-9]*[0-9]){3})?$)[\\d-]+$");
+            if (pattern.IsMatch(isbn))
             {
-                return name;
+                return isbn;
             }
             else
             {
@@ -271,14 +285,9 @@
                 Console.WriteLine("Invalid ISBN number");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Press Escape key to Exit and Other key to continue....");
-                if (Console.ReadKey().Key == ConsoleKey.Escape)
-                {
-                    return null;
-                }
-
-                Console.Clear();
-                return IsValidISBN();
             }
+
+            return null;
         }
     }
 }

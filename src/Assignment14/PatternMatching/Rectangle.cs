@@ -1,9 +1,9 @@
-﻿namespace ShapeHierarchy
+﻿namespace PatternMatching
 {
     /// <summary>
     /// Rectangle class
     /// </summary>
-    internal class Rectangle : Shape
+    public class Rectangle : Shape
     {
         /// <summary>
         /// It returns the area of rectangle by formula length * breath
@@ -11,7 +11,7 @@
         /// <returns>It returns the double type of the answer from the formula</returns>
         public override double CalculateArea()
         {
-            return this.Input1 * this.Input2;
+            return Math.Round(this.Input1 * this.Input2, 2);
         }
     }
 }

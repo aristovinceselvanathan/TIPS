@@ -1,4 +1,4 @@
-﻿namespace Task5
+﻿namespace DelegatesForSorting
 {
     /// <summary>
     /// Product Class
@@ -6,33 +6,33 @@
     public class Product
     {
         /// <summary>
-        /// Gets or sets hello
+        /// Gets or sets Name of the Product
         /// </summary>
         /// <value>
-        /// Name
+        /// String type of the name
         /// </value>
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets hello
+        /// Gets or sets Category of the Product
         /// </summary>
         /// <value>
-        /// Name
+        /// String type of Category
         /// </value>
         public string Category { get; set; }
 
         /// <summary>
-        /// Gets or sets hello
+        /// Gets or sets Price of the Product
         /// </summary>
         /// <value>
-        /// Name
+        /// Decimal type of the Price
         /// </value>
         public decimal? Price { get; set; }
 
         /// <summary>
         /// Overrides the toString
         /// </summary>
-        /// <returns>string</returns>
+        /// <returns>It returns the details of the product</returns>
         public override string ToString()
         {
             return $"Product Name : {this.Name} Category : {this.Category} Price : {this.Price},";
