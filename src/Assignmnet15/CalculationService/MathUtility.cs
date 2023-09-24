@@ -3,7 +3,7 @@
     /// <summary>
     /// MathUtility Class
     /// </summary>
-    internal class MathUtility
+    public class MathUtility
     {
         /// <summary>
         /// Addition function

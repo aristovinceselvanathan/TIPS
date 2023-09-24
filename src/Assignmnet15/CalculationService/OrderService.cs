@@ -5,7 +5,7 @@
     /// <summary>
     /// OrderService Class
     /// </summary>
-    internal class OrderService
+    public class OrderService
     {
         private enum Options
         {
