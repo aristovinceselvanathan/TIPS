@@ -143,7 +143,6 @@
                     }
                     else
                     {
-                        Program.WarningMessageFromConsole("Operation is unsuccessful");
                         Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
                         if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
                         {

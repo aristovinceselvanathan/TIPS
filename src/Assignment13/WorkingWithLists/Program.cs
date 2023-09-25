@@ -1,9 +1,9 @@
-﻿using System.Text.RegularExpressions;
-
-namespace WorkingWithList
+﻿namespace WorkingWithList
 {
+    using System.Text.RegularExpressions;
+
     /// <summary>
-    /// Program Class
+    /// Program Class it contains the entry point of the program
     /// </summary>
     public class Program
     {
@@ -19,11 +19,11 @@ namespace WorkingWithList
         /// <summary>
         /// Main method takes the title of the books and store it in list to perform the library management system
         /// </summary>
-        /// <param name="args">It takes the string array from the command line</param>
+        /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
             bool flag = true;
-            List<string> directoryOfBooks = new();
+            List<string> directoryOfBooks = new ();
 
             while (flag)
             {
@@ -51,7 +51,7 @@ namespace WorkingWithList
                             Console.WriteLine("Exiting....");
                             break;
                         default:
-                            WarningMessageFromConsole("Invalid O ption - Please enter the in range between 1 to 5");
+                            WarningMessageFromConsole("Invalid Option - Please enter the in range between 1 to 5");
                             break;
                     }
                 }
@@ -67,10 +67,10 @@ namespace WorkingWithList
         }
 
         /// <summary>
-        /// Add the book Functionality
+        /// Method it will add the book into the directory of books
         /// </summary>
-        /// <param name="directoryOfBooks">It takes the Directory of Books</param>
-        /// <returns>It terminate</returns>
+        /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
+        /// <returns>It returns status of the addition of the book in the list</returns>
         public static bool AddBook(List<string> directoryOfBooks)
         {
             string book;
@@ -82,7 +82,7 @@ namespace WorkingWithList
                 book = Console.ReadLine().Trim();
                 if (ValidTitleNameOfBook(book))
                 {
-                    BookList<string>.AddBook(directoryOfBooks, book);
+                    flag = !BookList<string>.AddBook(directoryOfBooks, book);
                 }
                 else
                 {
@@ -103,10 +103,10 @@ namespace WorkingWithList
         }
 
         /// <summary>
-        /// Method to remove the book from the Directory
+        /// Method to remove the book from the Directory of books
         /// </summary>
         /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
-        /// <returns>It returns terminate</returns>
+        /// <returns>It returns status of the removal of the book from the list</returns>
         public static bool RemoveBook(List<string> directoryOfBooks)
         {
             string book;
@@ -118,7 +118,7 @@ namespace WorkingWithList
                 book = Console.ReadLine().Trim();
                 if (ValidTitleNameOfBook(book))
                 {
-                    BookList<string>.RemoveBook(directoryOfBooks, book);
+                    flag = !BookList<string>.RemoveBook(directoryOfBooks, book);
                 }
                 else
                 {
@@ -139,10 +139,10 @@ namespace WorkingWithList
         }
 
         /// <summary>
-        /// Method to searches for the title of the books present in the directory
+        /// Method to searches for the title of the books present in the directory of books
         /// </summary>
         /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
-        /// <returns>Value Found</returns>
+        /// <returns>It returns the whether the book is present in the directory</returns>
         public static bool SearchBook(List<string> directoryOfBooks)
         {
             int sizeOfDirectory = directoryOfBooks.Count();

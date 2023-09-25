@@ -9,7 +9,7 @@
     public class TicketQueue<T>
     {
         /// <summary>
-        /// Method add the person name into the queue of the people
+        /// Method add the person details into the queue of the people
         /// </summary>
         /// <param name="ticketLine">Reference to the queue contains name of the Persons</param>
         /// <param name="nameOfPerson">Name of the Person to be added into the queue</param>
@@ -19,7 +19,7 @@
             if (!ValidNameOfPerson(nameOfPerson))
             {
                 Program.WarningMessageFromConsole("Invalid name of a Person");
-                Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
+                Console.WriteLine("Press Any key to continue....");
                 return false;
             }
             else if (!ticketLine.Contains(nameOfPerson))
@@ -37,7 +37,7 @@
         }
 
         /// <summary>
-        /// Remove the Persons from the queue of the people
+        /// Method will remove the person details from the queue of the people
         /// </summary>
         /// <param name="ticketLine">Reference to the queue contains names of the Persons</param>
         /// <returns>It returns status of the dequeue of person from queue</returns>
@@ -63,7 +63,7 @@
         /// <summary>
         /// Method displays all the name of the Persons present in the queue
         /// </summary>
-        /// <param name="queue">Queue that contains the name of the persons</param>
+        /// <param name="queue">Reference to the queue that contains the name of the persons</param>
         public void DisplayAll(Queue<T> queue)
         {
             if (queue.Count() > 0)

@@ -1,7 +1,5 @@
 ﻿namespace WorkingWithList
 {
-    using System.Text.RegularExpressions;
-
     /// <summary>
     /// BookList Class
     /// </summary>
@@ -33,7 +31,7 @@
             }
             else
             {
-                Program.WarningMessageFromConsole("Out of Space in the directory");
+                Program.WarningMessageFromConsole("Directory is Full!!! - Please remove a book to perform the action\"");
             }
 
             return false;

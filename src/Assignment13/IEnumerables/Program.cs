@@ -23,6 +23,7 @@
                 {
                     for (int i = 0; i < sizeOfNumberList; i++)
                     {
+                        Console.Write($"Enter the Number at index {i} : ");
                         if (int.TryParse(Console.ReadLine(), out int value))
                         {
                             flag = AddElements(numberList, value);
@@ -34,27 +35,32 @@
                         else
                         {
                             Console.Write("Invalid Input, Press Esc key to Exit, Any Other key to Continue");
-                            if (Console.ReadKey().Key == ConsoleKey.Escape)
+                            if (Console.ReadKey(false).Key == ConsoleKey.Escape)
                             {
                                 Console.WriteLine("Exiting....");
                                 flag = false;
                             }
+
+                            Console.Clear();
                         }
                     }
                 }
                 else
                 {
                     Console.WriteLine("Invalid Input, Press Esc key to Exit, Any Other key to Continue");
-                    if (Console.ReadKey().Key == ConsoleKey.Escape)
+                    if (Console.ReadKey(false).Key == ConsoleKey.Escape)
                     {
                         Console.WriteLine("Exiting....");
                         flag = false;
                     }
                 }
+
                 if (!flag)
                 {
                     Console.WriteLine("Exiting....");
                 }
+
+                Console.Clear();
             }
         }
 

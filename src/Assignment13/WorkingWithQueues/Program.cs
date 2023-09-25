@@ -18,7 +18,7 @@
         /// <summary>
         /// Main method takes the name of the Persons and store it in queue to perform the ticket management system
         /// </summary>
-        /// <param name="args">It takes the string array from the command line</param>
+        /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
             bool flag = true;
@@ -56,8 +56,6 @@
                 {
                     WarningMessageFromConsole("Invalid Input!!! - Required Number");
                 }
-
-                Console.WriteLine("Press any key to continue...");
                 Console.ReadKey(true);
                 Console.Clear();
             }

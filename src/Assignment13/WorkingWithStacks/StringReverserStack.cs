@@ -11,7 +11,7 @@
         /// <summary>
         /// It checks for the user input matches the alphabetic pattern
         /// </summary>
-        /// <param name="userInput">User input alphabetic characters</param>
+        /// <param name="userInput">User input contains only alphabetic characters</param>
         /// <returns>Return true if it matches the condition,else false</returns>
         public static bool ValidUserInput(string userInput)
         {
@@ -29,7 +29,7 @@
         /// </summary>
         /// <param name="stack">It takes the stack to reverse the string</param>
         /// <param name="userInput">It takes the user Input to reverse it</param>
-        /// <returns>string of reversed</returns>
+        /// <returns>It returns the string in reversed mananer</returns>
         public string StringReverser(Stack<T> stack, string userInput)
         {
             string output = " ";
