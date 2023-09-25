@@ -1,12 +1,12 @@
 ﻿namespace IDisposableDemo
 {
     /// <summary>
-    /// Program Class
+    /// Program Class it contains the entry point of the program
     /// </summary>
     internal class Program
     {
         /// <summary>
-        /// Main method that writes the text into the file.
+        /// Main method that writes the predefined text into the file by using the file writer and reads from the file.
         /// </summary>
         /// <param name="args">It takes the string array from command line interface</param>
         public static void Main(string[] args)
