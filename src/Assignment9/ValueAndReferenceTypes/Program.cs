@@ -1,12 +1,14 @@
 ﻿namespace ValueAndReferenceTypes
 {
+    using ExtendedValueAndReferenceType;
+
     /// <summary>
-    /// Program Class
+    /// Program Class that contains the entry of the program
     /// </summary>
     internal class Program
     {
         /// <summary>
-        /// Main method that creates the Value and Reference Type objects
+        /// Main method that creates the Value and Reference Type field and print the fields
         /// </summary>
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
@@ -14,33 +16,29 @@
             Employee employee = new Employee();
             int value = 100;
 
-            employee.Id = "1001";
-            employee.Name = "Tom Cruise";
-            employee.Designation = "IT";
-
             Console.WriteLine("Reference Type : Employee System");
-            Console.WriteLine(employee);
-            ChangeEmployee(employee);
-            Console.WriteLine(employee);
-            Console.WriteLine("Value Type : Update Value ");
             Console.WriteLine($"Value is {value}");
-            UpdateValue(value);
-            Console.WriteLine($"Value is after calling the function to change value is {value}");
+            Console.WriteLine(employee);
+            ChangeValues(employee, value);
+            Console.WriteLine("After the function call:");
+            Console.WriteLine(employee);
+            Console.WriteLine($"Value is after calling the function to change value is {value}\n");
             Console.WriteLine("To create the Large Number of Local Variable");
-            LargeNumberLocalVariable();
+            ExtendedValueAndReferenceType.LargeNumberLocalVariable();
             Console.WriteLine("Press Any Key to Continue:");
             Console.ReadKey();
             Console.WriteLine("To create the Large Array of Integer");
-            LargeArray();
+            ExtendedValueAndReferenceType.LargeArray();
             Console.WriteLine("Press Any Key to Continue:");
             Console.ReadKey();
         }
 
         /// <summary>
-        /// It will change the value by reference
+        /// Method will change the value of the parameter int the predefined manner by using value type and reference type
         /// </summary>
         /// <param name="employee">It takes the employee class as the input to change it</param>
-        public static void ChangeEmployee(Employee employee)
+        /// <param name="value">It will take the value as input and change it</param>
+        public static void ChangeValues(Employee employee, int value)
         {
             Console.WriteLine("Employee Update Details");
 
@@ -48,39 +46,8 @@
             employee.Name = "Jim Cook";
             employee.Designation = "Admin";
             Console.WriteLine(employee);
-        }
-
-        /// <summary>
-        /// It updates the variable by value type
-        /// </summary>
-        /// <param name="value">It takes the value as integer to change itr</param>
-        public static void UpdateValue(int value)
-        {
             value = 200;
             Console.WriteLine($"Value in the function: {value}");
-        }
-
-        /// <summary>
-        /// Method creates the large array of Integers.
-        /// </summary>
-        public static void LargeArray()
-        {
-            int[] arr = new int[1000000000];
-            for (int i = 0; i < 1000000000; i++)
-            {
-                arr[i] = i;
-            }
-        }
-
-        /// <summary>
-        /// Method creates the large numbers of local variables.
-        /// </summary>
-        public static void LargeNumberLocalVariable()
-        {
-            for (int i = 0; i < 1000000000; i++)
-            {
-                int a = i;
-            }
         }
     }
 }

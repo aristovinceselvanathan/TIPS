@@ -6,6 +6,17 @@
     internal class Employee
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Employee"/> class.
+        /// It sets the predefined value to the Employee object.
+        /// </summary>
+        public Employee()
+        {
+            this.Id = "1001";
+            this.Name = "Tom Cruise";
+            this.Designation = "IT";
+        }
+
+        /// <summary>
         /// Gets or Sets Id of the employee
         /// </summary>
         /// <value>

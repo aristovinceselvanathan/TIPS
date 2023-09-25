@@ -1,7 +1,7 @@
 ﻿namespace GarbageCollection
 {
     /// <summary>
-    /// Program class
+    /// Program class it contains the entry point of the program
     /// </summary>
     internal class Program
     {
@@ -18,7 +18,7 @@
         }
 
         /// <summary>
-        /// It creates the number of objects
+        /// It creates the number of objects of type account
         /// </summary>
         public static void CreateNumberOfObjects()
         {

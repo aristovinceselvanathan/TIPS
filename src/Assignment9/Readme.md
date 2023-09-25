@@ -82,6 +82,42 @@ To allow for proper handling of multiple items with varying lifetimes during gar
 
 3. Generation 2: If certain generation 1 objects take up space that isn't freed up in the following trash collection cycle, those things are transferred to generation 2. The generation 2 objects have a lengthy lifespan since they stay in the heap memory throughout the entire process, like static objects.
 
+## Understandings of the Project
+
+1. **Value Types and Reference Types:**
+
+   - C# distinguishes between value types (e.g., integers, structs) and reference types (e.g., classes).
+
+   - Value types are stored directly in memory, while reference types are stored as references to memory locations.
+
+2. **Memory Management with Stack and Heap:**
+
+   - Stack memory is used for local variables and method call information, and it operates in a last-in, first-out (LIFO) manner.
+
+   - Heap memory is used for dynamically allocated objects like arrays and objects created using the `new` keyword.
+
+3. **Garbage Collection:**
+
+   - Garbage collection is a memory management technique in C# that automatically frees up memory occupied by objects no longer in use.
+
+   - The garbage collector categorizes objects into different generations (0, 1, and 2) based on their age and collects them accordingly.
+
+   - Manual garbage collection using `GC.Collect` can be used, but it may impact application performance.
+
+4. **IDisposable Interface:**
+
+   - The `IDisposable` interface is used to release both managed and unmanaged resources properly.
+
+   - Implementing `IDisposable` involves defining a `Dispose` method and a protected virtual `Dispose(bool disposing)` method.
+
+   - It ensures that resources are released explicitly, reducing the chance of resource leaks.
+
+5. **Finalization:**
+
+   - The garbage collector supports finalization, which allows objects to perform cleanup before they are destroyed.
+
+   - Finalizable objects are placed in a separate finalization queue and processed after other objects are collected.
+	
 ## IDisposable Interface
 
 IDisposable is an interface defined in the System namespace. It is used to release managed and unmanaged resources. Implementing the IDisposable interface forces us to implement 2 methods and one Boolean variable: 

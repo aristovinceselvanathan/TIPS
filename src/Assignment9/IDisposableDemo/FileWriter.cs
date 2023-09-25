@@ -18,7 +18,7 @@
         }
 
         /// <summary>
-        /// It writes to the file
+        /// It writes to the file by using the stream writer
         /// </summary>
         /// <param name="text">It takes the information as string</param>
         public void WriteToTheFile(string text)
@@ -27,7 +27,7 @@
         }
 
         /// <summary>
-        /// It will dispose the unmanaged files
+        /// It will dispose the unmanaged files to clear the unwanted memory.
         /// </summary>
         public void Dispose()
         {
