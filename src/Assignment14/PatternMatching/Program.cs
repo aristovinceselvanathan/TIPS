@@ -3,7 +3,7 @@
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// Program Class
+    /// Program Class it contains the entry point of the program
     /// </summary>
     internal class Program
     {
@@ -71,7 +71,7 @@
         }
 
         /// <summary>
-        /// Method checks for the string is contains only alphabets
+        /// Method checks for the string is contains only alphabets to validate the color
         /// </summary>
         /// <param name="color">It takes the name of color of the shape</param>
         /// <returns>It returns bool about the match the pattern</returns>
@@ -89,7 +89,7 @@
         /// <summary>
         /// It shows the colorful warning message of the invalid input
         /// </summary>
-        /// <param name="nameOfEvent">It takes the name of the input</param>
+        /// <param name="nameOfEvent">It takes the name of the event occurred</param>
         public static void WarningMessageFromConsole(string nameOfEvent)
         {
             Console.BackgroundColor = ConsoleColor.Red;
@@ -100,9 +100,9 @@
         }
 
         /// <summary>
-        /// It takes the details about the shape
+        /// It gets the details about the shape from the user
         /// </summary>
-        /// <param name="typeOfShape">It determines the type of the shape</param>
+        /// <param name="typeOfShape">It takes the shape object as reference from main method</param>
         public static void GetDetailsOfShape(Shape typeOfShape)
         {
             string colorOfShape, userInputOfDimensions1, userInputOfDimensions2;
@@ -189,7 +189,7 @@
         }
 
         /// <summary>
-        /// Display the shape details by the pattern matching
+        /// Method determines the type of the shape by the pattern matching
         /// </summary>
         /// <param name="shape">It takes the reference of the shape from the main method</param>
         public static void DisplayShapeDetails(Shape shape)

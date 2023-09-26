@@ -65,7 +65,7 @@ namespace AnonymousMethod.Tests
             var output = outputWriter.ToString().Trim();
 
             // Assert
-            Assert.Equal("123", output);
+            Assert.Equal("1, 2, 3,", output);
         }
         [Fact]
         public void SortByUsingDelegate_SortsEmptyArray()

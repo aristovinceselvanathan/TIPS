@@ -59,6 +59,7 @@
                     flag = false;
                 }
 
+                numberList.Clear();
                 Console.Clear();
             }
         }
@@ -67,7 +68,7 @@
         /// It will filter the list divisible by the zero
         /// </summary>
         /// <param name="numberList">It takes the reference of the list contains number</param>
-        /// <returns>It returns IEnumerable contains the filtered items</returns>
+        /// <returns>It returns IEnumerable contains the filtered items from the list</returns>
         public static IEnumerable<int> FilterList(List<int> numberList)
         {
             return numberList.Where(x => x % 2 == 0);
@@ -77,7 +78,7 @@
         /// It will select all the elements from the list and square it
         /// </summary>
         /// <param name="numberList">It takes the reference of the list contains number</param>
-        /// <returns>It returns IEnumerable contains the squared items</returns>
+        /// <returns>It returns IEnumerable contains the squared items from the list</returns>
         public static IEnumerable<double> SelectList(List<int> numberList)
         {
             return numberList.Select(x => Math.Pow(x, 2));
@@ -111,10 +112,10 @@
         }
 
         /// <summary>
-        /// Method to display all the elements in the list
+        /// Method to display all the elements present in the list
         /// </summary>
-        /// <param name="numberList">It has the IEnumerator of the list</param>
-        /// <typeparam name="T">Type of the IEnumerator</typeparam>
+        /// <param name="numberList">It has the IEnumerator of the list to iterate the list</param>
+        /// <typeparam name="T">Data Type of the IEnumerator that is passed</typeparam>
         public static void DisplayTheList<T>(IEnumerator<T> numberList)
         {
             Console.WriteLine("List is : ");

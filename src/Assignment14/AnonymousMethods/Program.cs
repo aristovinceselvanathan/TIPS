@@ -17,6 +17,7 @@
             {
                 Console.WriteLine("Sort the integer in the ascending order");
                 Console.Write("Enter the length of the array : ");
+
                 if (int.TryParse(Console.ReadLine(), out int sizeOfArray))
                 {
                     int[] arrayOfNumber = new int[sizeOfArray];
@@ -51,7 +52,7 @@
         /// <summary>
         /// It sorts the integer array by the delegate that invoke the method
         /// </summary>
-        /// <param name="arrayOfNumber">It takes the integer array that contains number</param>
+        /// <param name="arrayOfNumber">It is reference of the array from the main method</param>
         public static void SortByUsingDelegate(int[] arrayOfNumber)
         {
             Array.Sort(arrayOfNumber, delegate (int x, int y) { return x.CompareTo(y); });
@@ -85,12 +86,12 @@
         /// <summary>
         /// Method to display all the elements in the list
         /// </summary>
-        /// <param name="arrayOfNumber">It is reference of the list from the main method</param>
+        /// <param name="arrayOfNumber">It is reference of the array from the main method</param>
         public static void DisplayTheArray(int[] arrayOfNumber)
         {
             for (int i = 0; i < arrayOfNumber.Length; i++)
             {
-                Console.Write($"{arrayOfNumber[i]}");
+                Console.Write($"{arrayOfNumber[i]}, ");
             }
 
             Console.WriteLine();

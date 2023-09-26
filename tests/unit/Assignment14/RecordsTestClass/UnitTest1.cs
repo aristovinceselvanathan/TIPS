@@ -1,7 +1,6 @@
 namespace Records.Tests
 {
     using Records;
-
     public class ProgramTests
     {
         [Fact]

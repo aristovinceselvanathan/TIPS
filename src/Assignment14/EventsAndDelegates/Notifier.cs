@@ -19,12 +19,12 @@
         /// <summary>
         /// It checks for OnAction is null, if null means there is no method is registered to the delegate
         /// </summary>
-        /// <param name="s">It takes the message</param>
-        public void Action(string s)
+        /// <param name="message">It takes the message it is string</param>
+        public void Action(string message)
         {
             if (this.OnAction != null)
             {
-                this.OnAction.Invoke(s);
+                this.OnAction.Invoke(message);
             }
             else
             {

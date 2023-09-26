@@ -10,9 +10,9 @@
         public record book(string name, string author, string isbn)
         {
             /// <summary>
-            /// Override the ToString Method of the object
+            /// Override the ToString Method of the record of the book
             /// </summary>
-            /// <returns>String to print the details of the book</returns>
+            /// <returns>It returns the string to print the details of the book</returns>
             public override string ToString()
             {
                 return $"Name : {this.name}\nAuthor Name : {this.author}\nISBN Number : {this.isbn}";
@@ -30,7 +30,7 @@
         }
 
         /// <summary>
-        /// Method asks the user to perform actions in the record list
+        /// Method asks the user for type of actions to be performed in the record list
         /// </summary>
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
@@ -123,7 +123,7 @@
                                 book temporaryElement = directoryOfBooks.ElementAt(position - 1);
                                 Console.WriteLine("Original Value before the Duplicate is Created : ");
                                 Console.WriteLine(temporaryElement);
-                                var temp1 = temporaryElement with { name = "Book of Persia", author = "Nivia" };
+                                var temp1 = temporaryElement with { name = "Book of Persia", author = "John Cobol" };
                                 Console.WriteLine("Original Value after the Duplicate is Created : ");
                                 Console.WriteLine(temporaryElement);
                                 Console.WriteLine("Duplicated value : ");
@@ -233,7 +233,7 @@
         }
 
         /// <summary>
-        /// Display all the book present in the list
+        /// Display all the books that are present in the book of list
         /// </summary>
         /// <param name="bookDetails">It takes the book details as the book format</param>
         /// <param name="positionOfBook">It takes the position book in the list to be printed</param>
@@ -246,10 +246,10 @@
         }
 
         /// <summary>
-        /// Method is to validate name of the book and author of the book
+        /// Method is to validate title of the book and author of the book
         /// </summary>
-        /// <param name="name">It takes the name of the book to be validated</param>
-        /// <returns>It returns valid name of the product</returns>
+        /// <param name="name">It takes the title or author name of the book to be validated</param>
+        /// <returns>It returns valid title / name of author of the book</returns>
         public static string IsValidName(string name)
         {
             Regex pattern = new Regex("^[a-zA-Z\\s]+$");
@@ -284,7 +284,6 @@
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Invalid ISBN number");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("Press Escape key to Exit and Other key to continue....");
             }
 
             return null;

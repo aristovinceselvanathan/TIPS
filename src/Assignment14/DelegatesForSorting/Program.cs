@@ -28,6 +28,7 @@
             {
                 Console.WriteLine("Welcome to Products Manager");
                 Console.Write("Enter the size of the list : ");
+
                 if (int.TryParse(Console.ReadLine(), out int size) && size > 0)
                 {
                     flag = AddElementToArray(productsList, size);
@@ -62,6 +63,7 @@
                     flag = false;
                 }
 
+                productsList.Clear();
                 Console.Clear();
             }
         }
@@ -102,22 +104,22 @@
         }
 
         /// <summary>
-        /// Sort By Name of the Product
+        /// Sort By Name of the products in the list
         /// </summary>
-        /// <param name="product1">Reference of the product1</param>
-        /// <param name="product2">Reference of the product2</param>
-        /// <returns>It will return integer to sort the list</returns>
+        /// <param name="product1">Reference of the product1 to compare</param>
+        /// <param name="product2">Reference of the product2 to compare</param>
+        /// <returns>It will return integer to sort the list by comparing the two strings using compare</returns>
         public static int SortByName(Product product1, Product product2)
         {
               return string.Compare(product1.Name, product2.Name, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <summary>
-        /// Sort By Category of the Product
+        /// Sort By Category of the products in the list
         /// </summary>
-        /// <param name="product1">Reference of the product1</param>
-        /// <param name="product2">Reference of the product2</param>
-        /// <returns>It will return integer to sort the list</returns>
+        /// <param name="product1">Reference of the product1 to compare</param>
+        /// <param name="product2">Reference of the product2 to compare</param>
+        /// <returns>It will return integer to sort the list by comparing the two strings using compare</returns>
         public static int SortByCategory(Product product1, Product product2)
         {
             return string.Compare(product1.Category, product2.Category, StringComparison.InvariantCultureIgnoreCase);
@@ -126,9 +128,9 @@
         /// <summary>
         /// Sort By Price of the Product
         /// </summary>
-        /// <param name="product1">Reference of the product1</param>
-        /// <param name="product2">Reference of the product2</param>
-        /// <returns>It will return integer to sort the list</returns>
+        /// <param name="product1">Reference of the product1 to compare</param>
+        /// <param name="product2">Reference of the product2 to compare</param>
+        /// <returns>It will return integer to sort the list by comparing the two decimal using compare</returns>
         public static int SortByPrice(Product product1, Product product2)
         {
                 return decimal.Compare((decimal)product1.Price, (decimal)product2.Price);
@@ -138,7 +140,7 @@
         /// It will use the sort delegate to invoke the method to sort the list and display it using the iterator
         /// </summary>
         /// <param name="sortMethod">It will invoke the sort method that are subscribed to the delegate</param>
-        /// <param name="productsList">reference of the list of the products from the main method</param>
+        /// <param name="productsList">Reference of the list of the products from the main method</param>
         public static void SortAndDisplay(SortDelegate sortMethod, List<Product> productsList)
         {
             productsList.Sort((product1, product2) => sortMethod(product1, product2));
@@ -187,14 +189,14 @@
         {
             Console.Write($"Enter the Category of the Product at {indexOfArray + 1}: ");
             string category = Console.ReadLine();
-            List<string> categories = new List<string> { "home", "fashion", "medicines", "food", "electronics", "grocery", "furniture", "toys" };
+            List<string> categories = new List<string> { "home", "fashion", "medicines", "food", "electronics", "grocery", "furniture", "toy" };
             if (categories.Contains(category.ToLower()))
             {
                 return category;
             }
             else
             {
-                Console.WriteLine("Invalid Category - Select from this category home, fashion, medicines, food, electronics, grocery, furniture, toys");
+                Console.WriteLine("Invalid Category - Select from this category home, fashion, medicines, food, electronics, grocery, furniture, toy");
                 Console.WriteLine("Press Escape key to Exit and Other key to continue....");
                 if (Console.ReadKey().Key == ConsoleKey.Escape)
                 {
