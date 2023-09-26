@@ -18,7 +18,7 @@
         /// <summary>
         /// Main method takes the name and grade of the Students and store it in Directory to perform the student management system
         /// </summary>
-        /// <param name="args">It takes the string array from the command line</param>
+        /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
         {
             bool flag = true;
@@ -72,6 +72,7 @@
             string nameOfStudent;
             int sizeOfDirectory = studentDirectory.Count();
             bool flag = true;
+
             while (flag)
             {
                 Console.Write("Enter the name of a Student to add: ");
@@ -122,7 +123,7 @@
         }
 
         /// <summary>
-        /// Method to remove the student details from the Directory
+        /// Method to remove the student details from the Directory of students
         /// </summary>
         /// <param name="studentDirectory">Reference to the Dictionary contains names and grades of the Students</param>
         public static void Remove(Dictionary<string, int> studentDirectory)
@@ -178,6 +179,7 @@
         public static bool ValidNameOfStudent(string name)
         {
             Regex pattern = new Regex("^[A-Za-z\\s]+$");
+
             if (pattern.IsMatch(name))
             {
                 return true;

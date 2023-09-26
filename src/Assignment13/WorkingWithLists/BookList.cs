@@ -7,19 +7,19 @@
     public class BookList<T>
     {
         /// <summary>
-        /// Method to add the book to the directory
+        /// Method to add the book details into the directory
         /// </summary>
         /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
-        /// <param name="bookName">It takes the Book Name</param>
-        /// <returns>It returns status of the addition of book into the List</returns>
-        public static bool AddBook(List<T> directoryOfBooks, T bookName)
+        /// <param name="bookTitle">It takes the Title of the Book</param>
+        /// <returns>It returns status of the addition of book into the Directory of books</returns>
+        public static bool AddBook(List<T> directoryOfBooks, T bookTitle)
         {
             int sizeOfDirectory = directoryOfBooks.Count;
             if (sizeOfDirectory >= 0 && sizeOfDirectory < 5)
             {
-                if (!directoryOfBooks.Contains(bookName))
+                if (!directoryOfBooks.Contains(bookTitle))
                 {
-                    directoryOfBooks.Add(bookName);
+                    directoryOfBooks.Add(bookTitle);
                     Program.SuccessfulMessageFromConsole("Book added successfully");
                     Console.WriteLine($"Size of the directory : {sizeOfDirectory + 1}");
                     return true;
@@ -41,15 +41,15 @@
         /// Method to remove the book from the Directory
         /// </summary>
         /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
-        /// <param name="bookName">It takes the book name to remove</param>
+        /// <param name="bookTitle">It takes the title of the book to remove</param>
         /// <returns>It returns status of the removal of book from the dictionary</returns>
-        public static bool RemoveBook(List<T> directoryOfBooks, T bookName)
+        public static bool RemoveBook(List<T> directoryOfBooks, T bookTitle)
         {
             int sizeOfDirectory = directoryOfBooks.Count();
 
             if (sizeOfDirectory > 0 && sizeOfDirectory <= 5)
             {
-                if (directoryOfBooks.Remove(bookName))
+                if (directoryOfBooks.Remove(bookTitle))
                 {
                     Program.SuccessfulMessageFromConsole("Book is removed Successfully");
                     Console.WriteLine($"Size of the directory : {sizeOfDirectory - 1}");
@@ -69,20 +69,20 @@
         }
 
         /// <summary>
-        /// Method to searches for the title of the books present in the directory
+        /// Method to searches for the title of the book present in the directory of books
         /// </summary>
         /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
-        /// <param name="book"> It takes the name of the book</param>
+        /// <param name="bookTitle"> It takes the title of the book</param>
         /// <returns>It returns the index of the book present in the Directory</returns>
-        public static int? SearchTheDirectory(List<T> directoryOfBooks, T book)
+        public static int? SearchTheDirectory(List<T> directoryOfBooks, T bookTitle)
         {
             int sizeOfDirectory = directoryOfBooks.Count();
 
             if (sizeOfDirectory > 0)
             {
-                if (directoryOfBooks.Contains(book))
+                if (directoryOfBooks.Contains(bookTitle))
                 {
-                    return directoryOfBooks.IndexOf(book);
+                    return directoryOfBooks.IndexOf(bookTitle);
                 }
                 else
                 {
@@ -98,7 +98,7 @@
         }
 
         /// <summary>
-        /// Method displays all the title of the books present in the directory
+        /// Method displays all the tile of the books present in the directory
         /// </summary>
         /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
         public static void DisplayAll(List<T> directoryOfBooks)

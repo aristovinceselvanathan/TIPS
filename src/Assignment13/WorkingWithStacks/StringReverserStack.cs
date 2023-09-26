@@ -5,7 +5,7 @@
     /// <summary>
     /// StringReverser Class
     /// </summary>
-    /// <typeparam name="T">It takes the type</typeparam>
+    /// <typeparam name="T">It takes the type of the Data for Parameter</typeparam>
     public class StringReverserStack<T>
     {
         /// <summary>
@@ -29,7 +29,7 @@
         /// </summary>
         /// <param name="stack">It takes the stack to reverse the string</param>
         /// <param name="userInput">It takes the user Input to reverse it</param>
-        /// <returns>It returns the string in reversed mananer</returns>
+        /// <returns>It returns the string in reversed manner</returns>
         public string StringReverser(Stack<T> stack, string userInput)
         {
             string output = " ";

@@ -34,11 +34,11 @@
         }
 
         /// <summary>
-        /// Method to remove the student details from the Directory
+        /// Method to remove the student details from the Directory of Students
         /// </summary>
         /// <param name="studentDirectory">Reference to the Dictionary contains names and grades of the Students</param>
-        /// <param name="nameOfStudent"> It takes the name of the name</param>
-        /// <returns>It returns status of the removal of student</returns>
+        /// <param name="nameOfStudent"> It takes the name of the Student</param>
+        /// <returns>It returns status of the removal of student from the directory</returns>
         public static bool Remove(Dictionary<T1, T2> studentDirectory, T1 nameOfStudent)
         {
             int sizeOfDirectory = studentDirectory.Count();

@@ -80,7 +80,7 @@
             {
                 Console.WriteLine("Enter the title of a book to add: ");
                 book = Console.ReadLine().Trim();
-                if (ValidTitleNameOfBook(book))
+                if (ValidTitleTitleOfBook(book))
                 {
                     flag = !BookList<string>.AddBook(directoryOfBooks, book);
                 }
@@ -116,7 +116,7 @@
             {
                 Console.WriteLine("Enter the title of a book to remove: ");
                 book = Console.ReadLine().Trim();
-                if (ValidTitleNameOfBook(book))
+                if (ValidTitleTitleOfBook(book))
                 {
                     flag = !BookList<string>.RemoveBook(directoryOfBooks, book);
                 }
@@ -152,7 +152,7 @@
             {
                 Console.WriteLine("Enter the title of the book : ");
                 book = Console.ReadLine().Trim();
-                if (ValidTitleNameOfBook(book))
+                if (ValidTitleTitleOfBook(book))
                 {
                     if (BookList<string>.SearchTheDirectory(directoryOfBooks, book) != null)
                     {
@@ -210,7 +210,7 @@
         /// </summary>
         /// <param name="title">Title of the book</param>
         /// <returns>Return true if it matches the condition, else false</returns>
-        public static bool ValidTitleNameOfBook(string title)
+        public static bool ValidTitleTitleOfBook(string title)
         {
             Regex pattern = new Regex("^[A-Za-z\\s!@#$&()-`.+,/\"]+$");
             if (pattern.IsMatch(title))
