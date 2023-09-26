@@ -32,6 +32,20 @@ namespace WorkingWithQueue.Tests
             // Assert
             Assert.Empty(ticketQueueLine); // Check that the queue remains empty for an empty name
         }
+        
+        [Fact]
+        public void Enqueue_DuplicateName_DoesNotAddToQueue()
+        {
+            // Arrange
+            var ticketQueueLine = new Queue<string>();
+
+            // Act
+            TicketQueue<String>.Enqueue(ticketQueueLine, "John");
+            TicketQueue<String>.Enqueue(ticketQueueLine, "John");
+
+            // Assert
+            Assert.Single(ticketQueueLine); // Check that the queue remains empty for an empty name
+        }
 
         [Fact]
         public void Enqueue_InvalidName_DoesNotAddToQueue()

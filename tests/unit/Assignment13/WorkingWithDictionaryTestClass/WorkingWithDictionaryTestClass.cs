@@ -5,7 +5,7 @@ namespace WorkingWithDictionaries.Tests
     public class StudentDictionaryTests
     {
         [Fact]
-        public void Add_ValidStudent_AddsToDirectory()
+        public void AddStudent_ValidStudent_AddsToDirectory()
         {
             // Arrange
             var studentDirectory = new Dictionary<string, int>();
@@ -22,7 +22,7 @@ namespace WorkingWithDictionaries.Tests
         }
 
         [Fact]
-        public void Add_DirectoryFull_DoesNotAddStudent()
+        public void AddStudent_DirectoryFull_DoesNotAddStudent()
         {
             // Arrange
             var studentDirectory = new Dictionary<string, int>();
@@ -42,7 +42,7 @@ namespace WorkingWithDictionaries.Tests
         }
 
         [Fact]
-        public void Remove_StudentExists_RemovesFromDirectory()
+        public void RemoveStudent_StudentExists_RemovesFromDirectory()
         {
             // Arrange
             var studentDirectory = new Dictionary<string, int>();
@@ -59,7 +59,7 @@ namespace WorkingWithDictionaries.Tests
         }
 
         [Fact]
-        public void Remove_StudentNotExists_ReturnsFalse()
+        public void RemoveStudent_StudentNotExists_ReturnsFalse()
         {
             // Arrange
             var studentDirectory = new Dictionary<string, int>();
@@ -73,7 +73,7 @@ namespace WorkingWithDictionaries.Tests
         }
 
         [Fact]
-        public void Remove_StudentExists_RemoveOnlyTargetedStudent()
+        public void RemoveStudent_StudentExists_RemoveOnlyTargetedStudent()
         {
             // Arrange
             var studentDirectory = new Dictionary<string, int>
@@ -94,7 +94,7 @@ namespace WorkingWithDictionaries.Tests
         }
 
         [Fact]
-        public void Remove_StudentNotExistsDictionary_ReturnsFalse()
+        public void RemoveStudent_StudentNotExistsDictionary_ReturnsFalse()
         {
             // Arrange
             var studentDirectory = new Dictionary<string, int>

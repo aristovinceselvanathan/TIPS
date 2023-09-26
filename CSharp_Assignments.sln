@@ -43,15 +43,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IEnumerable", "src\Assignme
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReadOnlyDictionary", "src\Assignment13\IReadOnlyDictionary\IReadOnlyDictionary.csproj", "{969C7257-09CB-4C70-8504-DF4B9F0E1CA3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithListsTestClass", "tests\unit\Assignment13\WorkingWithListsTestClass\WorkingWithListsTestClass.csproj", "{F449C2CF-9AB8-40E8-96B7-254FF6365FB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithListsTest", "tests\unit\Assignment13\WorkingWithListsTestClass\WorkingWithListsTest.csproj", "{F449C2CF-9AB8-40E8-96B7-254FF6365FB5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithIEnumerablesTestClass", "tests\unit\Assignment13\WorkingWithIEnumerablesTestClass\WorkingWithIEnumerablesTestClass.csproj", "{1DA7CED0-DDB6-4ECD-B437-7FADA97FBEF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithIEnumerablesTest", "tests\unit\Assignment13\WorkingWithIEnumerablesTestClass\WorkingWithIEnumerablesTest.csproj", "{1DA7CED0-DDB6-4ECD-B437-7FADA97FBEF7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithStacksTestClass", "tests\unit\Assignment13\WorkingWithStacksTestClass\WorkingWithStacksTestClass.csproj", "{C5197F2E-BC01-47F9-B716-25080EC47FC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithStacksTest", "tests\unit\Assignment13\WorkingWithStacksTestClass\WorkingWithStacksTest.csproj", "{C5197F2E-BC01-47F9-B716-25080EC47FC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithQueueTestClass", "tests\unit\Assignment13\WorkingWithQueueTestClass\WorkingWithQueueTestClass.csproj", "{CFD19B81-9D02-4B58-966C-824EC5F0E94A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithQueueTest", "tests\unit\Assignment13\WorkingWithQueueTestClass\WorkingWithQueueTest.csproj", "{CFD19B81-9D02-4B58-966C-824EC5F0E94A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithDictionaryTestClass", "tests\unit\Assignment13\WorkingWithDictionaryTestClass\WorkingWithDictionaryTestClass.csproj", "{FB67D5AE-1F40-4A72-828E-FE526CC0084B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithDictionaryTest", "tests\unit\Assignment13\WorkingWithDictionaryTestClass\WorkingWithDictionaryTest.csproj", "{FB67D5AE-1F40-4A72-828E-FE526CC0084B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ObjectOriented", "ObjectOriented", "{EBC6E90A-E08F-4D60-BBCE-1D947A78E216}"
 EndProject
