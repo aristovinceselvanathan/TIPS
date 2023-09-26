@@ -7,7 +7,7 @@
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidUserInputException"/> class.
-        /// It creates the custom message for the error
+        /// It creates the custom message for the exception going to raise and pass it to base class
         /// </summary>
         /// <param name="message">It takes the custom message as the input</param>
         public InvalidUserInputException(string message)

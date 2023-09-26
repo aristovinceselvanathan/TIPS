@@ -1,7 +1,7 @@
 ﻿namespace ErrorHandling
 {
     /// <summary>
-    /// Program Class
+    /// Program Class it contains the entry point of the program
     /// </summary>
     internal class Program
     {
@@ -13,7 +13,7 @@
         }
 
         /// <summary>
-        /// Main method asks for the type of the exception wanted to create.
+        /// Main method asks the user for the type of the exception wanted to raise.
         /// </summary>
         /// <param name="args">It takes the string array from the command line interface</param>
         public static void Main(string[] args)
@@ -90,7 +90,7 @@
         }
 
         /// <summary>
-        /// It creates the DivideByZeroException
+        /// It creates the DivideByZeroException by dividing the number with array index of 0.
         /// </summary>
         /// <param name="array">It takes the array to perform calculation</param>
         public static void DivideByZero(int[] array)
@@ -112,7 +112,7 @@
         }
 
         /// <summary>
-        /// It creates the IndexOutOfBoundException
+        /// It creates the IndexOutOfBoundException when the accessing the array element out of index in the for loop
         /// </summary>
         /// <param name="array">It takes the array to perform array calculation</param>
         public static void IndexOutOfBound(int[] array)
