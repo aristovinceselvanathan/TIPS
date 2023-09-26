@@ -5,7 +5,7 @@ namespace Task5.Tests
     public class ProgramTests
     {
         [Fact]
-        public void SortByName_SortsProductsByName()
+        public void SortByName_IsSortedByProductsName_ReturnsSortedListOfProducts()
         {
             // Arrange
             var productsList = new List<Product>
@@ -25,7 +25,7 @@ namespace Task5.Tests
         }
 
         [Fact]
-        public void SortByCategory_SortsProductsByCategory()
+        public void SortByCategory_IsSortedByProductsCategory_ReturnsSortedListOfProducts()
         {
             // Arrange
             var productsList = new List<Product>
@@ -45,7 +45,7 @@ namespace Task5.Tests
         }
 
         [Fact]
-        public void SortByPrice_SortsProductsByPrice()
+        public void SortByPrice_IsSortedProductsByPrice_ReturnsSortedListOfProducts()
         {
             // Arrange
             var productsList = new List<Product>
@@ -64,7 +64,7 @@ namespace Task5.Tests
             Assert.Equal("Bike", productsList[2].Name);
         }
         [Fact]
-        public void SortByName_SortsProductsByName1()
+        public void SortByName_IsSortedProductsByName_ReturnsSortedListOfProducts()
         {
             // Arrange
             var productsList = new List<Product>
@@ -84,7 +84,7 @@ namespace Task5.Tests
         }
 
         [Fact]
-        public void SortByName_SortsProductsByNameWithMixedCase()
+        public void SortByName_IsSortedProductsByNameWithMixedCase_ReturnsSortedListOfProducts()
         {
             // Arrange
             var productsList = new List<Product>

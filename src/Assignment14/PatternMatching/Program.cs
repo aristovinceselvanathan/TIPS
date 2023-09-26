@@ -5,7 +5,7 @@
     /// <summary>
     /// Program Class it contains the entry point of the program
     /// </summary>
-    internal class Program
+    public class Program
     {
         private enum Options
         {
@@ -192,21 +192,26 @@
         /// Method determines the type of the shape by the pattern matching
         /// </summary>
         /// <param name="shape">It takes the reference of the shape from the main method</param>
-        public static void DisplayShapeDetails(Shape shape)
+        /// <returns>It returns the name of the shape</returns>
+        public static string DisplayShapeDetails(Shape shape)
         {
             switch (shape)
             {
                 case Circle circle:
                     Console.WriteLine("It is a circle shape");
+                    return "circle";
                     break;
                 case Rectangle rectangle:
                     Console.WriteLine("It is a rectangle shape");
+                    return "rectangle";
                     break;
                 case Triangle triangle:
                     Console.WriteLine("It is a triangle shape");
+                    return "triangle";
                     break;
                 default:
                     Console.WriteLine("Invalid Shape");
+                    return "invalid shape";
                     break;
             }
         }

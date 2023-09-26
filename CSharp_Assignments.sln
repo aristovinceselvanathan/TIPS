@@ -55,15 +55,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatternMatching", "src\Assi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Records", "src\Assignment14\Records\Records.csproj", "{37E12660-16FE-4690-A973-F3621F3C60F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegateForSortingTestClass", "tests\unit\Assignment14\DelegateForSortingTestClass\DelegateForSortingTestClass.csproj", "{A7FD6597-A367-4CB0-B4A4-13B4D53DA3EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegateForSortingTest", "tests\unit\Assignment14\DelegateForSortingTestClass\DelegateForSortingTest.csproj", "{A7FD6597-A367-4CB0-B4A4-13B4D53DA3EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecordsTestClass", "tests\unit\Assignment14\RecordsTestClass\RecordsTestClass.csproj", "{B263B837-653E-4720-8BBB-7412FE5B2EC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecordsTest", "tests\unit\Assignment14\RecordsTestClass\RecordsTest.csproj", "{B263B837-653E-4720-8BBB-7412FE5B2EC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternMatchingTestClass", "tests\unit\Assignment14\PatternMatchingTestClass\PatternMatchingTestClass.csproj", "{EA8F024D-5080-42C6-954B-DCDBE0BB9A06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatternMatchingTest", "tests\unit\Assignment14\PatternMatchingTestClass\PatternMatchingTest.csproj", "{EA8F024D-5080-42C6-954B-DCDBE0BB9A06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnonymousMethodTestClass", "tests\unit\Assignment14\AnonymousMethodTestClass\AnonymousMethodTestClass.csproj", "{8999A644-D334-4DEA-A9B9-4E2DA51E9778}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnonymousMethodTest", "tests\unit\Assignment14\AnonymousMethodTestClass\AnonymousMethodTest.csproj", "{8999A644-D334-4DEA-A9B9-4E2DA51E9778}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaExpressionTestClass", "tests\unit\Assignment14\LambdaExpressionTestClass\LambdaExpressionTestClass.csproj", "{7C1C478A-C7D0-4811-8A28-179DF2FEEA15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaExpressionTest", "tests\unit\Assignment14\LambdaExpressionTestClass\LambdaExpressionTest.csproj", "{7C1C478A-C7D0-4811-8A28-179DF2FEEA15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
