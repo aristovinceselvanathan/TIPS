@@ -7,7 +7,7 @@
     {
         /// <summary>
         /// Main method starts by the asking the two inputs from the user and checks for the input mismatch.
-        /// Main method asks for the operations that are to be performed. The loop runs as long as user terminate by the keyword.
+        /// Main method asks for the operations that are to be performed. The loop runs as long as user terminate by the key.
         /// </summary>
         public void UserInterfaceForCalculator()
         {
@@ -22,8 +22,8 @@
                 isIntegerOfOperand1 = int.TryParse(Console.ReadLine(), out input1);
                 if (!isIntegerOfOperand1)
                 {
-                    Console.WriteLine("Invalid Input1, Press Escape Key to Exit, Press any other key to continue : ");
-                    if (Console.ReadKey().Key == ConsoleKey.Escape)
+                    Console.WriteLine("Invalid Number\nPress Escape Key to Exit, Press Enter key to continue : ");
+                    if (Console.ReadKey(true).Key == ConsoleKey.Escape)
                     {
                         flag = false;
                     }
@@ -37,8 +37,8 @@
                 isIntegerOfOperand2 = int.TryParse(Console.ReadLine(), out input2);
                 if (!isIntegerOfOperand2)
                 {
-                    Console.WriteLine("Invalid Input2, Press Escape Key to Exit, Press any other key to continue : ");
-                    if (Console.ReadKey().Key == ConsoleKey.Escape)
+                    Console.WriteLine("Invalid Number\nPress Escape Key to Exit, Press Enter key to continue : ");
+                    if (Console.ReadKey(true).Key == ConsoleKey.Escape)
                     {
                         flag = false;
                     }
@@ -78,23 +78,21 @@
                                 break;
                         }
 
-                        Console.WriteLine("Press Any Key to Continue : ");
-                        Console.ReadKey();
-                        Console.Write("Bye...");
+                        Console.WriteLine("Press Enter Key to Continue : ");
+                        Console.ReadKey(true);
                         Console.Clear();
                     }
                     else
                     {
-                        Console.WriteLine("Invalid Input, Press any key to continue : ");
-                        Console.ReadKey();
-                        Console.Write("Bye...");
+                        Console.WriteLine("Invalid Input, Press Enter key to continue : ");
+                        Console.ReadKey(true);
                         Console.Clear();
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Invalid Inputs, Press any key to continue : ");
-                    Console.ReadKey();
+                    Console.WriteLine("Invalid Inputs, Press Enter key to continue : ");
+                    Console.ReadKey(true);
                     Console.Write("Bye...");
                     Console.Clear();
                 }
