@@ -133,7 +133,7 @@
         /// <returns>It will return integer to sort the list by comparing the two decimal using compare</returns>
         public static int SortByPrice(Product product1, Product product2)
         {
-                return decimal.Compare((decimal)product1.Price, (decimal)product2.Price);
+                return decimal.Compare(product1.Price, product2.Price);
         }
 
         /// <summary>
@@ -213,7 +213,7 @@
         /// </summary>
         /// <param name="indexOfArray">It gets the current index of the list</param>
         /// <returns>It returns valid price of the product</returns>
-        public static decimal? IsValidPrice(int indexOfArray)
+        public static decimal IsValidPrice(decimal indexOfArray)
         {
             Console.Write($"Enter the Price of the Product at {indexOfArray + 1}: ");
             string priceOfProduct = Console.ReadLine();
@@ -227,7 +227,7 @@
                 Console.WriteLine("Press Escape key to Exit and Other key to continue....");
                 if (Console.ReadKey().Key == ConsoleKey.Escape)
                 {
-                    return null;
+                    return 0;
                 }
 
                 Console.Clear();

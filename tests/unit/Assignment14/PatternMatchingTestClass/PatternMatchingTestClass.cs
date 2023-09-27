@@ -78,5 +78,55 @@ namespace PatternMatching.Tests
             Assert.Equal("triangle", testShape3);
             Assert.Equal("invalid shape", testShape4);
         }
+
+        [Fact]
+        public void TestGetDetailsOfRectangle()
+        {
+            // Arrange
+            var rectangle = new Rectangle();
+            var input = new StringReader("Red\n5\n10\n");
+
+            // Act
+            Console.SetIn(input);
+            Program.GetDetailsOfShape(rectangle);
+
+            // Assert
+            Assert.Equal("Red", rectangle.Color);
+            Assert.Equal(5, rectangle.Input1);
+            Assert.Equal(10, rectangle.Input2);
+        }
+
+        [Fact]
+        public void TestGetDetailsOfCircle()
+        {
+            // Arrange
+            var circle = new Circle();
+            var input = new StringReader("Blue\n3\n");
+
+            // Act
+            Console.SetIn(input);
+            Program.GetDetailsOfShape(circle);
+
+            // Assert
+            Assert.Equal("Blue", circle.Color);
+            Assert.Equal(3, circle.Input1);
+        }
+
+        [Fact]
+        public void TestGetDetailsOfTriangle()
+        {
+            // Arrange
+            var triangle = new Triangle();
+            var input = new StringReader("Green\n4\n6\n");
+
+            // Act
+            Console.SetIn(input);
+            Program.GetDetailsOfShape(triangle);
+
+            // Assert
+            Assert.Equal("Green", triangle.Color);
+            Assert.Equal(4, triangle.Input1);
+            Assert.Equal(6, triangle.Input2);
+        }
     }
 }

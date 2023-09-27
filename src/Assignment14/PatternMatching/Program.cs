@@ -200,19 +200,15 @@
                 case Circle circle:
                     Console.WriteLine("It is a circle shape");
                     return "circle";
-                    break;
                 case Rectangle rectangle:
                     Console.WriteLine("It is a rectangle shape");
                     return "rectangle";
-                    break;
                 case Triangle triangle:
                     Console.WriteLine("It is a triangle shape");
                     return "triangle";
-                    break;
                 default:
                     Console.WriteLine("Invalid Shape");
                     return "invalid shape";
-                    break;
             }
         }
     }

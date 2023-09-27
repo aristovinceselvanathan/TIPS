@@ -27,7 +27,7 @@
         /// <value>
         /// Decimal type of the Price
         /// </value>
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
 
         /// <summary>
         /// Overrides the toString

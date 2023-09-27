@@ -23,9 +23,41 @@ namespace Records.Tests
             Assert.Equal(userInputAuthor, directoryOfBooks[0].author);
             Assert.Equal(userInputISBN, directoryOfBooks[0].isbn);
         }
+        [Fact]
+        public void AddBook_InValidISBN_ShouldNotAddBook()
+        {
+            // Arrange
+            var directoryOfBooks = new List<Program.book>();
+            string userInputName = "Book Title";
+            string userInputAuthor = "Author Name";
+            string userInputISBN = "123456";
+
+            // Act
+            bool result = Program.AddBook(directoryOfBooks, userInputName, userInputAuthor, userInputISBN);
+
+            // Assert
+            Assert.False(result); // Check if the method returns false (book added successfully)
+            Assert.Empty(directoryOfBooks); // Check if the book list 
+        }
+        [Fact]
+        public void AddBook_InValidAuthor_ShouldNotAddBook()
+        {
+            // Arrange
+            var directoryOfBooks = new List<Program.book>();
+            string userInputName = "Book Title";
+            string userInputAuthor = "4234443";
+            string userInputISBN = "1234567890";
+
+            // Act
+            bool result = Program.AddBook(directoryOfBooks, userInputName, userInputAuthor, userInputISBN);
+
+            // Assert
+            Assert.False(result); // Check if the method returns false (book added successfully)
+            Assert.Empty(directoryOfBooks); // Check if the book list 
+        }
 
         [Fact]
-        public void AddBook_InvalidInput_ShouldNotAddBook()
+        public void AddBook_InvalidName_ShouldNotAddBook()
         {
             // Arrange
             var directoryOfBooks = new List<Program.book>();
@@ -38,6 +70,7 @@ namespace Records.Tests
             Assert.False(result); // Check if the method returns false (book not added)
             Assert.Empty(directoryOfBooks); // Check if the book list is still empty
         }
+
         [Fact]
         public void EditNameOfProduct_ValidInput_ShouldEditName()
         {
@@ -52,7 +85,7 @@ namespace Records.Tests
 
             // Act
             bool result = Program.EditNameOfProduct(directoryOfBooks, position, nameOfBook);
-
+            
             // Assert
             Assert.False(result); // Check if the method returns true (name edited successfully)
             Assert.NotEqual(nameOfBook, directoryOfBooks[position - 1].name); // Check if the name was updated

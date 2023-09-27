@@ -25,6 +25,26 @@ namespace Task5.Tests
         }
 
         [Fact]
+        public void SortByName_InvalidInput_ReturnsSortedListOfProducts()
+        {
+            // Arrange
+            var productsList = new List<Product>
+            {
+                new Product { Name = "A32423", Category = "F344", Price = 2.99M },
+                new Product { Name = "Banana", Category = "Fruits", Price = 1.49M },
+                new Product { Name = "Carrot", Category = "Vegetables", Price = 0.99M },
+            };
+
+            // Act
+            productsList.Sort(Program.SortByName);
+
+            // Assert
+            Assert.Equal("Apple", productsList[0].Name);
+            Assert.Equal("Banana", productsList[1].Name);
+            Assert.Equal("Carrot", productsList[2].Name);
+        }
+
+        [Fact]
         public void SortByCategory_IsSortedByProductsCategory_ReturnsSortedListOfProducts()
         {
             // Arrange

@@ -13,7 +13,6 @@
         {
             Array.Sort(arrayOfNumber, delegate (int x, int y) { return x.CompareTo(y); });
         }
-
         /// <summary>
         /// Method asks for the user to enter the elements into the array
         /// </summary>
