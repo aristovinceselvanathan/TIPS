@@ -48,7 +48,7 @@
         /// <summary>
         /// It take the quantity and set it.
         /// </summary>
-        /// <param name="quantity">Quantity of the Product</param>
+        /// <param name="quantity">It reteurns the Quantity of the Product</param>
         public void SetQuantityValue(int quantity)
         {
             this._quantity = quantity;
@@ -89,7 +89,7 @@
         /// <summary>
         /// Method get the name of the order
         /// </summary>
-        /// <returns>It returns string of name</returns>
+        /// <returns>It returns string about the name of product</returns>
         public string GetName()
         {
             return this._name;
@@ -98,7 +98,7 @@
         /// <summary>
         /// Method returns the ID of the Order
         /// </summary>
-        /// <returns>It returns int of the ID</returns>
+        /// <returns>It returns int type ID of the order</returns>
         public int? GetID()
         {
             return this._id;
@@ -107,7 +107,7 @@
         /// <summary>
         /// Method returns the Quantity of the order
         /// </summary>
-        /// <returns>It returns int of the Quantity</returns>
+        /// <returns>It returns int type Quantity of Order</returns>
         public int GetQuantity()
         {
             return this._quantity;
@@ -130,11 +130,6 @@
             {
                 Console.WriteLine("Invalid Input");
                 Console.WriteLine("Press Escape Key to Exit and Any Other Key to Continue");
-                if (Console.ReadKey().Key == ConsoleKey.Escape)
-                {
-                    return true;
-                }
-
                 return true;
             }
             else
@@ -148,7 +143,7 @@
         /// Method overrides the equals method in object class
         /// </summary>
         /// <param name="obj"> It uses the instance of the object class</param>
-        /// <returns>It returns bool</returns>
+        /// <returns>It returns bool whether it is equal</returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -168,7 +163,7 @@
         /// <summary>
         /// It overrides the GetHashCode when Equals Method overridden in the order class
         /// </summary>
-        /// <returns>It returns the Integer</returns>
+        /// <returns>It returns the Integer of Object HashCode</returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();

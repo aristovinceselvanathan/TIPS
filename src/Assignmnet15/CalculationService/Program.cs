@@ -1,7 +1,7 @@
 ﻿namespace CalculationService
 {
     /// <summary>
-    /// Program Class
+    /// Program Class it contains the entry point of the program
     /// </summary>
     internal class Program
     {
@@ -18,23 +18,26 @@
         /// <param name="args">It takes the string array from the command line</param>
         public static void Main(string[] args)
         {
-            bool flag = true;
+            bool flag = true, initial = true;
+            OrderService orderService;
+            Calculator calculator;
+
             while (flag)
             {
                 Console.WriteLine("Welcome to Testing Manager");
-                Console.WriteLine("Enter the Options : 1.CalculationService 2.OrderServices 3.Exit");
+                Console.Write("Enter the Options (1-CalculationService 2-OrderServices 3-Exit) : ");
                 if (int.TryParse(Console.ReadLine(), out int userInputChoice) && userInputChoice > 0 && userInputChoice <= 3)
                 {
                     Options option = (Options)userInputChoice;
                     switch (option)
                     {
                         case Options.Calculation:
-                            Calculator calculator = new Calculator();
+                            calculator = new Calculator();
                             calculator.UserInterfaceForCalculator();
                             break;
                         case Options.OrderService:
-                            OrderService orderService = new OrderService();
-                            orderService.UserInterfaceOfOrderService();
+                            orderService = new OrderService();
+                            orderService.UserInterfaceOfOrderService(initial);
                             break;
                         case Options.Exit:
                             flag = false;
@@ -50,6 +53,8 @@
                 {
                     Console.WriteLine("Invalid Input");
                 }
+
+                initial = false;
             }
         }
     }
