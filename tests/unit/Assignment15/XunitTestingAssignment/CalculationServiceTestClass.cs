@@ -1,7 +1,6 @@
 namespace CalculationService.Tests
 {
     using CalculationService;
-    using Moq;
     public class MathUtilityTests
     {
         [Theory]
@@ -10,7 +9,7 @@ namespace CalculationService.Tests
         [InlineData(10, -4, 6)]
         [InlineData(-10, -4, -14)]
         [InlineData(-11, -4, -15)]
-        public void Add_ShouldReturnCorrectResult(int input1, int input2, int expectedResult)
+        public void Integers_Add_ShouldReturnCorrectResult(int input1, int input2, int expectedResult)
         {
             // Arrange
             var mathUtility = new MathUtility();
@@ -28,7 +27,7 @@ namespace CalculationService.Tests
         [InlineData(7, -5, 12)]
         [InlineData(-7, -5, -2)]
         [InlineData(7, 8, -1)]
-        public void Subtract_ShouldReturnCorrectResult(int input1, int input2, int expectedResult)
+        public void Integers_Subtract_ShouldReturnCorrectResult(int input1, int input2, int expectedResult)
         {
             // Arrange
             var mathUtility = new MathUtility();
@@ -46,7 +45,7 @@ namespace CalculationService.Tests
         [InlineData(3, -2, -6)]
         [InlineData(-3, -2, 6)]
         [InlineData(7, 8, 56)]
-        public void Multiply_ShouldReturnCorrectResult(int input1, int input2, int expectedResult)
+        public void Integers_Multiply_ShouldReturnCorrectResult(int input1, int input2, int expectedResult)
         {
             // Arrange
             var mathUtility = new MathUtility();
@@ -64,7 +63,7 @@ namespace CalculationService.Tests
         [InlineData(7, 2, 3)]
         [InlineData(10, 0, null)]
         [InlineData(10, 11, 0)]
-        public void Divide_ShouldReturnCorrectResult(int input1, int input2, int? expectedResult)
+        public void Integers_Divide_ShouldReturnCorrectResult(int input1, int input2, int? expectedResult)
         {
             // Arrange
             var mathUtility = new MathUtility();

@@ -39,7 +39,7 @@
         /// <summary>
         /// Method will print the details of the order
         /// </summary>
-        /// <returns>It return the string of the details of the order</returns>
+        /// <returns>Details of the Order</returns>
         public override string ToString()
         {
             return $"Id: {this._id}\nName: {this._name}\nQuantity: {this._quantity}";
@@ -48,7 +48,7 @@
         /// <summary>
         /// It take the quantity and set it.
         /// </summary>
-        /// <param name="quantity">It reteurns the Quantity of the Product</param>
+        /// <param name="quantity">Quantity of the Product</param>
         public void SetQuantityValue(int quantity)
         {
             this._quantity = quantity;
@@ -57,7 +57,7 @@
         /// <summary>
         /// Method is to set the name of the order
         /// </summary>
-        /// <returns>It return bool type to terminate the execution in between the process (When user wants to exit)</returns>
+        /// <returns>Terminate the execution in between the process (When user wants to exit)</returns>
         public bool SetName()
         {
             Console.Write("Enter the Name : ");
@@ -116,7 +116,7 @@
         /// <summary>
         /// Method is to set the quantity of the order
         /// </summary>
-        /// <returns>It return bool type to terminate the execution in between the process (When user wants to exit)</returns>
+        /// <returns>Terminate the execution in between the process (When user wants to exit)</returns>
         public bool SetQuantity()
         {
             Console.Write("Enter the Quantity : ");
@@ -143,7 +143,7 @@
         /// Method overrides the equals method in object class
         /// </summary>
         /// <param name="obj"> It uses the instance of the object class</param>
-        /// <returns>It returns bool whether it is equal</returns>
+        /// <returns>Whether it is equal</returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -163,7 +163,7 @@
         /// <summary>
         /// It overrides the GetHashCode when Equals Method overridden in the order class
         /// </summary>
-        /// <returns>It returns the Integer of Object HashCode</returns>
+        /// <returns>Object's HashCode</returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();

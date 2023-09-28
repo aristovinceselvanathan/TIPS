@@ -1,5 +1,4 @@
 ﻿using CalculationService;
-using Microsoft.VisualStudio.TestPlatform.Utilities;
 
 namespace XunitTestingAssignment
 {
@@ -23,7 +22,6 @@ namespace XunitTestingAssignment
             Assert.True(result); // Assuming Order method returns true on success
             Assert.Single(userOrderList);
             Assert.Equal(2, orderStockList.ElementAt(0).GetQuantity());
-            // Add more assertions to check the state of userOrderList
 
         }
 
@@ -45,7 +43,6 @@ namespace XunitTestingAssignment
             Assert.True(result); // Assuming Order method returns true on success
             Assert.Single(userOrderList);
             Assert.Equal(0, orderStockList.ElementAt(0).GetQuantity());
-            // Add more assertions to check the state of userOrderList
 
         }
 
@@ -64,7 +61,7 @@ namespace XunitTestingAssignment
             bool result = orderService.Order(orderStockList, userOrderList);
 
             // Assert
-            Assert.False(result); // Assuming Order method returns true on success
+            Assert.False(result); // Assuming Order method returns false on fail
 
         }
 
@@ -86,8 +83,6 @@ namespace XunitTestingAssignment
             Assert.False(result); // Assuming Order method returns false on fail
             Assert.Empty(userOrderList);
             Assert.Equal(4, orderStockList.ElementAt(0).GetQuantity());
-            // Add more assertions to check the state of userOrderList
-
         }
 
         [Fact]
@@ -108,8 +103,6 @@ namespace XunitTestingAssignment
             // Assert
             Assert.True(result); // Assuming Cancel method returns true on success
             Assert.Equal(0, userOrderList.ElementAt(0).GetQuantity());
-            // Add more assertions to check the state of orderStockList
-
         }
 
         [Fact]
@@ -130,7 +123,6 @@ namespace XunitTestingAssignment
             // Assert
             Assert.False(result); // Assuming Cancel method returns false on fail
             Assert.Empty(userOrderList);
-            // Add more assertions to check the state of orderStockList
 
         }
 
@@ -150,8 +142,6 @@ namespace XunitTestingAssignment
             // Assert
             Assert.True(result); // Assuming Update method does not return true
             Assert.Equal("Book", orderStockList.ElementAt(0).GetName());
-            // Add more assertions to check if order details were updated correctly
-
         }
 
         [Fact]
@@ -203,11 +193,9 @@ namespace XunitTestingAssignment
             bool result = orderService.Update(orderStockList);
 
             // Assert
-            Assert.True(result); // Assuming Update method does not return true
+            Assert.True(result); // Assuming Update method does return true
             Assert.Equal(3, orderStockList.ElementAt(0).GetQuantity());
             Assert.Single(orderStockList);
-            // Add more assertions to check if order details were updated correctly
-
         }
         [Fact]
         public void Display_WithOrderList_DisplaysOrders()
@@ -227,7 +215,6 @@ namespace XunitTestingAssignment
             Assert.Contains("ID", output);
             Assert.Contains("Order Name", output);
             Assert.Contains("Quantity", output);
-            // Add more assertions to check the displayed content
         }
     }
 }
