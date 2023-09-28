@@ -7,14 +7,12 @@
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidUserInputException"/> class.
-        /// It creates the custom message for the exception going to raise and pass it to base class
         /// </summary>
-        /// <param name="message">It takes the custom message as the input</param>
+        /// <param name="message">User Entered Message to throw exception</param>
         public InvalidUserInputException(string message)
             : base($"{message}")
         {
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.ForegroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Red; // It sets the color of the console text.
         }
     }
 }
