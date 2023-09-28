@@ -31,7 +31,7 @@
         /// </summary>
         /// <param name="orderStockList">It takes the reference of the list of stock that are available</param>
         /// <param name="userOrderList">It takes the reference of the list that contains user ordered products</param>
-        /// <returns>It return bool type to terminate the execution in between the process (When user wants to exit) </returns>
+        /// <returns>Order the product or Terminate the execution in between the process</returns>
         public bool Order(List<Order> orderStockList, List<Order> userOrderList)
         {
             this.Display(orderStockList);
@@ -92,8 +92,7 @@
         /// </summary>
         /// <param name="userOrderList">It takes the reference of the list of user ordered products</param>
         /// <param name="orderStockList">It takes the reference of the list of stock that are available</param>
-        /// <returns>It return bool type to terminate the execution in between the process (When user wants to exit)e</returns>
-        /// <returns>It return bool type to terminate the execution in between the process (When user wants to exit)</returns>
+        /// <returns>When Cancel the Order or Terminate the execution in between the process</returns>
         public bool Cancel(List<Order> userOrderList, List<Order> orderStockList)
         {
             this.Display(userOrderList);
@@ -117,7 +116,7 @@
         /// Update the products details that are present in the stock of the grocery
         /// </summary>
         /// <param name="orderStockList">It takes the reference of the list of stock that are available</param>
-        /// <returns>It return bool type to terminate the execution in between the process (When user wants to exit)</returns>
+        /// <returns>When Details are Updated or Terminate the execution in between the process</returns>
         public bool Update(List<Order> orderStockList)
         {
             Display(orderStockList);
@@ -172,7 +171,7 @@
         /// <summary>
         /// Order Service that provide the all user actions to perform add, cancel, update, display all.
         /// </summary>
-        /// <param name="initial">Initial Setup of the resources to be done</param>
+        /// <param name="initial">Initial Setup of the resources to be done status</param>
         public void UserInterfaceOfOrderService(bool initial)
         {
             bool flag = true;

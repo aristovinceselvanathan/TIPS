@@ -13,9 +13,9 @@
         }
 
         /// <summary>
-        /// Main Method that asks the user for CalculationService or OrderService to be triggered
+        /// Main Method that asks the user for CalculationService or OrderService to be used by the user.
         /// </summary>
-        /// <param name="args">It takes the string array from the command line</param>
+        /// <param name="args">It is String array in the parameters of the main method</param>
         public static void Main(string[] args)
         {
             bool flag = true, initial = true;
