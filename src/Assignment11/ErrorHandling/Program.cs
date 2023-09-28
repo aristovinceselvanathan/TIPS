@@ -10,51 +10,61 @@
             DivideByZero = 1,
             IndexOutOfRange = 2,
             UnHandledException = 3,
+            Exit = 4,
         }
 
         /// <summary>
         /// Main method asks the user for the type of the exception wanted to raise.
         /// </summary>
-        /// <param name="args">It takes the string array from the command line interface</param>
+        /// <param name="args">It is String array in the parameters of the main method</param>
         public static void Main(string[] args)
         {
-            int[] array = new int[10];
+            int[] array = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
             int userSelectedOption;
             Options option;
+            bool flag = true;
 
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionHandler);
-            Console.WriteLine("Welcome to Error Handling");
-            Console.Write("Choose which error wanted to raise 1.Divide By Zero, 2.Index Out of Range, 3.UnHandled Exception : ");
-            if (int.TryParse(Console.ReadLine(), out userSelectedOption))
+            while (flag)
             {
-                option = (Options)userSelectedOption;
-                switch (option)
+                Console.WriteLine("Welcome to Error Handling");
+                Console.Write("Choose which error wanted to raise 1.Divide By Zero, 2.Index Out of Range, 3.UnHandled Exception 4.Exit: ");
+                if (int.TryParse(Console.ReadLine(), out userSelectedOption))
                 {
-                    case Options.DivideByZero:
-                        DivideByZero(array);
-                        break;
-                    case Options.IndexOutOfRange:
-                        IndexOutOfBound(array);
-                        break;
-                    case Options.UnHandledException:
-                        throw new Exception("This is Unhandled Exception");
-                    default:
-                        WarningMessage("Invalid Option");
-                        break;
-                }
+                    option = (Options)userSelectedOption;
+                    switch (option)
+                    {
+                        case Options.DivideByZero:
+                            DivideByZero(array[1]);
+                            break;
+                        case Options.IndexOutOfRange:
+                            IndexOutOfBound(array);
+                            break;
+                        case Options.UnHandledException:
+                            throw new Exception("This is Unhandled Exception");
+                        case Options.Exit:
+                            Console.WriteLine("Exiting...");
+                            flag = false;
+                            break;
+                        default:
+                            WarningMessage("Invalid Option");
+                            break;
+                    }
 
-                Console.WriteLine("Press any key to continue");
-                Console.ReadKey();
-            }
-            else
-            {
-                try
-                {
-                    throw new InvalidUserInputException("Invalid User Input - Required Number");
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
-                catch (InvalidUserInputException exception)
+                else
                 {
-                    WarningMessage(exception.Message);
+                    try
+                    {
+                        throw new InvalidUserInputException("Invalid User Input - Required Number");
+                    }
+                    catch (InvalidUserInputException exception)
+                    {
+                        WarningMessage(exception.Message);
+                    }
                 }
             }
         }
@@ -62,7 +72,7 @@
         /// <summary>
         /// It shows the warning message color to red when exception is thrown
         /// </summary>
-        /// <param name="message">It takes the type of the exception message</param>
+        /// <param name="message">Message of the exception to be printed</param>
         public static void WarningMessage(string message)
         {
             Console.BackgroundColor = ConsoleColor.Red;
@@ -92,14 +102,14 @@
         /// <summary>
         /// It creates the DivideByZeroException by dividing the number with array index of 0.
         /// </summary>
-        /// <param name="array">It takes the array to perform calculation</param>
-        public static void DivideByZero(int[] array)
+        /// <param name="enteredNumber">Number to be divided by zero</param>
+        public static void DivideByZero(int enteredNumber)
         {
             int result;
 
             try
             {
-                result = 10 / array[0];
+                result = enteredNumber / 0;
             }
             catch (DivideByZeroException)
             {
@@ -114,36 +124,25 @@
         /// <summary>
         /// It creates the IndexOutOfBoundException when the accessing the array element out of index in the for loop
         /// </summary>
-        /// <param name="array">It takes the array to perform array calculation</param>
+        /// <param name="array">Number array to perform array calculation</param>
         public static void IndexOutOfBound(int[] array)
         {
             try
             {
-                try
+                for (int i = 0; i < array.Length + 1; i++)
                 {
-                    for (int i = 0; i < array.Length + 1; i++)
-                    {
-                        array[i] = i;
-                    }
+                    array[i] = i;
+                }
 
-                    array[0] = array[1] / array[0];
-                }
-                catch (DivideByZeroException)
-                {
-                    WarningMessage("Number is divided by zero");
-                }
-                catch (IndexOutOfRangeException)
-                {
-                    throw new Exception("Array index is out of bounds");
-                }
-                finally
-                {
-                    Console.WriteLine("Finally Block Executed");
-                }
+                array[0] = array[1] / array[0];
             }
-            catch (Exception exception)
+            catch (DivideByZeroException)
             {
-                WarningMessage(exception.Message);
+                WarningMessage("Number is divided by zero");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                WarningMessage("Array index is out of bounds");
             }
             finally
             {
