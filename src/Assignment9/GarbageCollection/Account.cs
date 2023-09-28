@@ -1,7 +1,7 @@
 ﻿namespace GarbageCollection
 {
     /// <summary>
-    /// Account Class
+    /// Account Class describes the details of account
     /// </summary>
     public class Account
     {

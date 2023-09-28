@@ -9,9 +9,8 @@
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileWriter"/> class.
-        /// Constructor that loads the file
         /// </summary>
-        /// <param name="filePath">It takes the filePath as string parameter</param>
+        /// <param name="filePath">FilePath of the file to be modified</param>
         public FileWriter(string filePath)
         {
             _writer = new StreamWriter(filePath);
@@ -20,7 +19,7 @@
         /// <summary>
         /// It writes to the file by using the stream writer
         /// </summary>
-        /// <param name="text">It takes the information as string</param>
+        /// <param name="text">Text Information to be added</param>
         public void WriteToTheFile(string text)
         {
             _writer.WriteLine(text);

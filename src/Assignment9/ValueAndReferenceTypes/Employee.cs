@@ -1,19 +1,21 @@
 ﻿namespace ValueAndReferenceTypes
 {
     /// <summary>
-    /// Employee Class
+    /// Employee Class describes the employee details
     /// </summary>
     internal class Employee
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Employee"/> class.
-        /// It sets the predefined value to the Employee object.
         /// </summary>
-        public Employee()
+        /// <param name="employeeId">Id Of the employee</param>
+        /// <param name="nameOfEmployee">Name of the employee</param>
+        /// <param name="designationOfEmployee">Designation of the employee</param>
+        public Employee(string employeeId, string nameOfEmployee, string designationOfEmployee)
         {
-            this.Id = "1001";
-            this.Name = "Tom Cruise";
-            this.Designation = "IT";
+            this.Id = employeeId;
+            this.Name = nameOfEmployee;
+            this.Designation = designationOfEmployee;
         }
 
         /// <summary>

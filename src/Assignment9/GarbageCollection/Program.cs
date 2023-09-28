@@ -8,7 +8,7 @@
         /// <summary>
         /// Main method calls the method that creates the number of objects;
         /// </summary>
-        /// <param name="args">It takes the string array from the command line interface</param>
+        /// <param name="args">It is String array in the parameters of the main method</param>
         public static void Main(string[] args)
         {
             Console.WriteLine("Create multiple number of objects");
