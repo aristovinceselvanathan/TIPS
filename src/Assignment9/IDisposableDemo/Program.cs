@@ -8,7 +8,7 @@
         /// <summary>
         /// Main method that writes the predefined text into the file by using the file writer and reads from the file.
         /// </summary>
-        /// <param name="args">It takes the string array from command line interface</param>
+        /// <param name="args">It is String array in the parameters of the main method</param>
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Text Editor");
@@ -28,10 +28,8 @@
             }
             catch (FileNotFoundException)
             {
-                Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("File not found");
-                Console.BackgroundColor = ConsoleColor.Black;
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }

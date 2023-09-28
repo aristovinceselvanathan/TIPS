@@ -86,15 +86,25 @@ To allow for proper handling of multiple items with varying lifetimes during gar
 
 1. **Value Types and Reference Types:**
 
-   - C# distinguishes between value types (e.g., integers, structs) and reference types (e.g., classes).
-
    - Value types are stored directly in memory, while reference types are stored as references to memory locations.
+
+   - A data type is a value type if it holds a data value within its own memory space. It means the variables of these data types directly contain values.
+	
+   - Reference type it stores the address where the value is being stored. In other words, a reference type contains a pointer to another memory location that holds the data.
+
+   - Value Type is not changed after passing the value into the function, There value is changed after the call it restore to original value.
 
 2. **Memory Management with Stack and Heap:**
 
    - Stack memory is used for local variables and method call information, and it operates in a last-in, first-out (LIFO) manner.
 
    - Heap memory is used for dynamically allocated objects like arrays and objects created using the `new` keyword.
+
+   - When Creating the large number of local variable, Memory consumption is very little and it is denoted by the first half of performance profiler, where the variable are declared in the loop, variable will go to out scope and it will be collected Garbage Collector
+
+   - When Creating the large size of array, Memory consumption is very high and it is denoted by the second half of performance profiler, where the variable are assigned in the loop, variable will stored in the array. The heap size also increased accordingly.
+
+	![Alt text](MemoryManagementScreenshots\HeapSizeAnalysisPerformanceProfiler.png)
 
 3. **Garbage Collection:**
 
@@ -104,6 +114,10 @@ To allow for proper handling of multiple items with varying lifetimes during gar
 
    - Manual garbage collection using `GC.Collect` can be used, but it may impact application performance.
 
+   - The number of object are created in the loop, in each iteration the object will go to out of scope, so the memory consumption will increase, When calling the `GC.Collect()`. It will call the Garbage Collector forcefully.
+
+   - The Garbage Collector will collect the unreferenced object in each cycle but it will not be frequent. By Calling the `GC.Collect()` to will trigger the Garbage Collector to collect unreferenced objects.
+
 4. **IDisposable Interface:**
 
    - The `IDisposable` interface is used to release both managed and unmanaged resources properly.
@@ -112,11 +126,15 @@ To allow for proper handling of multiple items with varying lifetimes during gar
 
    - It ensures that resources are released explicitly, reducing the chance of resource leaks.
 
+   - By the IDisposable Interface we need to override the dispose method in base class. In FileWriter Class Implements the IDisposable, in the dispose method it will close the file which is open and dispose the file writer object to release the memory.
+
 5. **Finalization:**
 
    - The garbage collector supports finalization, which allows objects to perform cleanup before they are destroyed.
 
    - Finalizable objects are placed in a separate finalization queue and processed after other objects are collected.
+
+   - By Using the Finalizable, declare the objects as final, The Garbage Collector will collect after the utilizing the object
 	
 ## IDisposable Interface
 
