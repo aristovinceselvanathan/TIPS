@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\Assignmnet15\CalculationService\CalculationService.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Assignment15\CalculationService\CalculationService.csproj" />
   </ItemGroup>
 
 </Project>
