@@ -53,10 +53,9 @@ catch block and print the exception message.
 
 **Task 2: Catching and Throwing Different Types of Exceptions**
 
-- Modify the Task 1 program with an integer array, add a try/catch block for IndexOutOfRangeException, throw a custom exception with a message, and catch and print that new exception's message.
+- Modify the Task 1 program with an integer array, add a try/catch block for IndexOutOfRangeException, print the error message in the catch block and ensure whether the finally block is executed.When user enter the index which is out of bounds.
 
-- In this task, I have created the multiple catch block catch the specific exception when executing the program.
-like ZeroDivision or IndexOutOfBounds
+- In this task, I have created the multiple catch block catch the specific exception when executing the program. like ZeroDivision or IndexOutOfBounds
 
 - It will print the console messages accordingly to the exception that have raised from the try block. Finally block is to check is executing always after the try and catch block
 
@@ -64,9 +63,9 @@ like ZeroDivision or IndexOutOfBounds
 
 - Define a custom exception class called InvalidUserInputException, modify the Task 2 program to include user input, throw InvalidUserInputException for invalid input, and catch and print its message.
 
-- I have created the custom exception InValidUserInput by inherit the exception class, in the constructor part need to pass the message to the constructor of exception class.
+- I have created the custom exception InvalidUserInput by inherit the exception class, in the constructor part need to pass the message to the constructor of exception class.
 
-- By this user - defined exception is created and implemented in the testing the input of the user, if input is not valid then it will throw the exception.
+- I have implemented user defined exception will throw exception when the user entered the invalid input.
 
 **Task 4: Handling Global Unhandled Exceptions**
 
@@ -86,7 +85,7 @@ like ZeroDivision or IndexOutOfBounds
 
 ## Explanation of Code:
 
-In this code, it asks the user to enter the type of execution to be thrown and to handle it using the try and catch block. The custom-type exception created by the inheritance of the exception class to the class The Appdomain helps in the use of the event handler before the exception is caught by the OS layer.
+In this code, it asks the user to enter the type of operations to be performed and to handle it using the try and catch block. The custom-type exception created by the inheritance of the exception class to the class The Appdomain helps in the use of the event handler before the exception is caught by the OS layer.
 
 The handler logs the exception on the console. The switch case used to trigger the different types of exceptions When the user enters the invalid input, it will throw the UserInvalidInputException required by the number.<br>
 
@@ -94,7 +93,7 @@ The handler logs the exception on the console. The switch case used to trigger t
 
 **ZeroDivisionError**<br>
 
-I have used the try and catch block to handle the zero division error and checking the finally will be executed always. To create the zero division error in the code created empty array and tried to divide the number with number in array at index 0.
+I have used the try and catch block to handle the zero division error and checking the finally will be executed always. The ZeroDivision Exception will be thrown when the user enter the operand 2 as zero, by the try catch block is used to handle the error.
 
 ![Alt text](ErrorHandlingScreenShots/01-ZeroDivisionError.png)
 
@@ -112,7 +111,7 @@ In C#, the concept of "AppDomain" refers to an isolated and secure boundary with
 
 2. **Security**: You can set security policies and permissions for each AppDomain, which allows you to control what the code in that AppDomain is allowed to do.
 
-3. **Unloadability**: You can unload an AppDomain without unloading the entire application domain. This is useful for scenarios where you want to load and unload assemblies dynamically.
+3. **Unload ability**: You can unload an AppDomain without unloading the entire application domain. This is useful for scenarios where you want to load and unload assemblies dynamically.
 
 4. **Assembly Versioning**: Each AppDomain can load different versions of the same assembly simultaneously, which can be useful when dealing with versioning issues.
 
@@ -142,7 +141,7 @@ The StackTrace property returns the frames of the call stack that originate at t
 
 8. **Lack of Fail-Safe Mechanisms**: Some projects do not implement fail-safe mechanisms or backup systems to handle errors gracefully, leading to total system failures when unexpected errors occur.
 
-## Chanllenges Faced
+## Challenges Faced
 
 1. To Create the Custom Exception to be thrown when the user selects the Exception.
 2. Crete the ZeroDivision Error by assign the zero to the another variable to create the zero division error

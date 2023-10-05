@@ -27,45 +27,45 @@
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionHandler);
             while (flag)
             {
-                Console.WriteLine("Welcome to Error Handling");
-                Console.Write("Choose which error wanted to raise 1.Divide By Zero, 2.Index Out of Range, 3.UnHandled Exception 4.Exit: ");
+                Console.WriteLine("Welcome to Error Handling\n");
+                Console.Write("Choose which Operation to be Performed\n\n1-Divide 2-Access the Array 3-UnHandled Exception 4-Exit: ");
                 if (int.TryParse(Console.ReadLine(), out userSelectedOption))
                 {
                     option = (Options)userSelectedOption;
                     switch (option)
                     {
                         case Options.DivideByZero:
-                            DivideByZero(array[1]);
+                            DivideByZero();
                             break;
                         case Options.IndexOutOfRange:
                             IndexOutOfBound(array);
                             break;
                         case Options.UnHandledException:
-                            throw new Exception("This is Unhandled Exception");
+                            throw new Exception("\nThis is Unhandled Exception");
                         case Options.Exit:
-                            Console.WriteLine("Exiting...");
+                            Console.WriteLine("\nExiting...");
                             flag = false;
                             break;
                         default:
-                            WarningMessage("Invalid Option");
+                            WarningMessage("\nInvalid Option");
                             break;
                     }
-
-                    Console.WriteLine("Press any key to continue");
-                    Console.ReadKey();
-                    Console.Clear();
                 }
                 else
                 {
                     try
                     {
-                        throw new InvalidUserInputException("Invalid User Input - Required Number");
+                        throw new InvalidUserInputException("\nInvalid User Input - Required Number");
                     }
                     catch (InvalidUserInputException exception)
                     {
                         WarningMessage(exception.Message);
                     }
                 }
+
+                Console.WriteLine("\nPress any key to continue");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
 
@@ -77,7 +77,7 @@
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine($"Error!!!, {message}");
+            Console.WriteLine($"\nError!!!, {message}");
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
         }
@@ -92,7 +92,7 @@
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Black;
             Exception exception = (Exception)unHandledException.ExceptionObject;
-            Console.Write("Unhandled Exception caught by the AppDomain, Message is ");
+            Console.Write("\nUnhandled Exception caught by the AppDomain, Message is ");
             Console.WriteLine(exception.Message);
             Console.WriteLine("IsTerminating: " + unHandledException.IsTerminating);
             Console.WriteLine("Stack Trace");
@@ -102,22 +102,37 @@
         /// <summary>
         /// It creates the DivideByZeroException by dividing the number with array index of 0.
         /// </summary>
-        /// <param name="enteredNumber">Number to be divided by zero</param>
-        public static void DivideByZero(int enteredNumber)
+        public static void DivideByZero()
         {
             int result;
-
-            try
+            Console.Write("\nEnter the Operator 1 : ");
+            if (int.TryParse(Console.ReadLine(), out int operand1))
             {
-                result = enteredNumber / 0;
+                Console.Write("\nEnter the Operator 2 : ");
+                if (int.TryParse(Console.ReadLine(), out int operand2))
+                {
+                    try
+                    {
+                        result = operand1 / operand2;
+                        Console.WriteLine(result);
+                    }
+                    catch (DivideByZeroException)
+                    {
+                        WarningMessage("\nNumber is Divided by Zero");
+                    }
+                    finally
+                    {
+                        Console.WriteLine("\nFinally Block Executed");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\nInvalid Operand 2");
+                }
             }
-            catch (DivideByZeroException)
+            else
             {
-                WarningMessage("Number is Divided by Zero");
-            }
-            finally
-            {
-                Console.WriteLine("Finally Block Executed");
+                Console.WriteLine("\nInvalid Operand 1");
             }
         }
 
@@ -127,26 +142,27 @@
         /// <param name="array">Number array to perform array calculation</param>
         public static void IndexOutOfBound(int[] array)
         {
-            try
+            int sum = 0;
+            Console.Write("\nEnter the index to stop the sum : ");
+            if (int.TryParse(Console.ReadLine(), out int limitOfSum))
             {
-                for (int i = 0; i < array.Length + 1; i++)
+                try
                 {
-                    array[i] = i;
-                }
+                    for (int i = 0; i < limitOfSum; i++)
+                    {
+                        sum += array[i];
+                    }
 
-                array[0] = array[1] / array[0];
-            }
-            catch (DivideByZeroException)
-            {
-                WarningMessage("Number is divided by zero");
-            }
-            catch (IndexOutOfRangeException)
-            {
-                WarningMessage("Array index is out of bounds");
-            }
-            finally
-            {
-                Console.WriteLine("Finally Block Executed");
+                    Console.WriteLine($"\nSum of the array upto index {limitOfSum} is {sum}");
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    WarningMessage("\nArray index is out of bounds");
+                }
+                finally
+                {
+                    Console.WriteLine("\nFinally Block Executed");
+                }
             }
         }
     }
