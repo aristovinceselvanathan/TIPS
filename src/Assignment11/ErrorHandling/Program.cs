@@ -35,10 +35,10 @@
                     switch (option)
                     {
                         case Options.DivideByZero:
-                            DivideByZero();
+                            DivideOperation();
                             break;
                         case Options.IndexOutOfRange:
-                            IndexOutOfBound(array);
+                            SumOfTheArray(array);
                             break;
                         case Options.UnHandledException:
                             throw new Exception("\nThis is Unhandled Exception");
@@ -100,9 +100,9 @@
         }
 
         /// <summary>
-        /// It creates the DivideByZeroException by dividing the number with array index of 0.
+        /// Method will perform the division operation of the operand 1 and operand 2 and try catch block to handle zero division
         /// </summary>
-        public static void DivideByZero()
+        public static void DivideOperation()
         {
             int result;
             Console.Write("\nEnter the Operator 1 : ");
@@ -137,10 +137,10 @@
         }
 
         /// <summary>
-        /// It creates the IndexOutOfBoundException when the accessing the array element out of index in the for loop
+        /// It prints the sum of the array and try catch block to handle the IndexOutOfBound Exception
         /// </summary>
         /// <param name="array">Number array to perform array calculation</param>
-        public static void IndexOutOfBound(int[] array)
+        public static void SumOfTheArray(int[] array)
         {
             int sum = 0;
             Console.Write("\nEnter the index to stop the sum : ");
