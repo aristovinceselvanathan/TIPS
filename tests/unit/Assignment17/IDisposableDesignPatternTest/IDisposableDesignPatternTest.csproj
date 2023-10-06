@@ -26,4 +26,10 @@
     <ProjectReference Include="..\..\..\..\src\Assignment17\IDisposableDesignPattern\IDisposableDesignPattern.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="hello.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
