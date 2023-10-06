@@ -17,7 +17,7 @@
         /// <summary>
         /// It will asks the user to managed or unmanaged resources based on list or file
         /// </summary>
-        /// <param name="args">It is string array of the main method</param>
+        /// <param name="args">It is string array in parameter of the main method</param>
         public static void Main(string[] args)
         {
             ManagedResources managedResources = new ManagedResources();

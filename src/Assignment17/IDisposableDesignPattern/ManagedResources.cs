@@ -34,7 +34,7 @@
         /// <summary>
         /// It add the data to the list
         /// </summary>
-        /// <param name="datavalue">It is denotes the data of the string</param>
+        /// <param name="datavalue">Data of the string to be added in the list</param>
         public void AddData(string datavalue)
         {
             if (this._disposed)
@@ -51,7 +51,7 @@
         }
 
         /// <summary>
-        /// It clears the data present in the list
+        /// It clears the all data present in the list
         /// </summary>
         public void ClearData()
         {
