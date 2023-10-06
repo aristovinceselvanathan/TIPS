@@ -10,17 +10,16 @@ namespace IDisposableDesignPatternTest
         public void WriteToTheFile_ShouldWriteToFile()
         {
             // Arrange
-            using (UnmanagedResources _unmanagedResources = new UnmanagedResources(_testFilePath))
-            {
-                string testData = "Hello World!!";
-
+            string testData = "Hello World!!";
+            using (UnmanagedResources _unmanagedResources = new UnmanagedResources("bye.txt"))
+            { 
                 // Act
                 _unmanagedResources.WriteToTheFile(testData);
+            }
 
                 // Assert
-                string fileContent = File.ReadAllText("Bye.txt");
+                string fileContent = File.ReadAllText("bye.txt");
                 Assert.Contains(testData, fileContent);
-            }
         }
 
         [Fact]
