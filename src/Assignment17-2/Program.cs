@@ -8,7 +8,7 @@
         /// <summary>
         /// It is main method that will log into the console
         /// </summary>
-        /// <param name="args">It is string array of the main method</param>
+        /// <param name="args">It is string array in the parameter of the main method</param>
         public static void Main(string[] args)
         {
             LoggingSystem loggingSystem = LoggingSystem.Instance;
