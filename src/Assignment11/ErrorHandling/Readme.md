@@ -85,7 +85,7 @@ catch block and print the exception message.
 
 ## Explanation of Code:
 
-In this code, it asks the user to enter the type of operations to be performed and to handle it using the try and catch block. The custom-type exception created by the inheritance of the exception class to the class The Appdomain helps in the use of the event handler before the exception is caught by the OS layer.
+In this code, it asks the user to enter the type of operations to be performed and to handle it using the try and catch block. The custom-type exception created by the inheritance of the exception class to the class The AppDomain helps in the use of the event handler before the exception is caught by the OS layer.
 
 The handler logs the exception on the console. The switch case used to trigger the different types of exceptions When the user enters the invalid input, it will throw the UserInvalidInputException required by the number.<br>
 

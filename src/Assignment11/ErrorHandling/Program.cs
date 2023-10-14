@@ -118,7 +118,7 @@
                     }
                     catch (DivideByZeroException)
                     {
-                        WarningMessage("\nNumber is Divided by Zero");
+                        WarningMessage("\nNumber cannot be divided by zero");
                     }
                     finally
                     {
