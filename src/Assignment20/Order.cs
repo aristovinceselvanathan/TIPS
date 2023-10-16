@@ -11,17 +11,13 @@
         /// Initializes a new instance of the <see cref="Order"/> class.
         /// </summary>
         /// <param name="orderID">Id of the order</param>
-        /// <param name="customerID">Id of the customer</param>
         /// <param name="orderDate">Date of the order</param>
         /// <param name="orderStatus">Status of the order</param>
-        /// <param name="totalAmount">Amount of the order</param>
-        public Order(int orderID, int customerID, DateTime orderDate, bool orderStatus, decimal totalAmount)
+        public Order(int orderID, DateTime orderDate, bool orderStatus)
         {
             this.OrderID = orderID;
-            this.CustomerID = customerID;
             this.OrderDate = orderDate;
             this.OrderStatus = orderStatus;
-            this.TotalAmount = totalAmount;
         }
 
         /// <summary>
@@ -31,15 +27,6 @@
         /// Integer
         /// </value>
         public int OrderID { get; set; }
-
-        /// <summary>
-        /// Gets or sets Customer Id
-        /// </summary>
-        /// <value>
-        /// Integer
-        /// </value>
-        public int CustomerID { get; set; }
-
         /// <summary>
         /// Gets or sets Order Date
         /// </summary>
@@ -57,11 +44,12 @@
         public bool OrderStatus { get; set; }
 
         /// <summary>
-        /// Gets or sets Total Amount
+        /// To print the order class as a string
         /// </summary>
-        /// <value>
-        /// Decimal
-        /// </value>
-        public decimal TotalAmount { get; set; }
+        /// <returns>values of the product</returns>
+        public override string ToString()
+        {
+            return $"Order ID: {this.OrderID}, Order Date : {this.OrderDate}, Order Status: {this.OrderStatus}";
+        }
     }
 }

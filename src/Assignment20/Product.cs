@@ -51,5 +51,14 @@
         /// String
         /// </value>
         public string ProductCategory { get; set; }
+
+        /// <summary>
+        /// To print the product class as a string
+        /// </summary>
+        /// <returns>values of the product</returns>
+        public override string ToString()
+        {
+            return $"Product Name: {this.ProductName}, Product Price : {this.ProductPrice}, Product Category : {this.ProductCategory}";
+        }
     }
 }
