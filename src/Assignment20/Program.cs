@@ -1,6 +1,7 @@
 ﻿namespace Assignment20
 {
     using System.Linq.Dynamic.Core;
+    using System.Linq.Expressions;
 
     /// <summary>
     /// Program Class
@@ -17,7 +18,8 @@
             BookCategory = 6,
             UserChoiceQuery = 7,
             DisplayAllList = 8,
-            Exit = 9,
+            JoinUsingQueryBuilder = 9,
+            Exit = 10,
         }
 
         /// <summary>
@@ -34,7 +36,7 @@
             {
                 Console.WriteLine("Welcome to LINQ Fundamentals");
                 Console.WriteLine("1 - Filter the Products,\n2 - Group By Category,\n3 - Join the Supplier with Products,\n4 - Second Max in the array,\n5 - Orders Before 30 Days," +
-                    "\n6 - Book Category Alone\n7 - Choose the Category to select\n8 - Display all the List\n9 - Exit");
+                    "\n6 - Book Category Alone\n7 - Choose the Category to select\n8 - Display all the List\n9 - JoinUsingQueryBuilder\n10 - Exit");
                 Console.Write("Enter the Choice : ");
                 if (int.TryParse(Console.ReadLine(), out int userInput) && userInput > 0 && userInput <= 9)
                 {
@@ -60,10 +62,13 @@
                             BookCategory(products);
                             break;
                         case Options.UserChoiceQuery:
-                            UserPreferedSort(products);
+                            UserPreferredSort(products);
                             break;
                         case Options.DisplayAllList:
                             DisplayAll(products, orders, suppliers);
+                            break;
+                        case Options.JoinUsingQueryBuilder:
+                            JoinUsingQueryBuilder(products, suppliers);
                             break;
                         case Options.Exit:
                             flag = false;
@@ -81,7 +86,10 @@
                 }
             }
         }
-
+        public List<Product> Sort(List<Product> products, string propertyName, bool ascending)
+        {
+            var parameter = Expression.Parameter(typeof(Product), propertyName"")
+        }
         /// <summary>
         /// Filter the Products belong to electronics category and price greater than $300
         /// </summary>
@@ -139,7 +147,7 @@
         /// Asking query from the user to sort the list by Dynamic LINQ
         /// </summary>
         /// <param name="products">List of the products data</param>
-        public static void UserPreferedSort(List<Product>products)
+        public static void UserPreferredSort(List<Product>products)
         {
             Func<Product, bool> electronicsProducts = product => product.ProductCategory == "Electronics";
             List<Product> electronicsFilteredProducts = FilterProducts(products, electronicsProducts);
@@ -209,6 +217,24 @@
             Console.WriteLine($"\nOrders before 30days :\n{string.Join(", ", recentOrders)}");
             var completedOrder = orders.Where(order => order.OrderStatus == true).ToList();
             Console.WriteLine($"\nCompleted Orders : {completedOrder.Count}");
+        }
+
+        /// <summary>
+        /// Join Using Query Builder
+        /// </summary>
+        /// <param name="products">List of products data</param>
+        /// <param name="suppliers">List of supplier data</param>
+        public static void JoinUsingQueryBuilder(List<Product> products, List<Supplier> suppliers)
+        {
+            var result = new QueryBuilder<Product>(products).Filter(p => p.ProductPrice > 300)
+                .SortBy(p => p.ProductPrice)
+                .Join(suppliers, product => product.ProductId, supplier => supplier.SupplierId, (product, supplier) => new { product.ProductId, product.ProductName, supplier.SupplierName })
+                .Execute();
+            var enumeratorOfResult = result.GetEnumerator();
+            while(enumeratorOfResult.MoveNext())
+            {
+                Console.WriteLine($"{enumeratorOfResult.Current.ProductId} : {enumeratorOfResult.Current.ProductName} : {enumeratorOfResult.Current.}");
+            }
         }
 
         /// <summary>

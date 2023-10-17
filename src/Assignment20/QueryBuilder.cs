@@ -37,9 +37,10 @@ namespace Assignment20
         /// <summary>
         /// SortBy Query
         /// </summary>
+        /// <typeparam name="TKey">Type of the </typeparam>
         /// <param name="predicate">Lambda Function</param>
         /// <returns>Query</returns>
-        public QueryBuilder<T> SortBy(Func<T, bool> predicate)
+        public QueryBuilder<T> SortBy<TKey>(Func<T, TKey> predicate)
         {
             _query = _query.OrderBy(predicate).AsQueryable();
             return this;
@@ -56,10 +57,10 @@ namespace Assignment20
         /// <param name="innerKeySelector">innerkeyselector</param>
         /// <param name="resultSelector">resultselector</param>
         /// <returns>Query</returns>
-        public QueryBuilder<TResult> Join<TInner, TKey, TResult>(IEnumerable<TInner> inner, Func<T, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<T, TInner, TResult> resultSelector)
+        public QueryBuilder<T> Join<TInner, TKey, TResult>(IEnumerable<TInner> inner, Func<T, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<T, TInner, TResult> resultSelector)
         {
-            var joinedQuery = _query.Join(inner, outerKeySelector, innerKeySelector, resultSelector).AsQueryable();
-            return new QueryBuilder<TResult>(this);
+            var joinedQuery = this._query.Join(inner, outerKeySelector, innerKeySelector, resultSelector);
+            return this;
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace Assignment20
         /// </summary>
         /// <param name="predicate">Lambda Function</param>
         /// <returns>Query</returns>
-        public IEnumerable<T> Execute(Func<T, bool> predicate)
+        public IEnumerable<T> Execute()
         {
             return _query.ToList();
         }
