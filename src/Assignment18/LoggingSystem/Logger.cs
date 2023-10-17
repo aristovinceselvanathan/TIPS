@@ -3,7 +3,7 @@
 namespace LoggingSystem
 {
     /// <summary>
-    /// Logger Class
+    /// Logger Class it consists of the entry point of the program
     /// </summary>
     public class Logger
     {
@@ -18,7 +18,7 @@ namespace LoggingSystem
         }
 
         /// <summary>
-        /// Log Error Method
+        /// Log Error Method uses the Singleton Pattern
         /// </summary>
         /// <param name="errorMessage">Error Message</param>
         /// <param name="id">It takes the id</param>
@@ -48,14 +48,14 @@ namespace LoggingSystem
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Error Occurred");
             }
         }
 
         /// <summary>
-        /// Read the Log File
+        /// Read the Log File from the path
         /// </summary>
         public static void ReadTheLogFile()
         {

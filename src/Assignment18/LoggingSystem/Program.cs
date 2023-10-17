@@ -3,12 +3,12 @@
 namespace LoggingSystem
 {
     /// <summary>
-    /// Program Class
+    /// Program Class it consists of the entry point of the program
     /// </summary>
     public class Program
     {
         /// <summary>
-        /// Main Method
+        /// Access same file multiple times
         /// </summary>
         /// <param name="args">It is string array of the main method</param>
         public static void Main(string[] args)

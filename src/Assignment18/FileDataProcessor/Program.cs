@@ -1,12 +1,12 @@
 ﻿namespace FileDataProcessor
 {
     /// <summary>
-    /// Program Class
+    /// Program Class it consists of entry point of the program
     /// </summary>
     internal class Program
     {
         /// <summary>
-        /// Main Method it will perform the read operation
+        /// Perform the read operation in the file
         /// </summary>
         /// <param name="args">It is string array of the main method</param>
         public static void Main(string[] args)

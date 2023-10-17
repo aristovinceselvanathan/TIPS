@@ -14,7 +14,7 @@
         /// <param name="destinationPath">It is file path of the destination</param>
         public static void ReadFromTheFile(string sourcePath, string destinationPath)
         {
-            if (File.Exists(sourcePath) || File.Exists(destinationPath))
+            if (File.Exists(sourcePath) && File.Exists(destinationPath))
             {
                 int fileSize = (int)new FileInfo(sourcePath).Length;
                 int bufferSize = (int)Math.Min(fileSize, int.MaxValue);
@@ -117,13 +117,12 @@
                         data = reader.ReadLine();
                     }
                 }
-            }
-
-            using (StreamReader reader = new StreamReader(destinationPath))
-            {
-                reader.BaseStream.Seek(0, SeekOrigin.Begin);
-                ColorfulMessage("\nSuccessfully Processed Data", ConsoleColor.Green);
-                Console.WriteLine($"\nProcessed Data First Line : {reader.ReadLine()}");
+                using (StreamReader reader = new StreamReader(destinationPath))
+                {
+                    reader.BaseStream.Seek(0, SeekOrigin.Begin);
+                    ColorfulMessage("\nSuccessfully Processed Data", ConsoleColor.Green);
+                    Console.WriteLine($"\nProcessed Data First Line : {reader.ReadLine()}");
+                }
             }
         }
 

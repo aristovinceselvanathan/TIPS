@@ -22,4 +22,14 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Assignment18\BasicFileUsage\BasicFileUsage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="testFile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

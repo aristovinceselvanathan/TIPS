@@ -3,12 +3,12 @@
 namespace BasicFileUsage
 {
     /// <summary>
-    /// Program Class
+    /// Program Class consists entry point of the program
     /// </summary>
     public class Program
     {
         /// <summary>
-        /// Main Method
+        ///  Write and Read Operation in the file
         /// </summary>
         /// <param name="args">It is string in main method</param>
         public static void Main(string[] args)

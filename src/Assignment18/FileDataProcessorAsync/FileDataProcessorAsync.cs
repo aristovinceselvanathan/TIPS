@@ -6,10 +6,10 @@
     public class FileDataProcessorAsync
     {
         /// <summary>
-        /// Method process the file asynchronously
+        /// Process the files asynchronously convert to upper case
         /// </summary>
-        /// <param name="source">Source file paths</param>
-        /// <param name="destination">Destination file path</param>
+        /// <param name="source">Path of the source file</param>
+        /// <param name="destination">Path of the Destination file</param>
         /// <returns><see cref="Task"/> representing the asynchronous operation.</returns>
         public static async Task FileProcessAsync(string[] source, string destination)
         {
@@ -23,10 +23,10 @@
         }
 
         /// <summary>
-        /// Process the file
+        /// Write to file asynchronously
         /// </summary>
-        /// <param name="sourceFilePath">Source file</param>
-        /// <param name="destinationFilePath">Destination file</param>
+        /// <param name="sourceFilePath">Path of the Source File</param>
+        /// <param name="destinationFilePath">Path of the Destination File</param>
         /// <returns>task</returns>
         public static async Task ProcessFileToUpperCaseAsync(string sourceFilePath, string destinationFilePath)
         {

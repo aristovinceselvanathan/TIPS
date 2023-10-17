@@ -1,12 +1,12 @@
 ﻿namespace FileDataProcessorAsync
 {
     /// <summary>
-    /// Program Class
+    /// Program Class it consists of the entry point of the program
     /// </summary>
     internal class Program
     {
         /// <summary>
-        /// Main method
+        /// Read multiple files simultaneously
         /// </summary>
         /// <param name="args">It is string array of the main method</param>
         /// <returns>Task</returns>
