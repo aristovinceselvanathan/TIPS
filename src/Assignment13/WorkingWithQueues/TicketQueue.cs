@@ -18,19 +18,19 @@
         {
             if (!ValidNameOfPerson(nameOfPerson))
             {
-                Program.WarningMessageFromConsole("Invalid name of a Person");
+                Program.PrintRedColorMessage("Invalid name of a Person");
                 Console.WriteLine("Press Any key to continue....");
                 return false;
             }
             else if (!ticketLine.Contains(nameOfPerson))
             {
                 ticketLine.Enqueue(nameOfPerson);
-                Program.SuccessfulMessageFromConsole("Person added successfully");
+                Program.PrintGreenColorMessage("Person added successfully");
                 Console.WriteLine($"Size of the queue : {ticketLine.Count}");
             }
             else
             {
-                Program.WarningMessageFromConsole("Person name is already present in the queue");
+                Program.PrintRedColorMessage("Person name is already present in the queue");
             }
 
             return false;
@@ -54,7 +54,7 @@
             }
             else
             {
-                Program.WarningMessageFromConsole("Queue is Empty!!! - Please add a Person to perform the action");
+                Program.PrintRedColorMessage("Queue is Empty!!! - Please add a Person to perform the action");
             }
 
             return default(T);
@@ -76,7 +76,7 @@
             }
             else
             {
-                Program.WarningMessageFromConsole("Queue is Empty!!! - Nothing to Display");
+                Program.PrintRedColorMessage("Queue is Empty!!! - Nothing to Display");
             }
         }
 
@@ -99,7 +99,6 @@
         {
             try
             {
-                // You can use TypeConverter or parse methods specific to T's type here
                 return (string)Convert.ChangeType(input, typeof(string));
             }
             catch

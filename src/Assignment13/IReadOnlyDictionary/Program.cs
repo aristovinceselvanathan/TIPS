@@ -27,12 +27,14 @@
         /// <returns>Student Science Marks in the form of IReadOnlyDictionary</returns>
         public static IReadOnlyDictionary<string, int> GenerateDictionary()
         {
-            Dictionary<string, int> studentRecord = new ();
-            studentRecord.Add("Tom Cruise", 89);
-            studentRecord.Add("Tim Hook", 78);
-            studentRecord.Add("Lora Croft", 95);
-            studentRecord.Add("Jenifer", 81);
-            studentRecord.Add("Robert Downey jr", 99);
+            Dictionary<string, int> studentRecord = new()
+            {
+                { "Tom Cruise", 89 },
+                { "Tim Hook", 78 },
+                { "Lora Croft", 95 },
+                { "Jenifer", 81 },
+                { "Robert Downey jr", 99 },
+            };
             IReadOnlyDictionary<string, int> studentRecordOriginal = studentRecord;
             return studentRecordOriginal;
         }

@@ -27,7 +27,7 @@
             }
             else
             {
-                Program.WarningMessageFromConsole("Directory is Full!!! \n- Please remove a Student to perform the action");
+                Program.PrintTheRedColorMessage("Directory is Full!!! \n- Please remove a Student to perform the action");
             }
 
             return false;
@@ -47,18 +47,18 @@
             {
                 if (studentDirectory.Remove(nameOfStudent))
                 {
-                    Program.SuccessfulMessageFromConsole("Student is removed Successfully");
+                    Program.PrintTheGreenColorMessage("Student is removed Successfully");
                     Console.WriteLine($"Size of the Directory : {sizeOfDirectory - 1}");
                     return true;
                 }
                 else
                 {
-                    Program.WarningMessageFromConsole("Operation is unsuccessful");
+                    Program.PrintTheRedColorMessage("Operation is unsuccessful");
                 }
             }
             else
             {
-                Program.WarningMessageFromConsole("Dictionary is Empty!! \n- Please add a Student to perform the action");
+                Program.PrintTheRedColorMessage("Dictionary is Empty!! \n- Please add a Student to perform the action");
             }
 
             return false;
@@ -80,7 +80,7 @@
             }
             else
             {
-                Program.WarningMessageFromConsole("Directory is Empty!!! - Nothing to Display");
+                Program.PrintTheRedColorMessage("Directory is Empty!!! - Nothing to Display");
             }
         }
 
@@ -105,7 +105,6 @@
         {
             try
             {
-                // You can use TypeConverter or parse methods specific to T1's type here
                 return (T1)Convert.ChangeType(input, typeof(T1));
             }
             catch
@@ -119,7 +118,6 @@
         {
             try
             {
-                // You can use TypeConverter or parse methods specific to T2's type here
                 return (T2)Convert.ChangeType(input, typeof(T2));
             }
             catch
@@ -133,7 +131,6 @@
         {
             try
             {
-                // You can use TypeConverter or parse methods specific to T1's type here
                 return (string)Convert.ChangeType(input, typeof(string));
             }
             catch

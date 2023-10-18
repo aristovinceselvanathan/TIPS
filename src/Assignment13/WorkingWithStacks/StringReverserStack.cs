@@ -58,7 +58,6 @@
         {
             try
             {
-                // You can use TypeConverter or parse methods specific to T's type here
                 return (T)Convert.ChangeType(input, typeof(T));
             }
             catch

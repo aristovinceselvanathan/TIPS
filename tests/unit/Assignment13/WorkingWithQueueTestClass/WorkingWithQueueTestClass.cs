@@ -2,83 +2,84 @@ namespace WorkingWithQueue.Tests
 {
     using System.Collections.Generic;
     using WorkingWithQueue;
-    public class ProgramTests
+
+    public class WorkingWithQueueTestClass
     {
         [Fact]
-        public void Enqueue_ValidName_AddsToQueue()
+        public void ValidName_Enqueue_AddsToQueue()
         {
             // Arrange
-            var ticketQueueLine = new Queue<string>();
-            var inputName = "John";
+            Queue<string> ticketQueueLine = new Queue<string>();
+            string inputName = "John";
 
             // Act
             TicketQueue<String>.Enqueue(ticketQueueLine, inputName);
 
             // Assert
-            Assert.Single(ticketQueueLine); // Check that the name is added to the queue
-            Assert.Equal(inputName, ticketQueueLine.Dequeue()); // Check that the name matches the input
+            Assert.Single(ticketQueueLine);
+            Assert.Equal(inputName, ticketQueueLine.Dequeue()); 
         }
 
         [Fact]
-        public void Enqueue_EmptyName_DoesNotAddToQueue()
+        public void EmptyName_Enqueue_DoesNotAddToQueue()
         {
             // Arrange
-            var ticketQueueLine = new Queue<string>();
-            var inputName = "";
+            Queue<string> ticketQueueLine = new Queue<string>();
+            string inputName = string.Empty;
 
             // Act
             TicketQueue<String>.Enqueue(ticketQueueLine, inputName);
 
             // Assert
-            Assert.Empty(ticketQueueLine); // Check that the queue remains empty for an empty name
+            Assert.Empty(ticketQueueLine); 
         }
         
         [Fact]
-        public void Enqueue_DuplicateName_DoesNotAddToQueue()
+        public void DuplicateName_Enqueue_DoesNotAddToQueue()
         {
             // Arrange
-            var ticketQueueLine = new Queue<string>();
+            Queue<string> ticketQueueLine = new Queue<string>();
 
             // Act
             TicketQueue<String>.Enqueue(ticketQueueLine, "John");
             TicketQueue<String>.Enqueue(ticketQueueLine, "John");
 
             // Assert
-            Assert.Single(ticketQueueLine); // Check that the queue remains empty for an empty name
+            Assert.Single(ticketQueueLine); 
         }
 
         [Fact]
-        public void Enqueue_InvalidName_DoesNotAddToQueue()
+        public void InvalidName_Enqueue_DoesNotAddToQueue()
         {
             // Arrange
-            var ticketQueueLine = new Queue<string>();
-            var inputName = "123"; // Invalid name with numeric characters
+            Queue<string> ticketQueueLine = new Queue<string>();
+            string inputName = "123"; 
 
             // Act
             TicketQueue<String>.Enqueue(ticketQueueLine, inputName);
 
             // Assert
-            Assert.Empty(ticketQueueLine); // Check that the queue remains empty for an invalid name
+            Assert.Empty(ticketQueueLine); 
         }
 
         [Fact]
-        public void Dequeue_EmptyQueue_ReturnsNull()
+        public void EmptyQueue_Dequeue_ReturnsNull()
         {
             // Arrange
-            var ticketQueueLine = new Queue<string>();
+            Queue<string> ticketQueueLine = new Queue<string>();
 
             // Act
             string result = TicketQueue<string>.Dequeue(ticketQueueLine);
 
             // Assert
-            Assert.Null(result); // Check that null is returned for an empty queue
+            Assert.Null(result); 
         }
 
         [Fact]
-        public void Dequeue_ValidQueue_ReturnsName()
+        public void ValidQueue_Dequeue_ReturnsName()
         {
             // Arrange
-            var ticketQueueLine = new Queue<string>();
+            Queue<string> ticketQueueLine = new Queue<string>();
             ticketQueueLine.Enqueue("Alice");
             ticketQueueLine.Enqueue("Bob");
 
@@ -86,7 +87,7 @@ namespace WorkingWithQueue.Tests
             string result = TicketQueue<string>.Dequeue(ticketQueueLine);
 
             // Assert
-            Assert.Equal("Alice", result); // Check that the name is dequeued correctly
+            Assert.Equal("Alice", result); 
         }
 
     }

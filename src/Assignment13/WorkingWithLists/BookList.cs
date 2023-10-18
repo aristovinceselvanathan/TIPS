@@ -20,18 +20,18 @@
                 if (!directoryOfBooks.Contains(bookTitle))
                 {
                     directoryOfBooks.Add(bookTitle);
-                    Program.SuccessfulMessageFromConsole("Book added successfully");
+                    Program.PrintTheGreenColorMessage("Book added successfully");
                     Console.WriteLine($"Size of the directory : {sizeOfDirectory + 1}");
                     return true;
                 }
                 else
                 {
-                    Program.WarningMessageFromConsole("Book Title is already present in the directory");
+                    Program.PrintRedColorMessage("Book Title is already present in the directory");
                 }
             }
             else
             {
-                Program.WarningMessageFromConsole("Directory is Full!!! - Please remove a book to perform the action\"");
+                Program.PrintRedColorMessage("Directory is Full!!! - Please remove a book to perform the action\"");
             }
 
             return false;
@@ -51,18 +51,18 @@
             {
                 if (directoryOfBooks.Remove(bookTitle))
                 {
-                    Program.SuccessfulMessageFromConsole("Book is removed Successfully");
+                    Program.PrintTheGreenColorMessage("Book is removed Successfully");
                     Console.WriteLine($"Size of the directory : {sizeOfDirectory - 1}");
                     return true;
                 }
                 else
                 {
-                    Program.WarningMessageFromConsole("Book doesn't exists in the directory");
+                    Program.PrintRedColorMessage("Book doesn't exists in the directory");
                 }
             }
             else
             {
-                Program.WarningMessageFromConsole("Directory is Empty!!! - Please add a book to perform the action");
+                Program.PrintRedColorMessage("Directory is Empty!!! - Please add a book to perform the action");
             }
 
             return false;
@@ -91,7 +91,7 @@
             }
             else
             {
-                Program.WarningMessageFromConsole("Directory is Empty!!! - Please add a book to perform the action");
+                Program.PrintRedColorMessage("Directory is Empty!!! - Please add a book to perform the action");
             }
 
             return null;
@@ -112,7 +112,7 @@
             }
             else
             {
-                Program.WarningMessageFromConsole("Directory is Empty!!! - Nothing to Display");
+                Program.PrintRedColorMessage("Directory is Empty!!! - Nothing to Display");
             }
         }
 
@@ -121,7 +121,6 @@
         {
             try
             {
-                // You can use TypeConverter or parse methods specific to T's type here
                 return (T)Convert.ChangeType(input, typeof(T));
             }
             catch
@@ -135,7 +134,6 @@
         {
             try
             {
-                // You can use TypeConverter or parse methods specific to T's type here
                 return (string)Convert.ChangeType(input, typeof(string));
             }
             catch

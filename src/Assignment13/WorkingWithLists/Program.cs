@@ -35,7 +35,7 @@
                     switch (service)
                     {
                         case Services.Add:
-                            AddBook(directoryOfBooks);
+                            AddBookInTheDirectory(directoryOfBooks);
                             break;
                         case Services.Remove:
                             RemoveBook(directoryOfBooks);
@@ -51,13 +51,13 @@
                             Console.WriteLine("Exiting....");
                             break;
                         default:
-                            WarningMessageFromConsole("Invalid Option - Please enter the in range between 1 to 5");
+                            PrintRedColorMessage("Invalid Option - Please enter the in range between 1 to 5");
                             break;
                     }
                 }
                 else
                 {
-                    WarningMessageFromConsole("Invalid Input!!! - Required Number");
+                    PrintRedColorMessage("Invalid Input!!! - Required Number");
                 }
 
                 Console.WriteLine("Press any key to continue...");
@@ -71,22 +71,22 @@
         /// </summary>
         /// <param name="directoryOfBooks">Reference to the directory contains details of the books</param>
         /// <returns>It returns status of the addition of the book in the list</returns>
-        public static bool AddBook(List<string> directoryOfBooks)
+        public static bool AddBookInTheDirectory(List<string> directoryOfBooks)
         {
-            string book;
+            string titleOfTheBook;
             int sizeOfDirectory = directoryOfBooks.Count();
             bool flag = true;
             while (flag)
             {
                 Console.WriteLine("Enter the title of a book to add: ");
-                book = Console.ReadLine().Trim();
-                if (ValidTitleTitleOfBook(book))
+                titleOfTheBook = Console.ReadLine().Trim();
+                if (ValidateNameOfTheBook(titleOfTheBook))
                 {
-                    flag = !BookList<string>.AddBook(directoryOfBooks, book);
+                    flag = !BookList<string>.AddBook(directoryOfBooks, titleOfTheBook);
                 }
                 else
                 {
-                    Program.WarningMessageFromConsole("Invalid title of a book");
+                    Program.PrintRedColorMessage("Invalid title of a book");
                     Console.WriteLine("Press Escape key to exit, Press the any other key to continue.....");
                     if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
                     {
@@ -109,20 +109,20 @@
         /// <returns>It returns status of the removal of the book from the list</returns>
         public static bool RemoveBook(List<string> directoryOfBooks)
         {
-            string book;
+            string titleOfTheBook;
             int sizeOfDirectory = directoryOfBooks.Count();
             bool flag = true;
             while (flag)
             {
                 Console.WriteLine("Enter the title of a book to remove: ");
-                book = Console.ReadLine().Trim();
-                if (ValidTitleTitleOfBook(book))
+                titleOfTheBook = Console.ReadLine().Trim();
+                if (ValidateNameOfTheBook(titleOfTheBook))
                 {
-                    flag = !BookList<string>.RemoveBook(directoryOfBooks, book);
+                    flag = !BookList<string>.RemoveBook(directoryOfBooks, titleOfTheBook);
                 }
                 else
                 {
-                    Program.WarningMessageFromConsole("Invalid title of a book");
+                    Program.PrintRedColorMessage("Invalid title of a book");
                     Console.WriteLine("Press Escape key to exit, Press the any other key to continue.....");
                     if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
                     {
@@ -146,22 +146,22 @@
         public static bool SearchBook(List<string> directoryOfBooks)
         {
             int sizeOfDirectory = directoryOfBooks.Count();
-            string book;
+            string titleOfTheBook;
             bool flag = true;
             while (flag)
             {
                 Console.WriteLine("Enter the title of the book : ");
-                book = Console.ReadLine().Trim();
-                if (ValidTitleTitleOfBook(book))
+                titleOfTheBook = Console.ReadLine().Trim();
+                if (ValidateNameOfTheBook(titleOfTheBook))
                 {
-                    if (BookList<string>.SearchTheDirectory(directoryOfBooks, book) != null)
+                    if (BookList<string>.SearchTheDirectory(directoryOfBooks, titleOfTheBook) != null)
                     {
-                        Program.SuccessfulMessageFromConsole($"Book Found!!, Position of the book in the directory : {directoryOfBooks.IndexOf(book) + 1}");
+                        Program.PrintTheGreenColorMessage($"Book Found!!, Position of the book in the directory : {directoryOfBooks.IndexOf(titleOfTheBook) + 1}");
                         flag = false;
                     }
                     else
                     {
-                        Program.WarningMessageFromConsole("Title of the book is not present in the directory");
+                        Program.PrintRedColorMessage("Title of the book is not present in the directory");
                         Console.WriteLine("Press Escape key to exit, Press the any other key to continue.....");
                         if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
                         {
@@ -183,7 +183,7 @@
         /// It shows the colorful warning message of the invalid input
         /// </summary>
         /// <param name="nameOfEvent">It takes the name of the event</param>
-        public static void WarningMessageFromConsole(string nameOfEvent)
+        public static void PrintRedColorMessage(string nameOfEvent)
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Black;
@@ -196,7 +196,7 @@
         /// It shows the colorful successful message of the successful operation
         /// </summary>
         /// <param name="nameOfOperation">It takes the name of the Operation</param>
-        public static void SuccessfulMessageFromConsole(string nameOfOperation)
+        public static void PrintTheGreenColorMessage(string nameOfOperation)
         {
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Black;
@@ -210,7 +210,7 @@
         /// </summary>
         /// <param name="title">Title of the book</param>
         /// <returns>Return true if it matches the condition, else false</returns>
-        public static bool ValidTitleTitleOfBook(string title)
+        public static bool ValidateNameOfTheBook(string title)
         {
             Regex pattern = new Regex("^[A-Za-z\\s!@#$&()-`.+,/\"]+$");
             if (pattern.IsMatch(title))

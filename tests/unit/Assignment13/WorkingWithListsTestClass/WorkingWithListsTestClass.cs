@@ -3,153 +3,141 @@ namespace WorkingWithListsTestClass
     using global::WorkingWithList;
     using System.Collections.Generic;
 
-    namespace WorkingWithList.Tests
+    public class WorkingWithListsTestClass
     {
-        public class BookListTests
+        [Fact]
+        public void ValidTitle_AddBook_AddsBookToList()
         {
-            [Fact]
-            public void AddBook_ValidTitle_AddsBookToList()
-            {
-                // Arrange
-                var directoryOfBooks = new List<string>();
-                string bookName = "Book1";
+            // Arrange
+            List<string> directoryOfBooks = new List<string>();
+            string bookName = "Book1";
 
-                // Act
-                bool result = BookList<string>.AddBook(directoryOfBooks, bookName);
+            // Act
+            bool result = BookList<string>.AddBook(directoryOfBooks, bookName);
 
-                // Assert
-                Assert.True(result); // Check that a book was added
-                Assert.Single(directoryOfBooks); // Check that the count is 1
-            }
+            // Assert
+            Assert.True(result);
+            Assert.Single(directoryOfBooks);
+            Assert.Contains(bookName, directoryOfBooks);
+        }
 
-            [Fact]
-            public void AddBook_DuplicateTitle_DoesNotAddBookToList()
-            {
-                // Arrange
-                var directoryOfBooks = new List<string> { "Book1" };
-                string bookName = "Book1";
+        [Fact]
+        public void DuplicateTitle_AddBook_DoesNotAddBookToList()
+        {
+            // Arrange
+            List<string> directoryOfBooks = new List<string> { "Book1" };
+            string bookName = "Book1";
 
-                // Act
-                bool result = BookList<string>.AddBook(directoryOfBooks, bookName);
+            // Act
+            bool result = BookList<string>.AddBook(directoryOfBooks, bookName);
 
-                // Assert
-                Assert.False(result); // Check that the book was not added
-                Assert.Single(directoryOfBooks); // Check that the count is still 1
-            }
+            // Assert
+            Assert.False(result); 
+            Assert.Single(directoryOfBooks);
+        }
 
-            [Fact]
-            public void RemoveBook_ExistingBook_RemovesBookFromList()
-            {
-                // Arrange
-                var directoryOfBooks = new List<string> { "Book1", "Book2", "Book3" };
-                string bookName = "Book2";
+        [Fact]
+        public void ExistingBook_RemoveBook_RemovesBookFromList()
+        {
+            // Arrange
+            List<string> directoryOfBooks = new List<string> { "Book1", "Book2", "Book3" };
+            string bookName = "Book2";
 
-                // Act
-                bool result = BookList<string>.RemoveBook(directoryOfBooks, bookName);
+            // Act
+            bool result = BookList<string>.RemoveBook(directoryOfBooks, bookName);
 
-                // Assert
-                Assert.True(result); // Check that the book was removed
-                Assert.DoesNotContain(bookName, directoryOfBooks); // Check that Book2 is not in the list
-            }
+            // Assert
+            Assert.True(result);
+            Assert.DoesNotContain(bookName, directoryOfBooks);
+        }
 
-            [Fact]
-            public void RemoveBook_NonExistingBook_DoesNotRemoveFromList()
-            {
-                // Arrange
-                var directoryOfBooks = new List<string> { "Book1", "Book2", "Book3" };
-                string bookName = "Book4";
+        [Fact]
+        public void NonExistingBook_RemoveBook_DoesNotRemoveFromList()
+        {
+            // Arrange
+            List<string> directoryOfBooks = new List<string> { "Book1", "Book2", "Book3" };
+            string bookName = "Book4";
 
-                // Act
-                bool result = BookList<string>.RemoveBook(directoryOfBooks, bookName);
+            // Act
+            bool result = BookList<string>.RemoveBook(directoryOfBooks, bookName);
 
-                // Assert
-                Assert.False(result); // Check that the book was not removed
-                Assert.Equal(3, directoryOfBooks.Count); // Check that the count is still 3
-            }
+            // Assert
+            Assert.False(result);
+            Assert.Equal(3, directoryOfBooks.Count);
+        }
 
-            [Fact]
-            public void SearchTheDirectory_ExistingBook_ReturnsCorrectIndex()
-            {
-                // Arrange
-                var directoryOfBooks = new List<string> { "Book1", "Book2", "Book3" };
-                string bookName = "Book2";
+        [Fact]
+        public void ExistingBook_SearchTheDirectory_ReturnsCorrectIndex()
+        {
+            // Arrange
+            List<string> directoryOfBooks = new List<string> { "Book1", "Book2", "Book3" };
+            string bookName = "Book2";
 
-                // Act
-                int? index = BookList<string>.SearchTheDirectory(directoryOfBooks, bookName);
+            // Act
+            int? index = BookList<string>.SearchTheDirectory(directoryOfBooks, bookName);
 
-                // Assert
-                Assert.NotNull(index); // Check that an index is returned
-                Assert.Equal(1, index); // Check that the index of Book2 is 1
-            }
+            // Assert
+            Assert.NotNull(index);
+            Assert.Equal(1, index);
+        }
 
-            [Fact]
-            public void SearchTheDirectory_NonExistingBook_ReturnsNull()
-            {
-                // Arrange
-                var directoryOfBooks = new List<string> { "Book1", "Book2", "Book3" };
-                string bookName = "Book4";
+        [Fact]
+        public void NonExistingBook_SearchTheDirectory_ReturnsNull()
+        {
+            // Arrange
+            List<string> directoryOfBooks = new List<string> { "Book1", "Book2", "Book3" };
+            string bookName = "Book4";
 
-                // Act
-                int? index = BookList<string>.SearchTheDirectory(directoryOfBooks, bookName);
+            // Act
+            int? index = BookList<string>.SearchTheDirectory(directoryOfBooks, bookName);
 
-                // Assert
-                Assert.Null(index); // Check that null is returned for a non-existing book
-            }
+            // Assert
+            Assert.Null(index);
+        }
 
 
-            [Fact]
-            public void AddBook_DirectoryIsFull_ReturnsFalse()
-            {
-                // Arrange
-                var directoryOfBooks = new List<string> { "Book1", "Book2", "Book3", "Book4", "Book5" };
-                string bookName = "Book6"; // Adding a book when the directory is already full
+        [Fact]
+        public void BookDirectory_AddBook__ReturnsFalse()
+        {
+            // Arrange
+            List<string> directoryOfBooks = new List<string> { "Book1", "Book2", "Book3", "Book4", "Book5" };
+            string bookName = "Book6"; 
 
-                // Act
-                bool result = BookList<string>.AddBook(directoryOfBooks, bookName);
+            // Act
+            bool result = BookList<string>.AddBook(directoryOfBooks, bookName);
 
-                // Assert
-                Assert.False(result); // Check that the book was not added
-                Assert.Equal(5, directoryOfBooks.Count); // Check that the count is still 5
-            }
+            // Assert
+            Assert.False(result);
+            Assert.Equal(5, directoryOfBooks.Count);
+        }
 
-            [Fact]
-            public void RemoveBook_DirectoryIsEmpty_ReturnsFalse()
-            {
-                // Arrange
-                var directoryOfBooks = new List<string>();
-                string bookName = "Book1"; // Trying to remove a book from an empty directory
+        [Fact]
+        public void BookDirectoryIsEmpty_RemoveBook_ReturnsFalse()
+        {
+            // Arrange
+            List<string> directoryOfBooks = new List<string>();
+            string bookName = "Book1";
 
-                // Act
-                bool result = BookList<string>.RemoveBook(directoryOfBooks, bookName);
+            // Act
+            bool result = BookList<string>.RemoveBook(directoryOfBooks, bookName);
 
-                // Assert
-                Assert.False(result); // Check that the book was not removed
-                Assert.Empty(directoryOfBooks); // Check that the directory is still empty
-            }
+            // Assert
+            Assert.False(result); 
+            Assert.Empty(directoryOfBooks);
+        }
 
-            [Fact]
-            public void SearchTheDirectory_DirectoryIsEmpty_ReturnsNull()
-            {
-                // Arrange
-                var directoryOfBooks = new List<string>();
-                string bookName = "Book1"; // Searching for a book in an empty directory
+        [Fact]
+        public void BookDirectoryIsEmpty_SearchTheDirectory_ReturnsNull()
+        {
+            // Arrange
+            List<string> directoryOfBooks = new List<string>();
+            string bookName = "Book1";
 
-                // Act
-                int? index = BookList<string>.SearchTheDirectory(directoryOfBooks, bookName);
+            // Act
+            int? index = BookList<string>.SearchTheDirectory(directoryOfBooks, bookName);
 
-                // Assert
-                Assert.Null(index); // Check that null is returned for an empty directory
-            }
-
-            [Fact]
-            public void DisplayAll_DirectoryIsEmpty_ReturnsEmptyList()
-            {
-                // Arrange
-                var directoryOfBooks = new List<string>(); // An empty directory
-
-                // Act (No need to assert, just checking for exceptions)
-                BookList<string>.DisplayAll(directoryOfBooks); // Should not throw an exception
-            }
+            // Assert
+            Assert.Null(index);
         }
 
     }

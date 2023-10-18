@@ -48,13 +48,13 @@
                             Console.WriteLine("Exiting....");
                             break;
                         default:
-                            WarningMessageFromConsole("Invalid Option!! - Enter only in range between 1 to 4");
+                            PrintRedColorMessage("Invalid Option!! - Enter only in range between 1 to 4");
                             break;
                     }
                 }
                 else
                 {
-                    WarningMessageFromConsole("Invalid Input!!! - Required Number");
+                    PrintRedColorMessage("Invalid Input!!! - Required Number");
                 }
                 Console.ReadKey(true);
                 Console.Clear();
@@ -83,7 +83,7 @@
         /// It shows the colorful warning message of the invalid input
         /// </summary>
         /// <param name="nameOfEvent">It takes the name of the event</param>
-        public static void WarningMessageFromConsole(string nameOfEvent)
+        public static void PrintRedColorMessage(string nameOfEvent)
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Black;
@@ -96,7 +96,7 @@
         /// It shows the colorful successful message of the successful operation
         /// </summary>
         /// <param name="nameOfOperation">It takes the name of the Operation</param>
-        public static void SuccessfulMessageFromConsole(string nameOfOperation)
+        public static void PrintGreenColorMessage(string nameOfOperation)
         {
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Black;

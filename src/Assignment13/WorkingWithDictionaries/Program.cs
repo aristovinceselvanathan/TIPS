@@ -48,13 +48,13 @@
                             Console.WriteLine("Exiting....");
                             break;
                         default:
-                            WarningMessageFromConsole("Invalid Option");
+                            PrintTheRedColorMessage("Invalid Option");
                             break;
                     }
                 }
                 else
                 {
-                    WarningMessageFromConsole("Invalid Input!!! - Required Number");
+                    PrintTheRedColorMessage("Invalid Input!!! - Required Number");
                 }
 
                 Console.WriteLine("Press any key to continue...");
@@ -79,7 +79,7 @@
                 nameOfStudent = Console.ReadLine().Trim();
                 if (!ValidNameOfStudent(nameOfStudent))
                 {
-                    Program.WarningMessageFromConsole("Invalid Name of the Student");
+                    Program.PrintTheRedColorMessage("Invalid Name of the Student");
                     Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
                     if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
                     {
@@ -96,13 +96,13 @@
                     if (int.TryParse(Console.ReadLine(), out int userGradeOfStudent) && (userGradeOfStudent >= 0 && userGradeOfStudent <= 10))
                     {
                         StudentDictionary<string, int>.Add(studentDirectory, nameOfStudent, userGradeOfStudent);
-                        Program.SuccessfulMessageFromConsole("Student added successfully");
+                        Program.PrintTheGreenColorMessage("Student added successfully");
                         Console.WriteLine($"Size of the Directory : {sizeOfDirectory + 1}");
                         flag = false;
                     }
                     else
                     {
-                        Program.WarningMessageFromConsole("Invalid Grade");
+                        Program.PrintTheRedColorMessage("Invalid Grade");
                         Console.WriteLine("Press the escape key to exit.....");
                         Console.WriteLine("Press Any key to continue, Press the escape key to exit.....");
                         if (Console.ReadKey(true).Key.Equals(ConsoleKey.Escape))
@@ -117,7 +117,7 @@
                 }
                 else
                 {
-                    Program.WarningMessageFromConsole("Student name is already present in the Directory");
+                    Program.PrintTheRedColorMessage("Student name is already present in the Directory");
                 }
             }
         }
@@ -192,7 +192,7 @@
         /// It shows the colorful warning message of the invalid input
         /// </summary>
         /// <param name="nameOfEvent">It takes the name of the event</param>
-        public static void WarningMessageFromConsole(string nameOfEvent)
+        public static void PrintTheRedColorMessage(string nameOfEvent)
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Black;
@@ -205,7 +205,7 @@
         /// It shows the colorful successful message of the successful operation
         /// </summary>
         /// <param name="nameOfOperation">It takes the name of the Operation</param>
-        public static void SuccessfulMessageFromConsole(string nameOfOperation)
+        public static void PrintTheGreenColorMessage(string nameOfOperation)
         {
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Black;

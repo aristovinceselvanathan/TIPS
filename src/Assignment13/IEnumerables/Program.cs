@@ -89,7 +89,14 @@
         public static bool AddElements(List<int> numberList, int value)
         {
             numberList.Add(value);
-            return true;
+            if (numberList.Contains(value))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

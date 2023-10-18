@@ -2,114 +2,120 @@ namespace WorkingWithDictionaries.Tests
 {
     using System.Collections.Generic;
     using WorkingWithDictionaries;
-    public class StudentDictionaryTests
+
+    public class WorkingWithDictionaryTestClass
     {
         [Fact]
-        public void AddStudent_ValidStudent_AddsToDirectory()
+        public void ValidStudentData_AddStudent_AddsToDirectory()
         {
             // Arrange
-            var studentDirectory = new Dictionary<string, int>();
-            var studentName = "Alice";
-            var gradeOfStudent = 90;
+            Dictionary<string, int> studentDirectory = new Dictionary<string, int>();
+            string studentName = "Alice";
+            int gradeOfStudent = 90;
 
             // Act
             bool result = StudentDictionary<string, int>.Add(studentDirectory, studentName, gradeOfStudent);
 
             // Assert
-            Assert.True(result); // Check that the student is added to the directory
-            Assert.Single(studentDirectory); // Check that there is only one student in the directory
-            Assert.Equal(gradeOfStudent, studentDirectory[studentName]); // Check that the grade is correct
+            Assert.True(result);
+            Assert.Single(studentDirectory);
+            Assert.Equal(gradeOfStudent, studentDirectory[studentName]);
         }
 
         [Fact]
-        public void AddStudent_DirectoryFull_DoesNotAddStudent()
+        public void ValidStudentData_DirectoryFull_DoesNotAddStudent()
         {
             // Arrange
-            var studentDirectory = new Dictionary<string, int>();
+            Dictionary<string, int> studentDirectory = new Dictionary<string, int>();
             for (int i = 0; i < 5; i++)
             {
                 studentDirectory.Add($"Student{i}", 80 + i);
             }
-            var studentName = "NewStudent";
-            var gradeOfStudent = 95;
+            string studentName = "NewStudent";
+            int gradeOfStudent = 95;
+            int count = 5;
 
             // Act
             bool result = StudentDictionary<string, int>.Add(studentDirectory, studentName, gradeOfStudent);
 
             // Assert
-            Assert.False(result); // Check that student is not added when the directory is full
-            Assert.Equal(5, studentDirectory.Count); // Check that the directory size remains the same
+            Assert.False(result);
+            Assert.Equal(count, studentDirectory.Count);
         }
 
         [Fact]
-        public void RemoveStudent_StudentExists_RemovesFromDirectory()
+        public void ValidStudentData_RemoveStudent_RemovesFromDirectory()
         {
             // Arrange
-            var studentDirectory = new Dictionary<string, int>();
-            var studentName = "Alice";
-            var gradeOfStudent = 90;
+            Dictionary<string, int> studentDirectory = new Dictionary<string, int>();
+            string studentName = "Alice";
+            int gradeOfStudent = 90;
             studentDirectory.Add(studentName, gradeOfStudent);
 
             // Act
             bool result = StudentDictionary<string, int>.Remove(studentDirectory, studentName);
 
             // Assert
-            Assert.True(result); // Check that the student is removed from the directory
-            Assert.Empty(studentDirectory); // Check that the directory is empty after removal
+            Assert.True(result);
+            Assert.Empty(studentDirectory);
         }
 
         [Fact]
-        public void RemoveStudent_StudentNotExists_ReturnsFalse()
+        public void StudentNotExists_RemoveStudent_ReturnsFalse()
         {
             // Arrange
-            var studentDirectory = new Dictionary<string, int>();
-            var studentName = "Alice";
+            Dictionary<string, int> studentDirectory = new Dictionary<string, int>();
+            string studentName = "Alice";
 
             // Act
             bool result = StudentDictionary<string, int>.Remove(studentDirectory, studentName);
 
             // Assert
-            Assert.False(result); // Check that removal returns false when student does not exist
+            Assert.False(result);
         }
 
         [Fact]
-        public void RemoveStudent_StudentExists_RemoveOnlyTargetedStudent()
+        public void StudentExists_RemoveStudent_RemoveOnlyTargetedStudent()
         {
             // Arrange
-            var studentDirectory = new Dictionary<string, int>
+            Dictionary<string, int> studentDirectory = new Dictionary<string, int>
             {
                 { "Alice", 90 },
                 { "Bob", 85 },
                 { "Charlie", 88 }
             };
-            var studentToRemove = "Bob"; // Student to be removed
+            string studentToRemove = "Bob";
+            int count = 2;
 
             // Act
             bool result = StudentDictionary<string, int>.Remove(studentDirectory, studentToRemove);
 
             // Assert
-            Assert.True(result); // Check that the student is removed
-            Assert.Equal(2, studentDirectory.Count); // Check that the directory size is reduced
-            Assert.DoesNotContain(studentToRemove, studentDirectory.Keys); // Check that the removed student is not present in the directory
+            Assert.True(result);
+            Assert.Equal(count, studentDirectory.Count);
+            Assert.Contains(studentDirectory.ElementAt(0).Key, "Alice");
+            Assert.Contains(studentDirectory.ElementAt(1).Key, "Charlie");
+            Assert.DoesNotContain(studentToRemove, studentDirectory.Keys);
         }
 
         [Fact]
-        public void RemoveStudent_StudentNotExistsDictionary_ReturnsFalse()
+        public void StudentNotExistsDictionary_RemoveStudent_ReturnsFalse()
         {
             // Arrange
-            var studentDirectory = new Dictionary<string, int>
+            Dictionary<string, int> studentDirectory = new Dictionary<string, int>
             {
                 { "Alice", 90 },
                 { "Charlie", 88 }
             };
-            var studentToRemove = "Bob"; // Student not in the directory
+            string studentToRemove = "Bob";
+            int count = 2;
 
             // Act
             bool result = StudentDictionary<string, int>.Remove(studentDirectory, studentToRemove);
 
             // Assert
-            Assert.False(result); // Check that removal returns false when student does not exist
-            Assert.Equal(2, studentDirectory.Count); // Check that the directory size remains the same
+            Assert.False(result);
+            Assert.Equal(count, studentDirectory.Count);
         }
     }
 }
