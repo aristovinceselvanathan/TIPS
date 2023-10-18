@@ -141,7 +141,7 @@ namespace PatternMatching.Tests
             Program.GetDetailsOfShape(shape);
 
             // Assert
-            Assert.Equal("", shape.Color);
+            Assert.Equal(null, shape.Color);
         }
     }
 }
