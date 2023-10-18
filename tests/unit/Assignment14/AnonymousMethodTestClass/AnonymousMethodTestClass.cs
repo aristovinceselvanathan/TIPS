@@ -12,7 +12,7 @@ namespace AnonymousMethod.Tests
         [InlineData(new int[] { 98, -1, 0, 2, 14 }, new int[] { -1, 0, 2, 14, 98 })]
         [InlineData(new int[] { -0, 1, -2, -2, -1 }, new int[] { -2, -2, -1, 0, 1 })]
         [InlineData(new int[] { -0, +1, -1}, new int[] {-1, 0, 1})]
-        public void SortByUsingDelegate_IsNegativeAndPositiveNumbers_RetursSortedArray(int[] unsortedArray, int[] expectedSortedArray)
+        public void SortByUsingDelegate_IsNegativeAndPositiveNumbers_ReturnsSortedArray(int[] unsortedArray, int[] expectedSortedArray)
         {
             // Arrange
             AnonymousMethod anonymousMethod = new AnonymousMethod();
@@ -62,14 +62,14 @@ namespace AnonymousMethod.Tests
             AnonymousMethod anonymousMethod = new AnonymousMethod();
 
             // Act
-            anonymousMethod.DisplayTheArray(arrayOfNumber);
+            anonymousMethod.PrintTheArrayInConsole(arrayOfNumber);
             var output = outputWriter.ToString().Trim();
 
             // Assert
             Assert.Equal(expectedOutput, output);
         }
         [Fact]
-        public void ArraySort_SortByUsingDelegate_ReturnsEmptyArray()
+        public void EmptyArray_SortByUsingDelegate_ReturnsEmptyArray()
         {
             // Arrange
             int[] emptyArray = new int[0];

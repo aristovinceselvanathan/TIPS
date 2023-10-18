@@ -14,14 +14,17 @@ namespace Task5.Tests
                 new Product { Name = "Banana", Category = "Fruits", Price = 1.49M },
                 new Product { Name = "Carrot", Category = "Vegetables", Price = 0.99M },
             };
+            string expectedOutput1 = "Apple";
+            string expectedOutput2 = "Banana";
+            string expectedOutput3 = "Carrot";
 
             // Act
             productsList.Sort(Program.SortByName);
 
             // Assert
-            Assert.Equal("Apple", productsList[0].Name);
-            Assert.Equal("Banana", productsList[1].Name);
-            Assert.Equal("Carrot", productsList[2].Name);
+            Assert.Equal(expectedOutput1, productsList[0].Name);
+            Assert.Equal(expectedOutput2, productsList[1].Name);
+            Assert.Equal(expectedOutput3, productsList[2].Name);
         }
 
         [Fact]
@@ -34,14 +37,16 @@ namespace Task5.Tests
                 new Product { Name = "T-shirt", Category = "Fashion", Price = 19.99M },
                 new Product { Name = "Chair", Category = "Furniture", Price = 49.99M },
             };
-
+            string expectedOutput1 = "Laptop";
+            string expectedOutput2 = "T-shirt";
+            string expectedOutput3 = "Chair";
             // Act
             productsList.Sort(Program.SortByCategory);
 
             // Assert
-            Assert.Equal("Laptop", productsList[0].Name);
-            Assert.Equal("T-shirt", productsList[1].Name);
-            Assert.Equal("Chair", productsList[2].Name);
+            Assert.Equal(expectedOutput1, productsList[0].Name);
+            Assert.Equal(expectedOutput2, productsList[1].Name);
+            Assert.Equal(expectedOutput3, productsList[2].Name);
         }
 
         [Fact]
@@ -54,14 +59,16 @@ namespace Task5.Tests
                 new Product { Name = "Headphones", Category = "Electronics", Price = 49.99M },
                 new Product { Name = "Bike", Category = "Sports", Price = 299.99M },
             };
-
+            string expectedOutput1 = "Book";
+            string expectedOutput2 = "Headphones";
+            string expectedOutput3 = "Bike";
             // Act
             productsList.Sort(Program.SortByPrice);
 
             // Assert
-            Assert.Equal("Book", productsList[0].Name);
-            Assert.Equal("Headphones", productsList[1].Name);
-            Assert.Equal("Bike", productsList[2].Name);
+            Assert.Equal(expectedOutput1, productsList[0].Name);
+            Assert.Equal(expectedOutput2, productsList[1].Name);
+            Assert.Equal(expectedOutput3, productsList[2].Name);
         }
         [Fact]
         public void SortByName_IsSortedProductsByName_ReturnsSortedListOfProducts()
@@ -73,14 +80,16 @@ namespace Task5.Tests
                 new Product { Name = "Apple", Category = "Fruits", Price = 2.99M },
                 new Product { Name = "Carrot", Category = "Vegetables", Price = 0.99M },
             };
-
+            string expectedOutput1 = "Apple";
+            string expectedOutput2 = "Banana";
+            string expectedOutput3 = "Carrot";
             // Act
             productsList.Sort(Program.SortByName);
 
             // Assert
-            Assert.Equal("Apple", productsList[0].Name);
-            Assert.Equal("Banana", productsList[1].Name);
-            Assert.Equal("Carrot", productsList[2].Name);
+            Assert.Equal(expectedOutput1, productsList[0].Name);
+            Assert.Equal(expectedOutput2, productsList[1].Name);
+            Assert.Equal(expectedOutput3, productsList[2].Name);
         }
 
         [Fact]
@@ -93,14 +102,16 @@ namespace Task5.Tests
                 new Product { Name = "Banana", Category = "Fruits", Price = 2.99M },
                 new Product { Name = "Carrot", Category = "Vegetables", Price = 0.99M },
             };
-
+            string expectedOutput1 = "apple";
+            string expectedOutput2 = "Banana";
+            string expectedOutput3 = "Carrot";
             // Act
             productsList.Sort(Program.SortByName);
 
             // Assert
-            Assert.Equal("apple", productsList[0].Name);
-            Assert.Equal("Banana", productsList[1].Name);
-            Assert.Equal("Carrot", productsList[2].Name);
+            Assert.Equal(expectedOutput1, productsList[0].Name);
+            Assert.Equal(expectedOutput2, productsList[1].Name);
+            Assert.Equal(expectedOutput3, productsList[2].Name);
         }
     }
 }

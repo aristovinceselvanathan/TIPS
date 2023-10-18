@@ -42,7 +42,7 @@
         /// Method to display all the elements in the list
         /// </summary>
         /// <param name="arrayOfNumber">It is reference of the array from the main method</param>
-        public void DisplayTheArray(int[] arrayOfNumber)
+        public void PrintTheArrayInConsole(int[] arrayOfNumber)
         {
             for (int i = 0; i < arrayOfNumber.Length; i++)
             {

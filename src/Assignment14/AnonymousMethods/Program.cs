@@ -25,7 +25,7 @@
                     anonymousMethod.AddElementToArray(arrayOfNumber);
                     Console.WriteLine("\nSorted Array : ");
                     anonymousMethod.SortByUsingDelegate(arrayOfNumber);
-                    anonymousMethod.DisplayTheArray(arrayOfNumber);
+                    anonymousMethod.PrintTheArrayInConsole(arrayOfNumber);
                 }
                 else if (sizeOfArray <= 0)
                 {

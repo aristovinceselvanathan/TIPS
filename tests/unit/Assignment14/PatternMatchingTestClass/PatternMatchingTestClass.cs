@@ -13,10 +13,10 @@ namespace PatternMatching.Tests
         public void CalculateAreaOfCircle_IsValidInput_ShouldReturnCorrectArea(double input1, double expectedValue)
         {
             // Arrange
-            var circle = new Circle { Input1 = input1 };
+            Circle circle = new Circle { Input1 = input1 };
 
             // Act
-            var area = circle.CalculateArea();
+            double area = circle.CalculateArea();
 
             // Assert
             Assert.Equal(expectedValue, area);
@@ -30,10 +30,10 @@ namespace PatternMatching.Tests
         public void CalculateAreaOfRectangle_ShouldReturnCorrectArea(double input1, double input2, double expectedValue)
         {
             // Arrange
-            var rectangle = new Rectangle { Input1 = input1, Input2 = input2 };
+            Rectangle rectangle = new Rectangle { Input1 = input1, Input2 = input2 };
 
             // Act
-            var area = rectangle.CalculateArea();
+            double area = rectangle.CalculateArea();
 
             // Assert
             Assert.Equal(expectedValue, area);
@@ -49,10 +49,10 @@ namespace PatternMatching.Tests
         public void CalculateAreaOfTriangle_ShouldReturnCorrectArea(double input1, double input2, double expectedValue)
         {
             // Arrange
-            var triangle = new Triangle { Input1 = input1, Input2 = input2 };
+            Triangle triangle = new Triangle { Input1 = input1, Input2 = input2 };
 
             // Act
-            var area = triangle.CalculateArea();
+            double area = triangle.CalculateArea();
 
             // Assert
             Assert.Equal(expectedValue, area);
@@ -80,11 +80,11 @@ namespace PatternMatching.Tests
         }
 
         [Fact]
-        public void TestGetDetailsOfRectangle()
+        public void InputRectangle_DetailsOfRectangle_DetectTheRectangle()
         {
             // Arrange
-            var rectangle = new Rectangle();
-            var input = new StringReader("Red\n5\n10\n");
+            Rectangle rectangle = new Rectangle();
+            StringReader input = new StringReader("Red\n5\n10\n");
 
             // Act
             Console.SetIn(input);
@@ -97,11 +97,11 @@ namespace PatternMatching.Tests
         }
 
         [Fact]
-        public void TestGetDetailsOfCircle()
+        public void InputCircle_DetailsOfCircle_DetectTheCircle()
         {
             // Arrange
-            var circle = new Circle();
-            var input = new StringReader("Blue\n3\n");
+            Circle circle = new Circle();
+            StringReader input = new StringReader("Blue\n3\n");
 
             // Act
             Console.SetIn(input);
@@ -113,11 +113,11 @@ namespace PatternMatching.Tests
         }
 
         [Fact]
-        public void TestGetDetailsOfTriangle()
+        public void InputTriangle_DetailsOfTriangle_DetectTheTriangle()
         {
             // Arrange
-            var triangle = new Triangle();
-            var input = new StringReader("Green\n4\n6\n");
+            Triangle triangle = new Triangle();
+            StringReader input = new StringReader("Green\n4\n6\n");
 
             // Act
             Console.SetIn(input);
@@ -127,6 +127,21 @@ namespace PatternMatching.Tests
             Assert.Equal("Green", triangle.Color);
             Assert.Equal(4, triangle.Input1);
             Assert.Equal(6, triangle.Input2);
+        }
+
+        [Fact]
+        public void InputShape_DetailsOfShape_DetectTheShape()
+        {
+            // Arrange
+            Shape shape = new Shape();
+            StringReader input = new StringReader("Green\n4\n6\n");
+
+            // Act
+            Console.SetIn(input);
+            Program.GetDetailsOfShape(shape);
+
+            // Assert
+            Assert.Equal("", shape.Color);
         }
     }
 }
