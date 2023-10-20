@@ -2,6 +2,8 @@
 {
     using System.Reflection;
     using System.Text.RegularExpressions;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Program Class contains the entry point of the program
     /// </summary>
@@ -30,9 +32,9 @@
         }
 
         /// <summary>
-        /// I
+        /// Direct to the different reflection concepts
         /// </summary>
-        /// <param name="args">String array in the parameters of the ma</param>
+        /// <param name="args">String array in the parameters of the main method</param>
         public static void Main(string[] args)
         {
             bool flag = true;
@@ -58,8 +60,10 @@
                             PluginSystem();
                             break;
                         case Options.MockingFramework:
+                            MockingFramework();
                             break;
                         case Options.SerializationAPI:
+                            SerializationAPI();
                             break;
                         default:
                             Console.WriteLine("Exiting...");
@@ -80,37 +84,15 @@
         /// </summary>
         public static void AssemblyMetaData()
         {
-            string assemblyPathFile = string.Empty;
-            Console.Write("\n1.Load the Assembly file from file path\n2.Use Sample Assembly File\nEnter the option : ");
-            if (int.TryParse(Console.ReadLine(), out int userInput))
-            {
-                LoadFile loadFile = (LoadFile)userInput;
-                switch (loadFile)
-                {
-                    case LoadFile.LoadFromTheFile:
-                        Console.Write("Enter the File Path : ");
-                        assemblyPathFile = ValidatePath(Console.ReadLine());
-                        LoadTheMetaData(assemblyPathFile);
-                        break;
-                    case LoadFile.UseDefaultFile:
-                        assemblyPathFile = "D:\\TIPS\\src\\Assignment21\\Assignment21\\bin\\Debug\\net6.0\\Assignment21.dll";
-                        LoadTheMetaData(assemblyPathFile);
-                        break;
-                    default:
-                        Console.WriteLine("Invalid Input");
-                        break;
-                }
-            }
-            else
-            {
-                Console.WriteLine("Invalid Number - Please enter the valid number from 1 to 2");
-            }
+            string assemblyPathFile;
+            assemblyPathFile = GetTheFilePath();
+            LoadTheMetaData(assemblyPathFile);
         }
 
         /// <summary>
         /// Load the Meta Data from the assembly file
         /// </summary>
-        /// <param name="filePath">Path of the file</param>
+        /// <param name="filePath">Path of the assembly file</param>
         public static void LoadTheMetaData(string filePath)
         {
             Assembly assemblyMetaData = Assembly.LoadFile(filePath);
@@ -122,30 +104,43 @@
         }
 
         /// <summary>
-        /// Dynamic Object Inspector
+        /// To Change the Property of the object
         /// </summary>
-        /// <param name="filePath">Path of the Assembly file</param>
         public static void DynamicObjectInspector()
         {
-            string filePath = "D:\\TIPS\\src\\Assignment21\\Assignment21\\bin\\Debug\\net6.0\\Assignment21.dll";
+            string filePath = GetTheFilePath();
             Type type = GetTheObjectType.GetTheTypeOfTheObject(filePath);
-            var objectOfTheClass = Activator.CreateInstance(type);
-            ReflectionsMethods.ChangeThePropertyOfTheObject(objectOfTheClass);
+            if (type != null)
+            {
+                var objectOfTheClass = Activator.CreateInstance(type);
+                ReflectionsMethods.ChangeThePropertyOfTheObject(objectOfTheClass);
+            }
+            else
+            {
+                return;
+            }
         }
 
         /// <summary>
-        /// Invoke the Method Dynamically
+        /// To Invoke the Method Dynamically
         /// </summary>
         public static void DynamicMethodInvoker()
         {
-            string filePath = "D:\\TIPS\\src\\Assignment21\\Assignment21\\bin\\Debug\\net6.0\\Assignment21.dll";
+            string filePath = GetTheFilePath();
             Type type = GetTheObjectType.GetTheTypeOfTheObject(filePath);
-            var objectOfTheClass = Activator.CreateInstance(type);
-            ReflectionsMethods.InvokeTheMethodFromObject(objectOfTheClass);
+            if (type != null)
+            {
+                var objectOfTheClass = Activator.CreateInstance(type);
+                ReflectionsMethods.InvokeTheMethodFromObject(objectOfTheClass);
+            }
+            else
+            {
+                return;
+            }
         }
 
         /// <summary>
-        /// Plugin System
+        /// Plugin System to Load the Different assembler class implements the same interface
         /// </summary>
         public static void PluginSystem()
         {
@@ -161,9 +156,63 @@
         }
 
         /// <summary>
+        /// To mock the interface in the assembly
+        /// </summary>
+        public static void MockingFramework()
+        {
+            string filePath = GetTheFilePath();
+            Console.WriteLine("\nPlease Select only the interface (starts with I)");
+            Type type = GetTheObjectType.GetTheTypeOfTheObject(filePath);
+            if (type != null)
+            {
+                object userSelectedObject = ReflectionsMethods.CreateMockingInterface(type);
+                if (userSelectedObject == null)
+                {
+                    return;
+                }
+
+                Console.WriteLine("\nSelected Interface implemented and mocked successfully");
+                Console.WriteLine("\nPress enter to display details of the Mocked Object : ");
+                ConsoleKey consoleKey = Console.ReadKey().Key;
+                if (consoleKey.Equals(ConsoleKey.Enter))
+                {
+                    DisplayTheTypeDetails(userSelectedObject.GetType());
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Key - Please Enter the Valid Key");
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        /// <summary>
+        /// To print the object in the serialized manner
+        /// </summary>
+        public static void SerializationAPI()
+        {
+            string filePath = GetTheFilePath();
+            Console.WriteLine("Select the object : ");
+            Type type = GetTheObjectType.GetTheTypeOfTheObject(filePath);
+            if (type != null)
+            {
+                var userSelectedObject = Activator.CreateInstance(type);
+                string serializedData = JsonConvert.SerializeObject(userSelectedObject, Formatting.Indented);
+                Console.WriteLine($"Serialized Data : {serializedData}");
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        /// <summary>
         /// Display all the type details of the given type
         /// </summary>
-        /// <param name="type">type from the assembly</param>
+        /// <param name="type">Type from the user selected object</param>
         public static void DisplayTheTypeDetails(Type type)
         {
             Console.WriteLine($"\nType Name {type.FullName}");
@@ -197,26 +246,26 @@
         }
 
         /// <summary>
-        /// Ti validate the path of the file
+        /// To validate the path of the file
         /// </summary>
         /// <param name="filePath">Path of the file</param>
         /// <returns>Valid path of the file</returns>
         public static string ValidatePath(string filePath)
         {
             Regex regex = new Regex("^(?!.*[\\\\\\/]\\s+)(?!(?:.*\\s|.*\\.|\\W+)$)(?:[a-zA-Z]:)?(?:(?:[^<>:\"\\|\\?\\*\\n])+(?:\\/\\/|\\/|\\\\\\\\|\\\\)?)+$");
-            if (regex.IsMatch(filePath))
+            if (File.Exists(filePath) && regex.IsMatch(filePath))
             {
                 return filePath;
             }
             else
             {
-                Console.WriteLine();
+                Console.WriteLine("Invalid File Path - Kindly check the file path");
                 return string.Empty;
             }
         }
 
         /// <summary>
-        /// CLear the User Input
+        /// Clear the User Input
         /// </summary>
         public static void ClearTheUserInput()
         {
@@ -235,6 +284,47 @@
                 Console.WriteLine("Invalid User Key");
                 Console.WriteLine("Press Escape key to Exit");
             }
+        }
+
+        /// <summary>
+        /// Get the Assembly File DLL Path
+        /// </summary>
+        /// <returns>File path of the Assembly DLL</returns>
+        public static string GetTheFilePath()
+        {
+            Console.Write("\n1.Enter the Path for Assembly File\n2.Use the Default Assembly file\nEnter the choice: ");
+            if (int.TryParse(Console.ReadLine(), out int userOption))
+            {
+                string assemblyFilePath = string.Empty;
+                if (userOption == 1)
+                {
+                    Console.Write("\nEnter the DLL file path : ");
+                    assemblyFilePath = Console.ReadLine();
+                    if (!ValidatePath(assemblyFilePath).Equals(string.Empty))
+                    {
+                        return assemblyFilePath;
+                    }
+                    else
+                    {
+                        return string.Empty;
+                    }
+                }
+                else if (userOption == 2)
+                {
+                    assemblyFilePath = "D:\\TIPS\\src\\Assignment21\\Assignment21\\bin\\Debug\\net6.0\\Assignment21.dll";
+                    return assemblyFilePath;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Option - Please Enter Option 1 or 2");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid User Options- Please Enter the number");
+            }
+
+            return string.Empty;
         }
     }
 }

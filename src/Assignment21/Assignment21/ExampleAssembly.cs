@@ -21,7 +21,7 @@
         public event EventHandler SampleEvent;
 
         /// <summary>
-        /// Gets or sets name
+        /// Gets or sets Name
         /// </summary>
         /// <value>String</value>
         public string Name { get; set; }

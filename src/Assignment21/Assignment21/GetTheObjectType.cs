@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assignment21
+﻿namespace Assignment21
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Text;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Get The Object Type Class
     /// </summary>
     internal class GetTheObjectType
     {
         /// <summary>
-        /// Get the input of the type from the user
+        /// Get the input object of the type from the user
         /// </summary>
         /// <param name="path">Path of the assembly file</param>
         /// <returns>Type of the object</returns>
@@ -37,11 +37,12 @@ namespace Assignment21
         /// Get the Type that present in the list
         /// </summary>
         /// <param name="userPrompts">Prompts to the user</param>
-        /// <param name="objectNames">List consists of the types</param>
+        /// <param name="objectNames">List consists of the object types</param>
         /// <param name="warningMessage">Warning Message to the user</param>
         /// <returns>Object name that is selected</returns>
         public static string GetTheAvailableTypeFromTheUser(string userPrompts, List<string> objectNames, string warningMessage)
         {
+            Console.WriteLine("Please type exit to exit");
             Console.WriteLine($"\nAvailable : [{string.Join(",", objectNames)}]");
             Console.Write($"\n{userPrompts} ");
             string objectName = Console.ReadLine();
@@ -61,6 +62,10 @@ namespace Assignment21
                     objectName = GetTheAvailableTypeFromTheUser(userPrompts, objectNames, warningMessage);
                     return objectName;
                 }
+            }
+            else if (!objectName.ToLower().Equals("exit"))
+            {
+                return string.Empty;
             }
             else
             {
