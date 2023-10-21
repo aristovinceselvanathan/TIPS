@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>2400234</id>
+		<version>1.1.0</version>
+		<description>MyMathLibrary is math metrics library to used to generate the fibonacci series.</description>
+		<owners>Aristo Vince</owners>
+		<authors>Aristo Vince</authors>
+		<tags>Fibonacci Series Generator</tags>
+		<releaseNotes>Added edge case checking for fibonacci series</releaseNotes>
+		<dependencies>
+			<dependency id="MathNet.Numerics" version="5.0.0" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="./bin/Debug/net6.0/MyMathLibrary.dll" target="./lib"/>
+	</files>
+</package>
