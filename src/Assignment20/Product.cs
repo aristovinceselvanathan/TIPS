@@ -3,7 +3,7 @@
     /// <summary>
     /// Product Class
     /// </summary>
-    internal class Product
+    public class Product
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Product"/> class.

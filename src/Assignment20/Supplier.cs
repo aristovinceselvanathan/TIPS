@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assignment20
+﻿namespace Assignment20
 {
     /// <summary>
     /// Supplier Class
     /// </summary>
-    internal class Supplier
+    public class Supplier
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Supplier"/> class.

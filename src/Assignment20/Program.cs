@@ -2,11 +2,12 @@
 {
     using System.Linq.Dynamic.Core;
     using System.Linq.Expressions;
+    using ConsoleTables;
 
     /// <summary>
     /// Program Class
     /// </summary>
-    internal class Program
+    public class Program
     {
         private enum Options
         {
@@ -34,9 +35,9 @@
             List<Order> orders = GenerateData.GenerateOrder();
             while (flag)
             {
-                Console.WriteLine("Welcome to LINQ Fundamentals");
+                Console.WriteLine("Welcome to LINQ Fundamentals\n");
                 Console.WriteLine("1 - Filter the Products,\n2 - Group By Category,\n3 - Join the Supplier with Products,\n4 - Second Max in the array,\n5 - Orders Before 30 Days," +
-                    "\n6 - Book Category Alone\n7 - Choose the Category to select\n8 - Display all the List\n9 - JoinUsingQueryBuilder\n10 - Exit");
+                    "\n6 - Book Category Alone\n7 - Choose the Category to select\n8 - Display all the List\n9 - JoinUsingQueryBuilder\n10 - Exit\n");
                 Console.Write("Enter the Choice : ");
                 if (int.TryParse(Console.ReadLine(), out int userInput) && userInput > 0 && userInput <= 9)
                 {
@@ -77,7 +78,7 @@
                 }
                 else
                 {
-                    Console.WriteLine("Invalid Input - Please enter the values from 1 to 9");
+                    Console.WriteLine("\nInvalid Input - Please enter the values from 1 to 9");
                 }
 
                 if (flag)
@@ -86,10 +87,29 @@
                 }
             }
         }
-        public List<Product> Sort(List<Product> products, string propertyName, bool ascending)
+
+        /// <summary>
+        /// Sort the by the given property
+        /// </summary>
+        /// <param name="products">List of the products data</param>
+        /// <param name="propertyName">Name of the property</param>
+        /// <param name="ascending">Sort by ascending or descending</param>
+        /// <returns>List of the products data sorted</returns>
+        public static List<Product> Sort(List<Product> products, string propertyName, bool ascending = true)
         {
-            var parameter = Expression.Parameter(typeof(Product), propertyName"")
+            var parameter = Expression.Parameter(typeof(Product), "x");
+            var property = Expression.Property(parameter, propertyName);
+            var lambda = Expression.Lambda<Func<Product, string>>(property, parameter);
+            if (ascending)
+            {
+                return products.AsQueryable().OrderBy(lambda).ToList();
+            }
+            else
+            {
+                return products.AsQueryable().OrderBy(lambda).ToList();
+            }
         }
+
         /// <summary>
         /// Filter the Products belong to electronics category and price greater than $300
         /// </summary>
@@ -98,10 +118,13 @@
         {
             Console.WriteLine("\nFilter the Products under the Category Electronics and Price Greater than $300 : \n");
             var filteredProducts = products.Where(product => product.ProductCategory == "Electronics" && product.ProductPrice > 500).Select(product => new { product.ProductName, product.ProductPrice }).OrderByDescending(product => product.ProductPrice);
+            ConsoleTable consoleTable = new ConsoleTable("Product Name", "Product Price");
             foreach (var item in filteredProducts)
             {
-                Console.WriteLine($"{item.ProductName} : {item.ProductPrice}");
+                consoleTable.AddRow(item.ProductName, item.ProductPrice);
             }
+
+            consoleTable.Write(format: Format.MarkDown);
             Console.WriteLine($"Average : {Math.Round(filteredProducts.Average(product => product.ProductPrice), 2)}");
         }
 
@@ -113,10 +136,13 @@
         {
             Console.WriteLine("\nGroup by the Category : \n");
             var groupedProducts = products.GroupBy(product => product.ProductCategory).Select(productCategory => new { category = productCategory.Key, count = productCategory.Count(), expensiveProduct = productCategory.Max(product => product.ProductPrice) });
+            ConsoleTable consoleTable = new ConsoleTable("Category", "Count", "Expensive Product");
             foreach (var item in groupedProducts)
             {
-                Console.WriteLine($"Category : {item.category}, Count : {item.count}, Expensive Product : {item.expensiveProduct}");
+                consoleTable.AddRow(item.category, item.count, item.expensiveProduct);
             }
+
+            consoleTable.Write(format: Format.MarkDown);
         }
 
         /// <summary>
@@ -137,17 +163,20 @@
                                                 supplierName = supplier.SupplierName,
                                             };
             var enumerator1 = supplierInnerJoinProducts.GetEnumerator();
+            ConsoleTable consoleTable = new ConsoleTable("Product Name", "Supplier Name");
             while (enumerator1.MoveNext())
             {
-                Console.WriteLine($"{enumerator1.Current.productName} : {enumerator1.Current.supplierName}");
+                consoleTable.AddRow(enumerator1.Current.productName, enumerator1.Current.supplierName);
             }
+
+            consoleTable.Write(format: Format.MarkDown);
         }
 
         /// <summary>
         /// Asking query from the user to sort the list by Dynamic LINQ
         /// </summary>
         /// <param name="products">List of the products data</param>
-        public static void UserPreferredSort(List<Product>products)
+        public static void UserPreferredSort(List<Product> products)
         {
             Func<Product, bool> electronicsProducts = product => product.ProductCategory == "Electronics";
             List<Product> electronicsFilteredProducts = FilterProducts(products, electronicsProducts);
@@ -183,7 +212,7 @@
         {
             Random rand = new Random();
             int[] integerArray = Enumerable.Range(1, 100).OrderBy(i => rand.Next()).Take(35).ToArray();
-            Console.WriteLine("\nInteger Array is \n[{0}]", string.Join(", ", integerArray));
+            Console.WriteLine("\nInteger Array is: \n[{0}]", string.Join(", ", integerArray));
             var result1 = integerArray.OrderByDescending(x => x).Select(x => x).Skip(1).FirstOrDefault();
             Console.WriteLine($"\nSecond Highest Number : {result1}");
             Console.Write("Enter the Target Number : ");
@@ -228,12 +257,17 @@
         {
             var result = new QueryBuilder<Product>(products).Filter(p => p.ProductPrice > 300)
                 .SortBy(p => p.ProductPrice)
-                .Join(suppliers, product => product.ProductId, supplier => supplier.SupplierId, (product, supplier) => new { product.ProductId, product.ProductName, supplier.SupplierName })
-                .Execute();
-            var enumeratorOfResult = result.GetEnumerator();
-            while(enumeratorOfResult.MoveNext())
+                .Join(suppliers.AsQueryable(), product => product.ProductId, supplier => supplier.SupplierId, (product, supplier) => new { product.ProductId, product.ProductName, supplier.SupplierName })
+                .ExecuteWithJoin();
+            foreach (var item in result)
             {
-                Console.WriteLine($"{enumeratorOfResult.Current.ProductId} : {enumeratorOfResult.Current.ProductName} : {enumeratorOfResult.Current.}");
+                var properties = item.GetType().GetProperties().ToList();
+                foreach (var property in properties)
+                {
+                    Console.Write($"{property.Name} : {item.GetType().GetProperty(property.Name).GetValue(item),-15}");
+                }
+
+                Console.WriteLine();
             }
         }
 

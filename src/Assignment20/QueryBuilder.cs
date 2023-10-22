@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assignment20
+﻿namespace Assignment20
 {
+    using System.Linq.Expressions;
+
     /// <summary>
     /// Query Builder Class
     /// </summary>
@@ -13,6 +9,7 @@ namespace Assignment20
     internal class QueryBuilder<T>
     {
         private IQueryable<T> _query;
+        private IQueryable<object> _query2;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryBuilder{T}"/> class.
@@ -24,53 +21,61 @@ namespace Assignment20
         }
 
         /// <summary>
-        /// Filter Query
+        /// Filter Query based on lambda function
         /// </summary>
         /// <param name="predicate">Lambda Function</param>
         /// <returns>Query</returns>
         public QueryBuilder<T> Filter(Func<T, bool> predicate)
         {
-            _query = _query.Where(predicate).AsQueryable();
+            this._query = this._query.Where(predicate).AsQueryable();
             return this;
         }
 
         /// <summary>
-        /// SortBy Query
+        /// Sort By Query by the lambda fuction
         /// </summary>
         /// <typeparam name="TKey">Type of the </typeparam>
         /// <param name="predicate">Lambda Function</param>
         /// <returns>Query</returns>
         public QueryBuilder<T> SortBy<TKey>(Func<T, TKey> predicate)
         {
-            _query = _query.OrderBy(predicate).AsQueryable();
+            this._query = this._query.OrderBy(predicate).AsQueryable();
             return this;
         }
 
         /// <summary>
-        /// Join the Query
+        /// Join the Query by the lambda function
         /// </summary>
         /// <typeparam name="TInner">Type of the inner query</typeparam>
         /// <typeparam name="TKey">Type of the Key</typeparam>
         /// <typeparam name="TResult">Type of the result</typeparam>
         /// <param name="inner">inner</param>
-        /// <param name="outerKeySelector">outterkeyselector</param>
-        /// <param name="innerKeySelector">innerkeyselector</param>
-        /// <param name="resultSelector">resultselector</param>
+        /// <param name="outerKeySelector">Outer key Selector</param>
+        /// <param name="innerKeySelector">Inner Key Selector</param>
+        /// <param name="resultSelector">Result Selector Lambda Function</param>
         /// <returns>Query</returns>
-        public QueryBuilder<T> Join<TInner, TKey, TResult>(IEnumerable<TInner> inner, Func<T, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<T, TInner, TResult> resultSelector)
+        public QueryBuilder<T> Join<TInner, TKey, TResult>(IEnumerable<TInner> inner, Expression<Func<T, TKey>> outerKeySelector, Expression<Func<TInner, TKey>> innerKeySelector, Expression<Func<T, TInner, TResult>> resultSelector)
         {
-            var joinedQuery = this._query.Join(inner, outerKeySelector, innerKeySelector, resultSelector);
+            this._query2 = (IQueryable<object>)this._query.Join(inner, outerKeySelector, innerKeySelector, resultSelector);
             return this;
+        }
+
+        /// <summary>
+        /// Execute Query with Join
+        /// </summary>
+        /// <returns>Query</returns>
+        public IEnumerable<object> ExecuteWithJoin()
+        {
+            return this._query2.ToList();
         }
 
         /// <summary>
         /// Execute Query
         /// </summary>
-        /// <param name="predicate">Lambda Function</param>
         /// <returns>Query</returns>
         public IEnumerable<T> Execute()
         {
-            return _query.ToList();
+            return this._query.ToList();
         }
     }
 }

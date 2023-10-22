@@ -27,6 +27,7 @@
         /// Integer
         /// </value>
         public int OrderID { get; set; }
+
         /// <summary>
         /// Gets or sets Order Date
         /// </summary>
@@ -46,7 +47,7 @@
         /// <summary>
         /// To print the order class as a string
         /// </summary>
-        /// <returns>values of the product</returns>
+        /// <returns>Values of the product</returns>
         public override string ToString()
         {
             return $"Order ID: {this.OrderID}, Order Date : {this.OrderDate}, Order Status: {this.OrderStatus}";
