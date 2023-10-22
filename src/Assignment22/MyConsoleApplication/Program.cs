@@ -8,12 +8,12 @@
     internal class Program
     {
         /// <summary>
-        /// To gnerate the fibonacci series
+        /// To generate the fibonacci series
         /// </summary>
         /// <param name="args">String array in the parameters of the main method</param>
         public static void Main(string[] args)
         {
-            Console.WriteLine("Welcom to Fibonacci Series Generator\n");
+            Console.WriteLine("Welcome to Fibonacci Series Generator\n");
             Console.Write("Enter the number of the Fibonacci series to be generated : ");
             if (int.TryParse(Console.ReadLine(), out int result) && result > 0 && result <= 47)
             {
