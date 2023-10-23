@@ -1,17 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Properties\**" />
-    <EmbeddedResource Remove="Properties\**" />
-    <None Remove="Properties\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
@@ -21,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Assignment1\Assignment1.csproj" />
+    <ProjectReference Include="..\ProjectDUtilityApp\ProjectDUtilityApp.csproj" />
+    <ProjectReference Include="..\ProjectEHelperApp\ProjectEHelperApp.csproj" />
   </ItemGroup>
 
 </Project>
