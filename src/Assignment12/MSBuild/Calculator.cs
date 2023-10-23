@@ -23,7 +23,7 @@
         /// <param name="args"> It is string array in the parameters of the main method</param>
         public static void Main(string[] args)
         {
-            int userInput1, userInput2, userInputOption;
+            int userInput1, userInput2;
             bool isIntegerOfOperand1, isIntegerOfOperand2, flag = true;
 
             while (flag)
@@ -101,7 +101,6 @@
                     case Options.Exit:
                         Console.WriteLine("Exiting...");
                         return false;
-                        break;
                     default:
                         Console.WriteLine("Invalid Option");
                         break;
