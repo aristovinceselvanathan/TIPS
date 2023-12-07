@@ -1,0 +1,10 @@
+- [ ] Are all the methods decoupled with good modularity?
+- [ ] Disabled ImplicitUsings in .csproj?
+- [ ] Does the XML documentation follow the global convention of method/class documentation?
+- [ ] Are all the variables, methods & classes, files named in a meaningful & appropriate way?
+- [ ] Is the grammar correct in all the Console.WriteLine() statements?
+- [ ] Are there multiple levels of indentation? If so, can it be reduced?
+- [ ] Is the readability of the whole code base verified to be best?
+- [ ] Are all the user inputs and complex operations wrapped in such a way it doesn't break the application?
+- [ ] Is the logical implementation best to my knowledge?
+- [ ] Were all the assumptions in the development confirmed with the mentor?
