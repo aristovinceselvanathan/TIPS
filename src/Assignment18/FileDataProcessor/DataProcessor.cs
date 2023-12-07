@@ -17,7 +17,7 @@
             if (File.Exists(sourcePath) && File.Exists(destinationPath))
             {
                 int fileSize = (int)new FileInfo(sourcePath).Length;
-                int bufferSize = (int)Math.Min(fileSize, int.MaxValue);
+                int bufferSize = Math.Min(fileSize, int.MaxValue);
                 ColorfulMessage("\nWait until the reading the data from the file...", ConsoleColor.Yellow);
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
@@ -36,11 +36,11 @@
                 ColorfulMessage($"\nTime Taken by Buffered Stream : {timeSpan2.TotalSeconds} seconds", ConsoleColor.Yellow);
                 stopwatch.Stop();
             }
-            else if (!File.Exists(sourcePath))
+            else if (File.Exists(sourcePath) == false)
             {
                 ColorfulMessage("Source file doesn't exists");
             }
-            else if (!File.Exists(destinationPath))
+            else if (File.Exists(destinationPath) == false)
             {
                 ColorfulMessage("Destination file doesn't exists");
             }
@@ -75,12 +75,13 @@
         public static void ReadFileUsingBufferedStream(string sourcePath, int bufferSize)
         {
             using (FileStream fileStream = new FileStream(sourcePath, FileMode.Open))
-            using (BufferedStream bufferedStream = new BufferedStream(fileStream, bufferSize))
             {
-                byte[] buffer = new byte[bufferSize];
-                while (fileStream.Read(buffer, 0, buffer.Length) != 0)
+                using (BufferedStream bufferedStream = new BufferedStream(fileStream, bufferSize))
                 {
-                    // Read the file by the chunk
+                    byte[] buffer = new byte[bufferSize];
+                    while (fileStream.Read(buffer, 0, buffer.Length) != 0)
+                    {
+                    }
                 }
             }
         }
@@ -93,9 +94,9 @@
         public static void SaveTheProcessedData(string sourcePath, string destinationPath)
         {
             ColorfulMessage("\nWait, To process the data in the file", ConsoleColor.Yellow);
-            if (!File.Exists(sourcePath) || !File.Exists(destinationPath))
+            if (File.Exists(sourcePath) == false || File.Exists(destinationPath) == false)
             {
-                ColorfulMessage("File path is doesn't exist!!!");
+                ColorfulMessage("The file does not exist!!!");
             }
             else
             {
@@ -117,6 +118,7 @@
                         data = reader.ReadLine();
                     }
                 }
+
                 using (StreamReader reader = new StreamReader(destinationPath))
                 {
                     reader.BaseStream.Seek(0, SeekOrigin.Begin);

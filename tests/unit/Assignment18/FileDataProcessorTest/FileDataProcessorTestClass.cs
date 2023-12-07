@@ -11,6 +11,7 @@ namespace FileDataProcessorTest
         public void ReadFromTheFile_SourceFileDoesNotExist()
         {
             // Arrange
+            string expectedOutput = "Source file doesn't exists";
             StringWriter sw = new StringWriter();
             Console.SetOut(sw);
             
@@ -18,13 +19,14 @@ namespace FileDataProcessorTest
             DataProcessor.ReadFromTheFile("nonexistent.txt", TestDestinationFilePath);
 
             // Assert
-            Assert.Contains("Source file doesn't exists", sw.ToString());
+            Assert.Contains(expectedOutput, sw.ToString());
         }
 
         [Fact]
         public void ReadFromTheFile_DestinationFileDoesNotExist()
         {
             // Arrange
+            string expectedOutput = "Destination file doesn't exists";
             StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
@@ -32,13 +34,14 @@ namespace FileDataProcessorTest
             DataProcessor.ReadFromTheFile(TestSourceFilePath, "nonexistent.txt");
 
             // Assert
-            Assert.Contains("Destination file doesn't exists", sw.ToString());
+            Assert.Contains(expectedOutput, sw.ToString());
         }
 
         [Fact]
         public void SaveTheProcessedData_SourceFileDoesNotExist()
         {
             // Arrange
+            string expectedOutput = "File path is doesn't exist!!!";
             StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
@@ -46,7 +49,7 @@ namespace FileDataProcessorTest
             DataProcessor.SaveTheProcessedData("nonexistent.txt", TestDestinationFilePath);
 
             //Assert
-            Assert.Contains("File path is doesn't exist!!!", sw.ToString());
+            Assert.Contains(expectedOutput, sw.ToString());
         }
 
         [Fact]

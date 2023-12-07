@@ -61,11 +61,18 @@ namespace LoggingSystem
         {
             if (File.Exists(_logFilePath))
             {
-                using (FileStream fileStream = new FileStream(_logFilePath, FileMode.Open))
-                using (StreamReader reader = new StreamReader(fileStream))
+                try
                 {
-                    Console.WriteLine(reader.ReadToEnd());
-                    fileStream.SetLength(0);
+                    using (FileStream fileStream = new FileStream(_logFilePath, FileMode.Open))
+                    using (StreamReader reader = new StreamReader(fileStream))
+                    {
+                        Console.WriteLine(reader.ReadToEnd());
+                        fileStream.SetLength(0);
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Error Occurred in reading the file");
                 }
             }
             else

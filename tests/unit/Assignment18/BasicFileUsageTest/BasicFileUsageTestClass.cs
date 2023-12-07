@@ -6,7 +6,7 @@ namespace BasicFileUsageTest
     public class BasicFileUsageTestClass
     {
         [Fact]
-        public void AddDataToFile_WritesAndReadsDataCorrectly()
+        public void FilePaths_AddDataToFile_WritesAndReadsDataCorrectly()
         {
             // Arrange
             string filePath = "testFile.txt";
@@ -17,19 +17,21 @@ namespace BasicFileUsageTest
 
             // Assert
             Assert.True(File.Exists(filePath), "File should exist after writing data.");
+            Assert.Equal(testData, this.HeplerMethod(filePath));
+            // Clean up by deleting the test file
+            File.Delete(filePath);
+        }
 
-            // Read the data from the file and check if it matches the testData
+        private string HeplerMethod(string filePath)
+        {
             using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 byte[] buffer = new byte[1024]; // Choose an appropriate buffer size
                 int bytesRead = fileStream.Read(buffer, 0, buffer.Length);
-                string fileContent = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-
-                Assert.Equal(testData, fileContent);
+                string fileContent = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                return fileContent;
             }
-
-            // Clean up by deleting the test file
-            File.Delete(filePath);
         }
+
     }
 }
