@@ -6,7 +6,7 @@ TODO: Check the above boxes with an 'x' indicating you've read and followed the 
 
 ### What does this Pull Request accomplish?
 
-TODO: Include high-level description of the changes in this pull request.
+TODO: Include high-level description of the changes in this pull request. You may want to consider listing the files that contain significant alterations or provide direct comments on them within the pull request.
 
 ### Why should this Pull Request be merged?
 
