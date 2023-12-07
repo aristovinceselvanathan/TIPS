@@ -41,7 +41,7 @@ namespace FileDataProcessorTest
         public void SaveTheProcessedData_SourceFileDoesNotExist()
         {
             // Arrange
-            string expectedOutput = "File path is doesn't exist!!!";
+            string expectedOutput = "The file does not exist!!!";
             StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
