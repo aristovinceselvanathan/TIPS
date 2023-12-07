@@ -6,7 +6,7 @@ namespace LoggerTest
     public class LoggerTestClass
     {
         [Fact]
-        public void LogMethod_InvokesLogger()
+        public void LoggingSystemInstance_LogMethod_IsInvokesLogger()
         {
             // Arrange
             var loggingSystem1 = LoggingSystem.Instance;
@@ -21,7 +21,7 @@ namespace LoggerTest
         }
 
         [Fact]
-        public void LogMethod_DoneLogging()
+        public void LoggingSystemInstance_LogMethod_IsLoggingDone()
         {
             // Arrange
             var loggingSystem1 = LoggingSystem.Instance;
@@ -40,7 +40,7 @@ namespace LoggerTest
         }
 
         [Fact]
-        public void JSONLogger_DoneLogging()
+        public void JsonObject_JSONLogger_IsLoggingDone()
         {
             // Arrange
             JSONLogger log = new JSONLogger();
@@ -56,7 +56,7 @@ namespace LoggerTest
         }
 
         [Fact]
-        public void PlainTextLogger_DoneLogging()
+        public void PlainTextLoggerObject_PlainTextLogger_IsLoggingDone()
         {
             // Arrange
             PlainTextLogger log = new PlainTextLogger();

@@ -113,9 +113,9 @@ Merge the Singleton and Factory patterns by having the Singleton LoggingSystem u
 
 ## Singleton Pattern
 
-The Singleton pattern is a design pattern that restricts the instantiation of a class to one object and provides a way to access its object. This is useful when exactly one object is needed to coordinate actions across the system. The Singleton Design Pattern in C# falls under the Creational Pattern Category. It belongs to the creational pattern category, dealing with object creation and manipulation.
+The Singleton pattern is a design pattern that restricts the instantiation of a class to one object and provides a way to access its object. This is useful when exactly one object is needed to coordinate actions across the system. The Singleton Design Pattern in C# falls under the creational Pattern Category. It belongs to the creational pattern category, dealing with object creation and manipulation.
 
-To implement the Singleton Design Pattern in C#, you need to declare a constructor that should be private and parameterless. This is required because it will restrict the class from being instantiated from outside the class. It only instantiates from within the class. The class should be declared sealed, ensuring it cannot be inherited. We must create a private static variable referencing the class’s singleton instance. We also need to create a public static property/method that will return the singleton instance of the class. This method or property first checks whether an instance of the singleton class is created. If the singleton instance is created, it returns that instance; otherwise, it will create an instance and then return it.
+To implement the Singleton Design Pattern in C#, . This is required because it will restrict the class from being instantiated from outside the class. It only instantiates from within the class. We must create a private static variable referencing the class’s singleton instance. This method or property first checks whether an instance of the singleton class is created and lock the object.If the singleton instance is created, it returns that instance; otherwise, it will create an instance and then return it.
 
 ## Factory Pattern
 

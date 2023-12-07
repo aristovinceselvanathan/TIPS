@@ -12,7 +12,9 @@
         public static void Main(string[] args)
         {
             LoggingSystem loggingSystem = LoggingSystem.Instance;
+
             Console.WriteLine("Welcome to Logger System\n");
+
             loggingSystem.LogMethod("This is Plain Text Logger", "PlainText");
             loggingSystem.LogMethod("This is JSON Logger", "JSON");
         }
