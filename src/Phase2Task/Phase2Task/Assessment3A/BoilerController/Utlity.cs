@@ -33,12 +33,17 @@ namespace BoilerConsoleApplication
             {
                 return 0;
             }
+            else
+            {
+                FileOperation.LogToTheFile("Invalid Integer - Please enter the numbers");
+                Utility.PrintTheWarningMessage("Invalid Integer - Please enter the numbers");
+            }
             return GetTheIntegerInput(entity);
         }
         public static string GetTheStringInput(string entity)
         {
             Console.Write($"Enter the {entity} : ");
-            Regex regex = new Regex("^[a-zA-Z]+$");
+            Regex regex = new Regex("^[a-zA-Z0-9]+$");
             string userInput = Console.ReadLine();
             if (regex.IsMatch(userInput))
             {
@@ -47,6 +52,11 @@ namespace BoilerConsoleApplication
             else if (string.Compare(userInput, "end", StringComparison.InvariantCultureIgnoreCase) == 0)
             {
                 return string.Empty;
+            }
+            else
+            {
+                FileOperation.LogToTheFile("Invalid Integer - Please enter the numbers");
+                Utility.PrintTheWarningMessage("Invalid Integer - Please enter the numbers");
             }
             return GetTheStringInput(entity);
         }

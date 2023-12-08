@@ -12,7 +12,7 @@ namespace BoilerConsoleApplication
         {
             try
             {
-                using (StreamWriter streamWriter = new StreamWriter("..\\..\\..\\Data\\Log.txt"))
+                using (StreamWriter streamWriter = new StreamWriter("..\\..\\..\\Data\\Log.txt", true))
                 {
                     streamWriter.WriteLine($"{DateTime.Now}: {errorMessage}");
                 }

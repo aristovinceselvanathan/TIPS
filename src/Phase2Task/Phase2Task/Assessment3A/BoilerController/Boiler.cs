@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace BoilerConsoleApplication
 {
@@ -16,24 +17,24 @@ namespace BoilerConsoleApplication
             BoilerState = "Lockout";
         }
 
-        public void StartBoilerSequence()
+        public bool StartBoilerSequence()
         {
 
-            //Todo : change the interlock
             InterLock = true;
             if (InterLock)
             {
-               InitializeTheSequence();
+               return InitializeTheSequence();
             }
             else
             {
                 FileOperation.LogToTheFile("InterLock State is Open");
                 Console.WriteLine("InterLock State is Open");
             }
+            return false;
         }
         private bool KeyPressed(Thread thread)
         {
-            while (Console.ReadKey().Key == ConsoleKey.Escape)
+            while (Console.ReadKey(true).Key == ConsoleKey.Escape)
             {
                 return true;
             }
@@ -42,27 +43,39 @@ namespace BoilerConsoleApplication
 
         private bool StopTheExecution()
         {
-            Console.Write("Press the escape key to Stop The Operation or Press any to continue: ");
-            if(Console.ReadKey().Key == ConsoleKey.Escape)
+            Console.Write("Press the Escape key to Stop The Operation or Press any to continue: ");
+            if(Console.ReadKey(true).Key == ConsoleKey.Escape)
             {
                 return false;
             }
+            Console.WriteLine();
             return true;
         }
 
-        private void InitializeTheSequence()
+        private bool InitializeTheSequence()
         {
             bool flag = false;
             PrePurgeCycle();
-            if(StopTheExecution())
+            if(BoilerState.Equals("Pre - Purge") && StopTheExecution())
             {
                 Ignition();
                 flag = true;
             }
-            if (flag && StopTheExecution())
+            else
+            {
+                InterLock = false;
+                return true;
+            }
+            if (BoilerState.Equals("Ignition") && flag && StopTheExecution())
             {
                 Operational();
             }
+            else
+            {
+                InterLock = false;
+                return true;
+            }
+            return false;
         }
         private void PrePurgeCycle()
         {
@@ -77,7 +90,11 @@ namespace BoilerConsoleApplication
                 Thread.Sleep(1000);
                 Console.Clear();
             }
-
+            Console.WriteLine("Press the E Key to Stimulate the Error or Any Key to Continue");
+            if(Console.ReadKey().Key == ConsoleKey.E)
+            {
+                StimulateBoilerError();
+            }
         }
         private void Ignition()
         {
@@ -91,6 +108,11 @@ namespace BoilerConsoleApplication
                 countDown--;
                 Thread.Sleep(1000);
                 Console.Clear();
+            }
+            Console.WriteLine("Press the E Key to Stimulate the Error or Any Key to Continue");
+            if (Console.ReadKey().Key == ConsoleKey.E)
+            {
+                StimulateBoilerError();
             }
         }
 
@@ -107,8 +129,16 @@ namespace BoilerConsoleApplication
         }
         public void StimulateBoilerError()
         {
-            FileOperation.LogToTheFile("Boiler have crashed");
-            throw new Exception("Boiler have crashed");
+            try
+            {
+                throw new Exception("Boiler have crashed");
+            }
+            catch(Exception e)
+            {
+                BoilerState = "LockOut";
+                InterLock = false;
+                FileOperation.LogToTheFile("Boiler have crashed");
+            }
         }
         public void ToggleInterLockSwitch()
         {

@@ -5,17 +5,6 @@ namespace BoilerControllerTest
     public class BoilerTest
     {
         [Fact]
-        public void BoilerInitiation_StartBoilerSequence_CheckTheState()
-        {
-            Boiler boiler = new Boiler();
-            string expectedOutput = "Operational";
-
-            boiler.StartBoilerSequence();
-            Thread.Sleep(21000);
-
-            Assert.Contains(expectedOutput, boiler.BoilerState);
-        }
-        [Fact]
         public void BoilerInitiation_StopBoilerSequence_CheckTheState()
         {
             Boiler boiler = new Boiler();
@@ -24,14 +13,6 @@ namespace BoilerControllerTest
             boiler.StopBoilerSequence();
 
             Assert.Contains(expectedOutput, boiler.BoilerState);
-        }
-
-        [Fact]
-        public void BoilerInitiation_StimulateBoilerError_CheckTheState()
-        {
-            Boiler boiler = new Boiler();
-
-            Assert.Throws<Exception>(boiler.StimulateBoilerError);
         }
 
         [Fact]

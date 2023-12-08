@@ -16,19 +16,10 @@ namespace BoilerConsoleApplication
             ViewLogs,
             ExitApplication,
         }
-        private enum StopOptions
-        {
-            StopTheBoilerSequence = 1,
-            StimulateBoilerError,
-            ToggleRunInterLockSwitch,
-            ResetLockout,
-            ViewLogs,
-            ExitApplication,
-        }
         public void StartTheUserInterface()
         {
             Boiler boiler = new Boiler();
-            bool flag = true;
+            bool flag = true, stopflag = false;
             while (flag)
             {
                 Console.WriteLine("Boiler Controller Initialized\n");
@@ -39,7 +30,7 @@ namespace BoilerConsoleApplication
                 switch (options)
                 {
                     case StartOptions.StartTheBoilerSequence:
-                        StartBoilerSequence(boiler);
+                        stopflag = StartBoilerSequence(boiler);
                         break;
                     case StartOptions.ToggleRunInterLockSwitch:
                         boiler.ToggleInterLockSwitch();
@@ -55,19 +46,22 @@ namespace BoilerConsoleApplication
                         flag = false;
                         break;
                     default:
-                        Console.WriteLine("Invalid Option - Please Enter the valid option");
+                        Console.WriteLine("Invalid Option - Please Enter the valid option from 1 to 5");
                         break;
                 }
-                Console.Clear() ;
-                Console.Write("Press the escape key to exit or Press any to continue: ");
-                if (Console.ReadKey().Key == ConsoleKey.Escape)
+                if (flag && !stopflag)
                 {
-                    flag = false;
-                    Console.WriteLine("Exiting..");
+                    Console.WriteLine("\nPress the Escape key to exit or Press any to continue to Main Menu: ");
+                    if (Console.ReadKey().Key == ConsoleKey.Escape)
+                    {
+                        flag = false;
+                        Console.WriteLine("Exiting...");
+                    }
                 }
+                Console.Clear();
             }
         }
-        public void StartBoilerSequence(Boiler boiler)
+        public bool StartBoilerSequence(Boiler boiler)
         {
             if(boiler.InterLock == false)
             {
@@ -76,8 +70,9 @@ namespace BoilerConsoleApplication
             }
             else
             {
-                boiler.StartBoilerSequence();
+                return boiler.StartBoilerSequence();
             }
+            return false;
         }
         public void StartBoilerView(Boiler boiler)
         {
