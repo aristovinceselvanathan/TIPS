@@ -34,5 +34,25 @@ namespace FileDataProcessorAsyncTest
             Directory.Delete(TestSourceDir, true);
             Directory.Delete(TestDestinationDir, true);
         }
+
+        [Fact]
+        public async Task InvalidProcessFileToUpperCaseAsync_WithValidFiles()
+        {
+            // Arrange
+            Directory.CreateDirectory(TestSourceDir);
+            Directory.CreateDirectory(TestDestinationDir);
+
+            File.WriteAllText(Path.Combine(TestSourceDir, "file1.txt"), "Test data 1.");
+
+            string sourceFilePath = Path.Combine(TestSourceDir, "file");
+            string destinationFilePath = Path.Combine(TestDestinationDir, "file13");
+
+            // Act
+            await FileDataProcessorAsync.FileDataProcessorAsync.ProcessFileToUpperCaseAsync(sourceFilePath, destinationFilePath);
+
+            // Assert
+            Assert.False(File.Exists(sourceFilePath));
+            Assert.False(File.Exists(destinationFilePath));
+        }
     }
 }

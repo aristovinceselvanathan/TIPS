@@ -1,4 +1,5 @@
 using FileDataProcessor;
+using System.Text;
 
 namespace FileDataProcessorTest
 {
@@ -80,6 +81,25 @@ namespace FileDataProcessorTest
             // Assert
             Assert.True(File.Exists(TestSourceFilePath));
             Assert.True(File.Exists(TestDestinationFilePath));
+            Assert.Contains(HeplerMethod(TestSourceFilePath).ToLower(), HeplerMethod(TestDestinationFilePath).ToLower());
+        }
+        private string HeplerMethod(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    byte[] buffer = new byte[1024]; // Choose an appropriate buffer size
+                    int bytesRead = fileStream.Read(buffer, 0, buffer.Length);
+                    string fileContent = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    return fileContent;
+                }
+            }
+            else
+            {
+                Console.WriteLine("File Doesn't Exists");
+                return string.Empty;
+            }
         }
     }
 }

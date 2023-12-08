@@ -27,25 +27,31 @@ namespace BasicFileUsage
         public static void AddDataToFile(string filePath, string data)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(data);
-
-            // Writing to file using memoryStream
-            using (FileStream fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
+            if (filePath.EndsWith(".txt"))
             {
-                using MemoryStream memoryStream = new MemoryStream();
-                memoryStream.Write(buffer, 0, buffer.Length);
-                memoryStream.WriteTo(fileStream);
-            }
-
-            // Read from the file using FileStream
-            using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-            {
-                fileStream.Seek(0, SeekOrigin.Begin);
-                int bytesRead;
-                Console.WriteLine("\nAvailable file content : ");
-                while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                // Writing to file using memoryStream
+                using (FileStream fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
                 {
-                    Console.WriteLine(Encoding.UTF8.GetString(buffer, 0, bytesRead));
+                    using MemoryStream memoryStream = new MemoryStream();
+                    memoryStream.Write(buffer, 0, buffer.Length);
+                    memoryStream.WriteTo(fileStream);
                 }
+
+                // Read from the file using FileStream
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    fileStream.Seek(0, SeekOrigin.Begin);
+                    int bytesRead;
+                    Console.WriteLine("\nAvailable file content : ");
+                    while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        Console.WriteLine(Encoding.UTF8.GetString(buffer, 0, bytesRead));
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid File Path");
             }
         }
     }

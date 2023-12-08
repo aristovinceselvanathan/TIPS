@@ -30,20 +30,27 @@
         /// <returns>task</returns>
         public static async Task ProcessFileToUpperCaseAsync(string sourceFilePath, string destinationFilePath)
         {
-            using (FileStream fileStream = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read))
-            using (BufferedStream bufferStream = new BufferedStream(fileStream))
-            using (StreamWriter streamWriter = new StreamWriter(destinationFilePath))
+            if (sourceFilePath.EndsWith(".txt") && sourceFilePath.EndsWith(".txt"))
             {
-                int bytesRead;
-                int bufferSize = (int)Math.Min(fileStream.Length, int.MaxValue);
-                byte[] buffer = new byte[bufferSize];
-
-                while ((bytesRead = await bufferStream.ReadAsync(buffer, 0, bufferSize)) > 0)
+                using (FileStream fileStream = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read))
+                using (BufferedStream bufferStream = new BufferedStream(fileStream))
+                using (StreamWriter streamWriter = new StreamWriter(destinationFilePath))
                 {
-                    await fileStream.ReadAsync(buffer, 0, bufferSize);
-                    string data = System.Text.Encoding.UTF8.GetString(buffer, 0, bufferSize);
-                    await streamWriter.WriteLineAsync(data.ToUpper());
+                    int bytesRead;
+                    int bufferSize = (int)Math.Min(fileStream.Length, int.MaxValue);
+                    byte[] buffer = new byte[bufferSize];
+
+                    while ((bytesRead = await bufferStream.ReadAsync(buffer, 0, bufferSize)) > 0)
+                    {
+                        await fileStream.ReadAsync(buffer, 0, bufferSize);
+                        string data = System.Text.Encoding.UTF8.GetString(buffer, 0, bufferSize);
+                        await streamWriter.WriteLineAsync(data.ToUpper());
+                    }
                 }
+            }
+            else
+            {
+                Console.WriteLine("Invalid FilePaths");
             }
         }
     }

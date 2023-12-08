@@ -50,6 +50,23 @@ namespace LoggingSystemTest
         }
 
         [Fact]
+        public void InvalidFilePath_ReadTheLogFile_FileExists()
+        {
+            // Arrange
+            File.WriteAllText(TestLogFilePath, "efwefwefwefw");
+
+            // Act
+            Logger.ReadTheLogFile();
+
+            // Assert
+            Assert.True(File.Exists(TestLogFilePath));
+            Assert.Equal("efwefwefwefw", File.ReadAllText(TestLogFilePath));
+
+            // Clean up by deleting the test log file
+            File.Delete(TestLogFilePath);
+        }
+
+        [Fact]
         public void ReadTheLogFile_FileDoesNotExist()
         {
             // Act
