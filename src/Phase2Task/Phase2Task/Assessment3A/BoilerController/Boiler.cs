@@ -18,13 +18,12 @@ namespace BoilerConsoleApplication
 
         public void StartBoilerSequence()
         {
+
             //Todo : change the interlock
             InterLock = true;
             if (InterLock)
             {
-                PrePurgeCycle();
-                Ignition();
-                Operational();
+               InitializeTheSequence();
             }
             else
             {
@@ -32,15 +31,67 @@ namespace BoilerConsoleApplication
                 Console.WriteLine("InterLock State is Open");
             }
         }
+        private bool KeyPressed(Thread thread)
+        {
+            while (Console.ReadKey().Key == ConsoleKey.Escape)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool StopTheExecution()
+        {
+            Console.Write("Press the escape key to Stop The Operation or Press any to continue: ");
+            if(Console.ReadKey().Key == ConsoleKey.Escape)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void InitializeTheSequence()
+        {
+            bool flag = false;
+            PrePurgeCycle();
+            if(StopTheExecution())
+            {
+                Ignition();
+                flag = true;
+            }
+            if (flag && StopTheExecution())
+            {
+                Operational();
+            }
+        }
         private void PrePurgeCycle()
         {
+            Console.Clear();
+            int countDown = 10;
             BoilerState = "Pre - Purge";
-            Thread.Sleep(10000);
+            while (countDown >= 0)
+            {
+                Console.WriteLine($"Boiler State : {BoilerState}");
+                Console.WriteLine($"CountDown for this State : {countDown}");
+                countDown--;
+                Thread.Sleep(1000);
+                Console.Clear();
+            }
+
         }
         private void Ignition()
         {
+            Console.Clear();
             BoilerState = "Ignition";
-            Thread.Sleep(10000);
+            int countDown = 10;
+            while (countDown >= 0)
+            {
+                Console.WriteLine($"Boiler State : {BoilerState}");
+                Console.WriteLine($"CountDown for this State : {countDown}");
+                countDown--;
+                Thread.Sleep(1000);
+                Console.Clear();
+            }
         }
 
         private void Operational()

@@ -14,7 +14,7 @@ namespace BoilerConsoleApplication
             {
                 using (StreamWriter streamWriter = new StreamWriter("..\\..\\..\\Data\\Log.txt"))
                 {
-                    streamWriter.WriteLine(errorMessage);
+                    streamWriter.WriteLine($"{DateTime.Now}: {errorMessage}");
                 }
             }
             catch(Exception ex)

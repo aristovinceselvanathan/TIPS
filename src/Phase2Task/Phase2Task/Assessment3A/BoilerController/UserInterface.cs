@@ -54,6 +54,16 @@ namespace BoilerConsoleApplication
                         Console.WriteLine("Exiting...");
                         flag = false;
                         break;
+                    default:
+                        Console.WriteLine("Invalid Option - Please Enter the valid option");
+                        break;
+                }
+                Console.Clear() ;
+                Console.Write("Press the escape key to exit or Press any to continue: ");
+                if (Console.ReadKey().Key == ConsoleKey.Escape)
+                {
+                    flag = false;
+                    Console.WriteLine("Exiting..");
                 }
             }
         }
@@ -69,23 +79,11 @@ namespace BoilerConsoleApplication
                 boiler.StartBoilerSequence();
             }
         }
-        public void StopBoilerSequence(Boiler boiler)
-        {
-            boiler.StopBoilerSequence();
-        }
         public void StartBoilerView(Boiler boiler)
         {
             Console.WriteLine($"Status : {boiler.BoilerState}");
             Console.WriteLine(boiler.InterLock == true ? "Interlock : Closed\n" : "Interlock : Open\n");
             Console.WriteLine($"1.Start Boiler Sequence\n2.Toggle Run InterLock(Open/Closed)\n3.Reset Lockout\n4.View EvenEvent Log\n5.Exit Application");
-        }
-        public void StopTheBoilerView(Boiler boiler)
-        {
-            Console.WriteLine($"Status : {boiler.BoilerState}");
-            Console.WriteLine(boiler.InterLock == true ? "Interlock : Closed" : "Interlock : Open");
-            Console.WriteLine("\n1.Stop Boiler Sequence\n2.Stimulate Boiler Error" +
-                "\n3.Toggle Run InterLock(Open/Closed)\n6.Reset Lockout\n7.View Event Log\n8.Exit Application");
-
         }
         public void ReadTheLog()
         {
