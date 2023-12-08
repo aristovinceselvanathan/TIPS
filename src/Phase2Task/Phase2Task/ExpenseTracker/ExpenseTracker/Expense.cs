@@ -43,35 +43,5 @@ namespace ExpenseTracker
         /// Category
         /// </value>
         public string Category { get; set; }
-
-        /// <summary>
-        /// Method overrides the equals method in object class
-        /// </summary>
-        /// <param name="obj"> It uses the instance of the object class</param>
-        /// <returns>It returns bool</returns>
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-            {
-                return false;
-            }
-
-            Expense other = obj as Expense;
-            if (other == null)
-            {
-                return false;
-            }
-
-            return this.EntryDate == other.EntryDate;
-        }
-
-        /// <summary>
-        /// It overrides the GetHashCode when Equals Method overridden in the expense class
-        /// </summary>
-        /// <returns>It returns the Integer</returns>
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
     }
 }

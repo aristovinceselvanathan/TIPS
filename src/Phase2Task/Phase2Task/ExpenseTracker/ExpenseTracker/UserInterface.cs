@@ -40,6 +40,22 @@ namespace ExpenseTracker
         }
 
         /// <summary>
+        /// Gets the Expenses
+        /// </summary>
+        /// <value>
+        /// Expenses
+        /// </value>
+        public List<Expense> Expenses { get => _expenses; }
+
+        /// <summary>
+        /// Gets the Incomes
+        /// </summary>
+        /// <value>
+        /// Incomes
+        /// </value>
+        public List<Income> Incomes { get => _incomes; }
+
+        /// <summary>
         /// To start the user interface
         /// </summary>
         /// <param name="operationToBePerformed">To select the operation to be performed</param>
@@ -153,26 +169,10 @@ namespace ExpenseTracker
             switch (typeOfEntry)
             {
                 case TypeOfEntry.Expenses:
-                    if (_expenses.Count() != 0)
-                    {
-                        operationFunction(1);
-                    }
-                    else
-                    {
-                        Utility.PrintErrorMessage("Expense List is Empty");
-                    }
-
+                    operationFunction(1);
                     break;
                 case TypeOfEntry.Income:
-                    if (_incomes.Count() != 0)
-                    {
-                        operationFunction(2);
-                    }
-                    else
-                    {
-                        Utility.PrintErrorMessage("Income List is Empty");
-                    }
-
+                    operationFunction(2);
                     break;
                 default:
                     Utility.PrintErrorMessage("Enter the valid option - Please enter the option 1 or 2");
@@ -189,7 +189,6 @@ namespace ExpenseTracker
         /// <returns>status of the operation</returns>
         public bool AddTheEntry(int typeOfEntry)
         {
-            Console.Clear();
             Console.WriteLine("Add the Required Details : \n");
             DateTime dateOfTheEntry = GetTheDateInput();
             int amount = GetTheIntegerInput("Amount");
@@ -211,8 +210,6 @@ namespace ExpenseTracker
                     return false;
             }
 
-            _expenses.Sort();
-            _incomes.Sort();
             return true;
         }
 
@@ -225,7 +222,6 @@ namespace ExpenseTracker
         {
             Console.Clear();
             Console.WriteLine("Remove the Entry");
-
             if (PrintTheEntry(typeOfEntry))
             {
                 int userEnteredChoice = GetTheIntegerInput("S.No");
@@ -262,7 +258,6 @@ namespace ExpenseTracker
         /// <returns>status of the operation</returns>
         public bool UpdateTheEntry(int typeOfEntry)
         {
-            Console.Clear();
             Console.WriteLine("Update the Entry");
             if (PrintTheEntry(typeOfEntry))
             {
@@ -368,18 +363,32 @@ namespace ExpenseTracker
             switch (typeOfEntry)
             {
                 case 1:
-                    _tempExpenses.ForEach(x =>
+                    if (_expenses.Count() != 0)
                     {
-                        consoleTable.AddRow(index++, x.EntryDate, x.Amount, null, x.Category);
-                        totalExpense += x.Amount;
-                    });
+                        _tempExpenses.ForEach(x =>
+                        {
+                            consoleTable.AddRow(index++, x.EntryDate, x.Amount, null, x.Category);
+                            totalExpense += x.Amount;
+                        });
+                    }
+                    else
+                    {
+                        Console.WriteLine("Expense List is Empty");
+                    }
                     break;
                 case 2:
-                    _tempIncomes.ForEach(x =>
+                    if (_incomes.Count() != 0)
                     {
-                        consoleTable.AddRow(index++, x.EntryDate, null, x.Amount, x.Source);
-                        totalIncome += x.Amount;
-                    });
+                        _tempIncomes.ForEach(x =>
+                        {
+                            consoleTable.AddRow(index++, x.EntryDate, null, x.Amount, x.Source);
+                            totalIncome += x.Amount;
+                        });
+                    }
+                    else
+                    {
+                        Console.WriteLine("Income List is Empty");
+                    }
                     break;
                 case 3:
                     PrintTheBothDetails(consoleTable, totalExpense, totalIncome, dates.Item1, dates.Item2);
@@ -496,7 +505,6 @@ namespace ExpenseTracker
         public Tuple<DateTime, DateTime> Filter(int typeOfEntry, List<Expense> expenses, List<Income> incomes)
         {
             DateTime startDate = DateTime.MinValue.Date, endDate = DateTime.MaxValue.Date;
-            Console.Clear();
             Console.WriteLine("Filter the Entries : \n");
             Console.WriteLine("1 - Filter by Date Range\n2 - Filter by Category\n3 - Filter by Amount\n4 - No Filter\n");
             int userEnteredNumber = GetTheIntegerInput("Choice");

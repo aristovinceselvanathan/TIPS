@@ -6,7 +6,7 @@ namespace ExpenseTracker
     /// File Operation Class
     /// </summary>
     /// <typeparam name="T">Denotes the type of class</typeparam>
-    internal class FileOperation<T>
+    public class FileOperation<T>
     {
         /// <summary>
         /// Load data to the file by using json serialize

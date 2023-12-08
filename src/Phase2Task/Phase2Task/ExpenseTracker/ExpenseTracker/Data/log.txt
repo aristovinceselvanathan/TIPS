@@ -117,3 +117,47 @@
 07-12-2023 16:36:52:Successfully Fetched - Expenses.json
 07-12-2023 16:36:52:Successfully Fetched - Incomes.json
 07-12-2023 16:36:54:Loaded to the files in the Load to the File
+08-12-2023 18:15:14:Loaded to the files in the Load to the File
+08-12-2023 18:18:15:Login SuccessFull
+08-12-2023 18:18:15:Successfully Fetched - Expenses.json
+08-12-2023 18:18:15:Successfully Fetched - Incomes.json
+08-12-2023 18:18:24:Invalid Input - Please enter the valid integers in the GetTheIntegerInput
+08-12-2023 18:18:24:Invalid Input - Please enter the valid integers in the GetTheIntegerInput
+08-12-2023 18:18:27:Loaded to the files in the Load to the File
+08-12-2023 18:23:28:Login SuccessFull
+08-12-2023 18:23:29:Successfully Fetched - Expenses.json
+08-12-2023 18:23:29:Successfully Fetched - Incomes.json
+08-12-2023 18:23:42:No Filter is applied in the Filter
+08-12-2023 18:23:46:Loaded to the files in the Load to the File
+08-12-2023 18:52:13:Loaded to the files in the Load to the File
+08-12-2023 18:56:34:Invalid Input - Please enter the valid characters in the GetTheStringInput
+08-12-2023 18:56:35:Invalid Input - Please enter the valid characters in the GetTheStringInput
+08-12-2023 18:56:40:Login SuccessFull
+08-12-2023 18:56:40:Successfully Fetched - Expenses.json
+08-12-2023 18:56:40:Successfully Fetched - Incomes.json
+08-12-2023 18:57:02:List is Empty in the Update Entry
+08-12-2023 18:57:08:Loaded to the files in the Load to the File
+08-12-2023 18:57:32:Login SuccessFull
+08-12-2023 18:57:32:Successfully Fetched - Expenses.json
+08-12-2023 18:57:32:Successfully Fetched - Incomes.json
+08-12-2023 18:58:16:Updated Successfully in the Update
+08-12-2023 18:58:18:Loaded to the files in the Load to the File
+08-12-2023 18:59:21:Login SuccessFull
+08-12-2023 18:59:22:Successfully Fetched - Expenses.json
+08-12-2023 18:59:22:Successfully Fetched - Incomes.json
+08-12-2023 19:00:39:Invalid Username or Password
+08-12-2023 19:00:44:Login SuccessFull
+08-12-2023 19:00:45:Successfully Fetched - Expenses.json
+08-12-2023 19:00:45:Successfully Fetched - Incomes.json
+08-12-2023 19:00:51:No Filter is applied in the Filter
+08-12-2023 19:00:52:Invalid Input - Please enter the valid integers in the GetTheIntegerInput
+08-12-2023 19:00:54:Invalid Input - Please enter the valid integers in the GetTheIntegerInput
+08-12-2023 19:04:01:Invalid Username or Password
+08-12-2023 19:04:06:Login SuccessFull
+08-12-2023 19:04:07:Successfully Fetched - Expenses.json
+08-12-2023 19:04:07:Successfully Fetched - Incomes.json
+08-12-2023 19:05:18:Login SuccessFull
+08-12-2023 19:05:18:Successfully Fetched - Expenses.json
+08-12-2023 19:05:18:Successfully Fetched - Incomes.json
+08-12-2023 19:05:31:No Filter is applied in the Filter
+08-12-2023 19:05:34:Loaded to the files in the Load to the File
