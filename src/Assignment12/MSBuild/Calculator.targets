@@ -1,0 +1,17 @@
+<Project>
+	<Import Project="*.props" />
+	
+	<Target Name="Clean" BeforeTargets="Build">
+		<Delete Files="$(OutputPath)$(AssemblyName).exe" Condition="Exists('$(OutputPath)$(AssemblyName).exe')"/>
+	</Target>
+	
+	<Target Name="Build" DependsOnTargets="Clean">
+	<MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+	<Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />
+	</Target>
+	
+	<Target Name="Run">
+		<Exec Command="start cmd /c $(OutputPath)$(AssemblyName).exe"/>
+	</Target>
+
+</Project>
