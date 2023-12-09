@@ -16,7 +16,7 @@ public class StringManipulationTestClass
         await File.WriteAllTextAsync(path, content);
 
         // Act
-        string result = await Program.ReadTheFile(path);
+        string result = await Assignment19.FileOperations.ReadTheFile(path);
 
         // Assert
         Assert.Equal(content, result);
@@ -30,7 +30,7 @@ public class StringManipulationTestClass
         string data = "Test data";
 
         // Act
-        await Program.WriteTheFile(path, data);
+        await Assignment19.FileOperations.WriteTheFile(path, data);
 
         // Assert
         string result = await File.ReadAllTextAsync(path);
@@ -44,10 +44,10 @@ public class StringManipulationTestClass
         string post = "Line 1\nLine 2\nLine 3";
 
         // Act
-        string result = Program.FormatPost(post);
+        string result = Assignment19.Utility.FormatPost(post);
 
         // Assert
-        Assert.Equal("Line 1<p></p>Line 2<p></p>Line 3", result);
+        Assert.Equal("Line 1<br>Line 2<br>Line 3", result);
     }
 
     [Fact]
@@ -57,7 +57,7 @@ public class StringManipulationTestClass
         string post = "This is a #test post with #tags";
 
         // Act
-        var tags = Program.ExtractTags(post);
+        var tags = Assignment19.Utility.ExtractTags(post);
 
         // Assert
         Assert.Contains("#test", tags);
@@ -70,7 +70,7 @@ public class StringManipulationTestClass
         string query = "hello";
 
         // Act
-        List<string> result = await Program.SearchForTextAsync(query);
+        List<string> result = await Assignment19.Utility.SearchForTheQueryInFiles(query);
 
         // Assert
         Assert.Contains("SW\\0.txt", result);
@@ -84,10 +84,10 @@ public class StringManipulationTestClass
         string post2 = "This is a sample";
 
         // Act
-        double score = Program.CompareText(post1, post2);
+        double score = Assignment19.Utility.CompareText(post1, post2);
 
         // Assert
-        Assert.Equal(0.44, score, 2); // Adjust the expected score accordingly
+        Assert.Equal(44.44, score, 2); // Adjust the expected score accordingly
     }
 
     [Fact]
@@ -97,7 +97,7 @@ public class StringManipulationTestClass
         string post = "Visit our website at https://example.com and check https://example2.com";
 
         // Act
-        List<string> result = Program.ParseURL(post);
+        List<string> result = Assignment19.Utility.ParseURL(post);
 
         // Assert
         Assert.Contains("https://example.com", result);
@@ -115,10 +115,10 @@ public class StringManipulationTestClass
         await File.WriteAllTextAsync(filePaths[1], file2Content);
 
         // Act
-        string result = Program.ConcatenateTitle(filePaths);
+        string result = Assignment19.Utility.ConcatenateTitle(filePaths);
 
         // Assert
-        Assert.Equal("Title 1, Title 2, ", result);
+        Assert.Equal("Title 1,\nTitle 2,\n", result);
     }
 
 }
