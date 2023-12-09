@@ -30,7 +30,7 @@
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Welcome to String Manipulation \n!!!Type Exit in the Console to Exit Anywhere!!!");
+                Console.WriteLine("Welcome to String Manipulation \n!!!Type Exit in the Console to Exit Anywhere!!!\nType Exit to Exit Application");
                 Console.Write("1 - Add Tags\n2 - Extract the Hash Tags\n3 - Search for the text\n4 - Stop Word Analysis\n5 - Text Comparison\n6 - Find URLs\n7 - All Titles\n8 - Exit\nEnter Choice : ");
                 string userInput = Console.ReadLine();
                 if (int.TryParse(userInput, out int option))
