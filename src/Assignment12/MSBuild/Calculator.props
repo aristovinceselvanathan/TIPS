@@ -1,0 +1,10 @@
+<Project>
+	<PropertyGroup>
+		<AssemblyName>Calculator</AssemblyName>
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="Calculator.cs"/>
+	</ItemGroup>
+    
+</Project>

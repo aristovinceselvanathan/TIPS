@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" DefaultTargets="BeforeBuild" ToolsVersion="Current">
+	<PropertyGroup>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>11</LangVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="Calculator.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Calculator.props" />
+		<None Include="Calculator.targets" />
+	</ItemGroup>
+	<Import Project="Calculator.targets" />
+	<Target Name="BeforeBuild">
+		<CallTarget Targets="Build" />
+		<CallTarget Targets="Run" />
+	</Target>
+</Project>
