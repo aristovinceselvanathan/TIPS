@@ -2,164 +2,202 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Xml;
+using System.Timers;
 
-namespace BoilerConsoleApplication
+namespace BoilerController
 {
-    public class Boiler
+
+    public partial class Boiler : IDisposable
     {
-        public string BoilerState { get; private set; }
-        public bool InterLock { get; private set; }
+        private delegate void changedBoilerStateEventHandler();
+        private event changedBoilerStateEventHandler changedBoilerState;
+        private BoilerStatus _currentBoilerState;
+        private InterLock interLock;
+        private System.Timers.Timer BoilerStageTimer;
+        private int _countDown;
+        public static object lockObject = new object();
+        private static Boiler _boilerInstance;
+
+        public BoilerStatus currentBoilerStatus { get { return _currentBoilerState; } }
+
+        public InterLock currentInterLockStatus
+        {
+            get
+            {
+                return interLock;
+            }
+        }
+        public Reset resetLock { get; private set; }
 
         public Boiler()
         {
-            BoilerState = "Lockout";
+            _currentBoilerState = BoilerStatus.Lockout;
+            FileOperation.LogToTheFile(Resource.Resource1.Lockout);
+            interLock = new InterLock();
+            _countDown = 10;
         }
 
-        public bool StartBoilerSequence()
+        public void SwitchInterLock()
         {
-
-            InterLock = true;
-            if (InterLock)
+            if (interLock.InterLockSwitch == InterLock.InterLockState.Open)
             {
-               return InitializeTheSequence();
+                FileOperation.LogToTheFile(Resource.Resource1.InterLockClosed);
+                interLock.ToggleInterLock();
+                _currentBoilerState = BoilerStatus.Ready;
+                FileOperation.LogToTheFile(Resource.Resource1.Ready);
             }
             else
             {
-                FileOperation.LogToTheFile("InterLock State is Open");
-                Console.WriteLine("InterLock State is Open");
+                FileOperation.LogToTheFile(Resource.Resource1.InterLockOpen);
+                interLock.ToggleInterLock();
+                _currentBoilerState = BoilerStatus.Lockout;
+                FileOperation.LogToTheFile(Resource.Resource1.Lockout);
+                _countDown = 10;
             }
-            return false;
-        }
-        private bool KeyPressed(Thread thread)
-        {
-            while (Console.ReadKey(true).Key == ConsoleKey.Escape)
-            {
-                return true;
-            }
-            return false;
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
-        private bool StopTheExecution()
+        public void ResetLock()
         {
-            Console.Write("Press the Escape key to Stop The Operation or Press any to continue: ");
-            if(Console.ReadKey(true).Key == ConsoleKey.Escape)
+            try
             {
-                return false;
+                if (interLock.InterLockSwitch == InterLock.InterLockState.Open)
+                {
+                    throw new Exception("Interlock is Open - Please Close the InterClock");
+                }
+                else
+                {
+                    resetLock = Reset.Closed;
+                    FileOperation.LogToTheFile(Resource.Resource1.ResetLockClosed);
+                }
             }
-            Console.WriteLine();
-            return true;
+            catch (Exception ex)
+            {
+                FileOperation.LogToTheFile($"{ex.Message}", true);
+            }
         }
 
-        private bool InitializeTheSequence()
+        public void StartTheSequence()
         {
-            bool flag = false;
-            PrePurgeCycle();
-            if(BoilerState.Equals("Pre - Purge") && StopTheExecution())
+            if (interLock.InterLockSwitch == InterLock.InterLockState.Closed && resetLock == Reset.Closed &&
+                (_currentBoilerState == BoilerStatus.Ready || _currentBoilerState == BoilerStatus.PrePurge && _countDown != 0))
+            {
+                PrePurge();
+            }
+            else if (interLock.InterLockSwitch == InterLock.InterLockState.Closed && resetLock == Reset.Closed &&
+                (_currentBoilerState == BoilerStatus.PrePurge || _currentBoilerState == BoilerStatus.Ignition && _countDown != 0))
             {
                 Ignition();
-                flag = true;
             }
-            else
-            {
-                InterLock = false;
-                return true;
-            }
-            if (BoilerState.Equals("Ignition") && flag && StopTheExecution())
+            else if (interLock.InterLockSwitch == InterLock.InterLockState.Closed && resetLock == Reset.Closed && _currentBoilerState == BoilerStatus.Ignition)
             {
                 Operational();
+                return;
+            }
+            else if (_currentBoilerState == BoilerStatus.Operational)
+            {
+                FileOperation.LogToTheFile(Resource.Resource1.Operational);
+            }
+            else if (resetLock == Reset.Open)
+            {
+                FileOperation.LogToTheFile(Resource.Resource1.ResetLockOpen, true);
+                return;
             }
             else
             {
-                InterLock = false;
-                return true;
+                Console.ForegroundColor = ConsoleColor.Red;
+                FileOperation.LogToTheFile(Resource.Resource1.InterLockOpen, true);
+                return;
             }
-            return false;
+            ConsoleKey consoleKey = Console.ReadKey(true).Key;
+            if (consoleKey == ConsoleKey.Escape)
+            {
+                BoilerStageTimer.Elapsed -= OnTimedEvent;
+                BoilerStageTimer.Stop();
+            }
+            else if (consoleKey == ConsoleKey.E)
+            {
+                ThrowBoilerException();
+            }
+            resetLock = Reset.Open;
         }
-        private void PrePurgeCycle()
+
+        private void ThrowBoilerException()
         {
-            Console.Clear();
-            int countDown = 10;
-            BoilerState = "Pre - Purge";
-            while (countDown >= 0)
+            try
             {
-                Console.WriteLine($"Boiler State : {BoilerState}");
-                Console.WriteLine($"CountDown for this State : {countDown}");
-                countDown--;
-                Thread.Sleep(1000);
-                Console.Clear();
+                throw new Exception(Resource.Resource1.BoilerException);
             }
-            Console.WriteLine("Press the E Key to Stimulate the Error or Any Key to Continue");
-            if(Console.ReadKey().Key == ConsoleKey.E)
+            catch (Exception ex)
             {
-                StimulateBoilerError();
+                BoilerStageTimer.Elapsed -= OnTimedEvent;
+                BoilerStageTimer.Stop();
+                FileOperation.LogToTheFile($"Safety Mechanism Triggered : {ex.Message}");
+                interLock.ToggleInterLock();
+                resetLock = Reset.Open;
             }
+        }
+        private void PrePurge()
+        {
+            _currentBoilerState = BoilerStatus.PrePurge;
+            changedBoilerState += Ignition;
+            TimerStart();
         }
         private void Ignition()
         {
-            Console.Clear();
-            BoilerState = "Ignition";
-            int countDown = 10;
-            while (countDown >= 0)
+            _currentBoilerState = BoilerStatus.Ignition;
+            changedBoilerState += Operational;
+            if (BoilerStageTimer.Enabled == false)
             {
-                Console.WriteLine($"Boiler State : {BoilerState}");
-                Console.WriteLine($"CountDown for this State : {countDown}");
-                countDown--;
-                Thread.Sleep(1000);
-                Console.Clear();
-            }
-            Console.WriteLine("Press the E Key to Stimulate the Error or Any Key to Continue");
-            if (Console.ReadKey().Key == ConsoleKey.E)
-            {
-                StimulateBoilerError();
+                BoilerStageTimer.Elapsed += OnTimedEvent;
+                BoilerStageTimer.Enabled = true;
+                BoilerStageTimer.Start();
             }
         }
 
         private void Operational()
         {
-            BoilerState = "Operational";
+            Console.Clear();
+            _currentBoilerState = BoilerStatus.Operational;
+            BoilerStageTimer.Elapsed -= OnTimedEvent;
+            FileOperation.LogToTheFile(Resource.Resource1.Operational);
+            Console.WriteLine(Resource.Resource1.ContinueString);
         }
-        public void StopBoilerSequence()
+        private void TimerStart()
         {
-            Utility.PrintTheSuccessfulMessage("Boiler Stopped");
-            FileOperation.LogToTheFile("Boiler Stopped");
-            BoilerState = "Ready";
-            InterLock = false;
+            BoilerStageTimer = new System.Timers.Timer(1000);
+            BoilerStageTimer.Elapsed += OnTimedEvent;
+            BoilerStageTimer.Start();
         }
-        public void StimulateBoilerError()
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            try
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Boiler State : {_currentBoilerState}");
+            Console.WriteLine($"Countdown : {_countDown--}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(Resource.Resource1.ContinueInTimer);
+            if (_countDown == 0)
             {
-                throw new Exception("Boiler have crashed");
-            }
-            catch(Exception e)
-            {
-                BoilerState = "LockOut";
-                InterLock = false;
-                FileOperation.LogToTheFile("Boiler have crashed");
-            }
-        }
-        public void ToggleInterLockSwitch()
-        {
-            if (InterLock)
-            {
-                InterLock = false;
-                FileOperation.LogToTheFile("InterLock is Open");
-                Utility.PrintTheSuccessfulMessage("InterLock is Open");
-            }
-            else
-            {
-                InterLock = true;
-                FileOperation.LogToTheFile("InterLock is Closed");
-                Utility.PrintTheSuccessfulMessage("InterLock is Closed");
+                _countDown = 10;
+                _currentBoilerState = BoilerStatusSwitch(_currentBoilerState);
+                changedBoilerState.Invoke();
             }
         }
-        public void ResetLockOut()
+        private BoilerStatus BoilerStatusSwitch(BoilerStatus currentBoilerStatus)
         {
-            InterLock = false;
-            FileOperation.LogToTheFile("Reset to Default Open");
-            Utility.PrintTheSuccessfulMessage("Reset to Default Open");
+            if (_currentBoilerState == BoilerStatus.PrePurge)
+            {
+                return BoilerStatus.Ignition;
+            }
+            return BoilerStatus.Operational;
+        }
+        public void Dispose()
+        {
+            _boilerInstance = null;
+            BoilerStageTimer = null;
         }
     }
 }

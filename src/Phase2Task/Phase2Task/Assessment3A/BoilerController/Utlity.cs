@@ -2,63 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace BoilerConsoleApplication
+namespace BoilerController
 {
     public static class Utility
     {
-        public static void PrintTheSuccessfulMessage(string message)
+        public static int GetTheIntegerInput(string entityName)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-        public static void PrintTheWarningMessage(string message)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-        public static int GetTheIntegerInput(string entity)
-        {
-            Console.Write($"Enter the {entity} : ");
-            string userInput = Console.ReadLine();
-            if(int.TryParse(userInput, out int userIntegerValue))
-            {
-                return userIntegerValue;
-            }
-            else if(string.Compare(userInput, "end", StringComparison.InvariantCultureIgnoreCase) == 0) 
-            {
-                return 0;
-            }
-            else
-            {
-                FileOperation.LogToTheFile("Invalid Integer - Please enter the numbers");
-                Utility.PrintTheWarningMessage("Invalid Integer - Please enter the numbers");
-            }
-            return GetTheIntegerInput(entity);
-        }
-        public static string GetTheStringInput(string entity)
-        {
-            Console.Write($"Enter the {entity} : ");
-            Regex regex = new Regex("^[a-zA-Z0-9]+$");
-            string userInput = Console.ReadLine();
-            if (regex.IsMatch(userInput))
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"Enter the {entityName}: ");
+            string userEnteredText = Console.ReadLine();
+            if (int.TryParse(userEnteredText, out int userInput))
             {
                 return userInput;
             }
-            else if (string.Compare(userInput, "end", StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                return string.Empty;
-            }
-            else
-            {
-                FileOperation.LogToTheFile("Invalid Integer - Please enter the numbers");
-                Utility.PrintTheWarningMessage("Invalid Integer - Please enter the numbers");
-            }
-            return GetTheStringInput(entity);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Invalid Input");
+            Console.ForegroundColor = ConsoleColor.White;
+            return GetTheIntegerInput(entityName);
         }
     }
 }

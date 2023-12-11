@@ -1,40 +1,51 @@
-using BoilerConsoleApplication;
+using BoilerController;
 
 namespace BoilerControllerTest
 {
     public class BoilerTest
     {
+
         [Fact]
-        public void BoilerInitiation_StopBoilerSequence_CheckTheState()
+        public void BoilerInstance_ToggleInterLockClosed_IsInterLockToggled()
         {
             Boiler boiler = new Boiler();
-            string expectedOutput = "Ready";
+            InterLock.InterLockState expectedInterLock = InterLock.InterLockState.Closed;
+            boiler.SwitchInterLock();
 
-            boiler.StopBoilerSequence();
-
-            Assert.Contains(expectedOutput, boiler.BoilerState);
+            Assert.Equal(expectedInterLock, boiler.currentInterLockStatus.InterLockSwitch);
         }
 
         [Fact]
-        public void BoilerInitiation_ToggleInterLockSwitch_InterLockToggled()
+        public void BoilerInstance_ToggleInterLockOpen_IsInterLockToggled()
         {
             Boiler boiler = new Boiler();
-            bool expectedOutput = !boiler.InterLock;
+            InterLock.InterLockState expectedInterLock = InterLock.InterLockState.Open;
+            boiler.SwitchInterLock();
+            boiler.SwitchInterLock();
 
-            boiler.ToggleInterLockSwitch();
+            Assert.Equal(expectedInterLock, boiler.currentInterLockStatus.InterLockSwitch);
+        }
+        [Fact]
+        public void SwitchedInterLock_ToggleResetLock_IsResetLockToggled()
+        {
+            Boiler boiler = new Boiler();
+            Boiler.Reset expectedResetLock = Boiler.Reset.Closed;
 
-            Assert.Equal(expectedOutput, boiler.InterLock);
+            boiler.SwitchInterLock();
+            boiler.ResetLock();
+
+            Assert.Equal(expectedResetLock, boiler.resetLock);
         }
 
         [Fact]
-        public void BoilerInitiation_ResetTheLockout_InterLockToggled()
+        public void NotSwitchedInterLock_ToggleResetLock_IsResetLockToggled()
         {
             Boiler boiler = new Boiler();
-            bool expectedOutput = false;
+            Boiler.Reset expectedResetLock = Boiler.Reset.Open;
 
-            boiler.ResetLockOut();
+            boiler.ResetLock();
 
-            Assert.Equal(expectedOutput, boiler.InterLock);
+            Assert.Equal(expectedResetLock, boiler.resetLock);
         }
     }
 }

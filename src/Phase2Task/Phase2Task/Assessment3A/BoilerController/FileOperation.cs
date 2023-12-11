@@ -4,38 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoilerConsoleApplication
+namespace BoilerController
 {
     public static class FileOperation
     {
-        public static void LogToTheFile(string errorMessage)
+        public static void LogToTheFile(string message, bool warningMessage = false, string fileName = "log")
         {
-            try
+            if (warningMessage == false)
             {
-                using (StreamWriter streamWriter = new StreamWriter("..\\..\\..\\Data\\Log.txt", true))
-                {
-                    streamWriter.WriteLine($"{DateTime.Now}: {errorMessage}");
-                }
+                Console.ForegroundColor = ConsoleColor.Green;
             }
-            catch(Exception ex)
+            else
             {
-                Console.WriteLine($"Unable to write to the file : {ex.Message}");
+                Console.ForegroundColor = ConsoleColor.Red;
             }
+            Console.WriteLine(message);
+            string logMessage = $"{DateTime.Now}, {message}";
+            using (StreamWriter streamWrite = new StreamWriter($"{fileName}.csv", true))
+            {
+                streamWrite.WriteLine(logMessage);
+            }
+            Console.ForegroundColor = ConsoleColor.White;
         }
-        public static string ReadTheLog()
+        public static string LogFromTheFile(string fileName = "log")
         {
+            string output = string.Empty;
             try
             {
-                using (StreamReader streamReader = new StreamReader("..\\..\\..\\Data\\Log.txt"))
+                using (StreamReader reader = new StreamReader($"{fileName}.csv"))
                 {
-                    return streamReader.ReadToEnd();
+                    output = reader.ReadToEnd();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Unable to read from the file : {ex.Message}");
+                Console.WriteLine("Log File data not found");
             }
-            return string.Empty;
+            return output;
         }
     }
 }
