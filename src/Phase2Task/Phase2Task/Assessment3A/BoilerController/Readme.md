@@ -2,7 +2,6 @@
 
 ## Documentation
 
-- UserInterface only be accessed by the only when entered the Username (Admin) and Password (Admin123).
 - UserInterface provide options such as start the operation, Toggle the InterLock, Reset the InterLock, View all the Logs, Display all the logs.
 - UseInterface creates the instance for the boiler class.
 - Where the initiation of the start the boiler operation when only the interlock is closed.
