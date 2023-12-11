@@ -19,8 +19,8 @@
             {
                 FileOperation<Expense> fileOperation = new FileOperation<Expense>();
                 Console.WriteLine("Login Credentials\n");
-                string username = _userInterface.GetTheStringInput("Username");
-                string password = _userInterface.GetTheStringInput("Password");
+                string username = Utility.GetTheStringInput("Username", _userInterface);
+                string password = Utility.GetTheStringInput("Password", _userInterface);
                 if (username.Equals("Admin") && password.Equals("Admin123"))
                 {
                     fileOperation.LogToTheFile("log", "Login SuccessFull");
