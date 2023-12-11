@@ -121,7 +121,7 @@
     <value>Boiler Over Heated!!!</value>
   </data>
   <data name="ContinueInTimer" xml:space="preserve">
-    <value>Press the Escape to Stop the Operation, Press E to throw error or any key to continue:</value>
+    <value>Press the Escape to Pause the Operation, Press S to Stop The Excecution :</value>
   </data>
   <data name="ContinueString" xml:space="preserve">
     <value>Press any to continue</value>

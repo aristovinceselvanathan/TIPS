@@ -94,7 +94,6 @@ namespace BoilerController
             else if (interLock.InterLockSwitch == InterLock.InterLockState.Closed && resetLock == Reset.Closed && _currentBoilerState == BoilerStatus.Ignition)
             {
                 Operational();
-                return;
             }
             else if (_currentBoilerState == BoilerStatus.Operational)
             {
@@ -117,26 +116,39 @@ namespace BoilerController
                 BoilerStageTimer.Elapsed -= OnTimedEvent;
                 BoilerStageTimer.Stop();
             }
-            else if (consoleKey == ConsoleKey.E)
-            {
-                ThrowBoilerException();
-            }
-            resetLock = Reset.Open;
-        }
-
-        private void ThrowBoilerException()
-        {
-            try
-            {
-                throw new Exception(Resource.Resource1.BoilerException);
-            }
-            catch (Exception ex)
+            else if (consoleKey == ConsoleKey.S)
             {
                 BoilerStageTimer.Elapsed -= OnTimedEvent;
                 BoilerStageTimer.Stop();
-                FileOperation.LogToTheFile($"Safety Mechanism Triggered : {ex.Message}");
+                FileOperation.LogToTheFile("Operation is Stopped!!", true);
+                _countDown = 10;
                 interLock.ToggleInterLock();
                 resetLock = Reset.Open;
+            }
+        }
+
+        public void ThrowBoilerException()
+        {
+            if (_currentBoilerState == BoilerStatus.Operational)
+            {
+                try
+                {
+                    throw new Exception(Resource.Resource1.BoilerException);
+                }
+                catch (Exception ex)
+                {
+                    BoilerStageTimer.Elapsed -= OnTimedEvent;
+                    BoilerStageTimer.Stop();
+                    FileOperation.LogToTheFile($"Safety Mechanism Triggered : {ex.Message}");
+                    Console.WriteLine("Press Any Key to Continue..");
+                    Console.ReadKey();
+                    interLock.ToggleInterLock();
+                    resetLock = Reset.Open;
+                }
+            }
+            else
+            {
+                Console.WriteLine("To Stimulate the error - State should be in operational");
             }
         }
         private void PrePurge()
