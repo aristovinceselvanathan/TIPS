@@ -64,6 +64,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XunitTestingAssignment", "t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculationService", "src\Assignment15\CalculationService\CalculationService.csproj", "{85D9CCED-580A-4B34-80C8-2F57321C7142}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assignment15", "Assignment15", "{8D52048C-9F07-45EB-9811-FD316CBB2339}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
