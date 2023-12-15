@@ -1,34 +1,27 @@
 @startuml Expense Tracker
 title Expense Tracker Class Diagram
-class User{
+class User {
     +UserId : String
     +Password : String
     +void ChangePassword()
 }
 class UserInterface
 {
-    +Expense : List<Expense>
-    +Income : List<Income>
-    +void LoadFromTheFile()
+    +List<Transaction> Transactions;
     +void Add()
     +void Remove()
     +void Update()
     +void Print()
 }
-class Expense{
+class Transaction {
     +DateAndTime : string
-    +Amount : Int
-    +Category : string
-}
-class Income{
-    +DateAndTime : string
-    +Amount : Int
+    +Amount : Intl̥
     +Category : string
 }
 class FileOperations
 {
-    +void LoadTheDetailsFromTheFile()
-    +void LoadTheDetailsToTheFile()
-    +void LogToTheFile()
+    +void GethTheData()
+    +void SaveData()
+    +void LogDataToFile()
 }
 @enduml

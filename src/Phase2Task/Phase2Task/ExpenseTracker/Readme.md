@@ -22,6 +22,34 @@ It is a console application to track the expense and income of the individual or
 
 8. Log the messages into the log file. Easier to debug later if any error occurred in future.
 
+## Class and Module
+
+### Expense Class
+
+- The Expense Class Contains the DateTime, Amount, Category to get and store the value form of the list to CRED Operations to performed.
+
+- The Expense Class Constructor that used to change the values present in the class.
+
+## Income Class
+
+- The Income Class Contains the DateTime, Amount, Source to get and store the values form of the list to CRED Operations.
+
+- The income Class Constructor that used to  change the field present in the class.
+
+## File Operation
+
+- Method `GetData` it will retrieve the data from the json serialize the data from the file.
+
+- Method `SavingData` it will save the list to the file.
+
+- Method `LogTheFile` it will take the log messages from the program to the file based on text.
+
+## User Interface
+
+- The `User Interface` class will ask the user to perform the which type of the operation to be performed.
+
+- CRED Methods in the User Interface will get the input from the user and changes values according to it.
+
 ### UML Class Diagram
 
 ![Alt text](ExpenseTrackerClassDiagram.png)
