@@ -24,9 +24,8 @@ namespace DataAcquisitionSystem
         public void StartUserInterface()
         {
             FileOperations fileOperations = new FileOperations();
-            DataAcquisitionSettings dataAcquisitionSettings = fileOperations.LoadSettingsFromJson();
+            DataAcquisitionSettings dataAcquisitionSettings = FileOperations.LoadSettingsFromJson();
             ProcessTimer processTimer = new ProcessTimer(dataAcquisitionSettings, complianceModule);
-            fileOperations.Load();
             bool continueProcess = true;
 
             while (continueProcess)
@@ -56,6 +55,7 @@ namespace DataAcquisitionSystem
                         Console.WriteLine("Invalid Option - Please select the operation from 0 to 4");
                         break;
                 }
+                Console.SetCursorPosition(0, 10);
                 Console.WriteLine("Press any key to continue..");
                 Console.ReadKey();
                 Console.Clear();
@@ -82,6 +82,7 @@ namespace DataAcquisitionSystem
         }
         public void Start(ComplianceModule complianceModule, ProcessTimer processTimer)
         {
+            Console.Clear();
             if (complianceModule.Parameters != null && complianceModule.Parameters.Count == 2)
             {
                 processTimer.StartProcess();

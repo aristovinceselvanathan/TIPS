@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DataAcquisitionSystem
 {
+    /// <summary>
+    /// The data acquisition module.
+    /// </summary>
     public class DataAcquisitionModule
     {
         Random random = new Random();
@@ -16,6 +19,9 @@ namespace DataAcquisitionSystem
         public int temperature = 0;
         public ComplianceModule complianceModule;
 
+        /// <summary>
+        /// Gets the current value.
+        /// </summary>
         public (int, int) currentValue
         {
             get
@@ -29,11 +35,19 @@ namespace DataAcquisitionSystem
                 ValueChanged.Invoke(complianceModule);
             }
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataAcquisitionModule"/> class.
+        /// </summary>
+        /// <param name="complianceRules">The compliance rules.</param>
         public DataAcquisitionModule(ComplianceModule complianceRules)
         {
             complianceModule = complianceRules;
             ValueChanged += DataChanged;
         }
+        /// <summary>
+        /// Generates the data.
+        /// </summary>
+        /// <param name="dataAcquisitionSettings">The data acquisition settings.</param>
         public void GenerateData(DataAcquisitionSettings dataAcquisitionSettings)
         {
             int valueForCurrent = random.Next(dataAcquisitionSettings.Parameters.ElementAt(0).LowValue, dataAcquisitionSettings.Parameters.ElementAt(0).HighValue);
@@ -41,6 +55,10 @@ namespace DataAcquisitionSystem
             currentValue = (valueForCurrent, valueForTemperature);
         }
 
+        /// <summary>
+        /// Data the changed.
+        /// </summary>
+        /// <param name="complianceModule">The compliance module.</param>
         public void DataChanged(ComplianceModule complianceModule)
         {
             try
@@ -64,7 +82,11 @@ namespace DataAcquisitionSystem
             }
             catch (Exception ex)
             {
+                FileOperations fileOperations = new FileOperations();
+                Console.SetCursorPosition(40, 1);
                 Console.WriteLine($"Exception caught : {ex.Message}");
+                FileOperations.LogDataToFile($"{DateTime.Now}: {ex.Message}");
+                Console.WriteLine("\n1.Start\n2.Stop\n3.Configure Compliance\n4.Refresh Configurations\n0.Exit");
             }
         }
     }
