@@ -9,17 +9,17 @@ namespace DataAcquisitionSystem
 {
     public class ProcessTimer
     {
-        private System.Timers.Timer timer;
         private DataAcquisitionModule dataAcquisitionModule;
         private ComplianceModule complianceModule;
-
-        public ProcessTimer(DataAcquisitionModule dataAcquisition, ComplianceModule compliance)
+        private DataAcquisitionSettings acquisitionSettings;
+        public System.Timers.Timer timer { get; private set; }
+        public ProcessTimer(DataAcquisitionSettings dataAcquisitionSettings, ComplianceModule compliance)
         {
-            timer = new System.Timers.Timer(dataAcquisition.Rate);
-            dataAcquisitionModule = dataAcquisition;
+            dataAcquisitionModule = new DataAcquisitionModule(compliance);
+            timer = new System.Timers.Timer(dataAcquisitionSettings.Rate * 1000);
+            acquisitionSettings = dataAcquisitionSettings;
             complianceModule = compliance;
         }
-
         public void StartProcess()
         {
             timer.Elapsed += Timer_Elapsed;
@@ -32,24 +32,9 @@ namespace DataAcquisitionSystem
         }
         private void Timer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
         {
-            dataAcquisitionModule.GenerateData();
-            if(dataGenerated.Item1 > complianceModule.Parameters.ElementAt(0).HighValue)
-            {
-                throw new Exception("Current is above compliance limit");
-            }
-            else if(dataGenerated.Item1 < complianceModule.Parameters.ElementAt(0).LowValue)
-            {
-                throw new Exception("Current is below compliance limit");
-            }
-            if (dataGenerated.Item2 > complianceModule.Parameters.ElementAt(1).HighValue)
-            {
-                throw new Exception("Temperature is below compliance limit");
-            }
-            if (dataGenerated.Item2 < complianceModule.Parameters.ElementAt(1).LowValue)
-            {
-                throw new Exception("Temperature is below compliance limit");
-            }
-
+            dataAcquisitionModule.GenerateData(acquisitionSettings);
+            Console.SetCursorPosition(40, 0);
+            Console.WriteLine($"Current Value : {dataAcquisitionModule.current} Temperature Value : {dataAcquisitionModule.temperature}");
         }
     }
 }

@@ -21,5 +21,9 @@ namespace DataAcquisitionSystem
             Parameters.ElementAt(1).HighValue = highValue;
             Parameters.ElementAt(1).LowValue = lowValue;
         }
+        public void ChangeParameters(List<Parameter> parameters)
+        {
+            Parameters = parameters;
+        }
     }
 }

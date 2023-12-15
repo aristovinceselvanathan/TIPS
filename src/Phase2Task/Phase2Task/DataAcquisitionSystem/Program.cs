@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("");
+            UserInterface userInterface = new UserInterface();
+            userInterface.StartUserInterface();
         }
     }
 }

@@ -9,14 +9,14 @@ namespace DataAcquisitionSystem
 {
     internal class FileOperations
     {
-        public DataAcquisitionModule LoadSettingsFromJson()
+        public DataAcquisitionSettings LoadSettingsFromJson()
         {
-            DataAcquisitionModule dataAcquisitionModule;
-            using(StreamReader reader = new StreamReader("Setting.json"))
+            DataAcquisitionSettings dataAcquisitionSettings;
+            using(StreamReader reader = new StreamReader("Settings.json"))
             {
-                dataAcquisitionModule = JsonConvert.DeserializeObject<DataAcquisitionModule>(reader.ReadToEnd());
+                dataAcquisitionSettings = JsonConvert.DeserializeObject<DataAcquisitionSettings>(reader.ReadToEnd());
             }
-            return dataAcquisitionModule;
+            return dataAcquisitionSettings;
         }
         public void LogDataToFile(string logMessage)
         {
@@ -32,8 +32,8 @@ namespace DataAcquisitionSystem
                 List<Parameter> parameters = new List<Parameter>();
                 parameters.Add(new Parameter(120, 100, Parameter.ParameterType.Current));
                 parameters.Add(new Parameter(50, 30, Parameter.ParameterType.Temperature));
-                DataAcquisitionModule dataAcquisitionModule = new DataAcquisitionModule(1, parameters);
-                string data = JsonConvert.SerializeObject(dataAcquisitionModule, Formatting.Indented);
+                DataAcquisitionSettings dataAcquisitionSettings= new DataAcquisitionSettings(1, parameters);
+                string data = JsonConvert.SerializeObject(dataAcquisitionSettings, Formatting.Indented);
                 writer.WriteLine(data);
             }
         }
