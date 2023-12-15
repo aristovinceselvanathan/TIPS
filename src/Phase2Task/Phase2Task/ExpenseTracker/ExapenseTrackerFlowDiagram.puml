@@ -1,0 +1,25 @@
+@startuml ExpenseTracker
+title ExpenseTracker
+actor User #DarkRed
+participant UserInterface #SlateBlue
+participant Directory #LightGreen
+participant Add #Yellow
+participant Update #OrangeRed
+participant Remove #Beige
+participant Print #BlanchedAlmond
+User -> UserInterface: Enter the Credentials
+UserInterface -> Add : Adds Expenses/Income 
+Activate Add #BlanchedAlmond
+Add -> Directory : Add to the directory
+deactivate Add
+Activate Update #BlanchedAlmond
+UserInterface -> Update : Update the Expense/Income
+Update -> Directory : Update details to the directory
+deactivate Update
+activate Remove #BlanchedAlmond
+UserInterface -> Remove : Remove the Expense/Income by the user selection
+Remove -> Directory : remove Expense/Income from the directory
+deactivate Remove
+UserInterface -> Print: Print all the Expenses and Income
+Print -> Directory : To get the details of Expenses/Income
+@enduml
