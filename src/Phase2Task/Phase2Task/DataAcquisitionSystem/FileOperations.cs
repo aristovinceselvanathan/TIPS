@@ -25,5 +25,17 @@ namespace DataAcquisitionSystem
                 writer.WriteLine(logMessage);
             }
         }
+        public void Load()
+        {
+            using(StreamWriter writer = new StreamWriter("Settings.json"))
+            {
+                List<Parameter> parameters = new List<Parameter>();
+                parameters.Add(new Parameter(120, 100, Parameter.ParameterType.Current));
+                parameters.Add(new Parameter(50, 30, Parameter.ParameterType.Temperature));
+                DataAcquisitionModule dataAcquisitionModule = new DataAcquisitionModule(1, parameters);
+                string data = JsonConvert.SerializeObject(dataAcquisitionModule, Formatting.Indented);
+                writer.WriteLine(data);
+            }
+        }
     }
 }

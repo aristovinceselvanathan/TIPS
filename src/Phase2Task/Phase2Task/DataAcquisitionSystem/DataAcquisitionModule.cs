@@ -6,10 +6,32 @@ using System.Threading.Tasks;
 
 namespace DataAcquisitionSystem
 {
-    internal class DataAcquisitionModule
+    public class DataAcquisitionModule
     {
-        public int Rate { get; private set; }
+        Random random = new Random();
+        public delegate void ChangeValue();
+        public event ChangeValue ValueChanged;
+        public int current;
+        public int temperature;
+        public (int, int) currentValue
+        {
+            get
+            {
+                return (current, temperature);
+            }
+            private set
+            {
+                current = value.Item1;
+                temperature = value.Item2;
+                ValueChanged.Invoke();
+            }
+        }
 
-        public List<Parameter> Parameters { get; private set; }
+        public void GenerateData(DataAcquisitionSettings dataAcquisitionSettings)
+        {
+            int valueForCurrent = random.Next(dataAcquisitionSettings.Parameters.ElementAt(0).LowValue, dataAcquisitionSettings.Parameters.ElementAt(0).HighValue);
+            int valueForTemperature = random.Next(dataAcquisitionSettings.Parameters.ElementAt(1).LowValue, dataAcquisitionSettings.Parameters.ElementAt(1).HighValue);\
+            currentValue = (valueForCurrent , valueForTemperature);
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace DataAcquisitionSystem
 {
-    internal partial class Parameter
+    public partial class Parameter
     {
         public enum ParameterType
         {
