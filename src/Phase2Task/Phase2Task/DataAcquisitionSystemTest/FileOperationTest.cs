@@ -13,7 +13,7 @@ namespace DataAcquisitionSystemTest
             FileOperations fileOperations = new FileOperations();
             string expectedValue = "Hello";
 
-            FileOperations.LogDataToFile("Hello");
+            FileOperations.LogDataToFile("Hello", "log1.txt");
 
             Assert.Contains(expectedValue, File.ReadAllText("log.txt"));
         }

@@ -26,9 +26,9 @@ namespace DataAcquisitionSystem
         /// Logs the data to file.
         /// </summary>
         /// <param name="logMessage">The log message.</param>
-        public static void LogDataToFile(string logMessage)
+        public static void LogDataToFile(string logMessage, string logfile)
         {
-            using(StreamWriter writer = new StreamWriter("Log.txt", true))
+            using(StreamWriter writer = new StreamWriter(logfile, true))
             {
                 writer.WriteLine(logMessage);
             }

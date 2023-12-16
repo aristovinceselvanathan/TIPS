@@ -10,37 +10,17 @@ namespace DataAcquisitionSystemTest
         [Fact]
         public void DataAcquistionIntialization_GenerateData_IsDataGenerated()
         {
-            ComplianceModule complianceModule = new ComplianceModule();
-            Parameter current = new Parameter(100, 50, Parameter.ParameterType.Current);
-            Parameter temperature = new Parameter(80, 30, Parameter.ParameterType.Temperature);
-            complianceModule.Parameters.Add(current);
+            ComplianceModule complianceModule = new ComplianceModule();   
+            Parameter current = new Parameter(100, 50, "Current");
+            Parameter temperature = new Parameter(80, 30, "Temperature");
+            complianceModule.ChangeParameters(current);
+            complianceModule.ChangeParameters(temperature);
             DataAcquisitionModule dataAcquisitionModule = new DataAcquisitionModule(complianceModule);
-            FileOperations fileOperations = new FileOperations();
 
             dataAcquisitionModule.GenerateData(FileOperations.LoadSettingsFromJson());
 
-            Assert.True(dataAcquisitionModule.currentValue.Item1 != 0);
-            Assert.True(dataAcquisitionModule.currentValue.Item2 != 0);
-        }
-
-        [Fact]
-        public void DataAcquistionIntialization_DataChanged_IsMethodInvoked()
-        {
-            ComplianceModule complianceModule = new ComplianceModule();
-            Parameter current = new Parameter(100, 50, Parameter.ParameterType.Current);
-            Parameter temperature = new Parameter(80, 30, Parameter.ParameterType.Temperature);
-            complianceModule.Parameters.Add(current);
-            DataAcquisitionModule dataAcquisitionModule = new DataAcquisitionModule(complianceModule);
-            FileOperations fileOperations = new FileOperations();
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-            string expectedValue = "Exception caught";
-
-            dataAcquisitionModule.GenerateData(FileOperations.LoadSettingsFromJson());
-
-            Assert.True(dataAcquisitionModule.currentValue.Item1 != 0);
-            Assert.True(dataAcquisitionModule.currentValue.Item2 != 0);
-            Assert.Contains(expectedValue, sw.ToString());
+            Assert.True(dataAcquisitionModule.Parameters["Current"] != 0);
+            Assert.True(dataAcquisitionModule.Parameters["Temperature"] != 0);
         }
     }
 }

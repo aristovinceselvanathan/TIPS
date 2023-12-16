@@ -12,7 +12,8 @@ namespace DataAcquisitionSystem
     public class UserInterface
     {
         ComplianceModule complianceModule = new ComplianceModule();
-        List<Parameter> parameters;
+        DataAcquisitionSettings dataAcquisitionSettings = FileOperations.LoadSettingsFromJson();
+
         private enum Options
         {
             Start = 1,
@@ -24,7 +25,6 @@ namespace DataAcquisitionSystem
         public void StartUserInterface()
         {
             FileOperations fileOperations = new FileOperations();
-            DataAcquisitionSettings dataAcquisitionSettings = FileOperations.LoadSettingsFromJson();
             ProcessTimer processTimer = new ProcessTimer(dataAcquisitionSettings, complianceModule);
             bool continueProcess = true;
 
@@ -46,7 +46,7 @@ namespace DataAcquisitionSystem
                         configureCompliance();
                         break;
                     case Options.RefreshConfigurations:
-                        refreshConfigurations();
+                        RefreshConfigurations(processTimer);
                         break;
                     case Options.Exit:
                         continueProcess = false;
@@ -63,33 +63,51 @@ namespace DataAcquisitionSystem
         }
         public void configureCompliance()
         {
-            parameters = new List<Parameter>();
-            Console.WriteLine("Configure Compliance Menu");
-            Parameter current = new Parameter(Utility.GetIntegerInput("Maximum Current Value"), Utility.GetIntegerInput("Minimum Current Value"), Parameter.ParameterType.Current);
-            Parameter temperature = new Parameter(Utility.GetIntegerInput("Maximum Temperature Value"), Utility.GetIntegerInput("Minimum Temperature Value"), Parameter.ParameterType.Temperature);
-            parameters.Add(current);
-            parameters.Add(temperature);
-            complianceModule.ChangeParameters(parameters);
-        }
-
-        public void refreshConfigurations()
-        {
-            if (parameters != null && parameters.Count == 2)
-            {
-                complianceModule.ChangeParameters(parameters);
-            }
-            Console.WriteLine("Compliance Module Parameter is to be changed to start the operation");
-        }
-        public void Start(ComplianceModule complianceModule, ProcessTimer processTimer)
-        {
             Console.Clear();
-            if (complianceModule.Parameters != null && complianceModule.Parameters.Count == 2)
+            Console.WriteLine("Configure Compliance Menu");
+            string parameterName = Utility.GetStringInput("Parameter");
+            if (dataAcquisitionSettings.Parameters.Where(x => x.parameterType.Equals(parameterName, StringComparison.InvariantCultureIgnoreCase)).Count() >= 1)
             {
-                processTimer.StartProcess();
+                Parameter selectedParameter = new Parameter();
+                selectedParameter.parameterType = dataAcquisitionSettings.Parameters.FirstOrDefault(x => x.parameterType.Equals(parameterName, StringComparison.InvariantCultureIgnoreCase)).parameterType;
+                Console.WriteLine($"{selectedParameter.parameterType}");
+                selectedParameter.HighValue = Utility.GetIntegerInput("High Value");
+                selectedParameter.LowValue = Utility.GetIntegerInput("Low Value");
+                Console.WriteLine("Updated the Parameter");
+                complianceModule.ChangeParameters(selectedParameter);
             }
             else
             {
-                Console.WriteLine("Please Configure the Compliance to Start it.");
+                Console.WriteLine("Not Exists in the Data Acquisition Module");
+            }
+        }
+
+        public void RefreshConfigurations(ProcessTimer processTimer)
+        {
+            processTimer.acquisitionSettings = FileOperations.LoadSettingsFromJson();
+            Console.WriteLine("Data Loaded from the Json to the DAQ");
+        }
+        public void Start(ComplianceModule complianceModule, ProcessTimer processTimer)
+        {
+            if (processTimer.timer.Enabled == false)
+            {
+                Console.Clear();
+                if (complianceModule.Parameters != null && complianceModule.Parameters.Count == dataAcquisitionSettings.Parameters.Count)
+                {
+                    processTimer.StartProcess();
+                }
+                else if(complianceModule.Parameters != null && complianceModule.Parameters.Count != dataAcquisitionSettings.Parameters.Count)
+                {
+                    Console.WriteLine("Please Configure the all the compliance module");
+                }
+                else
+                {
+                    Console.WriteLine("Please Configure the Compliance to Start it.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Timer should be stopped");
             }
         }
         public void Stop(ProcessTimer processTimer)

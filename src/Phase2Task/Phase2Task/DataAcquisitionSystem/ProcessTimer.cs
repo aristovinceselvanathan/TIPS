@@ -14,7 +14,7 @@ namespace DataAcquisitionSystem
     {
         private DataAcquisitionModule dataAcquisitionModule;
         private ComplianceModule complianceModule;
-        private DataAcquisitionSettings acquisitionSettings;
+        public DataAcquisitionSettings acquisitionSettings { get; set;}
 
         /// <summary>
         /// Gets the timer.
@@ -59,9 +59,16 @@ namespace DataAcquisitionSystem
         /// <param name="e">The e.</param>
         private void Timer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
         {
+            (var a, var b) = Console.GetCursorPosition();
+            int cursorPosition = 0;
+            Console.SetCursorPosition(70, 0);
             dataAcquisitionModule.GenerateData(acquisitionSettings);
-            Console.SetCursorPosition(40, 0);
-            Console.WriteLine($"Current Value : {dataAcquisitionModule.current} Temperature Value : {dataAcquisitionModule.temperature}");
+            foreach(var data in dataAcquisitionModule.Parameters)
+            {
+                Console.WriteLine($"{data.Key} : {data.Value}");
+                Console.SetCursorPosition(70, ++cursorPosition);
+            }
+            Console.SetCursorPosition(a, b);
         }
     }
 }

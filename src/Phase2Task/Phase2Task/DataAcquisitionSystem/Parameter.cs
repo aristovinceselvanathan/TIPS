@@ -8,15 +8,19 @@ namespace DataAcquisitionSystem
 {
     public partial class Parameter
     {
-        public ParameterType parameterType;
+        public string parameterType;
         public int HighValue;
         public int LowValue;
 
-        public Parameter(int highValue, int lowValue, ParameterType parameterType)
+        public Parameter(int highValue, int lowValue, string parameterType)
         {
             HighValue = highValue;
             LowValue = lowValue;
             this.parameterType = parameterType;
+        }
+        public Parameter()
+        {
+
         }
     }
 }

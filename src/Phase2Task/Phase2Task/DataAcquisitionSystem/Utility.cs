@@ -10,7 +10,7 @@ namespace DataAcquisitionSystem
     {
         public static int GetIntegerInput(string entityName)
         {
-            Console.Write($"Enter the {entityName}:");
+            Console.Write($"Enter the {entityName}: ");
             string userInput = Console.ReadLine();
             if(!int.TryParse(userInput, out int result))
             {
@@ -18,6 +18,16 @@ namespace DataAcquisitionSystem
                 return GetIntegerInput(entityName);
             }
             return result;
+        }
+        public static string GetStringInput(string entityName)
+        {
+            Console.Write($"Enter the {entityName}: ");
+            string userInput = Console.ReadLine();
+            if(string.IsNullOrEmpty(userInput))
+            {
+                return GetStringInput(entityName);
+            }
+            return userInput;
         }
     }
 }
