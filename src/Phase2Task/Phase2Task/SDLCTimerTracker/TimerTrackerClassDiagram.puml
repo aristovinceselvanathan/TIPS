@@ -1,0 +1,46 @@
+@startuml Expense Tracker
+title Task Tracker Class Diagram
+class User {
+    +UserName : String
+    +HashedPassword : String
+    +void Register()
+}
+class UserTask
+{
+    +TaskTitle : String
+    +TaskDescription : String
+    +TaskTimer : Timer
+    +TimeList : List<Time>
+    +void StartTheTimer()
+    +void StopTheTimer()
+}
+class Time
+{
+    +StartDateTime : DateTime
+    +EndDateTime : DateTime
+    +TotalHours : Hours
+}
+class Utility
+{
+    +String PasswordHasher()
+    +String TokenCreator()
+}
+class FileOperation
+{
+    +void SaveDataToFile(List<T> tasks)
+    +List<T> LoadDataFromFile();
+    +void logToFile();
+}
+class Authenticator
+{
+    +void validateUser(string username, string password)
+}
+interface INotifyUser
+{
+    +void WindowsNotify(string notifyMessage)
+}
+interface ILogger
+{
+    +void Logger(string log)
+}
+@enduml
