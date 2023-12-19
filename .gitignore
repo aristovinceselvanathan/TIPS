@@ -224,3 +224,6 @@ AppPackages/
 #####
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
+/src/Phase2Task/Phase2Task/ExpenseTracker/ExpenseTracker/Data/Expense.json
+/src/Phase2Task/Phase2Task/ExpenseTracker/ExpenseTracker/Data/Income.json
+/src/Phase2Task/Phase2Task/ExpenseTracker/ExpenseTracker/Data/log.txt
