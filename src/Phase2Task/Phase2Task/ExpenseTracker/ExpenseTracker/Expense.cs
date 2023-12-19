@@ -3,7 +3,7 @@
 namespace ExpenseTracker
 {
     /// <summary>
-    /// Expense Class
+    /// Expense Class.
     /// </summary>
     public class Expense
     {
@@ -15,13 +15,13 @@ namespace ExpenseTracker
         /// <param name="category">category of the expense</param>
         public Expense(DateTime entryDate, int amount, string category)
         {
-            this.EntryDate = entryDate;
-            this.Amount = amount;
-            this.Category = category;
+            EntryDate = entryDate;
+            Amount = amount;
+            Category = category;
         }
 
         /// <summary>
-        /// Gets or sets EntryDate
+        /// Gets or sets EntryDate.
         /// </summary>
         /// <value>
         /// EntryDate
@@ -29,7 +29,7 @@ namespace ExpenseTracker
         public DateTime EntryDate { get; set; }
 
         /// <summary>
-        /// Gets or sets Amount
+        /// Gets or sets Amount.
         /// </summary>
         /// <value>
         /// Amount
@@ -37,7 +37,7 @@ namespace ExpenseTracker
         public int Amount { get; set; }
 
         /// <summary>
-        /// Gets or sets Category
+        /// Gets or sets Category.
         /// </summary>
         /// <value>
         /// Category

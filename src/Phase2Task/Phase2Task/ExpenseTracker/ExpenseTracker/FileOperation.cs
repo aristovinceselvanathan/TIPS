@@ -3,13 +3,13 @@
 namespace ExpenseTracker
 {
     /// <summary>
-    /// File Operation Class
+    /// File Operation Class.
     /// </summary>
     /// <typeparam name="T">Denotes the type of class</typeparam>
     public class FileOperation<T>
     {
         /// <summary>
-        /// Load data to the file by using json serialize
+        /// Load data to the file by using json serialize.
         /// </summary>
         /// <param name="fileName">File name of the data to stored</param>
         /// <param name="entriesDirectory">List of the data to be stored</param>
@@ -33,28 +33,29 @@ namespace ExpenseTracker
         }
 
         /// <summary>
-        /// Load data to the file by using json serialize
+        /// Load data to the file by using json serialize.
         /// </summary>
         /// <param name="fileName">File name of the data to be restored</param>
         /// <returns>List of the data to be restored</returns>
         /// <typeparam name="T">Type of entry</typeparam>
         public List<T> LoadFromTheFile(string fileName)
         {
+            List<T> entriesDirectory = new List<T>();
             try
             {
                 using (StreamReader reader = new StreamReader($"..\\..\\..\\Data\\{fileName}.json"))
                 {
-                    List<T> entriesDirectory = JsonConvert.DeserializeObject<List<T>>(reader.ReadToEnd());
+                    entriesDirectory = JsonConvert.DeserializeObject<List<T>>(reader.ReadToEnd());
                     Utility.PrintSuccessfulMessage($"Successfully loaded to the {fileName}\n");
                     return entriesDirectory;
                 }
             }
             catch (Exception exception)
             {
-                Utility.PrintErrorMessage($"Unable to access the file : {exception.Message}\n");
+                Utility.PrintErrorMessage($"Unable to access the file\n");
             }
 
-            return null;
+            return entriesDirectory;
         }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace ExpenseTracker
             }
             catch (Exception exception)
             {
-                Utility.PrintErrorMessage($"Unable to access the file : {exception.Message}\n");
+                Utility.PrintErrorMessage($"Unable to access the file\n");
             }
         }
     }

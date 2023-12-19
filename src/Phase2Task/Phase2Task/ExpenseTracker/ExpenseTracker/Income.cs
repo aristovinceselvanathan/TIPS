@@ -1,7 +1,7 @@
 ﻿namespace ExpenseTracker
 {
     /// <summary>
-    /// Income Class
+    /// Income Class.
     /// </summary>
     public class Income
     {
@@ -13,13 +13,13 @@
         /// <param name="source">source of the income</param>
         public Income(DateTime entryDate, int amount, string source)
         {
-            this.EntryDate = entryDate;
-            this.Amount = amount;
-            this.Source = source;
+            EntryDate = entryDate;
+            Amount = amount;
+            Source = source;
         }
 
         /// <summary>
-        /// Gets or sets EntryDate
+        /// Gets or sets EntryDate.
         /// </summary>
         /// <value>
         /// EntryDate
@@ -27,7 +27,7 @@
         public DateTime EntryDate { get; set; }
 
         /// <summary>
-        /// Gets or sets Amount
+        /// Gets or sets Amount.
         /// </summary>
         /// <value>
         /// Amount
@@ -35,7 +35,7 @@
         public int Amount { get; set; }
 
         /// <summary>
-        /// Gets or sets Source
+        /// Gets or sets Source.
         /// </summary>
         /// <value>
         /// Source

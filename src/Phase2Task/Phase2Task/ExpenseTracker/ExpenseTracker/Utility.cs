@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ExpenseTracker
 {
     /// <summary>
-    /// Utility class
+    /// Utility class.
     /// </summary>
     internal static class Utility
     {
@@ -16,7 +16,7 @@ namespace ExpenseTracker
         private static FileOperation<Income> _fileOperationIncome = new FileOperation<Income>();
 
         /// <summary>
-        /// Print the error message in red color
+        /// Print the error message in red color.
         /// </summary>
         /// <param name="message">Message to be printed</param>
         public static void PrintErrorMessage(string message)
@@ -27,7 +27,7 @@ namespace ExpenseTracker
         }
 
         /// <summary>
-        /// Print the successful message in green color
+        /// Print the successful message in green color.
         /// </summary>
         /// <param name="message">Message to be printed</param>
         public static void PrintSuccessfulMessage(string message)
@@ -38,12 +38,11 @@ namespace ExpenseTracker
         }
 
         /// <summary>
-        /// Get the string input from the user
+        /// Get the string input from the user.
         /// </summary>
         /// <param name="entityName">Name of the entity</param>
-        /// <param name="userInterface">UserInterface to be called to entered end</param>
         /// <returns>string entered by the user</returns>
-        public static string GetTheStringInput(string entityName, UserInterface userInterface)
+        public static string GetTheStringInput(string entityName)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Regex regex = new Regex("^[A-Za-z0-9]+$");
@@ -54,23 +53,18 @@ namespace ExpenseTracker
             {
                 return userEnteredInput;
             }
-            else if (string.Compare(userEnteredInput, "end", StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                userInterface.StartUserInterface(0);
-            }
 
             Utility.PrintErrorMessage("Invalid Input - Please enter the valid characters");
             _fileOperationIncome.LogToTheFile(_logFileName, "Invalid Input - Please enter the valid characters in the GetTheStringInput");
-            return GetTheStringInput(entityName, userInterface);
+            return GetTheStringInput(entityName);
         }
 
         /// <summary>
-        /// Get the integer input from the user
+        /// Get the integer input from the user.
         /// </summary>
         /// <param name="entityName">Name of the entity</param>
-        /// <param name="userInterface">UserInterface to be called to entered end</param>
         /// <returns>string entered by the user</returns>
-        public static int GetTheIntegerInput(string entityName, UserInterface userInterface)
+        public static int GetTheIntegerInput(string entityName)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"Enter the {entityName} : ");
@@ -80,27 +74,22 @@ namespace ExpenseTracker
             {
                 return userEnteredValue;
             }
-            else if (string.Compare(userEnteredInput, "end", StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                userInterface.StartUserInterface(0);
-            }
 
             Utility.PrintErrorMessage("Invalid Input - Please enter the valid integers");
             _fileOperationIncome.LogToTheFile(_logFileName, "Invalid Input - Please enter the valid integers in the GetTheIntegerInput");
-            return GetTheIntegerInput(entityName, userInterface);
+            return GetTheIntegerInput(entityName);
         }
 
         /// <summary>
-        /// Get the integer input from the user
+        /// Get the integer input from the user.
         /// </summary>
-        /// <param name="userInterface">UserInterface to be called to entered end</param>
         /// <returns>string entered by the user</returns>
-        public static DateTime GetTheDateInput(UserInterface userInterface)
+        public static DateTime GetTheDateInput()
         {
             Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Regex regex = new Regex("^(0[1-9]|[12][0-9]|3[01])(-|/).(0[1-9]|1[012])(-|/).\\d{4}$");
+            Regex regex = new Regex("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-\\d{4}$");
             Console.WriteLine("Can I use the current date ? 1 - Yes, 2 - No");
-            int userEnteredNumber = GetTheIntegerInput("Choice", userInterface);
+            int userEnteredNumber = GetTheIntegerInput("Choice");
             if (userEnteredNumber == 1)
             {
                 return DateTime.Now.Date;
@@ -112,11 +101,16 @@ namespace ExpenseTracker
                 Console.WriteLine();
                 if (regex.IsMatch(userEnteredInput))
                 {
-                    return DateTime.ParseExact(userEnteredInput, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                }
-                else if (string.Compare(userEnteredInput, "end", StringComparison.InvariantCultureIgnoreCase) == 0)
-                {
-                    userInterface.StartUserInterface(0);
+                    try
+                    {
+                        return DateTime.ParseExact(userEnteredInput, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    }
+                    catch (Exception exception)
+                    {
+                        Utility.PrintErrorMessage("Invalid Input - Please enter the valid date");
+                        _fileOperationIncome.LogToTheFile(_logFileName, "Invalid Input - Please enter the valid date in the GetTheDateInput");
+                        return GetTheDateInput();
+                    }
                 }
             }
             else
@@ -128,7 +122,7 @@ namespace ExpenseTracker
             Console.WriteLine();
             Utility.PrintErrorMessage("Invalid Input - Please enter the valid date of format (dd-mm-yyyy)");
             _fileOperationIncome.LogToTheFile(_logFileName, "Invalid Input - Please enter the valid date of format (dd-mm-yyyy) in the GetTheDateInput");
-            return GetTheDateInput(userInterface);
+            return GetTheDateInput();
         }
     }
 }

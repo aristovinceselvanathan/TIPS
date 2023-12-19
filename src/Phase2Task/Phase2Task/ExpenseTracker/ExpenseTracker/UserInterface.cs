@@ -5,7 +5,7 @@ using ConsoleTables;
 namespace ExpenseTracker
 {
     /// <summary>
-    /// UserInterface Class
+    /// UserInterface Class.
     /// </summary>
     public partial class UserInterface
     {
@@ -40,7 +40,7 @@ namespace ExpenseTracker
         }
 
         /// <summary>
-        /// Gets the Expenses
+        /// Gets the Expenses.
         /// </summary>
         /// <value>
         /// Expenses
@@ -48,7 +48,7 @@ namespace ExpenseTracker
         public List<Expense> Expenses { get => _expenses; }
 
         /// <summary>
-        /// Gets the Incomes
+        /// Gets the Incomes.
         /// </summary>
         /// <value>
         /// Incomes
@@ -56,7 +56,7 @@ namespace ExpenseTracker
         public List<Income> Incomes { get => _incomes; }
 
         /// <summary>
-        /// To start the user interface
+        /// To start the user interface.
         /// </summary>
         /// <param name="operationToBePerformed">To select the operation to be performed</param>
         public void StartUserInterface(int operationToBePerformed = 1)
@@ -77,7 +77,7 @@ namespace ExpenseTracker
                 Console.Clear();
                 Console.WriteLine("Menu\n\n1 - Add The Entry\n2 - Remove The Entry\n3 - Update the Entry\n4 - Display the Entries\n5 - Exit" +
                     "\n\nType end in the field to return to main menu\n");
-                int userEnteredChoice = Utility.GetTheIntegerInput("Choice", this);
+                int userEnteredChoice = Utility.GetTheIntegerInput("Choice");
                 Options options = (Options)userEnteredChoice;
 
                 switch (options)
@@ -102,6 +102,7 @@ namespace ExpenseTracker
                         Utility.PrintSuccessfulMessage("Exiting...\n");
                         _fileOperationIncome.LogToTheFile(_logFileName, "Exited the Application");
                         _fileOperationExpense.LogToTheFile("log", $"Successfully loaded to the files");
+                        LoadToTheFile();
                         flag = false;
                         break;
                     default:
@@ -125,9 +126,7 @@ namespace ExpenseTracker
         /// <summary>
         /// Process to be done when exiting the console application
         /// </summary>
-        /// <param name="sender">sender object that invoke the method</param>
-        /// <param name="e">EventArgs of the data to be given to t</param>
-        public void CurrentDomain_ProcessExit_LoadToTheFile(object sender, EventArgs e)
+        public void LoadToTheFile()
         {
             _fileOperationExpense.LoadToTheFile("expense", _expenses);
             _fileOperationIncome.LoadToTheFile("income", _incomes);
@@ -135,14 +134,14 @@ namespace ExpenseTracker
         }
 
         /// <summary>
-        /// To add the entry to expense or the income
+        /// To add the entry to expense or the income.
         /// </summary>
         /// <param name="operationFunction">Reference to the function</param>
         public void ManipulateEntry(Predicate<int> operationFunction)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Add The Entry :\n\n1.Expense\n\n2.Income\n");
-            int userSelectedOption = Utility.GetTheIntegerInput("Choice", this);
+            int userSelectedOption = Utility.GetTheIntegerInput("Choice");
             TypeOfEntry typeOfEntry = (TypeOfEntry)userSelectedOption;
 
             switch (typeOfEntry)
@@ -158,29 +157,30 @@ namespace ExpenseTracker
                     _fileOperationIncome.LogToTheFile(_logFileName, "Enter the valid option - Please enter the option 1 or 2 in the Manipulate Entry");
                     break;
             }
+            Console.WriteLine("Operation Performed Successfully");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
         /// <summary>
-        /// Add the entry details into the expense or income
+        /// Add the entry details into the expense or income.
         /// </summary>
         /// <param name="typeOfEntry">Enum of the entry</param>
         /// <returns>status of the operation</returns>
         public bool AddTheEntry(int typeOfEntry)
         {
             Console.WriteLine("Add the Required Details : \n");
-            DateTime dateOfTheEntry = Utility.GetTheDateInput(this);
-            int amount = Utility.GetTheIntegerInput("Amount", this);
+            DateTime dateOfTheEntry = Utility.GetTheDateInput();
+            int amount = Utility.GetTheIntegerInput("Amount");
             string description;
 
             switch (typeOfEntry)
             {
                 case 1:
-                    description = Utility.GetTheStringInput("Category", this);
+                    description = Utility.GetTheStringInput("Category");
                     _expenses.Add(new Expense(dateOfTheEntry, amount, description));
                     break;
                 case 2:
-                    description = Utility.GetTheStringInput("Source", this);
+                    description = Utility.GetTheStringInput("Source");
                     _incomes.Add(new Income(dateOfTheEntry, amount, description));
                     break;
                 default:
@@ -193,7 +193,7 @@ namespace ExpenseTracker
         }
 
         /// <summary>
-        /// Remove the entry details into the expense or income
+        /// Remove the entry details into the expense or income.
         /// </summary>
         /// <param name="typeOfEntry">Enum of the entry</param>
         /// <returns>status of the operation</returns>
@@ -203,11 +203,11 @@ namespace ExpenseTracker
             Console.WriteLine("Remove the Entry");
             if (PrintTheEntry(typeOfEntry))
             {
-                int userEnteredChoice = Utility.GetTheIntegerInput("S.No", this);
+                int userEnteredChoice = Utility.GetTheIntegerInput("S.No") - 1;
                 switch (typeOfEntry)
                 {
                     case 1:
-                        _expenses.RemoveAt(_expenses.IndexOf(_tempExpenses.ElementAt(userEnteredChoice)));
+                        _expenses.RemoveAt(_expenses.IndexOf(_tempExpenses.ElementAt(userEnteredChoice )));
                         break;
                     case 2:
                         _incomes.RemoveAt(_incomes.IndexOf(_incomes.ElementAt(userEnteredChoice)));
