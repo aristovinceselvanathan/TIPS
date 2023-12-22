@@ -2,8 +2,10 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using TimerApp;
 using TimerApp.AuthenticationServer;
+using TimerApp.Pages;
 
 namespace TImerApp.Pages
 {
@@ -41,6 +43,9 @@ namespace TImerApp.Pages
                     Notfication.Content = "User Registered Successful";
                     await Task.Delay(1000);
                     Notfication.Foreground = Brushes.Red;
+                    TaskWindow taskWindow = new TaskWindow(UserName.Text);
+                    mainWindow.Hide();
+                    taskWindow.Show();
                 }
                 else
                 {
@@ -54,6 +59,11 @@ namespace TImerApp.Pages
         {
             mainWindow.Title.Text = "Sign Up";
             mainWindow.LogInOrSignUp.Content = new SignUp();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.LogInOrSignUp.Content = new ForgotPassword();
         }
     }
 

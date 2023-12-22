@@ -31,6 +31,7 @@
                                      materialDesign:HintAssist.FloatingOffset="0, -18" 
                                      BorderBrush="#c5c8cc" Margin="0 27" 
                                      BorderThickness="0 0 0 1.5"/>
+                        <Button Content="Forgot Password?"  Background="Transparent" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" Click="Button_Click"/>
                         <StackPanel Orientation="Horizontal">
                             <Button Content="Log In" Background="#05b790" Foreground="#ffffff" FontSize="18" 
                                     Width="120" Height="45" 

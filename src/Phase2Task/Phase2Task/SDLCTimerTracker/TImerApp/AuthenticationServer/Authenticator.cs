@@ -51,5 +51,17 @@ namespace TimerApp.AuthenticationServer
             int token = username.GetHashCode();
             return token;
         }
+
+        public bool sendEmail(string userName)
+        {
+            DataManager<User> dataManager = new DataManager<User>();
+            List<User> users = dataManager.LoadDataFromFile("..\\..\\..\\Data\\LoginData.json");
+            User LoginUser = users.FirstOrDefault(x => x.userName.Equals(userName));
+            if (LoginUser != null)
+            {
+                return false;
+            }
+            return false;
+        }
     }
 }
