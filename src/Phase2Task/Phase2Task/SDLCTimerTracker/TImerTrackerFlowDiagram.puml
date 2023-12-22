@@ -1,0 +1,18 @@
+@startuml Task Tracker
+ 
+title Task Tracker
+actor User #DarkRed
+participant Authenticator #SlateBlue
+participant TaskManger #Yellow
+participant Task #BlueViolet
+participant Timer #Orange
+participant Files #OrangeRed
+
+User -> Authenticator: Validate User
+Authenticator -> TaskManger: Access the TaskManger
+TaskManger -> Files : Access the tasks belong to user
+TaskManger -> Task : CRED Opertions on Task
+Task -> Timer : Start or Stop Timer
+Authenticator -> Files : Access the Registered User
+Authenticator -> Files : Register User
+@enduml
